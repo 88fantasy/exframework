@@ -96,7 +96,7 @@
 	
 	
 	<scm>
-	      <connection>scm:git:ssh://16369@192.168.7.41:29418/~16369/exframe.git</connection> 
+	      <connection>scm:git:git clone ssh://16369@192.168.7.41:29418/~16369/exframework.git</connection> 
 	      <developerConnection>scm:git:ssh://16369@192.168.7.41:29418/~16369/exframe.git</developerConnection>  
 	      <url>http://192.168.7.41/git/summary/~16369!exframe.git</url>  
 	</scm>
