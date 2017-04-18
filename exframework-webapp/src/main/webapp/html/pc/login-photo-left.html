@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../img/gzmpc.ico">
+
+    <title>打印中心</title>
+    <link href="../../css/pc/plugins/bootstrap.min.css" rel="stylesheet">
+  <style>
+  html,body{
+  	width:100%;
+  	
+  }
+  .distance{
+		margin-bottom:40px;
+		   border: 1px solid #337ab7;
+		   width:80%;
+		   float:left;
+		  /*  margin-left:30px; */
+	}
+  	 .container{
+  	 width:450px ;
+  	 height:410px;
+  	 position:relative;
+	
+	  /*   left: 50%;*/
+	    top: 15%; 
+	   /*  margin-left: -25%;
+	    margin-top: -25%; */
+	    display: block;
+	        border: 1px solid #337ab7;
+	    /* border-radius: 8px; */
+	   
+	} 
+	.login-label{
+		 float:left;
+		 margin-right:20px;
+	}
+	.leftFrame{
+		float:left;
+		
+		height:80%;
+	}
+	.rightFrame{
+		float:left;
+		margin-left:100px;
+		height:80%;
+	}
+	#Frame{
+	  position:relative;
+    /* margin-left: 10%; */
+    margin-top: 3%;
+    width: 1000px;
+    left:50%;
+    margin-left:-500px;
+    /* height: 80%; */
+	}
+	 .line{
+  	
+	   border-bottom: 1.5px solid #337ab7;
+	   width:100%;
+	   float:left;
+	  color: #337ab7;
+	   font-size:25px;
+	   margin-bottom:25px;
+	} 
+	h1{
+		font-size: 16px;
+    color: #337ab7;
+    
+    line-height: 40px;
+	}
+	.line-down{
+	  border-top: 1.5px solid #337ab7;
+	   width:100%;
+	   margin-top:5px;
+	   margin-bottom:10px;
+	}
+	.bottom-content{
+		margin-top:0px;
+		font-family:微软雅黑;
+		font-size:18px;
+		color: #337ab7;
+	}
+  </style>
+  </head>
+  <body>
+  	<div id="Frame">
+  		
+  		<div class="line">打印中心</div >
+  		<div class="leftFrame">
+  			<div style="width:450px;height:450px;background:#337ab7">
+  			<img src="../../img/service.jpg" width="450px" height="450px" style="">
+  			</div>
+  		</div>
+  		<div class="rightFrame">
+  			<div class="bottom-content">打印中心登陆界面</div>
+  			<div class="line-down"></div >
+			<div class="container">
+				<div style='margin-left:15px;margin-top:40px;'>
+				<form class="form-signin" role="form" action="">
+					<img src="../../img/GZMPC.jpg" width="200" style="">
+					<h2 class="form-signin-heading" style="margin-bottom:22px">欢迎登陆</h2>
+				
+					<h4 class="form-signin-heading login-label">用户:</h4>
+					<!-- <label>用户名:</label> --><input type="text" class="form-control distance" placeholder="account" name="account" required autofocus>
+					<h4 class="form-signin-heading login-label">密码:</h4>
+					<!-- <label>密码:</label> --><input type="text" class="form-control distance" placeholder="password" name ="password" required >
+					<h4 class="form-signin-heading login-label"><a>忘记:</a></h4>
+					<button class="btn btn-lg btn-primary btn-block distance distance" type="submit"style="margin-bottom:50px">登陆</button>
+				</form>
+				</div>
+			</div>
+			
+			
+		</div>
+		
+	</div>
+   
+    <script src="../../js/pc/plugins/jquery.min.js"></script>
+    <script src="../../js/pc/plugins/bootstrap.min.js"></script>
+
+   
+</body></html>

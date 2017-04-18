@@ -1,0 +1,7 @@
+#set($functionName = $se.getCode())
+  <definition extends="doc.queryEntity.mainLayout" name="${systemName}.${functionName}.main">
+	<put name="body" value="${jspPath}${systemName}/${functionName}/main.jsp"/>
+#set($main = "$systemName$functionName")
+	<put name="title" value="$moduleUtil.getModuleDispStr($main)"/>
+  </definition>
+

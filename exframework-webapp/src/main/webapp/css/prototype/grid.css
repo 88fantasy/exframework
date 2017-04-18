@@ -1,0 +1,42 @@
+/*!
+ *  auth:  rwe
+ */
+
+.grid-ul {
+	list-style: none;
+}
+
+.grid-table {
+	white-space: nowrap;
+	text-align: center;
+}
+
+.grid-table th{
+	text-align: center;
+}
+.grid-footer-bar {
+	position:inherit;
+}
+
+.grid-footer-bar-ul {
+	list-style: none;
+	height: 40px;
+	margin: auto;
+}
+
+.grid-footer-item
+ {
+    white-space: nowrap;
+    float: left;
+	margin-right: 15px;
+}
+
+.grid-footer-item select {
+    display: inline-block;
+    width: auto;
+}
+
+.grid-footer-item label
+ {
+	margin-top: 0.5rem;
+}
