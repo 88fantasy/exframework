@@ -1,0 +1,36 @@
+#set($pcode = $projectcode)
+#set($pclasstype = $projectclasstype)
+#set($masterPrimaryKey = $projectMasterPrimaryKey)
+#set($masterEditForm = $projectMasterEditForm)
+#set($detailEditForm = $projectDetailForm)
+<%@ page contentType="text/html; charset=GBK"%>
+ <script type="text/javascript" src="<%=request.getContextPath()%>/js/prototype/EditGrid.js"></script>
+
+
+ <div id="north" class="x-layout-inactive-content">
+     <table width=100% class="basicTable" height="100%">
+         <tr><td valign="top">
+             <jsp:include page="/showFormservlet">
+             <jsp:param name="formCode" value="${masterEditForm}" />
+             </jsp:include>
+            </td>
+        </tr>
+    </table>
+</div>
+<div id="south" class="x-layout-inactive-content">
+   <table width=100% class="basicTable" height="100%">
+  <tr>
+    <td valign="top">
+       <jsp:include page="/showFormservlet">
+        <jsp:param name="formCode" value="${detailEditForm}" />
+       </jsp:include>
+    </td>
+   </tr>
+   </table>
+</div>
+<script>
+ var status = '<%=request.getParameter("status")%>';
+ var moduleid = '<%=request.getParameter("moduleid")%>';
+ var ${masterPrimaryKey} = '<%=request.getParameter("${masterPrimaryKey}")%>';
+</script>
+ <script type="text/javascript" src="<%=request.getContextPath()%>/js/${pclasstype}/${pcode}/dblheader.js"></script>

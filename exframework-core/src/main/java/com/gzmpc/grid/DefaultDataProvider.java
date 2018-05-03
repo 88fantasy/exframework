@@ -1,8 +1,10 @@
 package com.gzmpc.grid;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -19,7 +21,7 @@ import org.springframework.stereotype.Component;
 
 import com.gzmpc.dao.SystemDao;
 import com.gzmpc.exception.InitException;
-import com.gzmpc.exception.ProcessException;
+import com.gzmpc.exception.BuildException;
 import com.gzmpc.metadata.MetaData;
 import com.gzmpc.metadata.grid.Grid;
 import com.gzmpc.metadata.sys.Account;
@@ -41,7 +43,7 @@ public abstract class DefaultDataProvider implements IDataProvider {
 	@Value("${file.download.default.query:download/querytemp}")
 	private String defaultPath;
 
-	abstract public Map<String, Object> getJsonData(String gridcode, Map<String, Object> params, Account account) throws InitException,ProcessException;
+	abstract public Map<String, Object> getJsonData(String gridcode, Map<String, Object> params, Account account) throws InitException,BuildException;
 
 	abstract public List<Map<String, Object>> retGridInfo(String gridcode, Account account, Map<String, Object> params);
 
@@ -64,7 +66,7 @@ public abstract class DefaultDataProvider implements IDataProvider {
 	}
 	
 	@Override
-	public String doDownLoad(String gridcode, Map<String, Object> params, Account account) throws InitException,ProcessException {
+	public String doDownLoad(String gridcode, Map<String, Object> params, Account account) throws InitException,BuildException {
 		Grid gridDef = metaData.findGridDefByCode(gridcode);
 		
 		List<Object[]> result = new ArrayList<Object[]>();
@@ -90,7 +92,9 @@ public abstract class DefaultDataProvider implements IDataProvider {
 			Object[] lines = new Object[header.size()];
 			for (int x = 0, y = header.size(); x < y; x++) {
 				String name = (String) header.get(x).get(GridService.FIELDNAME);
-				lines[x] = row.get(name);
+				@SuppressWarnings("unchecked")
+				Map<String,Object> col = (Map<String, Object>) row.get(name);
+				lines[x] = col.get(GridService.RENDER);
 			}
 			result.add(lines);
 		}
@@ -106,8 +110,13 @@ public abstract class DefaultDataProvider implements IDataProvider {
 		String file = path+filename;
 		
 		try{
-			FileWriter fw = new FileWriter(file);
-			CSVPrinter printer = new CSVPrinter(fw, CSVFormat.EXCEL);
+			File f = new File(file);
+			FileOutputStream fos = new FileOutputStream(f);
+			// 写BOM 不然会乱码
+			fos.write(new byte[] { (byte)0xEF, (byte)0xBB, (byte)0xBF });
+			// 创建字节流输出对象
+			OutputStreamWriter osw = new OutputStreamWriter(fos, "UTF-8");
+			CSVPrinter printer = new CSVPrinter(osw, CSVFormat.EXCEL);
 			for (int i = 0, j = result.size(); i < j; i++) {
 				Object[] lines = result.get(i);
 				printer.printRecord(lines);
@@ -117,7 +126,7 @@ public abstract class DefaultDataProvider implements IDataProvider {
 			return file;
 		} catch ( IOException e) {
 			log.error("生成csv文件时出现错误:"+e.getMessage(),e);
-			throw new ProcessException("生成csv文件时出现错误:"+ e.getMessage());
+			throw new BuildException("生成csv文件时出现错误:"+ e.getMessage());
 		}
 	}
 

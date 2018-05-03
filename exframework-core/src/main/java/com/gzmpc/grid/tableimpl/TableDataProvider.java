@@ -1,7 +1,7 @@
 package com.gzmpc.grid.tableimpl;
 
 import com.gzmpc.exception.InitException;
-import com.gzmpc.exception.ProcessException;
+import com.gzmpc.exception.BuildException;
 import com.gzmpc.grid.DefaultDataProvider;
 import com.gzmpc.grid.GridCache;
 import com.gzmpc.grid.IDataAfterQuery;
@@ -123,7 +123,7 @@ public class TableDataProvider extends DefaultDataProvider {
 	}
 
 	@Override
-	public Map<String, Object> getJsonData(String gridcode, Map<String, Object> params, Account account)  throws InitException,ProcessException{
+	public Map<String, Object> getJsonData(String gridcode, Map<String, Object> params, Account account)  throws InitException,BuildException{
 		Connection con = null;
 		PreparedStatement pst = null;
 		try {

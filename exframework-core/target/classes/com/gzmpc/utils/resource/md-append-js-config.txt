@@ -1,0 +1,97 @@
+#set($menu = $menucode)
+#set($gridcode = $projectGridcode)
+#set($masterTableName = $projectMasterTableName)
+#set($masterPrimary = $projectMasterPrimary)
+#set($masterEditForm = $projectMasterEditForm)
+#set($detailTableName = $projectDetailTableName)
+#set($detailPrimary = $projectDetailPrimary)
+#set($detailEditForm = $projectDetailEditForm)
+var editGrid;//必须放到外面去，因为表格工具栏事件会调用它
+LayoutExt = function(){
+      return {
+          init: function(){
+            // Ext.state.Manager.setProvider(new Ext.state.CookieProvider());
+           //第一个参数是工具栏的DIV对应的ID，第二个参数是数据库配置的工具栏编码
+             new ToolbarMenu('mainToolbar','${menu}');
+            //第一个参数是数据库里配置的表格名称，第二个参数是表格的布局,第三个参数为表格高度
+            var jsNavGrid = new JSNavigatorGrid('${gridcode}','center');
+            //第一个参数是数据库里的表名，第二个参数是读取数据时取的数据源，第三个参数是主键
+            var dwrobj = new JdbcTableOperImpl('${masterTableName}','${masterTableName}','${masterPrimary}');
+             dwrobj.init();
+             //第一个参数是FORM对象，第二个参数是Dwr对象
+             var editForm = new EditForm(${masterEditForm},dwrobj);
+              //第一个参数是数据库里的表名，第二个参数是读取数据时取的数据源，第三个参数是主键
+              var dtldwrobj = new JdbcTableOperImpl('${detailTableName}','${detailTableName}','${detailPrimary}');
+                //第一个参数是FORM对象，第二个参数是Dwr对象
+             var dtlEditForm = new EditForm(${detailEditForm},dtldwrobj);
+                //第一个参数是总单的editForm对象，第二个参数是细单的editForm对象,第三个参数是表格对象,第四个参数是细单editForm对象的外键
+              editGrid = new EditGrid(editForm,dtlEditForm,jsNavGrid,'${masterPrimary}');
+              editGrid.init(_initReply);
+              function _initReply(){
+                  editForm.afterLoad = function(){
+                      var conditions = ceq('${masterPrimary}',${masterPrimary});
+                       editGrid._jsNavEditGrid.doQuery(conditions);
+                  }
+                  if(status =='append'){
+                      dtlEditForm.setReadOnly(true);
+                      editForm.append(moduleid);
+                  }
+                  else if(status =='edit'){
+                     editForm.loadById(${masterPrimary});
+                  }
+
+               viewLayout = new Ext.Viewport({
+                 layout: 'border',
+                 items: [
+                  {
+                     region: 'north',
+                     contentEl: 'north',
+                     split: true,
+                     collapsible: true,
+                     margins: '0 0 0 0',
+                     layout:'fit',
+                     height:170,
+                     autoScroll : true
+                 },
+                 {
+                 region: 'center',
+//                  collapsible: true,
+                  split:true,
+                    margins:'0 0 0 0',
+                  layout:'fit',
+                  items:[editGrid._jsNavEditGrid.grid]
+                  },
+                  {
+                     region: 'south',
+                     contentEl: 'south',
+                     split: true,
+                     layout:'fit',
+                     autoScroll : true,
+                     collapsible: true,
+                     margins: '0 0 0 0',
+                     height:100
+                 }
+                 ]
+             });
+                jsNavGrid.setBottomToolbarDisable(true);
+                }
+
+         }
+     };
+ }
+ ();
+ //加载onReady
+ Ext.onReady(LayoutExt.init, LayoutExt, true);
+function doDtlAppend(tb){
+   editGrid.doAppend(tb.id);
+}
+function doDtlEdit(){
+  editGrid.doEdit();
+}
+function doDtlDelete(){
+  editGrid.remove();
+}
+function doSave(tb){
+   editGrid.doSave(tb.id);
+}
+

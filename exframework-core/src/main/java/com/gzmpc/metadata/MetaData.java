@@ -19,6 +19,7 @@ import com.gzmpc.metadata.grid.*;
 import com.gzmpc.metadata.nav.Nav;
 import com.gzmpc.metadata.query.*;
 import com.gzmpc.metadata.queryparam.QueryParam;
+import com.gzmpc.metadata.sys.SystemConst;
 import com.gzmpc.metadata.toolbar.*;
 import com.gzmpc.stereotype.BuildComponent;
 
@@ -31,6 +32,9 @@ import com.gzmpc.stereotype.BuildComponent;
 @BuildComponent
 public class MetaData implements Buildable {
 	private Log log = LogFactory.getLog(MetaData.class.getName());
+	
+	@Autowired
+	SystemConst systemConst;
 	
 	@Autowired
 	SystemDao systemDao;
@@ -119,81 +123,81 @@ public class MetaData implements Buildable {
 	@Override
 	public void build() {
 		
-		Connection con = null;
+		if("webapp".equals(systemConst.SYS_TABLE_CONFIG)) {
 		
-		try{
-			con = systemDao.getUnautocommitConnection();
-			Func[] funcs = hanlerFactory.retFuncDefs(con);
+			Connection con = null;
 			
-			this.funcs = new ConcurrentHashMap<String, Func>();
-			for (int i = 0; i < funcs.length; i++) {
-				this.funcs.put(funcs[i].getCode(), funcs[i]);
-			}
-			
-			Grid[] grids = hanlerFactory.retGridDefs(con);
-			this.grids = new ConcurrentHashMap<String, Grid>();
-			for (int i = 0; i < grids.length; i++) {
-				this.grids.put(grids[i].getGridCode(), grids[i]);
-			}
-			
-			QueryDef[] querys = hanlerFactory.retQueryDefs(con);
-			this.querys = new ConcurrentHashMap<String, QueryDef>();
-			for (int i = 0; i < querys.length; i++) {
-				this.querys.put(querys[i].getCode(), querys[i]);
-			}
-			
-			QueryParam[] qps = hanlerFactory.retQueryParams(con);
-			this.queryParams = new ConcurrentHashMap<String, QueryParam>();
-			for (int i = 0; i < qps.length; i++) {
-				queryParams.put(qps[i].getCode(),qps[i]);
-			}
-			
-			Form[] forms = hanlerFactory.retForms(con);
-			this.forms = new ConcurrentHashMap<String, Form>();
-			for (int i = 0; i < forms.length; i++) {
-				this.forms.put(forms[i].getCode(), forms[i]);
-			}
-			
-			ToolBar[] toolbars = hanlerFactory.retToolBars(con);
-			this.toolBars = new ConcurrentHashMap<String, ToolBar>();
-			for (int i = 0; i < toolbars.length; i++) {
-				this.toolBars.put(toolbars[i].getCode(), toolbars[i]);
-			}
-			
-			DataItem[] dataitems = hanlerFactory.retDataItems(con);
-			this.dataItems = new ConcurrentHashMap<String, DataItem> ();
-			for (int i = 0; i < dataitems.length; i++) {
-				this.dataItems.put(dataitems[i].getCode(), dataitems[i]);
-			}
-			
-			this.diexts = hanlerFactory.retDataItemEntends(con);
-			
-			this.navs = hanlerFactory.retNavs(con, funcs);
-			
-			this.exceptions = hanlerFactory.retExceptions(con);
-			
-//			TableDataProvider.cacheGridMap = null;
-//			QueryDataProvider.cacheGridMap = null;
-//			dBTableColumnPool.tableMap.clear();
-//			OperatorPool.di.clear();
-//			OperatorPool.divalue.clear();
-			
-			con.commit();
-		} catch (Exception e) {
-			log.error(e.getMessage(),e);
 			try{
-				if(con != null && !con.isClosed()){
-					con.rollback();
+				con = systemDao.getUnautocommitConnection();
+				Func[] funcs = hanlerFactory.retFuncDefs(con);
+				
+				this.funcs = new ConcurrentHashMap<String, Func>();
+				for (int i = 0; i < funcs.length; i++) {
+					this.funcs.put(funcs[i].getCode(), funcs[i]);
 				}
-			} catch (Exception e2) {
-				log.error(e2.getMessage(),e2);
+				
+				Grid[] grids = hanlerFactory.retGridDefs(con);
+				this.grids = new ConcurrentHashMap<String, Grid>();
+				for (int i = 0; i < grids.length; i++) {
+					this.grids.put(grids[i].getGridCode(), grids[i]);
+				}
+				
+				QueryDef[] querys = hanlerFactory.retQueryDefs(con);
+				this.querys = new ConcurrentHashMap<String, QueryDef>();
+				for (int i = 0; i < querys.length; i++) {
+					this.querys.put(querys[i].getCode(), querys[i]);
+				}
+				
+				QueryParam[] qps = hanlerFactory.retQueryParams(con);
+				this.queryParams = new ConcurrentHashMap<String, QueryParam>();
+				for (int i = 0; i < qps.length; i++) {
+					queryParams.put(qps[i].getCode(),qps[i]);
+				}
+				
+				Form[] forms = hanlerFactory.retForms(con);
+				this.forms = new ConcurrentHashMap<String, Form>();
+				for (int i = 0; i < forms.length; i++) {
+					this.forms.put(forms[i].getCode(), forms[i]);
+				}
+				
+				ToolBar[] toolbars = hanlerFactory.retToolBars(con);
+				this.toolBars = new ConcurrentHashMap<String, ToolBar>();
+				for (int i = 0; i < toolbars.length; i++) {
+					this.toolBars.put(toolbars[i].getCode(), toolbars[i]);
+				}
+				
+				DataItem[] dataitems = hanlerFactory.retDataItems(con);
+				this.dataItems = new ConcurrentHashMap<String, DataItem> ();
+				for (int i = 0; i < dataitems.length; i++) {
+					this.dataItems.put(dataitems[i].getCode(), dataitems[i]);
+				}
+				
+				this.diexts = hanlerFactory.retDataItemEntends(con);
+				
+				this.navs = hanlerFactory.retNavs(con, funcs);
+				
+				this.exceptions = hanlerFactory.retExceptions(con);
+				
+	//			TableDataProvider.cacheGridMap = null;
+	//			QueryDataProvider.cacheGridMap = null;
+	//			dBTableColumnPool.tableMap.clear();
+	//			OperatorPool.di.clear();
+	//			OperatorPool.divalue.clear();
+				
+				con.commit();
+			} catch (Exception e) {
+				log.error(e.getMessage(),e);
+				try{
+					if(con != null && !con.isClosed()){
+						con.rollback();
+					}
+				} catch (Exception e2) {
+					log.error(e2.getMessage(),e2);
+				}
+				
+			} finally {
+				DbUtils.closeQuietly(con);
 			}
-			
-		} finally {
-			DbUtils.closeQuietly(con);
 		}
-		
 	}
-	
-	
 }

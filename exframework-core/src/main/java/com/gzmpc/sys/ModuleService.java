@@ -11,6 +11,7 @@ import com.gzmpc.build.Buildable;
 import com.gzmpc.dao.SystemDao;
 import com.gzmpc.metadata.sys.Account;
 import com.gzmpc.metadata.sys.Module;
+import com.gzmpc.metadata.sys.SystemConst;
 import com.gzmpc.stereotype.BuildComponent;
 
 import java.sql.Connection;
@@ -43,6 +44,9 @@ import java.sql.*;
 public class ModuleService implements Buildable {
 	private Log log = LogFactory.getLog(ModuleService.class.getName());
 	private Map<String,Module> allModules = new ConcurrentHashMap<String,Module>(); // key 为moduleId,value为Module对象
+	
+	@Autowired
+	public SystemConst systemConst;
 	
 	@Autowired
 	SystemDao systemDao;
@@ -207,6 +211,8 @@ public class ModuleService implements Buildable {
 
 	@Override
 	public void build() {
-		initAllModules();
+		if("webapp".equals(systemConst.SYS_TABLE_CONFIG)) {
+			initAllModules();
+		}
 	}
 }

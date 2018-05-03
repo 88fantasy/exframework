@@ -1,0 +1,23 @@
+#set($functionName = $se.getCode())
+#set($systemNameUpper = $util.firstCharToUpper($systemName))
+#set($functionNameUpper = $util.firstCharToUpper($functionName))
+    <action forward="${systemName}.${functionName}.main" path="/to_${systemName}_${functionName}_main" scope="request"  validate="false">
+    	<set-property value="${systemNameUpper}${functionNameUpper}" property="modules"/>
+	<set-property value="$functionName" property="funcCode"/>
+    </action>
+   <action forward="${systemName}.${functionName}.append" path="/to_${systemName}_${functionName}_append"  validate="true"  scope="request">
+       <set-property value="${systemNameUpper}${functionNameUpper}Append" property="modules" />
+       <set-property value="$functionName" property="funcCode"/>
+    </action>
+   <action forward="${systemName}.${functionName}.edit" path="/to_${systemName}_${functionName}_edit"  validate="true"  scope="request">
+       <set-property value="${systemNameUpper}${functionNameUpper}Edit" property="modules" />
+       <set-property value="$functionName" property="funcCode"/>
+    </action>
+    <action forward="${systemName}.${functionName}.dblheader" path="/to_${systemName}_${functionName}_dblclick"  validate="true"  scope="request">
+       <set-property value="${systemNameUpper}${functionNameUpper}" property="modules" />
+       <set-property value="$functionName" property="funcCode"/>
+    </action>
+    <action forward="${systemName}.${functionName}.pad.main" path="/to_${systemName}_${functionName}_pad_main" scope="request"  validate="false">
+    	<set-property value="${systemNameUpper}${functionNameUpper}" property="modules"/>
+	<set-property value="$functionName" property="funcCode"/>
+    </action>

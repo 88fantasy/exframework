@@ -1,0 +1,28 @@
+sidebar 换色 
+
+119068
+background-color  #f8f8f8
+color #337ab7
+
+文字换色
+119135
+119082
+
+a:hover 换色
+119141 background-color #eeeeee
+119142 color #23527c
+
+border
+119073 #f8f8f8
+
+因会造成滚动条消失,取消
+117017  -webkit-scrollbar
+117048  -ms-overflow-style: none;
+
+因造成modal无法显示,取消
+117044  transform-style: preserve-3d;
+
+90680  .navbar 改成 .main-navbar  因会导致其他nav移动
+
+123335 123341 顶部导航栏 margin注释
+

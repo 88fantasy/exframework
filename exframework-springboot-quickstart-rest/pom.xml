@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.gzmpc.exframework</groupId>
+		<artifactId>exframework-root</artifactId>
+		<version>0.2.4</version>
+	</parent>
+	<artifactId>exframework-springboot-quickstart-rest</artifactId>
+	<name>exframework-springboot-quickstart-rest</name>
+	<url>http://maven.apache.org</url>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>${springboot.version}</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-archetype-plugin</artifactId>
+				<version>3.0.1</version>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>2.9.5</version>
+		</dependency>
+		<dependency>
+		    <groupId>javax.validation</groupId>
+		    <artifactId>validation-api</artifactId>
+		    <version>2.0.1.Final</version>
+		</dependency>
+
+		<!-- Compile -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jersey</artifactId>
+			<version>${springboot.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+			<version>${springboot.version}</version>
+		</dependency>
+		<!-- Provided -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<version>${springboot.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		
+		
+	</dependencies>
+
+	<properties>
+		<springboot.version>2.0.1.RELEASE</springboot.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+</project>

@@ -311,7 +311,7 @@ public class GridServiceDefaultImpl implements GridService {
 
 		// 参数格式为(列名,)多个以逗号隔开
 		String gridConfigInfo = systemParameterService.getAccoutParameter(account.getAccountId(),
-				gridcode + "-gridcolsconfig");
+				gridcode + COLCONFIG);
 		if (gridConfigInfo != null && !"".equals(gridConfigInfo)) {
 			
 			String[] existClos = gridConfigInfo.split(",");

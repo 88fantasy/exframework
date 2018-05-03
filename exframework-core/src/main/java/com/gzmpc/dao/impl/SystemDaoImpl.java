@@ -15,7 +15,7 @@ import com.gzmpc.stereotype.DbInit;
 
 @Repository("systemDao")
 @DbInit
-public class SystemDaoImpl implements SystemDao,DbDao {
+public class SystemDaoImpl extends DbDao implements SystemDao {
 
 	private DataSource dataSource;
 

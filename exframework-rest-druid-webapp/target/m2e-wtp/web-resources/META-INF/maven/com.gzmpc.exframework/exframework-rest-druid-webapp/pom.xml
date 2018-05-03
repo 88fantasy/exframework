@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.gzmpc.exframework</groupId>
+	<artifactId>exframework-rest-druid-webapp</artifactId>
+	<packaging>war</packaging>
+	<version>0.2.4</version>
+	<name>exframework-rest-druid-webapp</name>
+
+
+	<build>
+		<finalName>exframework-restsample</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>${jdk.version}</source>
+					<target>${jdk.version}</target>
+					<compilerArguments>
+						<bootclasspath>${java.home}/lib/rt.jar${path.separator}${java.home}/lib/jce.jar</bootclasspath>
+					</compilerArguments>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>3.0.0</version>
+				<configuration>
+					<warName>${project.artifactId}</warName>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-archetype-plugin</artifactId>
+				<version>3.0.1</version>
+			</plugin>
+		</plugins>
+
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>**/*.xml</include>
+					<include>**/*.properties</include>
+				</includes>
+			</resource>
+		</resources>
+	</build>
+
+	<repositories>
+		<repository>
+			<id>nexus</id>
+			<name>Nexus Repository</name>
+			<url>http://192.168.7.41:8081/repository/maven-public/</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<releases>
+			</releases>
+		</repository>
+	</repositories>
+
+	<distributionManagement>
+		<repository>
+			<id>localoss-releases</id>
+			<url>http://192.168.7.41:8081/repository/maven-releases/</url>
+			<layout>default</layout>
+		</repository>
+		<snapshotRepository>
+			<id>localoss-snapshots</id>
+			<url>http://192.168.7.41:8081/repository/maven-snapshots/</url>
+			<layout>legacy</layout>
+		</snapshotRepository>
+	</distributionManagement>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.gzmpc.exframework</groupId>
+				<artifactId>exframework-root</artifactId>
+				<version>${exframework.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.oracle</groupId>
+			<artifactId>ojdbc7</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-jcl</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-slf4j-impl</artifactId>
+		</dependency>
+
+
+		<dependency>
+			<groupId>com.gzmpc.exframework</groupId>
+			<artifactId>exframework-support-common</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.gzmpc.exframework</groupId>
+			<artifactId>exframework-support-rest</artifactId>
+		</dependency>
+		<dependency>
+	      <groupId>io.swagger.core.v3</groupId>
+	      <artifactId>swagger-jaxrs2</artifactId>
+	    </dependency>
+	</dependencies>
+	<properties>
+		<exframework.version>0.2.4</exframework.version>
+		<jdk.version>1.8</jdk.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<scm>
+		<tag>exframework-root-0.2.4</tag>
+	</scm>
+</project>

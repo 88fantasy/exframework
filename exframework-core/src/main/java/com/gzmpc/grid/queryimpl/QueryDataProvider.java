@@ -1,7 +1,7 @@
 package com.gzmpc.grid.queryimpl;
 
 import com.gzmpc.exception.InitException;
-import com.gzmpc.exception.ProcessException;
+import com.gzmpc.exception.BuildException;
 import com.gzmpc.grid.DefaultDataProvider;
 import com.gzmpc.grid.GridCache;
 import com.gzmpc.grid.IDataAfterQuery;
@@ -55,7 +55,7 @@ public class QueryDataProvider extends DefaultDataProvider {
 	public Map<String,GridCache> cacheGridMap = new ConcurrentHashMap<String,GridCache>(); // 缓存根据表格名而获得的表格信息，只存放共有的信息项。例如字段名和类型
 	
 	@Override
-	public Map<String, Object> getJsonData(String gridcode, Map<String, Object> params, Account account) throws InitException,ProcessException {
+	public Map<String, Object> getJsonData(String gridcode, Map<String, Object> params, Account account) throws InitException,BuildException {
 		Connection con = null;
 		PreparedStatement pst = null;
 		

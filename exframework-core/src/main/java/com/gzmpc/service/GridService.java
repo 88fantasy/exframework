@@ -22,6 +22,8 @@ public interface GridService {
 	public static final String RENDER = "_const_render";
 	public static final String HIDDEN = "_const_hidden";
 	
+	public static final String COLCONFIG = "_colsconfig";
+	
 	/*
 	 * 规划表头
 	 */

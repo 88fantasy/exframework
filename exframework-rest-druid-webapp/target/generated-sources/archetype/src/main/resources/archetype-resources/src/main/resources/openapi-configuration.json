@@ -1,0 +1,14 @@
+{
+    "resourcePackages": [
+        "org.exframework.rest.druid.webapp.sample.api.rest"
+    ],
+    "prettyPrint" : true,
+    "cacheTTL": 0,
+    "openAPI": {
+        "info": {
+            "version": "1.0",
+            "title": "Swagger 实例配置文件",
+            "description": "详情请见 [https://github.com/swagger-api/swagger-core/wiki/Swagger-2.X---Integration-and-Configuration#configuration]"
+        }
+    }
+}

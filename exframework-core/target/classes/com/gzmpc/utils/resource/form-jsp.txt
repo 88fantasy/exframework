@@ -1,0 +1,17 @@
+<%@ page contentType="text/html; charset=GBK" %>
+#set($attributes = $form.getAttributes())
+<form name="$form.getCode()" onsubmit="return false;">
+<table>
+<tr>
+#foreach ($a in $attributes)
+#set( $foo = $velocityCount % 3 )
+    <td><label id="$a.retCode()_Label">$a.retTitle()</label></td>
+    <td><input type="text" name="$a.retCode()"></td>
+#if( $foo == 0 )
+</tr>
+<tr>
+#end
+#end
+</tr>
+</table>
+</form>

@@ -1,0 +1,49 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.gzmpc.exframework</groupId>
+        <artifactId>exframework-root</artifactId>
+        <version>0.2.4</version>
+    </parent>
+    <artifactId>exframework-support-soap</artifactId>
+    <packaging>jar</packaging>
+    <name>soap support</name>
+
+    <dependencies>
+        <!-- JAX-WS -->
+	    <dependency>
+	        <groupId>com.sun.xml.ws</groupId>
+	            <artifactId>jaxws-rt</artifactId>
+	            <version>2.2.10</version>
+	    </dependency>
+	
+	    <!-- Library from java.net, integrate Spring with JAX-WS -->
+	    <dependency>
+	        <groupId>org.jvnet.jax-ws-commons.spring</groupId>
+	        <artifactId>jaxws-spring</artifactId>
+	        <version>1.9</version>
+	        <exclusions>
+	          <exclusion>
+	                <groupId>org.springframework</groupId>
+	                <artifactId>spring-core</artifactId>
+	              </exclusion>
+	              <exclusion>
+	                <groupId>org.springframework</groupId>
+	                <artifactId>spring-context</artifactId>
+	              </exclusion>
+	              <exclusion>
+	                <groupId>com.sun.xml.stream.buffer</groupId>
+	                <artifactId>streambuffer</artifactId>
+	              </exclusion>
+	              <exclusion>
+	                <groupId>org.jvnet.staxex</groupId>
+	                <artifactId>stax-ex</artifactId>
+	              </exclusion>
+	        </exclusions>
+	    </dependency>
+    </dependencies>
+
+  <scm>
+    <tag>exframework-root-0.2.4</tag>
+  </scm>
+</project>

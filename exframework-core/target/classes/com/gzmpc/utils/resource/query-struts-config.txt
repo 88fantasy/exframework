@@ -1,0 +1,7 @@
+#set($functionName = $se.getCode())
+#set($systemNameUpper = $util.firstCharToUpper($systemName))
+#set($functionNameUpper = $util.firstCharToUpper($functionName))
+    <action forward="${systemName}.${functionName}.main" path="/to_${systemName}_${functionName}_main" scope="request"  validate="false">
+    	<set-property value="${systemNameUpper}${functionNameUpper}" property="modules"/>
+	<set-property value="$functionName" property="funcCode"/>
+    </action>

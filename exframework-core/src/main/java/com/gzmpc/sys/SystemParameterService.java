@@ -138,8 +138,8 @@ public class SystemParameterService {
 	 */
 	private void saveAccountParam(Connection con, String accountid, String key, String value) {
 		PreparedStatement stmt = null;
-		String sql = "insert into sys_accountparam (empparamid,accountid,paramkey,paramvalue) "
-				+ "values((select nvl(max(empparamid),0)+1 from sys_accountparam),?,?,?)";
+		String sql = "insert into sys_accountparam (paramid,accountid,paramkey,paramvalue) "
+				+ "values((select nvl(max(paramid),0)+1 from sys_accountparam),?,?,?)";
 		try {
 			stmt = con.prepareStatement(sql);
 			stmt.setString(1, accountid);
