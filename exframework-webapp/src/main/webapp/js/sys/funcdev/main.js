@@ -34,7 +34,7 @@ function doQuery() {
 }
 
 function doRefresh() {
-	window.location.reload()
+	window.location.reload();
 }
 
 function doDownload() {
@@ -47,5 +47,5 @@ function doReloadConfig() {
 
 function doLoadConfig() {
 	var rows = $('#funcdevGrid').Grid('getSelectedRecords');
-	alert(rows);
+	app.util.alert(rows);
 }

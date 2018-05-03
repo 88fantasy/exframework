@@ -112,9 +112,17 @@
 					  +'					{{#rows}}'
 					  +'					<tr class="selectable" paramindex="{{index}}">'
 					  +'						<td name="checkbox">'
-					  +'							<label class="c-input c-checkbox" style="margin-top:0.3rem;">'
-					  +'					                <input type="checkbox" class="rowcheck" ><span class="c-indicator c-indicator-success"></span>'
-					  +'				            </label>'
+//					  +'							<label class="c-input c-checkbox" style="margin-top:0.3rem;">'
+//					  +'					                <input type="checkbox" class="rowcheck" ><span class="c-indicator c-indicator-success"></span>'
+//					  +'				            </label>'
+					  +'						<div class="form-check">'
+					  +'			                      <label class="form-check-label">'
+					  +'			                          <input class="form-check-input rowcheck" type="checkbox" value="">'
+					  +'			                          <span class="form-check-sign">'
+					  +'			                              <span class="check"></span>'
+					  +'			                          </span>'
+					  +'			                      </label>'
+					  +'			                </div>'
 					  +'						</td>'
 					  +'						<td name="colname">{{{getColname}}}</td>'
 					  +'						<td name="operation">{{{getOperation}}}</td>'
@@ -126,9 +134,9 @@
 					  +'			</table>'
 					  +'	    </div>'
 					  +'	    <div class="modal-footer">'
-					  +'	        <button type="button" class="btn btn-success confirm"><i class="btn-icon fa fa-search"></i>查询</button>'
-					  +'	        <button type="button" class="btn btn-warning clear"><i class="btn-icon fa fa-refresh"></i>清除</button>'
-					  +'	        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="btn-icon fa fa-window-close-o"></i>取消</button>'
+					  +'	        <button type="button" class="btn btn-success btn-round confirm"><i class="material-icons">search</i>查询</button>'
+					  +'	        <button type="button" class="btn btn-warning btn-round clear"><i class="material-icons">delete</i>清除</button>'
+					  +'	        <button type="button" class="btn btn-danger btn-round" data-dismiss="modal"><i class="material-icons">cancel</i>取消</button>'
 					  +'	    </div>'
 					  +'	</div>'
 					  +'</div>',
@@ -345,7 +353,7 @@
 				errors.forEach(function(item,index){
 					e += '\n'+item;
 				});
-				alert(e);
+				app.util.alert(e);
 			}
 			else {
 				qp.$div.modal('hide');

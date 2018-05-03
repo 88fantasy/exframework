@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.gzmpc.exframework</groupId>
 	<artifactId>exframework-root</artifactId>
-	<version>${project.version}</version>
+	<version>0.2.4</version>
 	<packaging>pom</packaging>
 	<name>exframework </name>
 	<modules>
@@ -17,6 +17,13 @@
 		<module>exframework-support-common</module>
 		<module>exframework-support-sso</module>
 		<module>exframework-webapp</module>
+		<module>exframework-support-rest</module>
+		<module>exframework-restsample</module>
+		<module>exframework-support-soap</module>
+		<module>exframework-soapsample</module>
+		<module>exframework-support-log</module>
+		<module>exframework-springboot-quickstart-rest</module>
+		<module>exframework-rest-druid-webapp</module>
 	</modules>
 	<build>
 		<pluginManagement>
@@ -26,12 +33,11 @@
 					<artifactId>maven-compiler-plugin</artifactId>
 					<version>3.6.0</version>
 					<configuration>
-						<source>1.8</source>
-						<target>1.8</target>
+						<source>${jdk.version}</source>
+						<target>${jdk.version}</target>
 						<compilerArguments>
-                        <bootclasspath>${java.home}/lib/rt.jar;${java.home}/lib/jce.jar</bootclasspath>
-                        <verbose />
-                    </compilerArguments>
+							<bootclasspath>${java.home}/lib/rt.jar${path.separator}${java.home}/lib/jce.jar</bootclasspath>
+						</compilerArguments>
 					</configuration>
 				</plugin>
 				<plugin>
@@ -48,57 +54,57 @@
 						</execution>
 					</executions>
 				</plugin>
-				<plugin> 
-				  <groupId>org.apache.maven.plugins</groupId>
-			      <artifactId>maven-javadoc-plugin</artifactId>
-			      <version>2.10.4</version>
-			      <executions> 
-			        <execution> 
-			          <id>attach-javadocs</id>
-			          <phase>verify</phase>
-			          <goals>
-			             <goal>jar</goal>
-			          </goals> 
-			        </execution> 
-			      </executions> 
-			    </plugin>
-				<plugin>  
-			      <groupId>org.apache.maven.plugins</groupId>  
-			        <artifactId>maven-release-plugin</artifactId>  
-			        <version>2.5.3</version>
-			        <configuration>
-			            <autoVersionSubmodules>true</autoVersionSubmodules>
-			            <providerImplementations>  
-				            <git>jgit</git>  
-				        </providerImplementations>
-				    </configuration>
-				    <dependencies>  
-			          <dependency>  
-			            <groupId>org.apache.maven.scm</groupId>  
-			            <artifactId>maven-scm-provider-jgit</artifactId>  
-			            <version>1.9.5</version>  
-			          </dependency>  
-                    </dependencies>
-			    </plugin> 
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-javadoc-plugin</artifactId>
+					<version>2.10.4</version>
+					<executions>
+						<execution>
+							<id>attach-javadocs</id>
+							<phase>verify</phase>
+							<goals>
+								<goal>jar</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-release-plugin</artifactId>
+					<version>2.5.3</version>
+					<configuration>
+						<autoVersionSubmodules>true</autoVersionSubmodules>
+						<providerImplementations>
+							<git>jgit</git>
+						</providerImplementations>
+					</configuration>
+					<dependencies>
+						<dependency>
+							<groupId>org.apache.maven.scm</groupId>
+							<artifactId>maven-scm-provider-jgit</artifactId>
+							<version>1.9.5</version>
+						</dependency>
+					</dependencies>
+				</plugin>
 			</plugins>
 		</pluginManagement>
-		<plugins>  
-		    <plugin>  
-		        <groupId>org.apache.maven.plugins</groupId>  
-		        <artifactId>maven-release-plugin</artifactId>
-		    </plugin>
-		    <plugin>  
-                <groupId>org.apache.maven.plugins</groupId>  
-                <artifactId>maven-source-plugin</artifactId>
-            </plugin> 
-		</plugins>  
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+			</plugin>
+		</plugins>
 	</build>
-	
-	
+
+
 	<scm>
-	      <connection>scm:git:git clone ssh://16369@192.168.7.41:29418/~16369/exframework.git</connection> 
-	      <developerConnection>scm:git:ssh://16369@192.168.7.41:29418/~16369/exframe.git</developerConnection>  
-	      <url>http://192.168.7.41/git/summary/~16369!exframe.git</url>  
+		<connection>scm:git:git clone ssh://16369@192.168.7.41:29418/~16369/exframework.git</connection>
+		<developerConnection>scm:git:ssh://16369@192.168.7.41:29418/~16369/exframe.git</developerConnection>
+		<url>http://192.168.7.41/git/summary/~16369!exframe.git</url>
 	</scm>
 
 	<repositories>
@@ -131,27 +137,38 @@
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-core</artifactId>
-				<version>${project.version}</version>
+				<version>0.2.4</version>
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-common</artifactId>
-				<version>${project.version}</version>
+				<version>0.2.4</version>
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-utils</artifactId>
-				<version>${project.version}</version>
+				<version>0.2.4</version>
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-web</artifactId>
-				<version>${project.version}</version>
+				<version>0.2.4</version>
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-wf</artifactId>
-				<version>${project.version}</version>
+				<version>0.2.4</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.gzmpc.exframework</groupId>
+				<artifactId>exframework-support-rest</artifactId>
+				<version>0.2.4</version>
+			</dependency>
+			<dependency>
+				<groupId>com.gzmpc.exframework</groupId>
+				<artifactId>exframework-support-soap</artifactId>
+				<version>0.2.4</version>
 			</dependency>
 
 			<dependency>
@@ -206,6 +223,11 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
+            <dependency>
+              <groupId>io.swagger.core.v3</groupId>
+              <artifactId>swagger-jaxrs2</artifactId>
+              <version>2.0.1</version>
+            </dependency>
 			<dependency>
 				<groupId>javax.servlet</groupId>
 				<artifactId>javax.servlet-api</artifactId>
@@ -214,8 +236,23 @@
 			<dependency>
 				<groupId>org.apache.logging.log4j</groupId>
 				<artifactId>log4j-core</artifactId>
-				<version>2.5</version>
+				<version>2.11.0</version>
 			</dependency>
+			<dependency>
+	            <groupId>org.apache.logging.log4j</groupId>
+	            <artifactId>log4j-jcl</artifactId>
+	            <version>2.11.0</version>
+	        </dependency>
+	        <dependency>
+	            <groupId>org.slf4j</groupId>
+	            <artifactId>slf4j-api</artifactId>
+	            <version>1.7.25</version>
+	        </dependency>
+	        <dependency>
+	            <groupId>org.apache.logging.log4j</groupId>
+	            <artifactId>log4j-slf4j-impl</artifactId>
+	            <version>2.11.0</version>
+	        </dependency>
 			<dependency>
 				<groupId>commons-dbutils</groupId>
 				<artifactId>commons-dbutils</artifactId>
@@ -229,7 +266,7 @@
 			<dependency>
 				<groupId>org.json</groupId>
 				<artifactId>json</artifactId>
-				<version>20160212</version>
+				<version>20180130</version>
 			</dependency>
 			<dependency>
 				<groupId>org.apache.commons</groupId>
@@ -242,11 +279,20 @@
 				<version>12.1.0.2</version>
 			</dependency>
 			<dependency>
-			    <groupId>com.alibaba</groupId>
-			    <artifactId>druid</artifactId>
-			    <version>${druid.version}</version>
+				<groupId>com.alibaba</groupId>
+				<artifactId>druid</artifactId>
+				<version>${druid.version}</version>
 			</dependency>
-
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpclient</artifactId>
+				<version>${httpclient.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpmime</artifactId>
+				<version>${httpclient.version}</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
@@ -271,11 +317,12 @@
 	</dependencies>
 
 	<properties>
-		<project.version>0.2</project.version>
+		<jdk.version>1.8</jdk.version>
 		<!--指定Maven用什么编码来读取源码及文档 -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<spring.version>4.3.4.RELEASE</spring.version>
-		<jersey.version>2.25</jersey.version>
-		<druid.version>1.0.28</druid.version>
+		<spring.version>5.0.3.RELEASE</spring.version>
+		<jersey.version>2.27</jersey.version>
+		<druid.version>1.1.9</druid.version>
+		<httpclient.version>4.5.5</httpclient.version>
 	</properties>
 </project>

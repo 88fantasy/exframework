@@ -8,16 +8,16 @@ function doLogin(){
 		success : function(o) {
 			//localStorage.setItem("usertoken",obj.data);
 			if(o.status == 200) {
-				window.location.replace(basePath+"/sys/funcdev/main.view");
+				window.location.replace(basePath+"/dashboard.view");
 			}
 			else {
-				alert(o.errorMessage);
+				app.util.alert(o.errorMessage);
 			}
 		},
 		error:function(obj) {
 			var json = obj.responseText;
 			var o = JSON.parse(json);
-			alert(o.message);
+			app.util.alert(o.message);
 		}
 	});
 	return false;

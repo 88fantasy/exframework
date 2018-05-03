@@ -1,47 +1,68 @@
-<div class="sidebar-outer-wrapper">
-    <div class="sidebar-inner-wrapper">
-        <div class="sidebar-1">
-            <div class="profile" style="height: initial;">
-                <button data-click="toggle-sidebar" type="button" class="btn btn-danger btn-outline no-border close-sidebar"> <i class="fa fa-close"></i> 
-                </button>
-                <div class="profile-image">
-                    <img class="rounded-circle img-fluid" src="${basePath}/img/avatar/avatar-default.png">
-                </div>
-                <div class="profile-title">${account.accountId}</div>
-                <div class="profile-subtitle">${account.accountName}</div>
-            </div>
-            <div class="sidebar-nav">
-            	<div class="sidebar-section">
-            		<div class="section-content" >
-            			<a class="sideline" href="${basePath}/dashboard.view"> <i class="zmdi zmdi-view-dashboard md-icon pull-left"></i> <span class="title">DashBoard</span> 
-                                    </a>
-            		</div>
-            	</div>
-                <div class="sidebar-section">
-                    <div class="section-title">业务功能</div>
-					<#list navs>
-					<ul class="l1 list-unstyled section-content">
-						<#items as nav>
-						<li class="nav-item dropdown">
-							<a class="sideline" data-id="sidebar-${nav.code}" data-click="toggle-section"> <i class="pull-right fa fa-caret-down icon-sidebar-${nav.code}"></i>  <span class="pull-right tag tag-success tag-rounded">${nav.list?size}</span>  <i class="zmdi ${nav.icon} md-icon pull-left"></i>  <span class="title">${nav.name}</span> 
+<div class="sidebar" data-color="purple" data-background-color="white">
+	<!--
+        Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+
+        Tip 2: you can also add an image using data-image tag
+    -->
+	<div class="logo">
+		<span class="simple-text" style="margin-left:70px;">
+			${appname} </span>
+	</div>
+	<div class="sidebar-wrapper">
+		<ul class="nav">
+			<li class="nav-item "><a class="nav-link"
+				href="${basePath}/dashboard.view"> <i class="material-icons">dashboard</i>
+					<p>Dashboard</p>
+			</a></li>
+			<li class="nav-item ">
+			    <a class="nav-link" data-toggle="collapse" href="#person-collapse">
+                    <i class="material-icons">person</i>
+                    <p> ${account.accountName} 
+                        <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse" id="person-collapse">
+                    <ul class="nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                              <span class="sidebar-mini"> <i class="material-icons">lock</i> </span>
+                              <span class="sidebar-normal"> 修改密码 </span>
                             </a>
-							<#list nav.list> 
-							 <ul class="list-unstyled section-sidebar-${nav.code} l2">
-								<#items as func>
-								<li>
-                                    <a class="sideline" href="${basePath}${func.path}"> <span class="title">${func.name}</span> 
-                                    </a>
-                                </li>
-								</#items>
-							</ul>
-							</#list>
-						</li>
-						</#items>
-					</ul>
-					</#list>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="${basePath}/api/login/signout">
+                                <span class="sidebar-mini"> <i class="material-icons">power_settings_new</i> </span>
+                                <span class="sidebar-normal"> 登出 </span>
+	                        </a>
+                        </li>
+                    </ul>
                 </div>
-            </div>
-        </div>
-    </div>
+			</li>
+			<#list navs>
+            <#items as nav>
+            <li class="nav-item ">
+                <a class="nav-link" data-toggle="collapse" href="#sidebar-${nav.code}">
+                    <i class="material-icons">${nav.icon}</i>
+                    <p> ${nav.name} 
+                        <b class="caret"></b>
+                    </p>
+                </a>
+                <#list nav.list>
+                <div class="collapse" id="sidebar-${nav.code}">
+                    <ul class="nav">
+                        <#items as func>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="${basePath}${func.path}">
+                              <span class="sidebar-normal"> ${func.name} </span>
+                            </a>
+                        </li>
+                        </#items>
+	                 </ul>
+	             </div>
+	             </#list>
+	         </li>
+            </#items>
+            </#list>
+		</ul>
+	</div>
 </div>
-<script src="${basePath}/js/plugins/marino/left-sidebar.js"></script>

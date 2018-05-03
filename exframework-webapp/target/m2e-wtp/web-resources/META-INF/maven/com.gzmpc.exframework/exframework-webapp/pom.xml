@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>com.gzmpc.exframework</groupId>
 		<artifactId>exframework-root</artifactId>
-		<version>0.2</version>
+		<version>0.2.4</version>
 	</parent>
 	<artifactId>exframework-webapp</artifactId>
 	<packaging>war</packaging>
@@ -18,11 +18,10 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
+					<source>${jdk.version}</source>
+					<target>${jdk.version}</target>
 					<compilerArguments>
-						<extdirs>extlib</extdirs>
-						<bootclasspath>${java.home}/lib/rt.jar;${java.home}/lib/jce.jar</bootclasspath>
+						<bootclasspath>${java.home}/lib/rt.jar${path.separator}${java.home}/lib/jce.jar</bootclasspath>
 						<verbose />
 					</compilerArguments>
 				</configuration>
@@ -33,15 +32,6 @@
 				<version>3.0.0</version>
 				<configuration>
 					<warName>${project.artifactId}</warName>
-					<webResources>
-						<resource>
-							<directory>extlib/</directory>
-							<targetPath>WEB-INF/lib</targetPath>
-							<includes>
-								<include>**/*.jar</include>
-							</includes>
-						</resource>
-					</webResources>
 				</configuration>
 			</plugin>
 		</plugins>
@@ -57,6 +47,10 @@
 		</resources>
 	</build>
 	<dependencies>
+	   <dependency>
+            <groupId>com.gzmpc.exframework</groupId>
+            <artifactId>exframework-core</artifactId>
+        </dependency>
 		<dependency>
 			<groupId>com.gzmpc.exframework</groupId>
 			<artifactId>exframework-web</artifactId>
@@ -86,6 +80,6 @@
 	</properties>
 
   <scm>
-    <tag>exframework-root-0.2</tag>
+    <tag>exframework-root-0.2.4</tag>
   </scm>
 </project>

@@ -47,9 +47,9 @@
 			
 			overflow : false,
 			
-			defaultClass : 'navbar navbar-toggleable navbar-light',
+			defaultClass : 'navbar navbar-transparent',
 			
-			btnDefaultClass : 'btn-info btn-outline',
+			btnDefaultClass : 'btn-info',
 
 			onInitError: function(nav, error) {
 
@@ -65,6 +65,8 @@
 		inited : 0,	//0 未初始化 1 初始化中 2 初始化完成
 		
 		template : '<button id="tbn-{{buttonid}}" class="btn {{iconCls}} toolbar-btn {{#tooltip}}need-tooltip{{/tooltip}}" type="button" {{#tooltip}}data-placement="bottom" title="{{tooltip}}" data-animation="true" {{/tooltip}}  >{{{text}}}</button>',
+		
+		btntemplate : '<button id="tbn-{{buttonid}}" class="btn {{iconCls}} toolbar-btn {{#tooltip}}need-tooltip{{/tooltip}}" type="button" {{#tooltip}}data-placement="bottom" title="{{tooltip}}" data-animation="true" {{/tooltip}}  >{{{text}}}</button>',
 		
 		/**
          * Set the options.
@@ -89,6 +91,7 @@
 			this.inited = 1;
 			var $this = this.$nav;
 			var toolbarcode = $this.data('toolbarcode');
+			var brand = $this.data('brand');
 			if(toolbarcode) {
 				$.ajax({
 					context: this,
@@ -105,6 +108,9 @@
 								$this.addClass(this.options.defaultClass);
 							}
 							var bar = this,buttons = [],methods = {};
+							if(brand) {
+								buttons.push('<span class="navbar-brand" >'+brand+'</span>');
+							}
 							tbs.forEach(function(item,index){
 								item.iconCls = item.iconCls || bar.options.btnDefaultClass;
 								var rendered = Mustache.render(bar.template, item);

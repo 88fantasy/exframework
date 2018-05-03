@@ -16,25 +16,27 @@
 	<![endif]-->
 
     <!-- 全局css -->
-	<link href="${basePath}/css/plugins/bootstrap/bootstrap.min.css" rel="stylesheet">
-	<link href="${basePath}/css/plugins/bootstrap-datepicker/bootstrap-datepicker3.min.css" rel="stylesheet">
+	
+	<link href="${basePath}/css/plugins/bootstrap4/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="${basePath}/css/plugins/material-dashboard/material-dashboard.min.css">
+	
+	<link href="${basePath}/css/plugins/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet">
 	<link href="${basePath}/css/plugins/bootstrap-multiselect/bootstrap-multiselect.css" rel="stylesheet">
-	<link rel="stylesheet" href="${basePath}/css/plugins/loaders.css/loaders.min.css">
-	<#if marino!false == true>  
-	<link href="${basePath}/css/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-	<link href="${basePath}/css/plugins/material-design-iconic-font/css/material-design-iconic-font.min.css" rel="stylesheet">
+
+	<link href="${basePath}/css/plugins/font-awesome/css/fontawesome-all.min.css" rel="stylesheet">
+	<link href="${basePath}/css/plugins/material-design-icons/iconfont/material-icons.css" rel="stylesheet">
 	<link rel="stylesheet" href="${basePath}/css/plugins/noto/css/notosans.css">
-	<link rel="stylesheet" href="${basePath}/css/plugins/marino/main.css">
-	</#if>
+
 	
 	<link rel="stylesheet" href="${basePath}/css/prototype/exframe-bootstrap.css">
 	
 	<!-- global scripts -->
-	<script src="${basePath}/js/plugins/bootstrap/jquery.min.js"></script>
-	<script src="${basePath}/js/plugins/bootstrap/tether.min.js"></script>
-	<script src="${basePath}/js/plugins/bootstrap/bootstrap.min.js"></script>
+	<script src="${basePath}/js/plugins/bootstrap4/jquery.min.js" ></script>
+    <script src="${basePath}/js/plugins/bootstrap4/popper.min.js"></script>
+    <script src="${basePath}/js/plugins/bootstrap4/bootstrap.min.js"></script>
+    <script src="${basePath}/js/plugins/bootstrap-material-design/bootstrap-material-design.min.js"></script>
 	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-	<script src="${basePath}/js/plugins/bootstrap/ie10-viewport-bug-workaround.js"></script>
+	<script src="${basePath}/js/plugins/bootstrap4/ie10-viewport-bug-workaround.js"></script>
 	<script src="${basePath}/js/prototype/namespace.js"></script>
 	<script src="${basePath}/js/prototype/util.js"></script>
 	<script src="${basePath}/js/plugins/mustache/mustache.min.js"></script>
@@ -42,12 +44,7 @@
 	<script src="${basePath}/js/plugins/bootstrap-datepicker/bootstrap-datepicker.zh-CN.min.js"></script>
 	<script src="${basePath}/js/plugins/bootstrap-multiselect/bootstrap-multiselect.js"></script>
 	
-	<#if marino!false == true >  
-	<script src="${basePath}/js/plugins/pace/pace.js"></script>
 	<script src="${basePath}/js/plugins/jquery-storage-api/jquery.storageapi.min.js"></script>
-	<script src="${basePath}/js/plugins/marino/functions.js"></script>
-	<script src="${basePath}/js/plugins/marino/colors.js"></script>
-	</#if>
 	
 	<script>
   		var basePath = '${basePath}';
@@ -57,6 +54,6 @@
     
   </head>
 
-  <body data-layout="empty-layout" data-palette="palette-0" data-direction="none">
+  <body>
   
   	

@@ -9,14 +9,14 @@ import javax.ws.rs.ext.Provider;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.gzmpc.exception.ProcessException;
+import com.gzmpc.exception.BuildException;
 
 @Provider
-public class ProcessExceptionMapper implements ExceptionMapper<ProcessException> {
+public class ProcessExceptionMapper implements ExceptionMapper<BuildException> {
 
 	static private Log log = LogFactory.getLog(ProcessExceptionMapper.class.getName());
 	
-	public Response toResponse(ProcessException ex) {
+	public Response toResponse(BuildException ex) {
 		
 		log.error(ex.getMessage(),ex);
 		

@@ -47,7 +47,6 @@ public class BaseController {
 	public void setCommonAttribute(final HttpServletRequest request, final ModelMap model) throws NotAuthorizedException  {
 		Account account = loginService.getAccount(request);
 		model.addAttribute("appname", appname);
-		model.addAttribute("marino", true);
 		model.addAttribute("account", account);
 		model.addAttribute("basePath", request.getContextPath());
 		model.addAttribute("navs", getNavBar(request));

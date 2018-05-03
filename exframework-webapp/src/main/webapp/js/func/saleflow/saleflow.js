@@ -6,12 +6,8 @@
 
     $(function() {
 
-        var config = $.localStorage.get('config');
-        $('body').attr('data-layout', config.layout);
-        $('body').attr('data-palette', config.theme);
-        $('body').attr('data-direction', config.direction);
-        
-        
+    		$('body').bootstrapMaterialDesign();
+    		
     });
 
 })();
@@ -21,5 +17,5 @@ function doQuery() {
 }
 
 function doDownload() {
-	
+	$('#saleflowGrid').Grid('download');
 }

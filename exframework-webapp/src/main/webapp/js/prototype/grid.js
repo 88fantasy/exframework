@@ -86,6 +86,13 @@
 		
 		currentRows : [],
 		
+		apiurl : {
+			init : "/grid/init/",
+			query : "/grid/query/",
+			download : "/grid/download/",
+			setting : "/grid/setting/"
+		},
+		
 		template : '<div class="table-responsive grid-table-div" {{#gridheight}}style="height:{{gridheight}}px;"{{/gridheight}} >'
 				+'	<table class="table {{#small}}table-sm{{/small}} {{^selectable}}table-striped{{/selectable}}  table-hover  grid-table">'
 				+'		<thead>'
@@ -116,8 +123,8 @@
 				+'				</select>'
 				+'			</li>'
 				+'			<li class="grid-footer-item grid-footer-col-selector">'
-				+'				<button type="button" data-action="setting" class="btn btn-info btn-outline">调整字段</button>'
-				+'				<button type="button" data-action="refresh" class="btn btn-info btn-outline">刷新数据</button>'
+				+'				<button type="button" data-action="setting" class="btn btn-outline btn-sm">调整字段</button>'
+				+'				<button type="button" data-action="refresh" class="btn btn-outline btn-sm">刷新数据</button>'
 				+'			</li>'
 				+'			<li class="grid-footer-item grid-footer-timehint">'
 				+'				<label></label>'
@@ -134,8 +141,8 @@
 				+'	            <span aria-hidden="true">&times;</span>'
 				+'	        </button>'
 				+'	    </div>'
-				+'	    <div class="modal-body fixbody">'
-				+'	        <div class="container-fluid">'
+				+'	    <div class="modal-body grid-setting-body-fix">'
+				+'	        <div class="container-fluid" >'
 				+'				<div class="row">'
 				+'					<div class="col-md-5">'
 				+'						<ul class="list-group grid-setting-columns">'
@@ -160,8 +167,8 @@
 				+'			</div>'
 				+'	    </div>'
 				+'	    <div class="modal-footer">'
-				+'	        <button type="button" class="btn btn-success confirm"><i class="btn-icon fa fa-check"></i>确定</button>'
-				+'	        <button type="button" class="btn btn-warning clear"><i class="btn-icon fa fa-refresh"></i>清除</button>'
+				+'	        <button type="button" class="btn btn-success confirm" data-action="saveSetting"><i class="btn-icon fa fa-check"></i>确定</button>'
+				+'	        <button type="button" class="btn btn-warning reset" data-action="resetSetting"><i class="btn-icon fa fa-undo"></i>初始化</button>'
 				+'	        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="btn-icon fa fa-window-close-o"></i>取消</button>'
 				+'	    </div>'
 				+'	  </div>'
@@ -263,20 +270,23 @@
 				grid.switchLength(this.value);
 			});
 			
-			var $thead = content.find(".grid-table-div .grid-table > thead");
+//			var $thead = content.find(".grid-table-div .grid-table > thead");
 //			var oriPosition  = $thead.css("position");
 //			var treadOffset = $thead.height();
 //			
-			content.find(".grid-table-div").scroll(function() {
-			    var offset = $(this).scrollTop();
-			    console.log("offset "+offset+", visibility "+$thead.css("visibility"));
+//			content.find(".grid-table-div").scroll(function() {
+//			    var offset = $(this).scrollTop();
+////			    console.log("offset "+offset+", visibility "+$thead.css("visibility"));
 //			    if (offset >= treadOffset ) {
 //			    	$thead.css("position","fixed");
 //			    }
 //			    else {
 //			    	$thead.css("position",oriPosition);
 //			    }
-			});
+//			});
+			
+//			var $table = content.find(".grid-table-div .grid-table");
+//			$table.fixedHeaderTable({ footer: false, cloneHeadToFoot: false, fixedColumn: false });
 			
 			content.find(".grid-setting-columns li").click(function() {
 				app.util.setSelected(this,grid.options.selectedCss);
@@ -288,7 +298,57 @@
 		},
 		
 		setting : function() {
-			this.$div.find(".grid-setting-dialog").modal();
+			this.$div.find(".grid-setting-dialog").modal("show");
+		},
+		
+		saveSetting : function () {
+			var grid = this;
+			var cols = "";
+			grid.$div.find(".grid-setting-headers li").each(function(){
+				cols += $(this).data("column") + ",";
+			});
+			if(cols.length>0) {
+				app.util.ajax(basePath + apiPrefix + grid.apiurl.setting+grid.options.gridcode,{
+					type : "POST",
+					beforeSend: app.util.loading.open,
+					complete: app.util.loading.close,
+					data:{
+						action : "update",
+						params : cols.substring(0,cols.length-1)
+						
+					},
+					success : function(o) {
+						grid.$div.find(".grid-setting-dialog").modal("hide");
+						if(confirm("保存成功,需要更新页面才能生效,需要现在更新吗?")){
+							window.location.reload();
+						}
+					}
+				});
+			}
+			else {
+				app.util.alert("没有选择任何字段");
+			}
+		},
+		
+		resetSetting : function () {
+			var grid = this;
+			if(confirm("您确定初始化表格设置吗?")){ 
+				app.util.ajax(basePath + apiPrefix + grid.apiurl.setting+grid.options.gridcode,{
+					type : "POST",
+					beforeSend: app.util.loading.open,
+					complete: app.util.loading.close,
+					data:{
+						action : "reset"
+						
+					},
+					success : function(o) {
+						grid.$div.find(".grid-setting-dialog").modal("hide");
+						if(confirm("初始化成功,需要更新页面才能生效,需要现在更新吗?")){
+							window.location.reload();
+						}
+					}
+				});
+			}
 		},
 		
 		addHeader : function() {
@@ -323,7 +383,7 @@
 		
 		refresh : function() {
 			if(this.options.firstQuery){
-				alert("必须进行首次查询后才能刷新数据");
+				app.util.alert("必须进行首次查询后才能刷新数据");
 				return;
 			}
 			this.queryData(this.page,this.pageLength,this.currentConditions);
@@ -341,9 +401,8 @@
 					startIndex : index,
 					pagesize : pagesize
 				};
-				$.ajax({
+				app.util.ajax(basePath + apiPrefix + this.apiurl.query+this.options.gridcode,{
 					context: this,
-					url : basePath + apiPrefix + "/grid/query/"+this.options.gridcode,
 					type : "POST",
 					contentType:"application/json",
 					beforeSend: app.util.loading.open,
@@ -354,9 +413,6 @@
 							this.currentConditions = conditions;
 							this.refreshData(o.data);
 						}
-					},
-					error : function(o) {
-						
 					}
 				});
 		},
@@ -390,19 +446,19 @@
 				pages.push({page:grid.page,current:grid.options.selectedCss});
 			}
 			else {
-				if(data.totalpage <= 10) {
+				if(data.totalpage <= 6) {
 					for(var i=1;i<=data.totalpage;i++){
 						pages.push({page:i,current:i==grid.page?grid.options.selectedCss:""});
 					}
 				}
 				else if(grid.page<5) {
-					for(var i=1;i<10;i++){
+					for(var i=1;i<6;i++){
 						pages.push({page:i,current:i==grid.page?grid.options.selectedCss:""});
 					}
 					pages.push({page:data.totalpage,prefix:"..."});
 				}
 				else if(data.totalpage-grid.page<5) {
-					for(var i=data.totalpage;i>data.totalpage-10;i--){
+					for(var i=data.totalpage;i>data.totalpage-6;i--){
 						pages.push({page:i,current:i==grid.page?grid.options.selectedCss:""});
 					}
 					pages.push({page:1,lastfix:"..."});
@@ -410,7 +466,7 @@
 				}
 				else {
 					pages.push({page:1,lastfix:"..."});
-					for(var i=grid.page-3;i<=grid.page+3;i++){
+					for(var i=grid.page-2;i<=grid.page+2;i++){
 						pages.push({page:i,current:i==grid.page?grid.options.selectedCss:""});
 					}
 					pages.push({page:data.totalpage,prefix:"..."});
@@ -517,11 +573,11 @@
 		api : {
 			download : function() {
 				if(this.options.firstQuery){
-					alert("必须进行首次查询后才能下载数据");
+					app.util.alert("必须进行首次查询后才能下载数据");
 					return;
 				}
 				var form = document.createElement("form");
-				form.action = basePath + apiPrefix + "/grid/download/"+this.options.gridcode;
+				form.action = basePath + apiPrefix + this.apiurl.download+this.options.gridcode;
 				form.target = "_blank";
 				form.method = "post";
 				var params = document.createElement("input");
@@ -626,9 +682,8 @@
 		init : function(div) {
 			this.inited = 1;
 			if(this.options.gridcode) {
-				$.ajax({
+				app.util.ajax(basePath + apiPrefix + this.apiurl.init+this.options.gridcode, {
 					context: this,
-					url : basePath + apiPrefix + "/grid/init/"+this.options.gridcode,
 					type : "GET",
 					dataType : 'json',
 					data: {
@@ -660,7 +715,7 @@
 	$.fn.Grid = function(option) {
 		var options = typeof option === 'object' ? option : {};
 		var method = typeof option === 'string' ? option : "init";
-    	if(method === "init") {
+    	    if(method === "init") {
 			return this.each(function() {
 	        	var $this = $(this), data = $this.data('grid');
 
@@ -684,29 +739,28 @@
 			});
         }
         else {
-        	var result = {};
-        	var args = [].slice.call(arguments);
-        	//剔除第1个方法名参数
-        	args.shift();
-        	this.each(function() {
-	        	var $this = $(this), data = $this.data('grid');
-
-	            // 初始化 查询框.
-	            if (data && data.inited == 2 && data.api[method]) {
-	            	var res = data.api[method].apply(data,args);
-	            	if(res) {
-	            		result[data.options.gridcode] = res;
-	            	}
-	            }
-			});
-        	if(Object.keys(result).length == 1) {
-        		for(x in result){
-        			return result[x];
-        		}
-        	}
-        	else {
-            	return result;
-        	}
+	        	var result = {};
+	        	var args = [].slice.call(arguments);
+	        	//剔除第1个方法名参数
+	        	args.shift();
+	        	this.each(function() {
+		        	var $this = $(this), data = $this.data('grid');
+		            // 初始化 查询框.
+		            if (data && data.inited == 2 && data.api[method]) {
+			            	var res = data.api[method].apply(data,args);
+			            	if(res) {
+			            		result[data.options.gridcode] = res;
+			            	}
+		            }
+				});
+	        	if(Object.keys(result).length == 1) {
+	        		for(x in result){
+	        			return result[x];
+	        		}
+	        	}
+	        	else {
+	            	return result;
+	        	}
         }
     };
 	

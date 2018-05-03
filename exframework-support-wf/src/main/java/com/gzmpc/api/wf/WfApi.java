@@ -22,7 +22,7 @@ import org.springframework.stereotype.Controller;
 
 import com.gzmpc.exception.NotAuthorizedException;
 import com.gzmpc.exception.NotFoundException;
-import com.gzmpc.exception.ProcessException;
+import com.gzmpc.exception.BuildException;
 import com.gzmpc.exception.StartException;
 import com.gzmpc.login.LoginService;
 import com.gzmpc.metadata.sys.Account;
@@ -206,7 +206,7 @@ public class WfApi {
 	@Path("show")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response show(@QueryParam("procid") int procid) throws NotAuthorizedException, ProcessException {
+	public Response show(@QueryParam("procid") int procid) throws NotAuthorizedException, BuildException {
 
 		Account account = loginService.getAccount(request);
 		JSONObject result = assService.showAttr(account, procid);

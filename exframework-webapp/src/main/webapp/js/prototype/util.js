@@ -108,6 +108,10 @@ app.util.ajax = function(url,setting) {
 	$.ajax(url,setting);
 };
 
+app.util.alert = function (header,msg) {
+	alert(header||msg);
+};
+
 app.util.setSelected = function(ele,selectedClass) {
 	 $(ele).addClass(selectedClass).siblings().removeClass(selectedClass);
 };

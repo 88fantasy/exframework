@@ -30,7 +30,7 @@ import java.util.Date;
 import com.gzmpc.dao.SystemDao;
 import com.gzmpc.exception.NotAuthorizedException;
 import com.gzmpc.exception.NotFoundException;
-import com.gzmpc.exception.ProcessException;
+import com.gzmpc.exception.BuildException;
 import com.gzmpc.exception.StartException;
 import com.gzmpc.login.LoginService;
 import com.gzmpc.mapper.LowerColumnMapRowMapper;
@@ -335,13 +335,13 @@ public class AssInstance {
 					throw new NotFoundException("找不到当前审批步骤！");
 				}
 				else if (curAttr.getObeattributeid().longValue() != attr.getObeattributeid().longValue()) {
-					throw new ProcessException("提交的步骤不是当前审批步骤！");
+					throw new BuildException("提交的步骤不是当前审批步骤！");
 				}
 				else if (attr.getState().shortValue() == Const.OBE_STATE_CHECK) {
-					throw new ProcessException("该任务已经结束了或者有人操作过了.请查看操作信息");
+					throw new BuildException("该任务已经结束了或者有人操作过了.请查看操作信息");
 				}
 				else if (attr.getState().shortValue() == Const.OBE_STATE_STOP) {
-					throw new ProcessException("该任务已经被中止.请查看操作信息");
+					throw new BuildException("该任务已经被中止.请查看操作信息");
 				}
 				List<String> checkman =  java.util.Arrays.asList(attr.getCheckman().split(","));
 				if(!checkman.contains(account_id) && !allowAss(account,attr.getCheckman(),account_id)){
@@ -463,10 +463,10 @@ public class AssInstance {
 					throw new NotFoundException("找不到当前审批步骤！");
 				}
 				if (attr.getState().shortValue() == Const.OBE_STATE_CHECK) {
-					throw new ProcessException("该任务已经结束了或者有人操作过了.请查看操作信息");
+					throw new BuildException("该任务已经结束了或者有人操作过了.请查看操作信息");
 				}
 				if (attr.getState().shortValue() == Const.OBE_STATE_STOP) {
-					throw new ProcessException("该任务已经被中止.请查看操作信息");
+					throw new BuildException("该任务已经被中止.请查看操作信息");
 				}
 				WfProcessinstance process = wfService.findProcessInstance(con, attr.getProcessinstanceid());
 				String creman = process.getCreman();

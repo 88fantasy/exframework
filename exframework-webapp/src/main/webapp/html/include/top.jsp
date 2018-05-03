@@ -31,8 +31,8 @@
      <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="<%=base %>/js/plugins/jquery.min.js" ></script>
-    <script src="<%=base %>/js/plugins/tether.min.js"></script>
+    <script src="<%=base %>/js/plugins/jquery.slim.min.js" ></script>
+    <script src="<%=base %>/js/plugins/popper.min.js"></script>
     <script src="<%=base %>/js/plugins/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="<%=base %>/js/plugins/ie10-viewport-bug-workaround.js"></script>

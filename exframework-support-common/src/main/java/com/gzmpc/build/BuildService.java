@@ -8,6 +8,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
+import com.gzmpc.exception.BuildException;
 import com.gzmpc.stereotype.BuildComponent;
 import com.gzmpc.util.SpringContextUtils;
 
@@ -24,7 +25,17 @@ public class BuildService {
 	public void build(String beanid) {
 		if(beanid != null){
 			Buildable b = SpringContextUtils.getBeanById(beanid,Buildable.class);
-			b.build();
+			if(b != null ) {
+				try {
+					b.build();
+				} catch (BuildException e) {
+					log.error(e.getMessage(), e);
+					throw new RuntimeException("找不到实现接口Bean["+beanid+"]加载失败");
+				}
+			}
+			else {
+				throw new RuntimeException("找不到实现接口[Buildable]的Bean["+beanid+"]");
+			}
 		}
 	}
 	
@@ -42,7 +53,7 @@ public class BuildService {
 				try{
 					((Buildable) o).build();
 					log.info("加载["+o.getClass().getName()+"]结束");
-				} catch (Exception e) {
+				} catch (BuildException e) {
 					log.error("加载["+o.getClass().getName()+"]失败:"+e.getMessage(),e);
 				}
 			}

@@ -31,7 +31,7 @@ import com.gzmpc.metadata.FilterCondition;
 import com.gzmpc.exception.InitException;
 import com.gzmpc.exception.NotAuthorizedException;
 import com.gzmpc.exception.NotFoundException;
-import com.gzmpc.exception.ProcessException;
+import com.gzmpc.exception.BuildException;
 import com.gzmpc.grid.DataProviderFactory;
 import com.gzmpc.grid.IDataProvider;
 import com.gzmpc.grid.IDataProviderQuerySupport;
@@ -43,6 +43,8 @@ import com.gzmpc.metadata.sys.Account;
 import com.gzmpc.metadata.toolbar.ToolButton;
 import com.gzmpc.permission.PermissionSupport;
 import com.gzmpc.pojo.OptionResult;
+import com.gzmpc.service.GridService;
+import com.gzmpc.sys.SystemParameterService;
 import com.gzmpc.ui.ToolbarService;
 import com.gzmpc.util.JSONUtil;
 import com.gzmpc.util.MapUtil;
@@ -68,6 +70,9 @@ public class GridApi {
 	
 	@Autowired
 	LoginService loginService;
+	
+	@Autowired
+	SystemParameterService systemParameterService;
 	
 	@Autowired
 	JSONUtil jsonUtil;
@@ -148,7 +153,7 @@ public class GridApi {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public OptionResult query(@PathParam("gridcode") String gridcode,
-			String params) throws NotFoundException,NotAuthorizedException, InitException, ProcessException {
+			String params) throws NotFoundException,NotAuthorizedException, InitException, BuildException {
 		Account account = loginService.getAccount(request);
 		
 		if(params == null || "".equals(params.trim())){
@@ -275,10 +280,37 @@ public class GridApi {
 			log.debug("下载人" + account.getAccountName() + ",下载表格数据(" + gridcode + "["+file+"])所需时间:"+ (returnTime - startTime) / 1000 + "秒");
 			String filename = file.substring(file.lastIndexOf(File.separator)+1);
 			return Response.ok(new File(file), MediaType.valueOf(CONTENT_TYPE)).header("Content-Disposition", "attachment; filename=" + filename).build();
-		} catch ( ProcessException e) {
+		} catch ( BuildException e) {
 			return Response.ok(e.getMessage(),MediaType.TEXT_PLAIN_TYPE).build();
 		} catch (InitException e) {
 			return Response.ok(e.getMessage(),MediaType.TEXT_PLAIN_TYPE).build();
 		}
+	}
+	
+	@Path("setting/{gridcode}")
+	@POST
+	public Response setting(@PathParam("gridcode") String gridcode,
+			@FormParam("params") String params,
+			@FormParam("action") String action) throws NotFoundException,NotAuthorizedException {
+
+		Account account = loginService.getAccount(request);
+		
+		if(gridcode == null || "".equals(gridcode.trim())){
+			throw new NotFoundException("缺少必要参数gridcode");
+		}
+		if(action == null || "".equals(action.trim())){
+			throw new NotFoundException("缺少必要参数action");
+		}
+		
+		if("update".equals(action)) {
+			systemParameterService.putAccountKey(account.getAccountId(), gridcode+GridService.COLCONFIG, params);
+		}
+		else if("reset".equals(action)) {
+			systemParameterService.removeAccountKey(account.getAccountId(), gridcode+GridService.COLCONFIG); 
+		}
+		
+		
+
+		return Response.ok("保存成功",MediaType.TEXT_PLAIN_TYPE).build();
 	}
 }

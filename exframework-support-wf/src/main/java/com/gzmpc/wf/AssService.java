@@ -20,7 +20,7 @@ import org.springframework.stereotype.Service;
 
 import com.gzmpc.dao.SystemDao;
 import com.gzmpc.exception.NotFoundException;
-import com.gzmpc.exception.ProcessException;
+import com.gzmpc.exception.BuildException;
 import com.gzmpc.exception.StartException;
 import com.gzmpc.metadata.sys.Account;
 import com.gzmpc.service.AccountService;
@@ -81,7 +81,7 @@ public class AssService {
 		return ins.batStop(account, ents, checkaccount, extend);
 	}
 
-	public JSONObject showAttr(Account account, long procid) throws ProcessException {
+	public JSONObject showAttr(Account account, long procid) throws BuildException {
 		JSONObject result = new JSONObject();
 		Connection con = null;
 		PreparedStatement pst = null;
@@ -159,7 +159,7 @@ public class AssService {
 			} catch (SQLException ex1) {
 				log.error(ex1.getMessage(), ex1);
 			}
-			throw new ProcessException("获取审批步骤列表出现错误:"+ex.getMessage());
+			throw new BuildException("获取审批步骤列表出现错误:"+ex.getMessage());
 		} finally {
 			DbUtils.closeQuietly(con, pst, rs);
 		}

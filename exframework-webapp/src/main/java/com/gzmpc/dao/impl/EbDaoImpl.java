@@ -15,7 +15,7 @@ import com.gzmpc.stereotype.DbInit;
 
 @Repository("ebDao")
 @DbInit
-public class EbDaoImpl implements EbDao,DbDao {
+public class EbDaoImpl extends DbDao implements EbDao {
 
 	private DataSource dataSource;
 

@@ -27,7 +27,7 @@ import org.springframework.stereotype.Controller;
 import com.gzmpc.dao.SystemDao;
 import com.gzmpc.exception.NotAuthorizedException;
 import com.gzmpc.exception.NotFoundException;
-import com.gzmpc.exception.ProcessException;
+import com.gzmpc.exception.BuildException;
 import com.gzmpc.exception.StartException;
 import com.gzmpc.login.LoginService;
 import com.gzmpc.metadata.sys.Account;
@@ -65,7 +65,7 @@ public class WfManageApi {
 	@Path("invalidGrant")
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response invalidGrant(@FormParam("ids") String ids) throws NotAuthorizedException, NotFoundException, ProcessException {
+	public Response invalidGrant(@FormParam("ids") String ids) throws NotAuthorizedException, NotFoundException, BuildException {
 		if(ids!=null){
 			Account account = loginService.getAccount(request);
 			Connection con = null;
@@ -89,7 +89,7 @@ public class WfManageApi {
 						log.error(e2.getMessage(),e2);
 					}
 				}
-				throw new ProcessException(e.getMessage());
+				throw new BuildException(e.getMessage());
 			}finally{
 				DbUtils.closeQuietly(con,pst,null);
 			}

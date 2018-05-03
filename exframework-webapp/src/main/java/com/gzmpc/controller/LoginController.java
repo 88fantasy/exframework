@@ -21,4 +21,10 @@ public class LoginController extends BaseController{
 		model.addAttribute("basePath", request.getContextPath());
 	    return "marinologin";
 	}
+	
+	@RequestMapping("/newlogin.view")
+	public String newlogin(final HttpServletRequest request, final ModelMap model) {
+		model.addAttribute("basePath", request.getContextPath());
+	    return "newlogin";
+	}
 }

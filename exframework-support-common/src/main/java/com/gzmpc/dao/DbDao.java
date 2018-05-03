@@ -3,7 +3,15 @@ package com.gzmpc.dao;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public interface DbDao {
+import javax.sql.DataSource;
 
-	public Connection getConnection() throws SQLException;
+public abstract class DbDao {
+	
+	public abstract DataSource getDataSource();
+	
+	public abstract void setDataSource(DataSource dataSource);
+	
+	public Connection getConnection() throws SQLException {
+		return getDataSource().getConnection();
+	}
 }

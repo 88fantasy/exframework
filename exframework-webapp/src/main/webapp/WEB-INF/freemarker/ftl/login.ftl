@@ -12,7 +12,7 @@
     <title>登录界面</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="${basePath}/css/plugins/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="${basePath}/css/plugins/bootstrap4/bootstrap.min.css" rel="stylesheet">
 	<link href="${basePath}/css/plugins/glyphicons/css/glyphicon.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <style>
@@ -89,7 +89,7 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="${basePath}/js/plugins/bootstrap/ie10-viewport-bug-workaround.js"></script>
+    <script src="${basePath}/js/plugins/bootstrap4/ie10-viewport-bug-workaround.js"></script>
     
     <script>
   		var basePath = '${basePath}';
@@ -138,10 +138,9 @@
       </form>
 
     </div> <!-- /container -->
-    
-    <script src="${basePath}/js/plugins/bootstrap/jquery.min.js" ></script>
-    <script src="${basePath}/js/plugins/bootstrap/tether.min.js"></script>
-    <script src="${basePath}/js/plugins/bootstrap/bootstrap.min.js"></script>
+    <script src="${basePath}/js/plugins/bootstrap4/jquery.slim.min.js" ></script>
+    <script src="${basePath}/js/plugins/bootstrap4/popper.min.js"></script>
+    <script src="${basePath}/js/plugins/bootstrap4/bootstrap.min.js"></script>
     
     <script src="${basePath}/js/prototype/login.js"></script>
     
