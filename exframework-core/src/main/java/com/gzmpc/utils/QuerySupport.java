@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
-import com.gzmpc.dao.DbDao;
+import com.gzmpc.support.jdbc.dao.DbDao;
 import com.gzmpc.util.SpringContextUtils;
 
 @Repository

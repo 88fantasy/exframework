@@ -13,7 +13,7 @@ import org.apache.commons.dbutils.DbUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.gzmpc.dao.DbDao;
+import com.gzmpc.support.jdbc.dao.DbDao;
 import com.gzmpc.util.SpringContextUtils;
 
 /**

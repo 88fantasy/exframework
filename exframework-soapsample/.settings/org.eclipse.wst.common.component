@@ -4,10 +4,10 @@
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
-        <dependent-module archiveName="exframework-support-common-0.2.4.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/exframework-support-common/exframework-support-common">
+        <dependent-module archiveName="exframework-support-common-0.2.5.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/exframework-support-common/exframework-support-common">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="exframework-support-soap-0.2.4.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/exframework-support-soap/exframework-support-soap">
+        <dependent-module archiveName="exframework-support-soap-0.2.5.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/exframework-support-soap/exframework-support-soap">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <property name="context-root" value="exframework-soapsample"/>

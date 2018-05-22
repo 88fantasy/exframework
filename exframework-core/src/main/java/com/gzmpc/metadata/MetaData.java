@@ -9,7 +9,6 @@ import org.apache.commons.logging.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.gzmpc.build.Buildable;
 import com.gzmpc.dao.SystemDao;
 import com.gzmpc.metadata.di.*;
 import com.gzmpc.metadata.exception.ExceptionDef;
@@ -21,7 +20,8 @@ import com.gzmpc.metadata.query.*;
 import com.gzmpc.metadata.queryparam.QueryParam;
 import com.gzmpc.metadata.sys.SystemConst;
 import com.gzmpc.metadata.toolbar.*;
-import com.gzmpc.stereotype.BuildComponent;
+import com.gzmpc.support.common.annotation.BuildComponent;
+import com.gzmpc.support.common.build.Buildable;
 
 /**
  * 存储了元数据信息的类，

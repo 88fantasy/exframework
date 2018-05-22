@@ -13,7 +13,6 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.gzmpc.dao.DbDao;
 import com.gzmpc.metadata.MetaData;
 import com.gzmpc.metadata.attribute.Attribute;
 import com.gzmpc.metadata.di.DispTypeAdapter;
@@ -22,6 +21,7 @@ import com.gzmpc.metadata.form.Form;
 import com.gzmpc.metadata.sys.Account;
 import com.gzmpc.service.FormService;
 import com.gzmpc.service.SequenceService;
+import com.gzmpc.support.jdbc.dao.DbDao;
 import com.gzmpc.util.SpringContextUtils;
 
 import bsh.Interpreter;

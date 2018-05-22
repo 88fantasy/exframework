@@ -4,7 +4,7 @@
 
   <groupId>com.gzmpc.exframework</groupId>
   <artifactId>exframework-rest-druid-webapp-archetype</artifactId>
-  <version>0.2.4</version>
+  <version>0.2.5</version>
   <packaging>maven-archetype</packaging>
 
   <name>exframework-rest-druid-webapp-archetype</name>
@@ -29,6 +29,6 @@
   </build>
 
   <scm>
-    <tag>exframework-root-0.2.4</tag>
+    <tag>exframework-root-0.2.5</tag>
   </scm>
 </project>

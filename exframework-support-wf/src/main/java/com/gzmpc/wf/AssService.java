@@ -20,10 +20,10 @@ import org.springframework.stereotype.Service;
 
 import com.gzmpc.dao.SystemDao;
 import com.gzmpc.exception.NotFoundException;
-import com.gzmpc.exception.BuildException;
 import com.gzmpc.exception.StartException;
 import com.gzmpc.metadata.sys.Account;
 import com.gzmpc.service.AccountService;
+import com.gzmpc.support.common.exception.BuildException;
 import com.gzmpc.util.SpringContextUtils;
 import com.gzmpc.utils.Const;
 import com.gzmpc.wf.meta.WfMetaData;

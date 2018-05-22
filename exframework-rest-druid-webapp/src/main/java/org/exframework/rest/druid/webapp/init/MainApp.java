@@ -8,18 +8,15 @@ import org.glassfish.jersey.logging.LoggingFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.springframework.beans.factory.annotation.Value;
 
-import com.gzmpc.filter.DefaultContextResponseFilter;
+import com.gzmpc.support.filter.DefaultContextResponseFilter;
 
 /**
  * @author rwe
  * @version 创建时间：2017年12月14日 下午2:15:12 
  */
 
-@ApplicationPath("/rest")
+@ApplicationPath("/api/rest")
 public class MainApp extends ResourceConfig {
-	
-	@Value("${swaggerBaseUrl:127.0.0.1:8080}")
-	private String baseUrl;
 
 	public MainApp() {
 

@@ -11,8 +11,8 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.gzmpc.build.Buildable;
 import com.gzmpc.dao.SystemDao;
+import com.gzmpc.support.common.build.Buildable;
 import com.gzmpc.wf.pojo.WfProcesstypeId;
 
 @Repository("wfMetaData")

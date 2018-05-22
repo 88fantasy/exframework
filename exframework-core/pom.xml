@@ -3,29 +3,26 @@
 	<parent>
 		<groupId>com.gzmpc.exframework</groupId>
 		<artifactId>exframework-root</artifactId>
-		<version>0.2.4</version>
+		<version>0.2.5</version>
 	</parent>
 	<artifactId>exframework-core</artifactId>
 	<packaging>jar</packaging>
 	<name>core service</name>
 
 	<dependencies>
+	   <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+        </dependency>
 		<dependency>
 			<groupId>com.gzmpc.exframework</groupId>
 			<artifactId>exframework-support-common</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-		</dependency>
-		<dependency>
-		    <groupId>com.alibaba</groupId>
-		    <artifactId>druid</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-jdbc</artifactId>
-		</dependency>
+            <groupId>com.gzmpc.exframework</groupId>
+            <artifactId>exframework-support-jdbc</artifactId>
+        </dependency>
+		
 		<dependency>
 		    <groupId>org.apache.commons</groupId>
 		    <artifactId>commons-lang3</artifactId>
@@ -39,13 +36,9 @@
 		    <artifactId>bsh</artifactId>
 		    <version>2.0b5</version>
 		</dependency>
-		<dependency>
-		    <groupId>com.oracle</groupId>
-		    <artifactId>ojdbc7</artifactId>
-		</dependency>
 	</dependencies>
 
   <scm>
-    <tag>exframework-root-0.2.4</tag>
+    <tag>exframework-root-0.2.5</tag>
   </scm>
 </project>

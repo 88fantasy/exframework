@@ -7,12 +7,12 @@ import org.apache.commons.logging.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.gzmpc.build.Buildable;
 import com.gzmpc.dao.SystemDao;
 import com.gzmpc.metadata.sys.Account;
 import com.gzmpc.metadata.sys.Module;
 import com.gzmpc.metadata.sys.SystemConst;
-import com.gzmpc.stereotype.BuildComponent;
+import com.gzmpc.support.common.annotation.BuildComponent;
+import com.gzmpc.support.common.build.Buildable;
 
 import java.sql.Connection;
 import org.apache.commons.dbutils.DbUtils;

@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>com.gzmpc.exframework</groupId>
 		<artifactId>exframework-root</artifactId>
-		<version>0.2.4</version>
+		<version>0.2.5</version>
 	</parent>
 	<artifactId>exframework-support-wf</artifactId>
 	<packaging>jar</packaging>
@@ -31,6 +31,6 @@
 	</dependencies>
 
   <scm>
-    <tag>exframework-root-0.2.4</tag>
+    <tag>exframework-root-0.2.5</tag>
   </scm>
 </project>

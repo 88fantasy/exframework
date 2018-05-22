@@ -9,7 +9,7 @@ import javax.ws.rs.ext.Provider;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.gzmpc.exception.BuildException;
+import com.gzmpc.support.common.exception.BuildException;
 
 @Provider
 public class ProcessExceptionMapper implements ExceptionMapper<BuildException> {

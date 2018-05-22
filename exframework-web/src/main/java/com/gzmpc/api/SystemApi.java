@@ -10,7 +10,7 @@ import javax.ws.rs.core.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import com.gzmpc.build.BuildService;
+import com.gzmpc.support.common.build.BuildService;
 
 @Controller
 @Path("sys")

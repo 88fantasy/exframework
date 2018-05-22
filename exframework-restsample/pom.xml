@@ -4,7 +4,7 @@
     <groupId>com.gzmpc.exframework</groupId>
     <artifactId>exframework-restsample</artifactId>
     <packaging>war</packaging>
-    <version>0.2.4</version>
+    <version>0.2.5</version>
     <name>exframework-restsample</name>
 
 
@@ -94,8 +94,9 @@
         </dependency>
         <dependency>
             <groupId>com.gzmpc.exframework</groupId>
-            <artifactId>exframework-support-rest</artifactId>
+            <artifactId>exframework-support-monitor-rest</artifactId>
         </dependency>
+        
         <dependency>
             <groupId>io.swagger</groupId>
             <artifactId>swagger-jersey2-jaxrs</artifactId>
@@ -109,12 +110,12 @@
         </dependency>
     </dependencies>
     <properties>
-        <exframework.version>0.2.4</exframework.version>
+        <exframework.version>0.2.5</exframework.version>
         <jdk.version>1.8</jdk.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
   <scm>
-    <tag>exframework-root-0.2.4</tag>
+    <tag>exframework-root-0.2.5</tag>
   </scm>
 </project>

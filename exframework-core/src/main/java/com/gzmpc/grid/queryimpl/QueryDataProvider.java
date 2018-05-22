@@ -1,7 +1,6 @@
 package com.gzmpc.grid.queryimpl;
 
 import com.gzmpc.exception.InitException;
-import com.gzmpc.exception.BuildException;
 import com.gzmpc.grid.DefaultDataProvider;
 import com.gzmpc.grid.GridCache;
 import com.gzmpc.grid.IDataAfterQuery;
@@ -25,6 +24,7 @@ import com.gzmpc.metadata.OperatorPool;
 import com.gzmpc.metadata.query.QueryDef;
 import com.gzmpc.metadata.sys.Account;
 import com.gzmpc.service.GridService;
+import com.gzmpc.support.common.exception.BuildException;
 import com.gzmpc.util.MapUtil;
 import com.gzmpc.util.SpringContextUtils;
 

@@ -22,10 +22,10 @@ import org.springframework.stereotype.Controller;
 
 import com.gzmpc.exception.NotAuthorizedException;
 import com.gzmpc.exception.NotFoundException;
-import com.gzmpc.exception.BuildException;
 import com.gzmpc.exception.StartException;
 import com.gzmpc.login.LoginService;
 import com.gzmpc.metadata.sys.Account;
+import com.gzmpc.support.common.exception.BuildException;
 import com.gzmpc.util.JSONUtil;
 import com.gzmpc.wf.AssService;
 

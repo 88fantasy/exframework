@@ -1,7 +1,6 @@
 package com.gzmpc.grid.tableimpl;
 
 import com.gzmpc.exception.InitException;
-import com.gzmpc.exception.BuildException;
 import com.gzmpc.grid.DefaultDataProvider;
 import com.gzmpc.grid.GridCache;
 import com.gzmpc.grid.IDataAfterQuery;
@@ -14,6 +13,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import com.gzmpc.metadata.grid.Grid;
 import com.gzmpc.metadata.sys.Account;
 import com.gzmpc.service.GridService;
+import com.gzmpc.support.common.exception.BuildException;
 import com.gzmpc.util.MapUtil;
 import com.gzmpc.util.SpringContextUtils;
 import com.gzmpc.utils.QuerySupport;

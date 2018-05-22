@@ -9,9 +9,9 @@ import javax.sql.DataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.gzmpc.dao.DbDao;
 import com.gzmpc.dao.SystemDao;
-import com.gzmpc.stereotype.DbInit;
+import com.gzmpc.support.jdbc.dao.DbDao;
+import com.gzmpc.support.jdbc.annotation.DbInit;
 
 @Repository("systemDao")
 @DbInit

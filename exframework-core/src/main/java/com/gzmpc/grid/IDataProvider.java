@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.gzmpc.exception.InitException;
-import com.gzmpc.exception.BuildException;
 import com.gzmpc.metadata.sys.Account;
+import com.gzmpc.support.common.exception.BuildException;
 
 public interface IDataProvider {
 	public Map<String, Object> getJsonData(String gridcode, Map<String, Object> params, Account account) throws InitException,BuildException;

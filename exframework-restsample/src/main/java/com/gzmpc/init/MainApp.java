@@ -8,7 +8,7 @@ import org.glassfish.jersey.logging.LoggingFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.springframework.beans.factory.annotation.Value;
 
-import com.gzmpc.filter.DefaultContextResponseFilter;
+import com.gzmpc.support.filter.DefaultContextResponseFilter;
 
 import io.swagger.jaxrs.config.BeanConfig;
 
@@ -36,6 +36,7 @@ public class MainApp extends ResourceConfig {
 		// register(JacksonFeature.class);
 		// register(CustomMapperProvider.class);
 		register(DefaultContextResponseFilter.class);
+		
 		register(io.swagger.jaxrs.listing.ApiListingResource.class);
 		register(io.swagger.jaxrs.listing.SwaggerSerializers.class);
 		swaggerConfiguration();
