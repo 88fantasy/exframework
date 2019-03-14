@@ -22,7 +22,7 @@ import javax.ws.rs.core.Response;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.json.JSONObject;
+import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -93,7 +93,7 @@ public class GridApi {
 		
 		Map<String,Object> param = null;
 		if(params != null && !"".equals(params.trim())){
-			param = jsonUtil.toMap(new JSONObject(params));
+			param = jsonUtil.toMap(JSONObject.parseObject(params));
 		}
 		else {
 			param = new ConcurrentHashMap<String,Object>();
@@ -159,7 +159,7 @@ public class GridApi {
 		if(params == null || "".equals(params.trim())){
 			throw new NotFoundException("缺少必要参数param");
 		}
-		Map<String,Object> param = jsonUtil.toMap(new JSONObject(params));
+		Map<String,Object> param = jsonUtil.toMap(JSONObject.parseObject(params));
 		
 		if (gridcode == null) {
 			throw new NotFoundException("gridcode不能为空");
@@ -254,7 +254,7 @@ public class GridApi {
 		if(params == null || "".equals(params.trim())){
 			throw new NotFoundException("缺少必要参数param");
 		}
-		Map<String,Object> param = jsonUtil.toMap(new JSONObject(params));
+		Map<String,Object> param = jsonUtil.toMap(JSONObject.parseObject(params));
 		
 		if (gridcode == null) {
 			throw new NotFoundException("gridcode不能为空");

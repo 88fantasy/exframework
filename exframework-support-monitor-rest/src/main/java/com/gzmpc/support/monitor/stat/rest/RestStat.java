@@ -65,6 +65,16 @@ public class RestStat extends Stat {
 		data.put("runningCount", runningCount.get());
 		data.put("concurrentMax", concurrentMax.get());
 		
+		if(uristats.size() > 0) {
+			Map<String,Object> uris = new ConcurrentHashMap<String,Object>();
+			for(String key : uristats.keySet()) {
+				RestUriStat uristat = uristats.get(key);
+				Map<String, Object> uridata = uristat.getStatData();
+				uris.put(key, uridata);
+			}
+			data.put("uris", uris);
+		}
+		
 		return data;
 	}
 	

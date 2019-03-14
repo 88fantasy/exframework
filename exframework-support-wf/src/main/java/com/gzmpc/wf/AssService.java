@@ -12,8 +12,8 @@ import java.util.Map;
 import org.apache.commons.dbutils.DbUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.json.JSONArray;
-import org.json.JSONObject;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
@@ -99,7 +99,7 @@ public class AssService {
 			
 			JSONArray array = new JSONArray();
 			while (rs.next()) {
-				if(array.length()==0) {
+				if(array.size()==0) {
 					result.put("cremanname", rs.getString(1));
 					result.put("creman", rs.getString(2));
 					result.put("startdate", rs.getString(3));
@@ -144,7 +144,7 @@ public class AssService {
 						break;
 				}
 				row.put("workflowstatus", status);
-				array.put(row);
+				array.add(row);
 			}
 			rs.close();
 			pst.close();

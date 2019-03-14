@@ -5,7 +5,7 @@ import java.util.Map;
 
 import org.apache.http.Consts;
 import org.apache.http.entity.ContentType;
-import org.json.JSONObject;
+import com.alibaba.fastjson.JSONObject;
 
 import com.gzmpc.exframework.support.log.util.ClientUtil;
 
@@ -20,8 +20,8 @@ public class App
     		ClientUtil util = new ClientUtil();
     		
     		JSONObject json = new JSONObject();
-    		json.putOnce("UserLogin", "root@localhost");
-    		json.putOnce("Password", "password@otrs.com");
+    		json.put("UserLogin", "root@localhost");
+    		json.put("Password", "password@otrs.com");
     		Map<String,String> ticket = new HashMap<String,String>();
     		ticket.put("Title", "日志工单测试");
     		ticket.put("Queue", "产品列");

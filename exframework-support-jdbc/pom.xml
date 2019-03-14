@@ -5,11 +5,11 @@
 	<parent>
 		<groupId>com.gzmpc.exframework</groupId>
 		<artifactId>exframework-root</artifactId>
-		<version>0.2.5</version>
+		<version>0.2.7</version>
 	</parent>
 	<artifactId>exframework-support-jdbc</artifactId>
 	<packaging>jar</packaging>
-	<name>common resource</name>
+	<name>jdbc support</name>
 
 	<build>
 		<finalName>exframework-support-jdbc</finalName>
@@ -17,13 +17,6 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<source>${jdk.version}</source>
-					<target>${jdk.version}</target>
-					<compilerArguments>
-						<bootclasspath>${java.home}/lib/rt.jar${path.separator}${java.home}/lib/jce.jar</bootclasspath>
-					</compilerArguments>
-				</configuration>
 			</plugin>
 		</plugins>
 
@@ -42,7 +35,7 @@
 	<dependencies>
 	   <dependency>
             <groupId>com.oracle</groupId>
-            <artifactId>ojdbc7</artifactId>
+            <artifactId>ojdbc6</artifactId>
         </dependency>
 		<dependency>
 			<groupId>com.alibaba</groupId>
@@ -59,6 +52,6 @@
 	</dependencies>
 
 	<scm>
-		<tag>exframework-root-0.2.5</tag>
+		<tag>exframework-root-0.2.7</tag>
 	</scm>
 </project>

@@ -33,8 +33,8 @@ public class JobStat extends Stat {
 		for(JobDetailStat detailStat : detailStatMap.values()) {
 			Map<String, Object> data = detailStat.getStatData();
 			executeCount += (long) data.get("executeCount");
-			errorCount += (long) data.get("errorCount");
-			if( (boolean) data.get("executing") ) {
+			errorCount += (int) data.get("errorCount");
+			if( (long) data.get("executing") > 0) {
 				executingCount ++;
 			}
 		}

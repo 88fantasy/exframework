@@ -85,6 +85,9 @@ public class RestUriStat {
 	public void afterInvoke(Throwable e, long nanoRuntime) {
 		runningCount.decrementAndGet();
 		totalRuntime.addAndGet(nanoRuntime);
+		if(e == null) {
+			successCount.incrementAndGet();
+		}
 		
 		if( nanoRuntime > maxRuntime || maxRuntime == 0) {
 			maxRuntime = nanoRuntime;

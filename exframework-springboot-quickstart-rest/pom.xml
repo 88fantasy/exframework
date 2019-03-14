@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>com.gzmpc.exframework</groupId>
 		<artifactId>exframework-root</artifactId>
-		<version>0.2.5</version>
+		<version>0.2.7</version>
 	</parent>
 	<artifactId>exframework-springboot-quickstart-rest</artifactId>
 	<name>exframework-springboot-quickstart-rest</name>
@@ -38,7 +38,6 @@
 		<dependency>
 		    <groupId>com.fasterxml.jackson.core</groupId>
 		    <artifactId>jackson-databind</artifactId>
-		    <version>2.9.5</version>
 		</dependency>
 		<dependency>
 		    <groupId>javax.validation</groupId>

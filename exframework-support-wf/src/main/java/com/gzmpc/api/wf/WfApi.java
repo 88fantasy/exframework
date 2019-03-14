@@ -15,8 +15,8 @@ import javax.ws.rs.core.Response;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.json.JSONArray;
-import org.json.JSONObject;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -66,7 +66,7 @@ public class WfApi {
 
 		Map<String, Object> params = null;
 		if (param != null && !"".equals(param.trim())) {
-			params = jsonUtil.toMap(new JSONObject(param));
+			params = jsonUtil.toMap(JSONObject.parseObject(param));
 		}
 		assService.doStartAss(account, ids.split(","), pintype, params);
 		return Response.ok().build();
@@ -97,7 +97,7 @@ public class WfApi {
 		Account account = loginService.getAccount(request);
 		Map<String, Object> extend = new ConcurrentHashMap<String,Object>();
 		if (ext != null && !"".equals(ext.trim())) {
-			extend = jsonUtil.toMap(new JSONObject(ext));
+			extend = jsonUtil.toMap(JSONObject.parseObject(ext));
 		}
 		assService.check(account, attrid, pintype, checkText, checkResult, checkaccount, extend);
 		return Response.ok().build();
@@ -126,7 +126,7 @@ public class WfApi {
 		Account account = loginService.getAccount(request);
 		Map<String, Object> extend = new ConcurrentHashMap<String,Object>();
 		if (ext != null && !"".equals(ext.trim())) {
-			extend = jsonUtil.toMap(new JSONObject(ext));
+			extend = jsonUtil.toMap(JSONObject.parseObject(ext));
 		}
 		assService.stop(account, attrid, pintype, checkText, checkaccount, extend);
 		return Response.ok().build();
@@ -160,15 +160,15 @@ public class WfApi {
 		String json = ent.trim();
 		Map<String,Object>[] ents = null;
 		if(json.startsWith("[")) {//是json数组
-			ents = jsonUtil.toMapArray(new JSONArray(json));
+			ents = jsonUtil.toMapArray(JSONArray.parseArray(json));
 		}
 		else {
-			Map<String,Object> map = jsonUtil.toMap(new JSONObject(json));
+			Map<String,Object> map = jsonUtil.toMap(JSONObject.parseObject(json));
 			ents = new Map[]{map};
 		}
 		Map<String, Object> extend = new ConcurrentHashMap<String,Object>();
 		if (ext != null && !"".equals(ext.trim())) {
-			extend = jsonUtil.toMap(new JSONObject(ext));
+			extend = jsonUtil.toMap(JSONObject.parseObject(ext));
 		}
 		String result = assService.batcheck(account, ents, pintype, checkResult, checkaccount, extend);
 		return Response.ok(result).build();
@@ -189,15 +189,15 @@ public class WfApi {
 		String json = ent.trim();
 		Map<String,Object>[] ents = null;
 		if(json.startsWith("[")) {//是json数组
-			ents = jsonUtil.toMapArray(new JSONArray(json));
+			ents = jsonUtil.toMapArray(JSONArray.parseArray(json));
 		}
 		else {
-			Map<String,Object> map = jsonUtil.toMap(new JSONObject(json));
+			Map<String,Object> map = jsonUtil.toMap(JSONObject.parseObject(json));
 			ents = new Map[]{map};
 		}
 		Map<String, Object> extend = new ConcurrentHashMap<String,Object>();
 		if (ext != null && !"".equals(ext.trim())) {
-			extend = jsonUtil.toMap(new JSONObject(ext));
+			extend = jsonUtil.toMap(JSONObject.parseObject(ext));
 		}
 		String result = assService.batstop(account, ents, pintype, checkaccount, extend);
 		return Response.ok(result).build();

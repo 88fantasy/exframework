@@ -3,11 +3,22 @@
 	<parent>
 		<groupId>com.gzmpc.exframework</groupId>
 		<artifactId>exframework-root</artifactId>
-		<version>0.2.5</version>
+		<version>0.2.7</version>
 	</parent>
 	<artifactId>exframework-support-sso</artifactId>
 	<packaging>jar</packaging>
 	<name>single sign on support</name>
+	
+	<build>
+        <finalName>exframework-support-sso</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+        </plugins>
+
+    </build>
 
 	<dependencies>
 		<dependency>
@@ -58,6 +69,6 @@
 	</properties>
 
   <scm>
-    <tag>exframework-root-0.2.5</tag>
+    <tag>exframework-root-0.2.7</tag>
   </scm>
 </project>

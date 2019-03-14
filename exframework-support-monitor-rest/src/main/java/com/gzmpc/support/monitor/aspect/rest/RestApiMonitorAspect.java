@@ -13,62 +13,62 @@ import com.gzmpc.support.monitor.stat.rest.RestStat;
 import com.gzmpc.support.monitor.stat.rest.RestUriStat;
 
 /**
-* @author rwe
-* @version 创建时间：2018年5月13日 下午1:41:44
-* rest 接口 监控 切面类
-*/
+ * @author rwe
+ * @version 创建时间：2018年5月13日 下午1:41:44 rest 接口 监控 切面类
+ */
 
 @Aspect
 @Component
 public class RestApiMonitorAspect {
-	
+
 	@Autowired
 	RestStat restStat;
 
 	@Pointcut("@annotation(com.gzmpc.support.monitor.annotation.rest.RestApiMonitor)")
 	public void restApiMonitor() {
-		
+
 	}
-  
-    //声明环绕通知  
-    @Around("restApiMonitor()")  
-    public Object doAround(ProceedingJoinPoint pjp) throws Throwable {
-    	
-    		RestUriStat uristat = null;
-    		long startNano = System.nanoTime();
-        
-        Object[] args = pjp.getArgs();
-        for(Object arg : args) {
-        		if(arg instanceof HttpServletRequest) {
-        			HttpServletRequest req = (HttpServletRequest) arg;
-        			String uri = req.getRequestURI();
-        			uristat = restStat.register(uri, new RestUriStat(uri));
-        		}
-        }
-        
-        
-        if(uristat != null) {
-        		uristat.beforeInvoke();
-        }
-        
-        restStat.beforeInvoke();
-        
-        Throwable error = null;
-        Object result = null;
-        try {
-        		result = pjp.proceed(args);  
-        } catch (Throwable e) {
-            error = e;
-            throw e;
-        } finally {
-            long endNano = System.nanoTime();
-            long nanos = endNano - startNano;
-            
-            if(restStat != null) {
-        			restStat.afterInvoke(error, nanos);
-    			}
-        }
-        
-        return result;  
-    }  
+
+	// 声明环绕通知
+	@Around("restApiMonitor()")
+	public Object doAround(ProceedingJoinPoint pjp) throws Throwable {
+
+		RestUriStat uristat = null;
+		long startNano = System.nanoTime();
+
+		Object[] args = pjp.getArgs();
+		for (Object arg : args) {
+			if (arg instanceof HttpServletRequest) {
+				HttpServletRequest req = (HttpServletRequest) arg;
+				String uri = req.getRequestURI();
+				uristat = restStat.register(uri, new RestUriStat(uri));
+			}
+		}
+
+		if (uristat != null) {
+			uristat.beforeInvoke();
+		}
+
+		restStat.beforeInvoke();
+
+		Throwable error = null;
+		Object result = null;
+		try {
+			result = pjp.proceed(args);
+		} catch (Throwable e) {
+			error = e;
+			throw e;
+		} finally {
+			long endNano = System.nanoTime();
+			long nanos = endNano - startNano;
+
+			restStat.afterInvoke(error, nanos);
+			
+			if (uristat != null) {
+				uristat.afterInvoke(error, nanos);
+			}
+		}
+
+		return result;
+	}
 }

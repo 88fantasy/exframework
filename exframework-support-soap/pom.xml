@@ -3,11 +3,22 @@
     <parent>
         <groupId>com.gzmpc.exframework</groupId>
         <artifactId>exframework-root</artifactId>
-        <version>0.2.5</version>
+        <version>0.2.7</version>
     </parent>
     <artifactId>exframework-support-soap</artifactId>
     <packaging>jar</packaging>
     <name>soap support</name>
+    
+    <build>
+        <finalName>exframework-support-soap</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+        </plugins>
+
+    </build>
 
     <dependencies>
         <!-- JAX-WS -->
@@ -44,6 +55,6 @@
     </dependencies>
 
   <scm>
-    <tag>exframework-root-0.2.5</tag>
+    <tag>exframework-root-0.2.7</tag>
   </scm>
 </project>

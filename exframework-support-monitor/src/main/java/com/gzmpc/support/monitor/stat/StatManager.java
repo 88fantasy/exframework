@@ -2,8 +2,7 @@ package com.gzmpc.support.monitor.stat;
 
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
+import com.alibaba.fastjson.JSONObject;
 import org.springframework.stereotype.Service;
 
 /**
@@ -22,13 +21,11 @@ public class StatManager {
 	}
 	
 	public String getJSON() {
-		JSONArray array = new JSONArray();
+		JSONObject row = new JSONObject();
 		for(String key : stats.keySet()) {
 			Stat stat = stats.get(key);
-			JSONObject row = new JSONObject();
 			row.put(key, stat.getStatData());
-			array.put(row);
 		}
-		return array.toString();
+		return row.toString();
 	}
 }
