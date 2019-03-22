@@ -82,18 +82,18 @@ public class RestUriStat {
         }
 	}
 	
-	public void afterInvoke(Throwable e, long nanoRuntime) {
+	public void afterInvoke(Throwable e, long runtime) {
 		runningCount.decrementAndGet();
-		totalRuntime.addAndGet(nanoRuntime);
+		totalRuntime.addAndGet(runtime);
 		if(e == null) {
 			successCount.incrementAndGet();
 		}
 		
-		if( nanoRuntime > maxRuntime || maxRuntime == 0) {
-			maxRuntime = nanoRuntime;
+		if( runtime > maxRuntime || maxRuntime == 0) {
+			maxRuntime = runtime;
 		}
-		if( nanoRuntime < minRuntime || minRuntime == 0) {
-			minRuntime = nanoRuntime;
+		if( runtime < minRuntime || minRuntime == 0) {
+			minRuntime = runtime;
 		}
 	}
 	

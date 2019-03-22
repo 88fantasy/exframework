@@ -48,7 +48,7 @@ public class RestStat extends Stat {
         }
 	}
 	
-	public void afterInvoke(Throwable e,long nano) {
+	public void afterInvoke(Throwable e,long runtime) {
 		runningCount.decrementAndGet();
 	}
 	

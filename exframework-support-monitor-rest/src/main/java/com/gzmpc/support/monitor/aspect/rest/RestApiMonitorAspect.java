@@ -34,7 +34,7 @@ public class RestApiMonitorAspect {
 	public Object doAround(ProceedingJoinPoint pjp) throws Throwable {
 
 		RestUriStat uristat = null;
-		long startNano = System.nanoTime();
+		long start = new java.util.Date().getTime();
 
 		Object[] args = pjp.getArgs();
 		for (Object arg : args) {
@@ -59,13 +59,13 @@ public class RestApiMonitorAspect {
 			error = e;
 			throw e;
 		} finally {
-			long endNano = System.nanoTime();
-			long nanos = endNano - startNano;
+			long end = new java.util.Date().getTime();
+			long times = end - start;
 
-			restStat.afterInvoke(error, nanos);
+			restStat.afterInvoke(error, times);
 			
 			if (uristat != null) {
-				uristat.afterInvoke(error, nanos);
+				uristat.afterInvoke(error, times);
 			}
 		}
 
