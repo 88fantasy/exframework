@@ -43,7 +43,13 @@ public class JobStat extends Stat {
 		data.put("executeCount", executeCount);
 		data.put("errorCount", errorCount);
 		data.put("executingCount", executingCount);
-		data.put("detailStats", detailStatMap);
+		
+		ConcurrentHashMap<String,JobDetailStat> detailStats = new ConcurrentHashMap<String,JobDetailStat>();
+		for( JobKey key : detailStatMap.keySet()) {
+			JobDetailStat stat = detailStatMap.get(key);
+			detailStats.put(key.getName(), stat);
+		}
+		data.put("detailStats", detailStats);
 		
 		return data;
 	}
