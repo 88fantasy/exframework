@@ -4,7 +4,7 @@
     <groupId>com.gzmpc.exframework</groupId>
     <artifactId>exframework-restsample</artifactId>
     <packaging>war</packaging>
-    <version>0.2.7</version>
+    <version>0.2.7.1</version>
     <name>exframework-restsample</name>
 
 
@@ -103,12 +103,12 @@
         </dependency>
     </dependencies>
     <properties>
-        <exframework.version>0.2.7</exframework.version>
+        <exframework.version>0.2.7.1</exframework.version>
         <jdk.version>1.8</jdk.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
   <scm>
-    <tag>exframework-root-0.2.7</tag>
+    <tag>exframework-root-0.2.7.1</tag>
   </scm>
 </project>
