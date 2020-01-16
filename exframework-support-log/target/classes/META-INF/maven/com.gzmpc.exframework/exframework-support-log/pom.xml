@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>com.gzmpc.exframework</groupId>
 		<artifactId>exframework-root</artifactId>
-		<version>0.2.5</version>
+		<version>0.2.8</version>
 	</parent>
 	<artifactId>exframework-support-log</artifactId>
 	<name>exframework-support-log</name>
@@ -17,13 +17,6 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<source>${jdk.version}</source>
-					<target>${jdk.version}</target>
-					<compilerArguments>
-						<bootclasspath>${java.home}/lib/rt.jar${path.separator}${java.home}/lib/jce.jar</bootclasspath>
-					</compilerArguments>
-				</configuration>
 			</plugin>
 		</plugins>
 
@@ -50,13 +43,13 @@
 			<artifactId>httpmime</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.json</groupId>
-			<artifactId>json</artifactId>
-		</dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+        </dependency>
 	</dependencies>
 
 
 	<scm>
-		<tag>exframework-root-0.2.5</tag>
+		<tag>exframework-root-0.2.8</tag>
 	</scm>
 </project>

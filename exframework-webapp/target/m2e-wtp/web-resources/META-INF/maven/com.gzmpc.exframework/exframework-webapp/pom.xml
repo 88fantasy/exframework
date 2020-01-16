@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>com.gzmpc.exframework</groupId>
 		<artifactId>exframework-root</artifactId>
-		<version>0.2.5</version>
+		<version>0.2.8</version>
 	</parent>
 	<artifactId>exframework-webapp</artifactId>
 	<packaging>war</packaging>
@@ -17,14 +17,6 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<source>${jdk.version}</source>
-					<target>${jdk.version}</target>
-					<compilerArguments>
-						<bootclasspath>${java.home}/lib/rt.jar${path.separator}${java.home}/lib/jce.jar</bootclasspath>
-						<verbose />
-					</compilerArguments>
-				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -84,6 +76,6 @@
 	</properties>
 
   <scm>
-    <tag>exframework-root-0.2.5</tag>
+    <tag>exframework-root-0.2.8</tag>
   </scm>
 </project>

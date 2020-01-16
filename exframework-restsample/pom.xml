@@ -1,10 +1,13 @@
 <?xml version="1.0"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.gzmpc.exframework</groupId>
+    <parent>
+        <groupId>com.gzmpc.exframework</groupId>
+        <artifactId>exframework-root</artifactId>
+        <version>0.2.8</version>
+    </parent>
     <artifactId>exframework-restsample</artifactId>
     <packaging>war</packaging>
-    <version>0.2.7.1</version>
     <name>exframework-restsample</name>
 
 
@@ -103,12 +106,12 @@
         </dependency>
     </dependencies>
     <properties>
-        <exframework.version>0.2.7.1</exframework.version>
+        <exframework.version>0.2.8</exframework.version>
         <jdk.version>1.8</jdk.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
   <scm>
-    <tag>exframework-root-0.2.7.1</tag>
+    <tag>exframework-root-0.2.8</tag>
   </scm>
 </project>

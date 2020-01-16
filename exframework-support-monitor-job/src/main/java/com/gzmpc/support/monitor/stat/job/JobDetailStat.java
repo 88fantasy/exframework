@@ -106,7 +106,7 @@ public class JobDetailStat {
 		data.put("lastStartDate", lastStartDate != null? DATETIME_FORMAT.format(lastStartDate) : "");
 		data.put("lastEndDate", lastEndDate != null? DATETIME_FORMAT.format(lastEndDate) : "");
 		data.put("startDate", startDate != null ? DATETIME_FORMAT.format(startDate) : "");
-		data.put("lastMsg", lastMsg);
+		data.put("lastMsg", lastMsg != null ? lastMsg : "");
 		
 		return data;
 	}

@@ -3,11 +3,21 @@
 	<parent>
 		<groupId>com.gzmpc.exframework</groupId>
 		<artifactId>exframework-root</artifactId>
-		<version>0.2.5</version>
+		<version>0.2.8</version>
 	</parent>
 	<artifactId>exframework-support-wf</artifactId>
 	<packaging>jar</packaging>
 	<name>workflow support</name>
+	
+	<build>
+        <finalName>exframework-support-wf</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 
 	<dependencies>
 		<dependency>
@@ -31,6 +41,6 @@
 	</dependencies>
 
   <scm>
-    <tag>exframework-root-0.2.5</tag>
+    <tag>exframework-root-0.2.8</tag>
   </scm>
 </project>
