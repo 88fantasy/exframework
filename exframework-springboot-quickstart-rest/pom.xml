@@ -6,11 +6,10 @@
 	<parent>
 		<groupId>com.gzmpc.exframework</groupId>
 		<artifactId>exframework-root</artifactId>
-		<version>0.2.8</version>
+		<version>0.2.8.1</version>
 	</parent>
 	<artifactId>exframework-springboot-quickstart-rest</artifactId>
 	<name>exframework-springboot-quickstart-rest</name>
-	<url>http://maven.apache.org</url>
 
 	<build>
 		<plugins>
@@ -44,7 +43,12 @@
 		    <artifactId>validation-api</artifactId>
 		    <version>2.0.1.Final</version>
 		</dependency>
-
+		
+        <dependency>
+            <groupId>com.gzmpc.exframework</groupId>
+            <artifactId>exframework-support-rest</artifactId>
+        </dependency>
+		
 		<!-- Compile -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -59,7 +63,7 @@
 		<!-- Provided -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<artifactId>spring-boot-starter-web</artifactId>
 			<version>${springboot.version}</version>
 			<scope>provided</scope>
 		</dependency>

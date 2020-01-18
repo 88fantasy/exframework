@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.gzmpc.exframework</groupId>
 	<artifactId>exframework-root</artifactId>
-	<version>0.2.8</version>
+	<version>0.2.8.1</version>
 	<packaging>pom</packaging>
 	<name>exframework </name>
 	<modules>
@@ -115,7 +115,7 @@
 	</scm>
 
 	<repositories>
-		<repository>
+		<!-- <repository>
 			<id>nexus</id>
 			<name>Nexus Repository</name>
 			<url>http://192.168.7.41:8081/repository/maven-public/</url>
@@ -125,14 +125,14 @@
 			<releases>
 				<enabled>true</enabled>
 			</releases>
-		</repository>
+		</repository> 
 		<repository>
 	        <id>aliyun-repos</id>
 	        <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
 	        <snapshots>
 	            <enabled>false</enabled>
 	        </snapshots>
-	    </repository>
+	    </repository>-->
 	</repositories>
 
 	<distributionManagement>
@@ -151,70 +151,70 @@
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-core</artifactId>
-				<version>0.2.8</version>
+				<version>0.2.8.1</version>
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-common</artifactId>
-				<version>0.2.8</version>
+				<version>0.2.8.1</version>
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-jdbc</artifactId>
-				<version>0.2.8</version>
+				<version>0.2.8.1</version>
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-utils</artifactId>
-				<version>0.2.8</version>
+				<version>0.2.8.1</version>
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-job</artifactId>
-				<version>0.2.8</version>
+				<version>0.2.8.1</version>
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-web</artifactId>
-				<version>0.2.8</version>
+				<version>0.2.8.1</version>
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-wf</artifactId>
-				<version>0.2.8</version>
+				<version>0.2.8.1</version>
 			</dependency>
 
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-rest</artifactId>
-				<version>0.2.8</version>
+				<version>0.2.8.1</version>
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-soap</artifactId>
-				<version>0.2.8</version>
+				<version>0.2.8.1</version>
 			</dependency>
 
 
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-monitor</artifactId>
-				<version>0.2.8</version>
+				<version>0.2.8.1</version>
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-monitor-rest</artifactId>
-				<version>0.2.8</version>
+				<version>0.2.8.1</version>
 			</dependency>
 			<dependency>
                 <groupId>com.gzmpc.exframework</groupId>
                 <artifactId>exframework-support-monitor-job</artifactId>
-                <version>0.2.8</version>
+                <version>0.2.8.1</version>
             </dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-druid-monitor</artifactId>
-				<version>0.2.8</version>
+				<version>0.2.8.1</version>
 			</dependency>
 
 			<dependency>
@@ -232,7 +232,7 @@
 			<dependency>
 				<groupId>io.swagger.core.v3</groupId>
 				<artifactId>swagger-jaxrs2</artifactId>
-				<version>2.0.1</version>
+				<version>2.1.1</version>
 			</dependency>
 			<dependency>
 				<groupId>com.fasterxml.jackson</groupId>
@@ -346,14 +346,9 @@
 				<version>1.4</version>
 			</dependency>
 			<dependency>
-                <groupId>com.oracle</groupId>
-                <artifactId>ojdbc6</artifactId>
-                <version>11.2.0.4</version>
-            </dependency>
-			<dependency>
-				<groupId>com.oracle</groupId>
-				<artifactId>ojdbc7</artifactId>
-				<version>12.1.0.2</version>
+			    <groupId>com.oracle.ojdbc</groupId>
+			    <artifactId>ojdbc8</artifactId>
+			    <version>19.3.0.0</version>
 			</dependency>
 			<dependency>
 				<groupId>com.alibaba</groupId>

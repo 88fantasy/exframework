@@ -4,7 +4,7 @@
     <parent>
         <groupId>com.gzmpc.exframework</groupId>
         <artifactId>exframework-root</artifactId>
-        <version>0.2.8</version>
+        <version>0.2.8.1</version>
     </parent>
     <artifactId>exframework-restsample</artifactId>
     <packaging>war</packaging>
@@ -44,33 +44,6 @@
         </resources>
     </build>
     
-    <repositories>
-        <repository>
-            <id>nexus</id>
-            <name>Nexus Repository</name>
-            <url>http://192.168.7.41:8081/repository/maven-public/</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-        </repository>
-    </repositories>
-
-    <distributionManagement>
-        <repository>
-            <id>localoss-releases</id>
-            <url>http://192.168.7.41:8081/repository/maven-releases/</url>
-            <layout>default</layout>
-        </repository>
-        <snapshotRepository>
-            <id>localoss-snapshots</id>
-            <url>http://192.168.7.41:8081/repository/maven-snapshots/</url>
-            <layout>legacy</layout>
-        </snapshotRepository>
-    </distributionManagement>
-    
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -106,12 +79,12 @@
         </dependency>
     </dependencies>
     <properties>
-        <exframework.version>0.2.8</exframework.version>
+        <exframework.version>0.2.8.1</exframework.version>
         <jdk.version>1.8</jdk.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
   <scm>
-    <tag>exframework-root-0.2.8</tag>
+    <tag>exframework-root-0.2.8.1</tag>
   </scm>
 </project>

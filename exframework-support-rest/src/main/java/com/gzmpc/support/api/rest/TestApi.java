@@ -12,8 +12,8 @@ import javax.ws.rs.core.Response;
 
 import org.springframework.stereotype.Controller;
 
-@Controller
-@Path("test")
+//@Controller
+//@Path("test")
 public class TestApi {
 	
 	@Path("hello")
