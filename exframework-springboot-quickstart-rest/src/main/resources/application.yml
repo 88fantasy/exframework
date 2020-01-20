@@ -1,0 +1,53 @@
+server:
+  port: 8080
+
+my:
+  name: demo
+
+spring:
+  profiles:
+    active: dev
+
+---
+#开发环境
+spring:
+  profiles: dev
+
+server:
+  port: 8160
+
+my:
+  name: ricky
+
+---
+#测试环境
+spring:
+  profiles: test
+
+server:
+  port: 8180
+
+my:
+  name: test
+
+---
+#预生产环境
+spring:
+  profiles: pre
+
+server:
+  port: 8190
+
+my:
+  name: pre
+  
+---
+#生产环境
+spring:
+  profiles: prod
+
+server:
+  port: 8190
+
+my:
+  name: prod
