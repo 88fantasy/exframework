@@ -7,7 +7,7 @@ import org.glassfish.jersey.logging.LoggingFeature;
 import org.glassfish.jersey.media.multipart.MultiPartFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 
-import com.gzmpc.support.filter.DefaultContextResponseFilter;
+import com.gzmpc.support.rest.filter.DefaultContextResponseFilter;
 
 @ApplicationPath("/api")
 public class MainApp extends ResourceConfig {

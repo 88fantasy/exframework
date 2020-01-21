@@ -1,4 +1,4 @@
-package com.gzmpc.support.api.rest;
+package com.gzmpc.support.rest.api;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DefaultValue;

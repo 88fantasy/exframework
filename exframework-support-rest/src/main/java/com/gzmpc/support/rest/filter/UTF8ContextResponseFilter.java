@@ -1,4 +1,4 @@
-package com.gzmpc.support.filter;
+package com.gzmpc.support.rest.filter;
 
 import java.io.IOException;
 

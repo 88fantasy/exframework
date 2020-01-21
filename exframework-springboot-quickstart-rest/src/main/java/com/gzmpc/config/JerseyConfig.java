@@ -1,16 +1,14 @@
 package com.gzmpc.config;
 
 
-import javax.annotation.PostConstruct;
 import javax.ws.rs.ApplicationPath;
 
 import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.logging.LoggingFeature;
-import org.glassfish.jersey.server.ResourceConfig;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import com.gzmpc.support.filter.DefaultContextResponseFilter;
+import com.gzmpc.support.rest.filter.DefaultContextResponseFilter;
+import com.gzmpc.support.rest.server.SrpingBootResourceConfig;
 
 
 /**
@@ -20,18 +18,15 @@ import com.gzmpc.support.filter.DefaultContextResponseFilter;
 
 @Component
 @ApplicationPath("/rest")
-public class JerseyConfig extends ResourceConfig {
+public class JerseyConfig extends SrpingBootResourceConfig {
 	
-	@Value("${swaggerBaseUrl:127.0.0.1:8080}")
-	private String baseUrl;
-
 	public JerseyConfig() {
 
-		packages("com.gzmpc.sample.api.rest");
+		springbootJarPackage("com.gzmpc.sample.api.rest");
 		// packages("com.gzmpc.api.document");
 
 		// error handle
-		packages("com.gzmpc.errorhandle");
+		springbootJarPackage("com.gzmpc.errorhandle");
 
 		register(LoggingFeature.class);
 		register(JacksonFeature.class);
@@ -39,7 +34,7 @@ public class JerseyConfig extends ResourceConfig {
 		// register(CustomMapperProvider.class);
 		register(DefaultContextResponseFilter.class);
 
-		packages("io.swagger.v3.jaxrs2.integration.resources");
+		springbootJarPackage("io.swagger.v3.jaxrs2.integration.resources");
 	}
 	
 

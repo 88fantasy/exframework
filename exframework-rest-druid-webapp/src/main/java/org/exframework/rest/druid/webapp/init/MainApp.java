@@ -8,7 +8,7 @@ import org.glassfish.jersey.logging.LoggingFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.springframework.beans.factory.annotation.Value;
 
-import com.gzmpc.support.filter.DefaultContextResponseFilter;
+import com.gzmpc.support.rest.filter.DefaultContextResponseFilter;
 
 /**
  * @author rwe
