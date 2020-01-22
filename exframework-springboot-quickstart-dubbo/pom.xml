@@ -47,8 +47,6 @@
 		</resources>
 	</build>
 
-	<version>0.2.9</version>
-
 	<profiles>
 		<!--开发环境 -->
 		<profile>
@@ -82,16 +80,6 @@
 			</properties>
 		</profile>
 	</profiles>
-
-	<dependencyManagement>
-		<dependency>
-			<groupId>org.apache.dubbo</groupId>
-			<artifactId>dubbo-dependencies-bom</artifactId>
-			<version>${dubbo.version}</version>
-			<type>pom</type>
-			<scope>import</scope>
-		</dependency>
-	</dependencyManagement>
 
 	<dependencies>
 		<dependency>
