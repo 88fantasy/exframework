@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-                                            
+                                                
+    
     
     
     
@@ -10,7 +11,8 @@
     
     
     <wb-module deploy-name="exframework-webapp">
-                                                                                        
+                                                                                                
+        
         
         
         
@@ -21,7 +23,8 @@
         
         
         <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
-                                                                                        
+                                                                                                
+        
         
         
         
@@ -32,7 +35,8 @@
         
         
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
-                                                                                        
+                                                                                                
+        
         
         
         
@@ -43,7 +47,8 @@
         
         
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
-                                                                                        
+                                                                                                
+        
         
         
         
@@ -54,28 +59,29 @@
         
         
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
-        <dependent-module archiveName="exframework-core-0.2.8.3.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/exframework-core/exframework-core">
+        <dependent-module archiveName="exframework-core-0.2.9.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/exframework-core/exframework-core">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="exframework-support-common-0.2.8.3.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/exframework-support-common/exframework-support-common">
+        <dependent-module archiveName="exframework-support-common-0.2.9.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/exframework-support-common/exframework-support-common">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="exframework-support-jdbc-0.2.8.3.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/exframework-support-jdbc/exframework-support-jdbc">
+        <dependent-module archiveName="exframework-support-jdbc-0.2.9.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/exframework-support-jdbc/exframework-support-jdbc">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="exframework-web-0.2.8.3.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/exframework-web/exframework-web">
+        <dependent-module archiveName="exframework-web-0.2.9.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/exframework-web/exframework-web">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="exframework-support-rest-0.2.8.3.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/exframework-support-rest/exframework-support-rest">
+        <dependent-module archiveName="exframework-support-rest-0.2.9.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/exframework-support-rest/exframework-support-rest">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="exframework-support-wf-0.2.8.3.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/exframework-support-wf/exframework-support-wf">
+        <dependent-module archiveName="exframework-support-wf-0.2.9.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/exframework-support-wf/exframework-support-wf">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="exframework-support-druid-monitor-0.2.8.3.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/exframework-support-druid-monitor/exframework-support-druid-monitor">
+        <dependent-module archiveName="exframework-support-druid-monitor-0.2.9.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/exframework-support-druid-monitor/exframework-support-druid-monitor">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-                                                                                        
+                                                                                                
+        
         
         
         
@@ -86,7 +92,8 @@
         
         
         <property name="context-root" value="exframework-webapp"/>
-                                                                                        
+                                                                                                
+        
         
         
         
@@ -97,7 +104,8 @@
         
         
         <property name="java-output-path" value="/exframework-webapp/target/classes"/>
-                                                                                    
+                                                                                            
+    
     
     
     
@@ -108,7 +116,8 @@
     
     
     </wb-module>
-                                        
+                                            
+
 
 
 
