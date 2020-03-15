@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.gzmpc.exframework</groupId>
 	<artifactId>exframework-root</artifactId>
-	<version>0.2.9</version>
+	<version>0.2.9.1</version>
 	<packaging>pom</packaging>
 	<name>exframework </name>
 	<modules>
@@ -153,75 +153,75 @@
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-core</artifactId>
-				<version>0.2.9</version>
+				<version>0.2.9.1</version>
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-common</artifactId>
-				<version>0.2.9</version>
+				<version>0.2.9.1</version>
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-jdbc</artifactId>
-				<version>0.2.9</version>
+				<version>0.2.9.1</version>
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-utils</artifactId>
-				<version>0.2.9</version>
+				<version>0.2.9.1</version>
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-job</artifactId>
-				<version>0.2.9</version>
+				<version>0.2.9.1</version>
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-web</artifactId>
-				<version>0.2.9</version>
+				<version>0.2.9.1</version>
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-wf</artifactId>
-				<version>0.2.9</version>
+				<version>0.2.9.1</version>
 			</dependency>
 
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-rest</artifactId>
-				<version>0.2.9</version>
+				<version>0.2.9.1</version>
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-soap</artifactId>
-				<version>0.2.9</version>
+				<version>0.2.9.1</version>
 			</dependency>
 
 
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-monitor</artifactId>
-				<version>0.2.9</version>
+				<version>0.2.9.1</version>
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-monitor-rest</artifactId>
-				<version>0.2.9</version>
+				<version>0.2.9.1</version>
 			</dependency>
 			<dependency>
                 <groupId>com.gzmpc.exframework</groupId>
                 <artifactId>exframework-support-monitor-job</artifactId>
-                <version>0.2.9</version>
+                <version>0.2.9.1</version>
             </dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-druid-monitor</artifactId>
-				<version>0.2.9</version>
+				<version>0.2.9.1</version>
 			</dependency>
 			<dependency>
                 <groupId>com.gzmpc.exframework</groupId>
                 <artifactId>exframework-support-dubbo</artifactId>
-                <version>0.2.9</version>
+                <version>0.2.9.1</version>
             </dependency>
 
 			<dependency>
@@ -355,8 +355,13 @@
 			<dependency>
 			    <groupId>com.oracle.ojdbc</groupId>
 			    <artifactId>ojdbc8</artifactId>
-			    <version>19.3.0.0</version>
+			    <version>${ojdbc.version}</version>
 			</dependency>
+			<dependency>
+                <groupId>com.oracle.ojdbc</groupId>
+                <artifactId>orai18n</artifactId>
+                <version>${ojdbc.version}</version>
+            </dependency>
 			<dependency>
 				<groupId>com.alibaba</groupId>
 				<artifactId>druid</artifactId>
@@ -424,5 +429,6 @@
 		<druid.version>1.1.21</druid.version>
 		<log4j2.version>2.11.0</log4j2.version>
 		<httpclient.version>4.5.5</httpclient.version>
+		<ojdbc.version>19.3.0.0</ojdbc.version>
 	</properties>
 </project>
