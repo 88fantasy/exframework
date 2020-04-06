@@ -22,6 +22,7 @@ import java.util.ArrayList;
 
 import com.gzmpc.metadata.OperatorPool;
 import com.gzmpc.metadata.query.QueryDef;
+import com.gzmpc.metadata.rowset.CacheRowSetAdapter;
 import com.gzmpc.metadata.sys.Account;
 import com.gzmpc.service.GridService;
 import com.gzmpc.support.common.exception.BuildException;
@@ -31,6 +32,9 @@ import com.gzmpc.util.SpringContextUtils;
 import java.util.Properties;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Pattern;
+
+import javax.sql.rowset.CachedRowSet;
+
 import java.util.regex.Matcher;
 import com.gzmpc.utils.Const;
 
@@ -52,6 +56,9 @@ public class QueryDataProvider extends DefaultDataProvider {
 	@Autowired
 	GridService gridService;
 	
+	@Autowired
+	CacheRowSetAdapter cacheRowSetAdapter;
+	
 	public Map<String,GridCache> cacheGridMap = new ConcurrentHashMap<String,GridCache>(); // 缓存根据表格名而获得的表格信息，只存放共有的信息项。例如字段名和类型
 	
 	@Override
@@ -68,17 +75,6 @@ public class QueryDataProvider extends DefaultDataProvider {
 			con.setAutoCommit(false);
 			Map<String,Object> result = getJsonData(con, gridcode, params, account);
 			con.commit();
-			@SuppressWarnings("unchecked")
-			List<String> dblink = (List<String>) result.get(Const.NEEDCLOSEDBLINK);
-			if (dblink != null && dblink.size() > 0) {
-				for (int i = 0, j = dblink.size(); i < j; i++) {
-					String closesql = "ALTER SESSION CLOSE DATABASE LINK " + dblink.get(i);
-					log.info(closesql);
-					pst = con.prepareStatement(closesql);
-					pst.executeUpdate();
-					pst.close();
-				}
-			}
 			return result;
 		} catch (SQLException ex) {
 			log.error(ex.getMessage(), ex);
@@ -101,7 +97,6 @@ public class QueryDataProvider extends DefaultDataProvider {
 		List<Map<String, Object>> dataList = new ArrayList<Map<String, Object>>();
 		PreparedStatement pst = null;
 		ResultSet rs = null;
-		List<String> dblinkList = new ArrayList<String>();
 		try {
 			GridCache cache = getGridCache(gridcode, params);
 			List<Map<String, Object>> fields = cache.getFields();
@@ -134,7 +129,6 @@ public class QueryDataProvider extends DefaultDataProvider {
 				sql_str += " order by " + orderby;
 			}
 			log.info(sql_str);
-			gridService.searchDBLinkFromSQL(dblinkList, sql_str);
 			pst = con.prepareStatement(sql_str);
 			int size = values.size();
 			String info = "";
@@ -149,11 +143,12 @@ public class QueryDataProvider extends DefaultDataProvider {
 					pst.setString(i + 1, (String) obj);
 				}
 			}
-			if (size > 0)
+			if (size > 0) {
 				log.info(info.substring(0, info.length() - 1));
+			}
 			rs = pst.executeQuery();
 			boolean isQueryLastPage = false;
-			oracle.jdbc.rowset.OracleCachedRowSet crs = new oracle.jdbc.rowset.OracleCachedRowSet();
+			CachedRowSet crs = cacheRowSetAdapter.retSet();
 			if (startIndex != -3) {	//分页
 				crs.setPageSize(pagesize);// 每頁大小
 				crs.populate(rs);// 從第幾筆開始抓一頁大小的筆數
@@ -213,7 +208,6 @@ public class QueryDataProvider extends DefaultDataProvider {
 					}
 					pst = con.prepareStatement(innerSql);
 					log.info(innerSql);
-					gridService.searchDBLinkFromSQL(dblinkList, innerSql);
 					size = values.size();
 					for (int i = 0; i < size; i++) {
 						Object obj = values.get(i);
@@ -245,8 +239,6 @@ public class QueryDataProvider extends DefaultDataProvider {
 			
 			dataMap.put(Const.ROWS, dataList);
 			dataMap.put(Const.ISQUERYLASTPAGE, isQueryLastPage);
-
-			dataMap.put(Const.NEEDCLOSEDBLINK, dblinkList);
 			
 			// 查询后处理数据
 			String beanid = grid.getAfterQueryBeanName();

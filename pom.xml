@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.gzmpc.exframework</groupId>
 	<artifactId>exframework-root</artifactId>
-	<version>0.2.9.1</version>
+	<version>0.3</version>
 	<packaging>pom</packaging>
 	<name>exframework </name>
 	<modules>
@@ -31,7 +31,9 @@
         <module>exframework-support-monitor-job</module>
 	    <module>exframework-springboot-quickstart-dubbo</module>
 	    <module>exframework-support-dubbo</module>
-  </modules>
+	    <module>exframework-springboot-quickstart</module>
+	    <module>exframework-support-jdbc-oracle</module>
+	</modules>
 	<build>
 		<pluginManagement>
 			<plugins>
@@ -153,75 +155,75 @@
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-core</artifactId>
-				<version>0.2.9.1</version>
+				<version>0.3</version>
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-common</artifactId>
-				<version>0.2.9.1</version>
+				<version>0.3</version>
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-jdbc</artifactId>
-				<version>0.2.9.1</version>
+				<version>0.3</version>
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-utils</artifactId>
-				<version>0.2.9.1</version>
+				<version>0.3</version>
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-job</artifactId>
-				<version>0.2.9.1</version>
+				<version>0.3</version>
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-web</artifactId>
-				<version>0.2.9.1</version>
+				<version>0.3</version>
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-wf</artifactId>
-				<version>0.2.9.1</version>
+				<version>0.3</version>
 			</dependency>
 
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-rest</artifactId>
-				<version>0.2.9.1</version>
+				<version>0.3</version>
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-soap</artifactId>
-				<version>0.2.9.1</version>
+				<version>0.3</version>
 			</dependency>
 
 
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-monitor</artifactId>
-				<version>0.2.9.1</version>
+				<version>0.3</version>
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-monitor-rest</artifactId>
-				<version>0.2.9.1</version>
+				<version>0.3</version>
 			</dependency>
 			<dependency>
                 <groupId>com.gzmpc.exframework</groupId>
                 <artifactId>exframework-support-monitor-job</artifactId>
-                <version>0.2.9.1</version>
+                <version>0.3</version>
             </dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-druid-monitor</artifactId>
-				<version>0.2.9.1</version>
+				<version>0.3</version>
 			</dependency>
 			<dependency>
                 <groupId>com.gzmpc.exframework</groupId>
                 <artifactId>exframework-support-dubbo</artifactId>
-                <version>0.2.9.1</version>
+                <version>0.3</version>
             </dependency>
 
 			<dependency>
@@ -235,11 +237,6 @@
 				<version>${jersey.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
-			</dependency>
-			<dependency>
-				<groupId>io.swagger.core.v3</groupId>
-				<artifactId>swagger-jaxrs2</artifactId>
-				<version>2.1.1</version>
 			</dependency>
 			<dependency>
 				<groupId>com.fasterxml.jackson</groupId>
@@ -362,11 +359,28 @@
                 <artifactId>orai18n</artifactId>
                 <version>${ojdbc.version}</version>
             </dependency>
+            <dependency>
+			    <groupId>mysql</groupId>
+			    <artifactId>mysql-connector-java</artifactId>
+			    <version>${mysql.version}</version>
+			</dependency>
 			<dependency>
 				<groupId>com.alibaba</groupId>
 				<artifactId>druid</artifactId>
 				<version>${druid.version}</version>
 			</dependency>
+			<dependency>
+	            <groupId>com.alibaba</groupId>
+	            <artifactId>druid-spring-boot-starter</artifactId>
+	            <version>${druid.version}</version>
+	            <exclusions>
+	                <exclusion>
+	                    <groupId>org.springframework.boot</groupId>
+	                    <artifactId>spring-boot-autoconfigure</artifactId>
+	                </exclusion>
+	            </exclusions>
+	        </dependency>
+			
 			<dependency>
 				<groupId>org.apache.httpcomponents</groupId>
 				<artifactId>httpclient</artifactId>
@@ -423,12 +437,13 @@
 		<jdk.version>1.8</jdk.version>
 		<!--指定Maven用什么编码来读取源码及文档 -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<spring.version>5.2.2.RELEASE</spring.version>
+		<spring.version>5.2.5.RELEASE</spring.version>
 		<aspect.version>1.9.1</aspect.version>
 		<jersey.version>2.30</jersey.version>
 		<druid.version>1.1.21</druid.version>
 		<log4j2.version>2.11.0</log4j2.version>
 		<httpclient.version>4.5.5</httpclient.version>
 		<ojdbc.version>19.3.0.0</ojdbc.version>
+		<mysql.version>8.0.19</mysql.version>
 	</properties>
 </project>

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.gzmpc.controller.BaseController;
 import com.gzmpc.exception.NotAuthorizedException;
-import com.gzmpc.ui.ToolbarService;
+import com.gzmpc.web.ui.ToolbarService;
 
 @Controller
 @RequestMapping("/sys/sysinfo")

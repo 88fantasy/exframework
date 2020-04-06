@@ -13,7 +13,6 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.gzmpc.dao.EbDao;
 import com.gzmpc.exception.NotAuthorizedException;
 import com.gzmpc.login.LoginService;
 import com.gzmpc.metadata.MetaData;
@@ -25,9 +24,6 @@ import com.gzmpc.metadata.sys.Account;
 public class BaseController {
 	
 	private Log log = LogFactory.getLog(BaseController.class.getName());
-	
-	@Autowired
-	EbDao systemDao;
 	
 	@Autowired
 	MetaData metaData;

@@ -13,7 +13,6 @@ import com.alibaba.druid.support.http.WebStatFilter;
 @WebFilter(filterName = "druidWebStatFilter", urlPatterns = "/*", initParams = {
 		/** 忽略资源 */
 		@WebInitParam(name = "exclusions", value = "*.js,*.gif,*.jpg,*.bmp,*.png,*.css,*.ico,/druid/*,/static/*"),
-		@WebInitParam(name = "profileEnable", value = "true"),
 		/** 监控当前COOKIE的用户 */
 		@WebInitParam(name = "principalCookieName", value = "USER_COOKIE"),
 		/** 监控当前SESSION的用户 */

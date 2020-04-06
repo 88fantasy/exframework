@@ -137,20 +137,30 @@ public class SystemParameterService {
 	 * @param value
 	 */
 	private void saveAccountParam(Connection con, String accountid, String key, String value) {
-		PreparedStatement stmt = null;
+		PreparedStatement pst = null;
+		ResultSet rs = null;
 		String sql = "insert into sys_accountparam (paramid,accountid,paramkey,paramvalue) "
-				+ "values((select nvl(max(paramid),0)+1 from sys_accountparam),?,?,?)";
+				+ "values(?,?,?,?)";
 		try {
-			stmt = con.prepareStatement(sql);
-			stmt.setString(1, accountid);
-			stmt.setString(2, key);
-			stmt.setString(3, value);
-			stmt.executeUpdate();
-		} catch (Exception e) {
+			pst = con.prepareStatement("select max(paramid) from sys_accountparam ");
+			rs = pst.executeQuery();
+			rs.next();
+			long id = rs.getLong(1);
+			rs.close();
+			pst.close();
+			
+			pst = con.prepareStatement(sql);
+			pst.setLong(1, id);
+			pst.setString(2, accountid);
+			pst.setString(3, key);
+			pst.setString(4, value);
+			pst.executeUpdate();
+			pst.close();
+		} catch (SQLException e) {
 			log.error(e);
 			throw new RuntimeException(e);
 		} finally {
-			DbUtils.closeQuietly(null, stmt, null);
+			DbUtils.closeQuietly(null, pst, rs);
 		}
 	}
 

@@ -452,19 +452,4 @@ public class GridServiceDefaultImpl implements GridService {
 		return result;
 	}
 
-	@Override
-	public void searchDBLinkFromSQL(List<String> orglist, String sql) {
-		if (orglist != null && sql != null) {
-			Pattern p = Pattern.compile("@[^@,\\(\\s\\t\\n]*"); // 搜索dblink @关键字
-			Matcher m = p.matcher(sql);
-			while (m.find()) {
-				String s = m.group().substring(1); // 把第1位@删除
-				if (!orglist.contains(s)) {
-					orglist.add(s);
-				}
-			}
-		}
-		
-	}
-
 }

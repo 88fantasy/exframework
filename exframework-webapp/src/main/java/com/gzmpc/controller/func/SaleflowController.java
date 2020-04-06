@@ -14,7 +14,7 @@ import com.gzmpc.exception.NotAuthorizedException;
 import com.gzmpc.exception.NotFoundException;
 import com.gzmpc.metadata.sys.Account;
 import com.gzmpc.metadata.toolbar.ToolButton;
-import com.gzmpc.ui.ToolbarService;
+import com.gzmpc.web.ui.ToolbarService;
 
 @Controller
 @RequestMapping("/func/saleflow")

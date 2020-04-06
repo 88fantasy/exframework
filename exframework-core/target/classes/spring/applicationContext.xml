@@ -18,9 +18,9 @@
     
      <bean id="systemSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close"> 
       <!-- 基本属性 url、user、password -->
-      <property name="url" value="jdbc:oracle:thin:@192.168.11.162:1521:dbtest" />
-      <property name="username" value="exframe" />
-      <property name="password" value="exframe" />
+      <property name="url" value="jdbc:mysql://localhost:3306/exframe?useSSL=false&amp;serverTimezone=UTC" />
+      <property name="username" value="root" />
+      <property name="password" value="mysql" />
 
       <!-- 配置初始化大小、最小、最大 -->
       <property name="initialSize" value="1" />

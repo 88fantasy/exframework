@@ -5,7 +5,7 @@
 	<parent>
         <groupId>com.gzmpc.exframework</groupId>
         <artifactId>exframework-root</artifactId>
-        <version>0.2.9</version>
+        <version>0.3</version>
     </parent>
 	<artifactId>exframework-rest-druid-webapp</artifactId>
 	<packaging>war</packaging>
@@ -88,22 +88,15 @@
             <groupId>com.gzmpc.exframework</groupId>
             <artifactId>exframework-support-jdbc</artifactId>
         </dependency>
-		<dependency>
-            <groupId>com.gzmpc.exframework</groupId>
-            <artifactId>exframework-support-druid-monitor</artifactId>
-        </dependency>
-		<dependency>
-	      <groupId>io.swagger.core.v3</groupId>
-	      <artifactId>swagger-jaxrs2</artifactId>
-	    </dependency>
+
 	</dependencies>
 	<properties>
-		<exframework.version>0.2.9</exframework.version>
+		<exframework.version>0.3</exframework.version>
 		<jdk.version>1.8</jdk.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
 	<scm>
-		<tag>exframework-root-0.2.9</tag>
+		<tag>exframework-root-0.3</tag>
 	</scm>
 </project>

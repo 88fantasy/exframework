@@ -43,10 +43,4 @@ public interface GridService {
 	
 	
 	public  Map<String,Object> outputOneRow(ResultSet rs, List<Map<String, Object>> headers) throws SQLException;
-	
-	
-	/*
-	 * 根据关键字搜索dblink
-	 */
-	public  void searchDBLinkFromSQL(List<String> orglist, String sql);
 }

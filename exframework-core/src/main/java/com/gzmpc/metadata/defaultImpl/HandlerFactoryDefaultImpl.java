@@ -12,7 +12,6 @@ import com.gzmpc.metadata.di.DataItem;
 import com.gzmpc.metadata.exception.ExceptionDef;
 import com.gzmpc.metadata.attribute.Attribute;
 import com.gzmpc.metadata.toolbar.ToolBar;
-import com.gzmpc.metadata.MetaData;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.sql.Connection;
@@ -31,16 +30,12 @@ import com.gzmpc.metadata.nav.Nav;
 
 import java.sql.SQLException;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class HandlerFactoryDefaultImpl implements HandlerFactory {
 
 	private Log log = LogFactory.getLog(HandlerFactoryDefaultImpl.class.getName());
-	
-	@Autowired
-	MetaData metaData;
 	
 	public Map<String,Func> mdEntityMap = new ConcurrentHashMap<String,Func>(); // 多实体
 	public Map<String,Func> seEntityMap = new ConcurrentHashMap<String,Func>(); // 单实体
@@ -114,8 +109,7 @@ public class HandlerFactoryDefaultImpl implements HandlerFactory {
 		ResultSet rs = null;
 		try {
 			StringBuffer hhsl_select = new StringBuffer();
-			hhsl_select
-					.append(" select projectgrid_id, project_code, sort, gridcode, tablename,pkname, relname, mastertablename,masterpkname,mastergridcode from sys_projectgridcfg t where t.project_code = '"
+			hhsl_select.append(" select projectgrid_id, project_code, sort, gridcode, tablename,pkname, relname, mastertablename,masterpkname,mastergridcode from sys_projectgridcfg t where t.project_code = '"
 							+ funccode + "' order by sort");
 
 			pstm = con.prepareStatement(hhsl_select.toString());
@@ -212,6 +206,8 @@ public class HandlerFactoryDefaultImpl implements HandlerFactory {
 	 */
 	public Form[] retForms(Connection con) {
 
+		Map<String, Map<String, DataItem>> dataItemExtends = retDataItemEntends(con);
+		DataItem[] dataItems = retDataItems(con);
 		List<Form> list = new ArrayList<Form>(); // 保存Form
 		PreparedStatement pst = null,pst2 = null;
 		ResultSet rs = null,rs2 = null;
@@ -261,7 +257,19 @@ public class HandlerFactoryDefaultImpl implements HandlerFactory {
 					attr.setShortcutkey(shortcutkey);
 					attr.setOnclickquery(onclickquery);
 					attr.setFormcode(formcode);
-					DataItem di = metaData.findDataItem(formcode, dtcode);
+					DataItem di = null;
+					Map<String, DataItem> formMap = dataItemExtends.get(formcode);
+					if(formMap != null) {
+						di = formMap.get(dtcode);
+					}
+					if( di == null) {
+						for( DataItem d : dataItems) {
+							if(dtcode.equals(d.getCode())) {
+								di = d;
+								break;
+							}
+						}
+					}
 					attr.setDi(di);
 					attrList.add(attr);
 				}
@@ -666,7 +674,7 @@ public class HandlerFactoryDefaultImpl implements HandlerFactory {
 		ResultSet rs = null;
 		Nav nav = null;
 		try {
-			pst = con.prepareStatement("select a.navcode,a.navname,nvl(a.icon,'zmdi-view-list') icon,b.funccode from sys_nav a,sys_navitem b where a.navcode = b.navcode order by a.navcode,a.ob,b.ob");
+			pst = con.prepareStatement("select a.navcode,a.navname,a.icon,b.funccode from sys_nav a,sys_navitem b where a.navcode = b.navcode order by a.navcode,a.ob,b.ob");
 			rs = pst.executeQuery();
 			while(rs.next()) {
 				String navcode = rs.getString(1);
