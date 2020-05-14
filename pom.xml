@@ -142,13 +142,9 @@
 
 	<distributionManagement>
 		<repository>
-			<id>localoss-releases</id>
-			<url>http://192.168.7.41:8081/repository/maven-releases/</url>
+			<id>tcloud-releases</id>
+			<url>http://maven.gzmpc.com/repository/maven-releases/</url>
 		</repository>
-		<snapshotRepository>
-			<id>localoss-snapshots</id>
-			<url>http://192.168.7.41:8081/repository/maven-snapshots/</url>
-		</snapshotRepository>
 	</distributionManagement>
 
 	<dependencyManagement>
