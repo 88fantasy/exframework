@@ -5,11 +5,11 @@ import javax.ws.rs.ApplicationPath;
 
 import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.logging.LoggingFeature;
+import org.glassfish.jersey.media.multipart.MultiPartFeature;
 import org.springframework.stereotype.Component;
 
 import com.gzmpc.support.rest.filter.CorsResponseFilter;
 import com.gzmpc.support.rest.server.SrpingBootResourceConfig;
-import com.gzmpc.web.config.WebApiJerseyConfig;
 
 
 
@@ -20,7 +20,7 @@ import com.gzmpc.web.config.WebApiJerseyConfig;
 
 @Component
 @ApplicationPath("/api/rest")
-public class JerseyConfig extends WebApiJerseyConfig {
+public class JerseyConfig extends SrpingBootResourceConfig {
 	
 	public JerseyConfig() {
 		super();
@@ -28,6 +28,12 @@ public class JerseyConfig extends WebApiJerseyConfig {
 		springbootJarPackage("com.gzmpc.quickstart.api.rest");
 		// packages("org.exframework.springboot.quickstart.api.document");
 
+
+		register(LoggingFeature.class);
+		register(JacksonFeature.class);
+		register(MultiPartFeature.class);
+		register(CorsResponseFilter.class);
+		
 		// error handle
 		springbootJarPackage("com.gzmpc.quickstart.api.errorhandle");
 

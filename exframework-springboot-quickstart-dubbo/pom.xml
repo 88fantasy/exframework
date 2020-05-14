@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>com.gzmpc.exframework</groupId>
 		<artifactId>exframework-root</artifactId>
-		<version>0.3</version>
+		<version>0.3.1</version>
 	</parent>
 	<artifactId>exframework-springboot-quickstart-dubbo</artifactId>
 	<name>exframework-springboot-quickstart-dubbo</name>
@@ -107,7 +107,7 @@
 	</dependencies>
 
 	<properties>
-		<springboot.version>2.2.2.RELEASE</springboot.version>
+		<springboot.version>2.1.6.RELEASE</springboot.version>
 		<dubbo.version>2.7.5</dubbo.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
