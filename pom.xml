@@ -435,7 +435,7 @@
 	<properties>
 		<jdk.version>1.8</jdk.version>
 		<exframework.version>0.3.2</exframework.version>
-		<spring.version>5.1.8.RELEASE</spring.version>
+		<spring.version>5.2.6.RELEASE</spring.version>
 		<springboot.version>2.1.6.RELEASE</springboot.version>
 		<!--指定Maven用什么编码来读取源码及文档 -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
