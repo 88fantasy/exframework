@@ -3,42 +3,13 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
         <groupId>com.gzmpc.exframework</groupId>
-        <artifactId>exframework-root</artifactId>
-        <version>0.3.1</version>
+        <artifactId>exframework-support-tsf</artifactId>
+        <version>0.3.2</version>
     </parent>
 	<artifactId>exframework-tsf-consumer-quickstart</artifactId>
 	<name>exframework-tsf-consumer-quickstart</name>
 
 	<build>
-		<plugins>
-		    <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>${jdk.version}</source>
-                    <target>${jdk.version}</target>
-                    <fork>true</fork>
-                    <compilerArgs>
-                        <arg>-bootclasspath</arg>
-                        <arg>${java.home}/lib/rt.jar${path.separator}${java.home}/lib/jce.jar</arg>
-                    </compilerArgs>
-                </configuration>
-            </plugin>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-archetype-plugin</artifactId>
-				<version>3.0.1</version>
-			</plugin>
-			<plugin>
-                <groupId>org.sonarsource.scanner.maven</groupId>
-                <artifactId>sonar-maven-plugin</artifactId>
-                <version>3.6.0.1398</version>
-            </plugin>
-		</plugins>
 
 		<resources>
 			<resource>
@@ -49,8 +20,6 @@
 			</resource>
 		</resources>
 	</build>
-
-	<version>0.3.1</version>
 
 	<profiles>
 		<!--开发环境 -->
@@ -95,27 +64,15 @@
                  <enabled>false</enabled>
              </snapshots>
              <releases>
+                <enabled>true</enabled>
              </releases>
          </repository>
     </repositories>
-	
-	<dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>com.tencent.tsf</groupId>
-                <artifactId>spring-cloud-tsf-dependencies</artifactId>
-                <version>1.22.0-Greenwich-RELEASE</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
 
 	<dependencies>
 	    <dependency>
 		    <groupId>javax.servlet</groupId>
 		    <artifactId>javax.servlet-api</artifactId>
-		    <scope>provided</scope>
 		</dependency>
 		
 		<dependency>
@@ -126,22 +83,22 @@
 			<groupId>javax.validation</groupId>
 			<artifactId>validation-api</artifactId>
 		</dependency>
+		
+		
+        <dependency>
+            <groupId>com.gzmpc.exframework</groupId>
+            <artifactId>exframework-support-tsf</artifactId>
+        </dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 		</dependency>
 
-        <!-- TSF 启动器 -->
-        <dependency>
-            <groupId>com.tencent.tsf</groupId>
-            <artifactId>spring-cloud-tsf-starter</artifactId>
-        </dependency>
 
 	</dependencies>
 
 	<properties>
-	    <jdk.version>1.8</jdk.version>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
 	</properties>
 </project>

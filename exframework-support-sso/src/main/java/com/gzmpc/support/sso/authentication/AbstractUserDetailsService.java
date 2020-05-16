@@ -1,4 +1,4 @@
-package com.gzmpc.authentication;
+package com.gzmpc.support.sso.authentication;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>com.gzmpc.exframework</groupId>
 		<artifactId>exframework-root</artifactId>
-		<version>0.3.1</version>
+		<version>0.3.2</version>
 	</parent>
 	<artifactId>exframework-springboot-quickstart-dubbo</artifactId>
 	<name>exframework-springboot-quickstart-dubbo</name>
@@ -16,7 +16,6 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<version>${springboot.version}</version>
 				<executions>
 					<execution>
 						<goals>
@@ -85,7 +84,6 @@
 	   <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
-            <version>${springboot.version}</version>
         </dependency>
 	
 		<dependency>
@@ -107,7 +105,6 @@
 	</dependencies>
 
 	<properties>
-		<springboot.version>2.1.6.RELEASE</springboot.version>
 		<dubbo.version>2.7.5</dubbo.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>

@@ -1,4 +1,4 @@
-package com.gzmpc.sso;
+package com.gzmpc.support.sso;
 
 import javax.servlet.http.HttpServletRequest;
 

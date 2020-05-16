@@ -1,4 +1,4 @@
-package com.gzmpc.authentication;
+package com.gzmpc.support.sso.authentication;
 
 import java.util.ArrayList;
 import java.util.Collection;

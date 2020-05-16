@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>com.gzmpc.exframework</groupId>
 		<artifactId>exframework-root</artifactId>
-		<version>0.3</version>
+		<version>0.3.2</version>
 	</parent>
 	<artifactId>exframework-webapp</artifactId>
 	<packaging>war</packaging>
@@ -21,7 +21,6 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
-				<version>3.0.0</version>
 				<configuration>
 					<warName>${project.artifactId}</warName>
 				</configuration>
@@ -66,16 +65,12 @@
 		<dependency>
 		  <groupId>org.freemarker</groupId>
 		  <artifactId>freemarker</artifactId>
-		  <version>${freemarker.version}</version>
 		</dependency>
 		
 	</dependencies>
 	<properties>
-		<freemarker.version>2.3.29</freemarker.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
-  <scm>
-    <tag>exframework-root-0.3</tag>
-  </scm>
+
 </project>

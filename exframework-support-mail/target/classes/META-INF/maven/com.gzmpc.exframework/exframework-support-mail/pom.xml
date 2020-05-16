@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>com.gzmpc.exframework</groupId>
 		<artifactId>exframework-root</artifactId>
-		<version>0.3</version>
+		<version>0.3.2</version>
 	</parent>
 	<artifactId>exframework-support-mail</artifactId>
 	<packaging>jar</packaging>
@@ -25,7 +25,6 @@
 		<dependency>
 			<groupId>javax.mail</groupId>
 			<artifactId>javax.mail-api</artifactId>
-			<version>1.5.5</version>
 		</dependency>
 		<dependency>
 			<groupId>com.sun.mail</groupId>
@@ -36,6 +35,6 @@
 	</dependencies>
 
   <scm>
-    <tag>exframework-root-0.3</tag>
+    <tag>exframework-root-0.3.2</tag>
   </scm>
 </project>

@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>com.gzmpc.exframework</groupId>
 		<artifactId>exframework-root</artifactId>
-		<version>0.3.1</version>
+		<version>0.3.2</version>
 	</parent>
 	<artifactId>exframework-support-rest</artifactId>
 	<packaging>jar</packaging>
@@ -21,6 +21,18 @@
 		</plugins>
 
 	</build>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.glassfish.jersey</groupId>
+				<artifactId>jersey-bom</artifactId>
+				<version>${jersey.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
 	<dependencies>
 		<dependency>
@@ -68,7 +80,7 @@
 
 	</dependencies>
 
-	<scm>
-		<tag>exframework-root-0.3.1</tag>
-	</scm>
+	<properties>
+		<jersey.version>2.30</jersey.version>
+	</properties>
 </project>

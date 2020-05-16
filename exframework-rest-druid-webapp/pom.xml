@@ -5,7 +5,7 @@
 	<parent>
         <groupId>com.gzmpc.exframework</groupId>
         <artifactId>exframework-root</artifactId>
-        <version>0.3.1</version>
+        <version>0.3.2</version>
     </parent>
 	<artifactId>exframework-rest-druid-webapp</artifactId>
 	<packaging>war</packaging>
@@ -22,7 +22,6 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
-				<version>3.0.0</version>
 				<configuration>
 					<warName>${project.artifactId}</warName>
 				</configuration>
@@ -91,12 +90,12 @@
 
 	</dependencies>
 	<properties>
-		<exframework.version>0.3.1</exframework.version>
+		<exframework.version>0.3.2</exframework.version>
 		<jdk.version>1.8</jdk.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
 	<scm>
-		<tag>exframework-root-0.3.1</tag>
+		<tag>exframework-root-0.3.2</tag>
 	</scm>
 </project>

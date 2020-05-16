@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>com.gzmpc.exframework</groupId>
 		<artifactId>exframework-root</artifactId>
-		<version>0.3.1</version>
+		<version>0.3.2</version>
 	</parent>
 	<artifactId>exframework-support-jdbc</artifactId>
 	<packaging>jar</packaging>
@@ -77,10 +77,6 @@
 			<artifactId>commons-dbutils</artifactId>
 		</dependency>
 	</dependencies>
-
-	<scm>
-		<tag>exframework-root-0.3.1</tag>
-	</scm>
 
 	<properties>
 

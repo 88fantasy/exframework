@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+	
 	<groupId>com.gzmpc.exframework</groupId>
 	<artifactId>exframework-root</artifactId>
-	<version>0.3.1</version>
+	<version>0.3.2</version>
 	<packaging>pom</packaging>
 	<name>exframework </name>
 	<modules>
@@ -33,8 +34,9 @@
 	    <module>exframework-support-dubbo</module>
 	    <module>exframework-springboot-quickstart</module>
 	    <module>exframework-support-jdbc-oracle</module>
-	    <module>exframework-tsf-provider-quickstart</module>
-	</modules>
+        <module>exframework-support-tsf</module>
+    <module>exframework-support-redis</module>
+  </modules>
 	<build>
 		<pluginManagement>
 			<plugins>
@@ -110,34 +112,31 @@
 				<artifactId>maven-source-plugin</artifactId>
 			</plugin>
 		</plugins>
+		
+		
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                    <include>**/*.properties</include>
+                </includes>
+            </resource>
+        </resources>
 	</build>
 
-
-	<scm>
-		<connection>scm:git:git clone ssh://16369@192.168.7.41:29418/~16369/exframework.git</connection>
-		<developerConnection>scm:git:ssh://16369@192.168.7.41:29418/~16369/exframe.git</developerConnection>
-		<url>http://192.168.7.41/git/summary/~16369!exframe.git</url>
-	</scm>
-
 	<repositories>
-		<!-- <repository>
-			<id>nexus</id>
-			<name>Nexus Repository</name>
-			<url>http://192.168.7.41:8081/repository/maven-public/</url>
+		<repository>
+			<id>gzmpc</id>
+			<name>Gzmpc Repository</name>
+			<url>http://maven.gzmpc.com/repository/maven-public/</url>
 			<snapshots>
 				<enabled>false</enabled>
 			</snapshots>
 			<releases>
 				<enabled>true</enabled>
 			</releases>
-		</repository> 
-		<repository>
-	        <id>aliyun-repos</id>
-	        <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
-	        <snapshots>
-	            <enabled>false</enabled>
-	        </snapshots>
-	    </repository>-->
+		</repository>
 	</repositories>
 
 	<distributionManagement>
@@ -152,75 +151,80 @@
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-core</artifactId>
-				<version>0.3.1</version>
+				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-common</artifactId>
-				<version>0.3.1</version>
+				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-jdbc</artifactId>
-				<version>0.3.1</version>
+				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-utils</artifactId>
-				<version>0.3.1</version>
+				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-job</artifactId>
-				<version>0.3.1</version>
+				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-web</artifactId>
-				<version>0.3.1</version>
+				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-wf</artifactId>
-				<version>0.3.1</version>
+				<version>${project.version}</version>
 			</dependency>
 
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-rest</artifactId>
-				<version>0.3.1</version>
+				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-soap</artifactId>
-				<version>0.3.1</version>
+				<version>${project.version}</version>
 			</dependency>
 
 
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-monitor</artifactId>
-				<version>0.3.1</version>
+				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-monitor-rest</artifactId>
-				<version>0.3.1</version>
+				<version>${project.version}</version>
 			</dependency>
 			<dependency>
                 <groupId>com.gzmpc.exframework</groupId>
                 <artifactId>exframework-support-monitor-job</artifactId>
-                <version>0.3.1</version>
+                <version>${project.version}</version>
             </dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-druid-monitor</artifactId>
-				<version>0.3.1</version>
+				<version>${project.version}</version>
 			</dependency>
 			<dependency>
                 <groupId>com.gzmpc.exframework</groupId>
                 <artifactId>exframework-support-dubbo</artifactId>
-                <version>0.3.1</version>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.gzmpc.exframework</groupId>
+                <artifactId>exframework-support-tsf</artifactId>
+                <version>${project.version}</version>
             </dependency>
 
 			<dependency>
@@ -228,66 +232,60 @@
 				<artifactId>javax.servlet-api</artifactId>
 				<version>4.0.1</version>
 			</dependency>
+			
 			<dependency>
-				<groupId>org.glassfish.jersey</groupId>
-				<artifactId>jersey-bom</artifactId>
-				<version>${jersey.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-			<dependency>
-				<groupId>com.fasterxml.jackson</groupId>
-				<artifactId>jackson-bom</artifactId>
-				<version>2.9.5</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-core</artifactId>
-				<version>${spring.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-context</artifactId>
-				<version>${spring.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-context-support</artifactId>
-				<version>${spring.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-beans</artifactId>
-				<version>${spring.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-jdbc</artifactId>
-				<version>${spring.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-web</artifactId>
-				<version>${spring.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-tx</artifactId>
-				<version>${spring.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-aop</artifactId>
-				<version>${spring.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-webmvc</artifactId>
-				<version>${spring.version}</version>
-			</dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${springboot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-core</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context-support</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-beans</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-jdbc</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-web</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-tx</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-aop</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-webmvc</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
 
 			<dependency>
 				<groupId>org.aspectj</groupId>
@@ -403,23 +401,27 @@
 				<artifactId>commons-net</artifactId>
 				<version>3.6</version>
 			</dependency>
+			<dependency>
+	            <groupId>javax.validation</groupId>
+	            <artifactId>validation-api</artifactId>
+	            <version>2.0.1.Final</version>
+	        </dependency>
 		</dependencies>
 	</dependencyManagement>
 
 	<dependencies>
-		<!-- spring -->
 		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-core</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-beans</artifactId>
-		</dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+        </dependency>
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-core</artifactId>
@@ -432,11 +434,12 @@
 
 	<properties>
 		<jdk.version>1.8</jdk.version>
+		<exframework.version>0.3.2</exframework.version>
+		<spring.version>5.1.8.RELEASE</spring.version>
+		<springboot.version>2.1.6.RELEASE</springboot.version>
 		<!--指定Maven用什么编码来读取源码及文档 -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<spring.version>5.1.8.RELEASE</spring.version>
 		<aspect.version>1.9.1</aspect.version>
-		<jersey.version>2.30</jersey.version>
 		<druid.version>1.1.21</druid.version>
 		<log4j2.version>2.11.0</log4j2.version>
 		<httpclient.version>4.5.5</httpclient.version>
