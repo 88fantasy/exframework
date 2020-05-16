@@ -72,10 +72,6 @@
 	</repositories>
 
 	<dependencies>
-		<dependency>
-			<groupId>com.gzmpc.exframework</groupId>
-			<artifactId>exframework-support-tsf</artifactId>
-		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

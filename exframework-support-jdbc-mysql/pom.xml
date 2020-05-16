@@ -8,12 +8,12 @@
 		<artifactId>exframework-root</artifactId>
 		<version>0.3.2</version>
 	</parent>
-	<artifactId>exframework-support-monitor-web</artifactId>
+	<artifactId>exframework-support-jdbc-mysql</artifactId>
 	<packaging>jar</packaging>
-	<name>web monitor support</name>
+	<name>exframework support jdbc mysql</name>
 
 	<build>
-		<finalName>exframework-support-monitor-web</finalName>
+		<finalName>exframework-support-jdbc-mysql</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -26,18 +26,12 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.gzmpc.exframework</groupId>
-			<artifactId>exframework-support-monitor</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>fastjson</artifactId>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
 	</dependencies>
 
-
+	<properties>
+		<mysql.version>8.0.19</mysql.version>
+	</properties>
 </project>

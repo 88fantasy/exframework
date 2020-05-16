@@ -28,15 +28,6 @@
 			</plugin>
 		</plugins>
 
-		<resources>
-			<resource>
-				<directory>src/main/resources</directory>
-				<includes>
-					<include>**/*.xml</include>
-					<include>**/*.properties</include>
-				</includes>
-			</resource>
-		</resources>
 	</build>
 
 	<dependencyManagement>
@@ -65,10 +56,6 @@
 		</dependency>
 
 	</dependencies>
-
-	<scm>
-		<tag>exframework-root-0.3.2</tag>
-	</scm>
 
 	<properties>
 		<dubbo.version>2.7.5</dubbo.version>
