@@ -48,22 +48,13 @@
 		<dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jersey</artifactId>
-            <exclusions>
-            	<exclusion>
-            		<groupId>org.glassfish.jersey.ext</groupId>
-            		<artifactId>jersey-spring4</artifactId>
-            	</exclusion>
-            </exclusions>
 		</dependency>
-        
+		
 		<dependency>
-			<groupId>org.glassfish.jersey.media</groupId>
-			<artifactId>jersey-media-multipart</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.glassfish.jersey.ext</groupId>
-			<artifactId>jersey-spring5</artifactId>
-		</dependency>
+            <groupId>org.glassfish.jersey.media</groupId>
+            <artifactId>jersey-media-multipart</artifactId>
+        </dependency>
+		
 
 
 		<dependency>
