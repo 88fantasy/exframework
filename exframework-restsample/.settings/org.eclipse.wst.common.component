@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-                                                                        
+                                                                            
+    
     
     
     
@@ -17,7 +18,8 @@
     
     
     <wb-module deploy-name="exframework-restsample">
-                                                                                                                                                
+                                                                                                                                                        
+        
         
         
         
@@ -35,7 +37,8 @@
         
         
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
-                                                                                                                                                
+                                                                                                                                                        
+        
         
         
         
@@ -53,7 +56,8 @@
         
         
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
-                                                                                                                                                
+                                                                                                                                                        
+        
         
         
         
@@ -71,7 +75,8 @@
         
         
         <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
-                                                                                                                                                
+                                                                                                                                                        
+        
         
         
         
@@ -89,19 +94,20 @@
         
         
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
-        <dependent-module archiveName="exframework-support-common-0.3.2.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/exframework-support-common/exframework-support-common">
+        <dependent-module archiveName="exframework-support-common-0.3.3.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/exframework-support-common/exframework-support-common">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="exframework-support-monitor-rest-0.3.2.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/exframework-support-monitor-rest/exframework-support-monitor-rest">
+        <dependent-module archiveName="exframework-support-monitor-rest-0.3.3.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/exframework-support-monitor-rest/exframework-support-monitor-rest">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="exframework-support-rest-0.3.2.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/exframework-support-rest/exframework-support-rest">
+        <dependent-module archiveName="exframework-support-rest-0.3.3.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/exframework-support-rest/exframework-support-rest">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="exframework-support-monitor-0.3.2.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/exframework-support-monitor/exframework-support-monitor">
+        <dependent-module archiveName="exframework-support-monitor-0.3.3.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/exframework-support-monitor/exframework-support-monitor">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-                                                                                                                                                
+                                                                                                                                                        
+        
         
         
         
@@ -119,7 +125,8 @@
         
         
         <property name="java-output-path" value="/exframework-restsample/target/classes"/>
-                                                                                                                                                
+                                                                                                                                                        
+        
         
         
         
@@ -137,7 +144,8 @@
         
         
         <property name="context-root" value="exframework-restsample"/>
-                                                                                                                                            
+                                                                                                                                                    
+    
     
     
     
@@ -155,7 +163,8 @@
     
     
     </wb-module>
-                                                                    
+                                                                        
+
 
 
 

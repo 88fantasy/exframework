@@ -4,13 +4,34 @@
 	<parent>
         <groupId>com.gzmpc.exframework</groupId>
         <artifactId>exframework-support-tsf</artifactId>
-        <version>0.3.2</version>
+        <version>0.3.3</version>
     </parent>
 	<artifactId>exframework-tsf-consumer-quickstart</artifactId>
 	<name>exframework-tsf-consumer-quickstart</name>
 
 	<build>
-
+        <finalName>consumer-name</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-archetype-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.sonarsource.scanner.maven</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>

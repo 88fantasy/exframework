@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>com.gzmpc.exframework</groupId>
 		<artifactId>exframework-root</artifactId>
-		<version>0.3.2</version>
+		<version>0.3.3</version>
 	</parent>
 	<artifactId>exframework-support-monitor-job</artifactId>
 	<packaging>jar</packaging>

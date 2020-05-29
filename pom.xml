@@ -4,7 +4,7 @@
 	
 	<groupId>com.gzmpc.exframework</groupId>
 	<artifactId>exframework-root</artifactId>
-	<version>0.3.2</version>
+	<version>0.3.3</version>
 	<packaging>pom</packaging>
 	<name>exframework </name>
 	<modules>
@@ -140,90 +140,90 @@
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-core</artifactId>
-				<version>0.3.2</version>
+				<version>0.3.3</version>
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-common</artifactId>
-				<version>0.3.2</version>
+				<version>0.3.3</version>
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-jdbc</artifactId>
-				<version>0.3.2</version>
+				<version>0.3.3</version>
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-utils</artifactId>
-				<version>0.3.2</version>
+				<version>0.3.3</version>
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-job</artifactId>
-				<version>0.3.2</version>
+				<version>0.3.3</version>
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-web</artifactId>
-				<version>0.3.2</version>
+				<version>0.3.3</version>
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-wf</artifactId>
-				<version>0.3.2</version>
+				<version>0.3.3</version>
 			</dependency>
 
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-rest</artifactId>
-				<version>0.3.2</version>
+				<version>0.3.3</version>
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-soap</artifactId>
-				<version>0.3.2</version>
+				<version>0.3.3</version>
 			</dependency>
 
 
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-monitor</artifactId>
-				<version>0.3.2</version>
+				<version>0.3.3</version>
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-monitor-rest</artifactId>
-				<version>0.3.2</version>
+				<version>0.3.3</version>
 			</dependency>
 			<dependency>
                 <groupId>com.gzmpc.exframework</groupId>
                 <artifactId>exframework-support-monitor-job</artifactId>
-                <version>0.3.2</version>
+                <version>0.3.3</version>
             </dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-druid-monitor</artifactId>
-				<version>0.3.2</version>
+				<version>0.3.3</version>
 			</dependency>
 			<dependency>
                 <groupId>com.gzmpc.exframework</groupId>
                 <artifactId>exframework-support-dubbo</artifactId>
-                <version>0.3.2</version>
+                <version>0.3.3</version>
             </dependency>
             <dependency>
                 <groupId>com.gzmpc.exframework</groupId>
                 <artifactId>exframework-support-tsf</artifactId>
-                <version>0.3.2</version>
+                <version>0.3.3</version>
             </dependency>
             <dependency>
                 <groupId>com.gzmpc.exframework</groupId>
                 <artifactId>exframework-support-jdbc-mysql</artifactId>
-                <version>0.3.2</version>
+                <version>0.3.3</version>
             </dependency>
             <dependency>
                 <groupId>com.gzmpc.exframework</groupId>
                 <artifactId>exframework-support-jdbc-oracle</artifactId>
-                <version>0.3.2</version>
+                <version>0.3.3</version>
             </dependency>
 
 			<dependency>
@@ -357,7 +357,7 @@
 
 	<properties>
 		<jdk.version>1.8</jdk.version>
-		<exframework.version>0.3.2</exframework.version>
+		<exframework.version>0.3.3</exframework.version>
 		<springboot.version>2.1.6.RELEASE</springboot.version>
 		<!--指定Maven用什么编码来读取源码及文档 -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
