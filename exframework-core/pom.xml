@@ -5,14 +5,14 @@
 	<parent>
 		<groupId>com.gzmpc.exframework</groupId>
 		<artifactId>exframework-root</artifactId>
-		<version>0.3.3</version>
+		<version>0.3.4</version>
 	</parent>
 	<artifactId>exframework-core</artifactId>
 	<packaging>jar</packaging>
 	<name>core service</name>
 
 	<build>
-		<finalName>exframework-soapsample</finalName>
+		<finalName>exframework-core</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

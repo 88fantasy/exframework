@@ -14,7 +14,7 @@ import com.gzmpc.dao.SystemDao;
 import com.gzmpc.exception.NotAuthorizedException;
 import com.gzmpc.exception.NotFoundException;
 import com.gzmpc.metadata.sys.Account;
-import com.gzmpc.util.SpringContextUtils;
+import com.gzmpc.support.common.util.SpringContextUtils;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

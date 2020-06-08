@@ -1,4 +1,4 @@
-package com.gzmpc.util;
+package com.gzmpc.support.common.util;
 
 import java.util.Map;
 

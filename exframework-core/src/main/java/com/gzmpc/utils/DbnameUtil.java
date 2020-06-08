@@ -13,8 +13,8 @@ import org.apache.commons.dbutils.DbUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.gzmpc.support.common.util.SpringContextUtils;
 import com.gzmpc.support.jdbc.dao.DbDao;
-import com.gzmpc.util.SpringContextUtils;
 
 /**
  * 管理DBNAME类

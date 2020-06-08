@@ -4,7 +4,7 @@ import org.springframework.beans.BeansException;
 import org.springframework.stereotype.Component;
 
 import com.gzmpc.exception.NotFoundException;
-import com.gzmpc.util.SpringContextUtils;
+import com.gzmpc.support.common.util.SpringContextUtils;
 
 @Component
 public class DataProviderFactory {

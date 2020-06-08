@@ -26,8 +26,8 @@ import com.gzmpc.metadata.rowset.CacheRowSetAdapter;
 import com.gzmpc.metadata.sys.Account;
 import com.gzmpc.service.GridService;
 import com.gzmpc.support.common.exception.BuildException;
-import com.gzmpc.util.MapUtil;
-import com.gzmpc.util.SpringContextUtils;
+import com.gzmpc.support.common.util.MapUtil;
+import com.gzmpc.support.common.util.SpringContextUtils;
 
 import java.util.Properties;
 import java.util.concurrent.ConcurrentHashMap;

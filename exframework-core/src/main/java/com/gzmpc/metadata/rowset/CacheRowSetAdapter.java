@@ -7,7 +7,7 @@ import javax.sql.rowset.CachedRowSet;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.stereotype.Component;
 
-import com.gzmpc.util.SpringContextUtils;
+import com.gzmpc.support.common.util.SpringContextUtils;
 
 /**
 * @author rwe

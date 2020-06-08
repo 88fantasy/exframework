@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.gzmpc.support.common.annotation.BuildComponent;
 import com.gzmpc.support.common.exception.BuildException;
-import com.gzmpc.util.SpringContextUtils;
+import com.gzmpc.support.common.util.SpringContextUtils;
 
 /**
 * @author rwe

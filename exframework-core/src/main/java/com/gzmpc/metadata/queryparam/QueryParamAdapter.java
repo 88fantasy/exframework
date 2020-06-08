@@ -6,7 +6,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import org.springframework.stereotype.Component;
 
 import com.gzmpc.metadata.queryparamitem.QueryParamBase;
-import com.gzmpc.util.SpringContextUtils;
+import com.gzmpc.support.common.util.SpringContextUtils;
 
 /**
  * 查询适配器

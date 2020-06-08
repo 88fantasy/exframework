@@ -6,7 +6,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import com.gzmpc.metadata.attribute.Attribute;
 import com.gzmpc.metadata.di.DataItem;
 import com.gzmpc.metadata.form.Form;
-import com.gzmpc.util.MapUtil;
+import com.gzmpc.support.common.util.MapUtil;
 
 /**
  * <p>

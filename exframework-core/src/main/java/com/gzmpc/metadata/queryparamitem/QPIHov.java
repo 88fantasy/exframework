@@ -11,7 +11,7 @@ import com.gzmpc.metadata.MetaData;
 import com.gzmpc.metadata.grid.Grid;
 import com.gzmpc.metadata.queryparam.QueryParamItem;
 import com.gzmpc.metadata.sys.Account;
-import com.gzmpc.util.MapUtil;
+import com.gzmpc.support.common.util.MapUtil;
 import com.gzmpc.utils.Const;
 
 @Component
