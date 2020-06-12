@@ -8,7 +8,7 @@ import java.lang.annotation.*;
  * 例2：public void test(@LoginUser(isFull = true) SysUser user) //能获取SysUser对象的所有信息
  *
  * @author
- * @date 2018/7/24 16:44
+ * @date
  */
 @Target(ElementType.PARAMETER)
 @Retention(RetentionPolicy.RUNTIME)
