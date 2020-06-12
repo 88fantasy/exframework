@@ -15,6 +15,7 @@
 	<modules>
 		<module>exframework-tsf-consumer-quickstart</module>
 		<module>exframework-tsf-provider-quickstart</module>
+		<module>exframework-tsf-support-sso</module>
 	</modules>
 	
 	<build>
