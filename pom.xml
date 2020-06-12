@@ -6,7 +6,7 @@
 
 	<groupId>com.gzmpc.exframework</groupId>
 	<artifactId>exframework-root</artifactId>
-	<version>0.3.5</version>
+	<version>0.3.4</version>
 	<packaging>pom</packaging>
 	<name>exframework </name>
 	<modules>
@@ -19,11 +19,8 @@
 		<module>exframework-support-common</module>
 		<module>exframework-support-sso</module>
 		<module>exframework-webapp</module>
-		<module>exframework-rest-druid-webapp</module>
 		<module>exframework-support-rest</module>
-		<module>exframework-restsample</module>
 		<module>exframework-support-soap</module>
-		<module>exframework-soapsample</module>
 		<module>exframework-support-log</module>
 		<module>exframework-support-monitor</module>
 		<module>exframework-support-monitor-rest</module>
@@ -31,7 +28,6 @@
 		<module>exframework-support-monitor-job</module>
 		<module>exframework-support-jdbc</module>
 		<module>exframework-support-redis</module>
-		<module>exframework-support-dubbo</module>
 		<module>exframework-support-jdbc-oracle</module>
 		<module>exframework-support-jdbc-mysql</module>
 		<module>exframework-support-tsf</module>
@@ -151,105 +147,105 @@
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-core</artifactId>
-				<version>0.3.5</version>
+				<version>0.3.4</version>
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-common</artifactId>
-				<version>0.3.5</version>
+				<version>0.3.4</version>
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-jdbc</artifactId>
-				<version>0.3.5</version>
+				<version>0.3.4</version>
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-utils</artifactId>
-				<version>0.3.5</version>
+				<version>0.3.4</version>
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-job</artifactId>
-				<version>0.3.5</version>
+				<version>0.3.4</version>
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-web</artifactId>
-				<version>0.3.5</version>
+				<version>0.3.4</version>
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-wf</artifactId>
-				<version>0.3.5</version>
+				<version>0.3.4</version>
 			</dependency>
 
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-rest</artifactId>
-				<version>0.3.5</version>
+				<version>0.3.4</version>
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-soap</artifactId>
-				<version>0.3.5</version>
+				<version>0.3.4</version>
 			</dependency>
 
 
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-monitor</artifactId>
-				<version>0.3.5</version>
+				<version>0.3.4</version>
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-monitor-rest</artifactId>
-				<version>0.3.5</version>
+				<version>0.3.4</version>
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-monitor-job</artifactId>
-				<version>0.3.5</version>
+				<version>0.3.4</version>
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-druid-monitor</artifactId>
-				<version>0.3.5</version>
+				<version>0.3.4</version>
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-dubbo</artifactId>
-				<version>0.3.5</version>
+				<version>0.3.4</version>
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-tsf</artifactId>
-				<version>0.3.5</version>
+				<version>0.3.4</version>
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-jdbc-mysql</artifactId>
-				<version>0.3.5</version>
+				<version>0.3.4</version>
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-jdbc-oracle</artifactId>
-				<version>0.3.5</version>
+				<version>0.3.4</version>
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-redis</artifactId>
-				<version>0.3.5</version>
+				<version>0.3.4</version>
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-print</artifactId>
-				<version>0.3.5</version>
+				<version>0.3.4</version>
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-mongo</artifactId>
-				<version>0.3.5</version>
+				<version>0.3.4</version>
 			</dependency>
 
 			<dependency>
@@ -376,15 +372,11 @@
             <artifactId>log4j-slf4j-impl</artifactId>
         </dependency>
         
-        <dependency>
-            <groupId>com.gzmpc.exframework</groupId>
-            <artifactId>exframework-support-common</artifactId>
-        </dependency>
 	</dependencies>
 
 	<properties>
 		<jdk.version>1.8</jdk.version>
-		<exframework.version>0.3.5</exframework.version>
+		<exframework.version>0.3.4</exframework.version>
 		<springboot.version>2.1.6.RELEASE</springboot.version>
 		<!--指定Maven用什么编码来读取源码及文档 -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
