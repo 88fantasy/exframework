@@ -7,7 +7,7 @@
 	<parent>
 		<groupId>com.gzmpc.exframework</groupId>
 		<artifactId>exframework-root</artifactId>
-		<version>0.3.5</version>
+		<version>0.3.4</version>
 	</parent>
 	<artifactId>exframework-springboot-quickstart-rest</artifactId>
 	<name>exframework-springboot-quickstart-rest</name>
