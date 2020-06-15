@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @desc
  * @Date 2020-06-06 16:58
  */
-@Slf4j
 @ControllerAdvice
 public class LoinUserExceptionHandler {
 
@@ -23,7 +22,7 @@ public class LoinUserExceptionHandler {
     public ResponseResult handleValidException(LoginUserException e){
         ResponseResult result = new ResponseResult();
         //日志记录错误信息
-        log.error(e.getMessage());
+//        log.error(e.getMessage());
         //将错误信息返回给前台
         result.setCode(HttpStatus.SC_UNAUTHORIZED);
         result.setMsg(e.getMessage());

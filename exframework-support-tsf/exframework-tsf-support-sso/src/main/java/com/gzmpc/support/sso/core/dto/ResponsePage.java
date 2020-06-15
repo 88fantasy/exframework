@@ -13,10 +13,6 @@ import java.util.List;
  *
  * @author zlt
  */
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
 public class ResponsePage<T> implements Serializable {
 
     private static final long serialVersionUID = -275582248840137389L;
@@ -27,6 +23,22 @@ public class ResponsePage<T> implements Serializable {
     private List<T> data;
 
     private Pager pager;
+
+	public List<T> getData() {
+		return data;
+	}
+
+	public void setData(List<T> data) {
+		this.data = data;
+	}
+
+	public Pager getPager() {
+		return pager;
+	}
+
+	public void setPager(Pager pager) {
+		this.pager = pager;
+	}
 
 
 }

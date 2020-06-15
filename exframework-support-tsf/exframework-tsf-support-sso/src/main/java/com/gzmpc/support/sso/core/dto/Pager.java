@@ -1,9 +1,5 @@
 package com.gzmpc.support.sso.core.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
@@ -12,13 +8,34 @@ import java.io.Serializable;
  * @desc
  * @Date 2020-06-02 15:04
  */
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+
 public class Pager implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    public Integer getTotal() {
+		return total;
+	}
+
+	public void setTotal(Integer total) {
+		this.total = total;
+	}
+
+	public Integer getCurrent() {
+		return current;
+	}
+
+	public void setCurrent(Integer current) {
+		this.current = current;
+	}
+
+	public Integer getPageSize() {
+		return pageSize;
+	}
+
+	public void setPageSize(Integer pageSize) {
+		this.pageSize = pageSize;
+	}
+
+	private static final long serialVersionUID = 1L;
 
     /**
      * 总数
