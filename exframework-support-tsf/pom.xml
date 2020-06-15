@@ -30,6 +30,11 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
+			<dependency>
+				<groupId>com.gzmpc.exframework</groupId>
+				<artifactId>exframework-tsf-support-sso</artifactId>
+				<version>0.3.5</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
