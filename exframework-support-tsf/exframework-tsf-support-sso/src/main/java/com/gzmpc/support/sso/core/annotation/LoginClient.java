@@ -7,7 +7,7 @@ import java.lang.annotation.*;
  * 例：public void test(@LoginClient String clientId) //注入webApp
  *
  * @author
- * @date 2018/7/24 16:44
+ * @date
  */
 @Target(ElementType.PARAMETER)
 @Retention(RetentionPolicy.RUNTIME)
