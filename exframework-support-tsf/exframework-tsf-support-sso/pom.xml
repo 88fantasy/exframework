@@ -6,12 +6,12 @@
 	<parent>
 		<groupId>com.gzmpc.exframework</groupId>
 		<artifactId>exframework-support-tsf</artifactId>
-		<version>0.3.4</version>
+		<version>0.3.5</version>
 	</parent>
 	<artifactId>exframework-tsf-support-sso</artifactId>
 	<packaging>jar</packaging>
 	<name>exframework-tsf-support-sso</name>
-	<version>1.0.0</version>
+	<version>0.3.5</version>
 
 	<build>
         <finalName>exframework-tsf-support-sso</finalName>
