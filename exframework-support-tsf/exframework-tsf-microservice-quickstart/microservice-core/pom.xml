@@ -10,7 +10,7 @@
 	<groupId>com.gzmpc.exframework</groupId>
 	<packaging>jar</packaging>
 	<name>common resource</name>
-	<version>0.3.5</version>
+	<version>0.3.6</version>
 	
 	<build>
         <finalName>exframework-support-common</finalName>

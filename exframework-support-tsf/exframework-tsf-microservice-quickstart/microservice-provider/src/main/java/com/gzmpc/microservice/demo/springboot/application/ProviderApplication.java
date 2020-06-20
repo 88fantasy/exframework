@@ -7,7 +7,7 @@ import org.springframework.tsf.annotation.EnableTsf;
 
 
 @SpringBootApplication(scanBasePackages = { "com.gzmpc.*" })
-@EnableFeignClients // 使用Feign微服务调用时请启用
+@EnableFeignClients(basePackages = { "com.gzmpc.*" }) // 使用Feign微服务调用时请启用
 @EnableTsf
 /**
  * 微服务 启动类
