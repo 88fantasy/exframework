@@ -80,19 +80,7 @@ public class TokenArgumentResolver implements HandlerMethodArgumentResolver {
             user = new LoginUserDto();
             user.setUid(Integer.valueOf(userId));
             user.setBaseRole(baseRole);
-            switch (baseRole) {
-                case UserConstants.USER_TYPE_ADMIN:
-                    user.setAdmin(true);
-                    break;
-                case UserConstants.USER_TYPE_SUPPLYER:
-                    user.setSupplyer(true);
-                    break;
-                case UserConstants.USER_TYPE_CUSTOMER:
-                    user.setCustomer(true);
-                    break;
-                default:
 
-            }
 
             if (isFull) {
                 LoginUserDto infoDto = userCenterService.getLoginUserInfo(userId);
@@ -111,6 +99,21 @@ public class TokenArgumentResolver implements HandlerMethodArgumentResolver {
                 }
 
             }
+
+            switch (baseRole) {
+                case UserConstants.USER_TYPE_ADMIN:
+                    user.setAdmin(true);
+                    break;
+                case UserConstants.USER_TYPE_SUPPLYER:
+                    user.setSupplyer(true);
+                    break;
+                case UserConstants.USER_TYPE_CUSTOMER:
+                    user.setCustomer(true);
+                    break;
+                default:
+
+            }
+
         } else if(isReqLogin) {
             throw new LoginUserException("登录帐号为空，请先登录");
         }
