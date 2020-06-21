@@ -7,7 +7,7 @@ import com.gzmpc.support.sso.core.constant.UserConstants;
 import com.gzmpc.support.sso.core.dto.LoginUserAccountDto;
 import com.gzmpc.support.sso.core.dto.LoginUserDto;
 import com.gzmpc.support.sso.core.exception.LoginUserException;
-import com.gzmpc.support.sso.core.proxy.UserCenterService;
+import com.gzmpc.support.sso.core.proxy.LoginUserService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.core.MethodParameter;
@@ -29,12 +29,12 @@ import java.util.stream.Collectors;
 
 public class TokenArgumentResolver implements HandlerMethodArgumentResolver {
 
-    private UserCenterService userCenterService;
+    private LoginUserService loginUserService;
 
     private String appSource;
 
-    public TokenArgumentResolver(UserCenterService userCenterService, String appSource) {
-        this.userCenterService = userCenterService;
+    public TokenArgumentResolver(LoginUserService loginUserService, String appSource) {
+        this.loginUserService = loginUserService;
         this.appSource = appSource;
 
     }
@@ -83,13 +83,13 @@ public class TokenArgumentResolver implements HandlerMethodArgumentResolver {
 
 
             if (isFull) {
-                LoginUserDto infoDto = userCenterService.getLoginUserInfo(userId);
+                LoginUserDto infoDto = loginUserService.getLoginUserInfo(userId);
                 BeanUtils.copyProperties(infoDto,user);
             }
 
 
             if (isAccount) {
-                List<LoginUserAccountDto> accountList = userCenterService.getLoginUserAccountByUid(userId);
+                List<LoginUserAccountDto> accountList = loginUserService.getLoginUserAccountByUid(userId);
                 if (accountList != null && accountList.size() > 0) {
                     //指定查找相关联系统帐号
                     if (StringUtils.isNotEmpty(appSource)) {

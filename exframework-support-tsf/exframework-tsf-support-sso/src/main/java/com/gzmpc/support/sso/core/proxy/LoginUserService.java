@@ -17,7 +17,7 @@ import java.util.List;
  */
 
 @FeignClient(name = "user-center-service",contextId = "userLoginProvider",configuration = FeignHeaderConfig.class)
-public interface UserCenterService {
+public interface LoginUserService {
 
 
     /**
