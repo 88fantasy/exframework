@@ -33,7 +33,7 @@
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-tsf-support-sso</artifactId>
-				<version>0.3.6.2</version>
+				<version>0.3.6</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
