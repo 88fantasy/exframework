@@ -3,6 +3,7 @@ package com.gzmpc.support.sso.core.resolver;
 
 import com.gzmpc.support.sso.core.annotation.LoginUser;
 import com.gzmpc.support.sso.core.constant.SecurityConstants;
+import com.gzmpc.support.sso.core.constant.UserConstants;
 import com.gzmpc.support.sso.core.dto.LoginUserAccountDto;
 import com.gzmpc.support.sso.core.dto.LoginUserDto;
 import com.gzmpc.support.sso.core.exception.LoginUserException;
@@ -79,6 +80,19 @@ public class TokenArgumentResolver implements HandlerMethodArgumentResolver {
             user = new LoginUserDto();
             user.setUid(Integer.valueOf(userId));
             user.setBaseRole(baseRole);
+            switch (baseRole) {
+                case UserConstants.USER_TYPE_ADMIN:
+                    user.setAdmin(true);
+                    break;
+                case UserConstants.USER_TYPE_SUPPLYER:
+                    user.setSupplyer(true);
+                    break;
+                case UserConstants.USER_TYPE_CUSTOMER:
+                    user.setCustomer(true);
+                    break;
+                default:
+
+            }
 
             if (isFull) {
                 LoginUserDto infoDto = userCenterService.getLoginUserInfo(userId);
