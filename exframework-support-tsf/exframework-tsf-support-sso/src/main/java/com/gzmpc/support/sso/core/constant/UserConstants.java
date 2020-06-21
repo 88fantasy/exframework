@@ -14,14 +14,6 @@ public interface UserConstants {
 
     String USER_TYPE_CUSTOMER="CUSTOMER";
 
-    //帐号来源 内部OA
-    String USER_ACCOUNT_SOURCE_OA="OA";
-
-    //帐号来源 流向平台
-    String USER_ACCOUNT_SOURCE_FLOW="FLOW";
-
-    //帐号关联系统
-    String USER_ACCOUNT_APPSOURCE_SIP="SIP";
 
 
 }
