@@ -65,6 +65,7 @@ public class TokenArgumentResolver implements HandlerMethodArgumentResolver {
                                   NativeWebRequest nativeWebRequest,
                                   WebDataBinderFactory webDataBinderFactory) {
         LoginUser loginUser = methodParameter.getParameterAnnotation(LoginUser.class);
+        boolean isReqLogin = loginUser.isReqLogin();
         boolean isFull = loginUser.isFull();
         boolean isAccount = loginUser.isAccount();
 
@@ -96,7 +97,7 @@ public class TokenArgumentResolver implements HandlerMethodArgumentResolver {
                 }
 
             }
-        } else {
+        } else if(isReqLogin) {
             throw new LoginUserException("登录帐号为空，请先登录");
         }
 
