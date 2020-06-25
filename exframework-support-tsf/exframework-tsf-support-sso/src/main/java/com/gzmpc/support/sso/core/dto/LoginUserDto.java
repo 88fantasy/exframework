@@ -20,6 +20,69 @@ public class LoginUserDto implements Serializable {
 
     private String telphone;
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getTelphone() {
+        return telphone;
+    }
+
+    public void setTelphone(String telphone) {
+        this.telphone = telphone;
+    }
+
+    public boolean isSupplyer() {
+        return isSupplyer;
+    }
+
+    public void setSupplyer(boolean supplyer) {
+        isSupplyer = supplyer;
+    }
+
+    public boolean isCustomer() {
+        return isCustomer;
+    }
+
+    public void setCustomer(boolean customer) {
+        isCustomer = customer;
+    }
+
+    public boolean isEmployee() {
+        return isEmployee;
+    }
+
+    public void setEmployee(boolean employee) {
+        isEmployee = employee;
+    }
+
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(boolean admin) {
+        isAdmin = admin;
+    }
+
+    public List<LoginUserAccountDto> getLoginUserAccountDtoList() {
+        return loginUserAccountDtoList;
+    }
+
+    public void setLoginUserAccountDtoList(List<LoginUserAccountDto> loginUserAccountDtoList) {
+        this.loginUserAccountDtoList = loginUserAccountDtoList;
+    }
+
+    private boolean isSupplyer = false;
+
+    private boolean isCustomer = false;
+
+    private boolean isEmployee = false;
+
+    private boolean isAdmin = false;
 
 
 

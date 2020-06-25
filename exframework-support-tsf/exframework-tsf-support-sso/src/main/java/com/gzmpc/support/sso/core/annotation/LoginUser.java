@@ -14,10 +14,18 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface LoginUser {
+
+    /**
+     * 是否要登录
+     */
+    boolean isReqLogin() default true;
+
     /**
      * 是否查询用户基本信息，true则通过rpc接口查询
      */
     boolean isFull() default false;
+
+
     /**
      * 是否查询用户关联帐号信息，true则通过rpc接口查询
      */
