@@ -4,6 +4,7 @@ import java.sql.SQLException;
 
 import javax.sql.rowset.CachedRowSet;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -19,6 +20,7 @@ import oracle.jdbc.rowset.OracleCachedRowSet;
 public class DbTypeConfig {
 
 	@Bean
+	@ConditionalOnMissingBean(name = "oracleDbType")
 	public CachedRowSet oracleDbType() throws SQLException {
 		return new OracleCachedRowSet();
 	}

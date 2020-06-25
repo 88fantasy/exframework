@@ -4,6 +4,7 @@ import java.sql.SQLException;
 
 import javax.sql.rowset.CachedRowSet;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -18,6 +19,7 @@ public class DbTypeConfig {
 
 	@SuppressWarnings("restriction")
 	@Bean
+	@ConditionalOnMissingBean(name = "mysqlDbType")
 	public CachedRowSet mysqlDbType() throws SQLException {
 		return new com.sun.rowset.CachedRowSetImpl();
 	}

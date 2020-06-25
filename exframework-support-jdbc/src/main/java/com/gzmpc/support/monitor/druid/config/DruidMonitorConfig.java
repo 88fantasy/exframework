@@ -1,5 +1,8 @@
 package com.gzmpc.support.monitor.druid.config;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -7,6 +10,7 @@ import com.alibaba.druid.filter.logging.Log4j2Filter;
 import com.alibaba.druid.filter.stat.StatFilter;
 import com.alibaba.druid.wall.WallConfig;
 import com.alibaba.druid.wall.WallFilter;
+import com.gzmpc.support.jdbc.listener.DbInitListener;
 
 /**
 * @author rwe
@@ -16,9 +20,13 @@ import com.alibaba.druid.wall.WallFilter;
 
 @Configuration
 public class DruidMonitorConfig {
+	
+	private Log log = LogFactory.getLog(DruidMonitorConfig.class.getName());
 
 	@Bean
+	@ConditionalOnMissingBean(name = "logFilter")
 	public Log4j2Filter logFilter () {
+		log.info("加载druid 日志配置");
 		Log4j2Filter logFilter = new Log4j2Filter();
 	    logFilter.setStatementExecutableSqlLogEnable(true);
 	    logFilter.setStatementLogEnabled(false);
@@ -26,7 +34,9 @@ public class DruidMonitorConfig {
 	}
 
 	@Bean
+	@ConditionalOnMissingBean(name = "statFilter")
 	public StatFilter statFilter () {
+		log.info("加载druid 慢SQL日志配置");
 	    StatFilter statFilter = new StatFilter();
 	    statFilter.setSlowSqlMillis(5000);
 	    statFilter.setLogSlowSql(true);
@@ -40,7 +50,9 @@ public class DruidMonitorConfig {
 	 * @return
 	 */
 	@Bean
+	@ConditionalOnMissingBean(name = "wallFilter")
 	public WallFilter wallFilter (WallConfig wallConfig) {
+		log.info("加载druid sql防火墙过滤器配置");
 	    WallFilter wallFilter = new WallFilter();
 	    wallFilter.setConfig(wallConfig);
 	    wallFilter.setLogViolation(true);//对被认为是攻击的SQL进行LOG.error输出
@@ -53,6 +65,7 @@ public class DruidMonitorConfig {
 	 * @return
 	 */
 	@Bean
+	@ConditionalOnMissingBean(name = "wallConfig")
 	public WallConfig wallConfig () {
 	    WallConfig wallConfig = new WallConfig();
 	    wallConfig.setAlterTableAllow(false);
