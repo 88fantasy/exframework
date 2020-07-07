@@ -24,7 +24,7 @@ public class RequireLoginAop {
     @Autowired
     LoginUserService loginUserService;
 
-    @Pointcut("@annotation(com.gzmpc.core.annotation.RequireLogin)")
+    @Pointcut("@annotation(com.gzmpc.support.sso.core.annotation.RequireLogin)")
     public void pointCut() {
     }
 
