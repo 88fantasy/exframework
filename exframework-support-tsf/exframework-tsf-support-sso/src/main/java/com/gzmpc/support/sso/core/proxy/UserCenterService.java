@@ -17,7 +17,7 @@ import java.util.List;
  */
 
 @FeignClient(name = "user-center-service",contextId = "userLoginProvider",configuration = FeignHeaderConfig.class)
-public interface LoginUserService {
+public interface UserCenterService {
 
 
     /**
@@ -26,9 +26,9 @@ public interface LoginUserService {
      * @return
      */
     @RequestMapping(value = "userProvider/getLoginUserAccountByUid", method = RequestMethod.GET)
-    public List<LoginUserAccountDto> getLoginUserAccountByUid(@RequestParam("uid") String uid);
+     List<LoginUserAccountDto> getLoginUserAccountByUid(@RequestParam("uid") String uid);
 
     @RequestMapping(value = "userProvider/getLoginUserInfoByUid", method = RequestMethod.GET)
-    public LoginUserDto getLoginUserInfo(@RequestParam("uid") String uid);
+     LoginUserDto getLoginUserInfo(@RequestParam("uid") String uid);
 
 }

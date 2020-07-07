@@ -7,7 +7,7 @@ import com.gzmpc.support.sso.core.constant.UserConstants;
 import com.gzmpc.support.sso.core.dto.LoginUserAccountDto;
 import com.gzmpc.support.sso.core.dto.LoginUserDto;
 import com.gzmpc.support.sso.core.exception.LoginUserException;
-import com.gzmpc.support.sso.core.proxy.LoginUserService;
+import com.gzmpc.support.sso.core.proxy.UserCenterService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.core.MethodParameter;
@@ -29,12 +29,12 @@ import java.util.stream.Collectors;
 
 public class TokenArgumentResolver implements HandlerMethodArgumentResolver {
 
-    private LoginUserService loginUserService;
+    private UserCenterService userCenterService;
 
     private String appSource;
 
-    public TokenArgumentResolver(LoginUserService loginUserService, String appSource) {
-        this.loginUserService = loginUserService;
+    public TokenArgumentResolver(UserCenterService userCenterService, String appSource) {
+        this.userCenterService = userCenterService;
         this.appSource = appSource;
 
     }
@@ -49,8 +49,6 @@ public class TokenArgumentResolver implements HandlerMethodArgumentResolver {
     @Override
     public boolean supportsParameter(MethodParameter methodParameter) {
         return methodParameter.hasParameterAnnotation(LoginUser.class) && methodParameter.getParameterType().equals(LoginUserDto.class);
-        //return methodParameter.hasParameterAnnotation(LoginUser.class);
-
     }
 
     /**
@@ -83,13 +81,13 @@ public class TokenArgumentResolver implements HandlerMethodArgumentResolver {
 
 
             if (isFull) {
-                LoginUserDto infoDto = loginUserService.getLoginUserInfo(userId);
+                LoginUserDto infoDto = userCenterService.getLoginUserInfo(userId);
                 BeanUtils.copyProperties(infoDto,user);
             }
 
 
             if (isAccount) {
-                List<LoginUserAccountDto> accountList = loginUserService.getLoginUserAccountByUid(userId);
+                List<LoginUserAccountDto> accountList = userCenterService.getLoginUserAccountByUid(userId);
                 if (accountList != null && accountList.size() > 0) {
                     //指定查找相关联系统帐号
                     if (StringUtils.isNotEmpty(appSource)) {

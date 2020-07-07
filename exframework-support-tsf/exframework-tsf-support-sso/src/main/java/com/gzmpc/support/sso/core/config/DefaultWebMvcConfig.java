@@ -1,7 +1,7 @@
 package com.gzmpc.support.sso.core.config;
 
 
-import com.gzmpc.support.sso.core.proxy.LoginUserService;
+import com.gzmpc.support.sso.core.proxy.UserCenterService;
 import com.gzmpc.support.sso.core.resolver.TokenArgumentResolver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,7 +23,7 @@ import java.util.List;
 public class DefaultWebMvcConfig implements WebMvcConfigurer {
 	@Lazy
 	@Autowired
-	private LoginUserService loginUserService;
+	private UserCenterService userCenterService;
 
 	@Value ("${spring.userCenter.appSource}")
 	String appSpurce;
@@ -35,7 +35,7 @@ public class DefaultWebMvcConfig implements WebMvcConfigurer {
 	@Override
 	public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
 		//注入用户信息
-		argumentResolvers.add(new TokenArgumentResolver(loginUserService,appSpurce));
+		argumentResolvers.add(new TokenArgumentResolver(userCenterService,appSpurce));
 
 
 	}
