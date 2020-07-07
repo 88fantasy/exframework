@@ -22,7 +22,7 @@ public class LoginUserAop {
     @Autowired
     LoginUserService loginUserService;
 
-    @Pointcut("@annotation(com.gzmpc.support.sso.core.annotation.LoginCurrenrtUser)")
+    @Pointcut("@annotation(com.gzmpc.support.sso.core.annotation.LoginCurrentUser)")
     public void pointCut() {
     }
 
