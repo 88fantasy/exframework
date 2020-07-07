@@ -11,7 +11,7 @@
 	<artifactId>exframework-support-mongo</artifactId>
 	<packaging>jar</packaging>
 	<name>mongo resource</name>
-	<version>0.3.7</version>
+	<version>0.3.8</version>
 
 	<build>
 		<finalName>exframework-support-mongo</finalName>

@@ -43,7 +43,7 @@
 		</resources>
 	</build>
 
-	<version>0.3.7</version>
+	<version>0.3.8</version>
 
 	<profiles>
 		<!--开发环境 -->
