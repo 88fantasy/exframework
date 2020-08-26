@@ -108,8 +108,11 @@ public class TokenArgumentResolver implements HandlerMethodArgumentResolver {
                 case UserConstants.USER_TYPE_CUSTOMER:
                     user.setCustomer(true);
                     break;
-                default:
+                case UserConstants.USER_TYPE_EMPLOYEE:
+                    user.setEmployee(true);
+                    break;
 
+                default:
             }
 
         } else if(isReqLogin) {

@@ -38,11 +38,6 @@ public class LoginUserAop {
         List<Object> args = Arrays.asList(joinPoint.getArgs());
         loginUserService.doLogin();
 
-        //else if (isReqLogin) {
-        //   throw new LoginUserException("登录帐号为空，请先登录");
-        //}
-
-        // logger.info("Method Name : [" + methodName + "] ---> AOP before 参数:[" + args.toString() + "]");
     }
 
 
