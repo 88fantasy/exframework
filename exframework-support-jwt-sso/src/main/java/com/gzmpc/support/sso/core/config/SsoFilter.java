@@ -1,7 +1,6 @@
 package com.gzmpc.support.sso.core.config;
 
 
-
 import com.gzmpc.support.sso.core.constant.SecurityConstants;
 import com.gzmpc.support.sso.core.service.LoginUserService;
 import org.slf4j.Logger;
@@ -22,7 +21,7 @@ import java.io.InputStream;
 import java.util.Properties;
 
 /**
-
+ *
  */
 @Order(1)
 @WebFilter(urlPatterns = {"/*"}, filterName = "ssoFilter")
@@ -61,45 +60,55 @@ public class SsoFilter implements Filter {
         // 实际业务处理，这里就是下面图中的before doFilter逻辑
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse resq = (HttpServletResponse) response;
-        String authorization = req.getHeader(SecurityConstants.AUTHORIZATION);
-        whiteList = whiteList!=null ? whiteList.trim():"";
-        String[] tmpList =  whiteList.split(",");
-        AntPathMatcher matcher = new AntPathMatcher();
-
         LoginUserService loginUserService = new LoginUserService(req);
-        for (String str:tmpList){
+
+        if (loginUserService.getCurrentUser() != null) {
+            chain.doFilter(request, response);
+        }
+
+        String redirect = req.getHeader("Referer") != null ? req.getHeader("Referer") : req.getRequestURL().toString();
+        String authorization = req.getHeader(SecurityConstants.AUTHORIZATION);
+        whiteList = whiteList != null ? whiteList.trim() : "";
+        String[] tmpList = whiteList.split(",");
+        AntPathMatcher matcher = new AntPathMatcher();
+        String respRedirect = loginUrl + "?backforward=true&&redirect=" + redirect;
+
+        for (String str : tmpList) {
 
 
-            if(matcher.match(str, req.getRequestURI())){
-                if(loginUserService.getCurrentUser() == null&&authorization!=null){
-                   try{ loginUserService.setLoginUserFromServer(authorization,serverUrl);}
-                   catch (Exception e){
-                       resq.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-                       resq.setHeader(SecurityConstants.AUTHORIZATION,"");
-                       resq.sendRedirect(loginUrl + "?redirect=" + loginSuccessUrl);
-                   }
+            if (matcher.match(str, req.getRequestURI())) {
+                if (loginUserService.getCurrentUser() == null && authorization != null) {
+                    try {
+                        loginUserService.setLoginUserFromServer(serverUrl, authorization);
+                        loginSuccessUrl = loginSuccessUrl + "?redirect=" + redirect;
+                        req.getRequestDispatcher(loginSuccessUrl).forward(req, resq);
+                    } catch (Exception e) {
+                        resq.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                        resq.setHeader(SecurityConstants.AUTHORIZATION, "");
+                        resq.sendRedirect(respRedirect);
+                    }
                 }
 
             }
         }
 
-        if (loginUserService.getCurrentUser() == null&&authorization==null) {
-            resq.sendRedirect(loginUrl + "?redirect=" + loginSuccessUrl);
+        if (loginUserService.getCurrentUser() == null && authorization == null) {
+            resq.sendRedirect(respRedirect);
 
-        }
-        else if (loginUserService.getCurrentUser()  == null&&authorization!=null) {
-            try{ loginUserService.setLoginUserFromServer(authorization,serverUrl);}
-            catch (Exception e){
+        } else if (loginUserService.getCurrentUser() == null && authorization != null) {
+            try {
+                loginUserService.setLoginUserFromServer(serverUrl, authorization);
+                loginSuccessUrl = loginSuccessUrl + "?redirect=" + redirect;
+                req.getRequestDispatcher(loginSuccessUrl).forward(req, resq);
+            } catch (Exception e) {
                 resq.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-                resq.setHeader(SecurityConstants.AUTHORIZATION,"");
-                resq.sendRedirect(loginUrl + "?redirect=" + loginSuccessUrl);
+                resq.setHeader(SecurityConstants.AUTHORIZATION, "");
+                resq.sendRedirect(respRedirect);
             }
         }
 
-        chain.doFilter(request, response);
 
         // 当前过滤器处理完了交给下一个过滤器处理
-
 
         log.info("SessionFilter's process has completed!");
     }
