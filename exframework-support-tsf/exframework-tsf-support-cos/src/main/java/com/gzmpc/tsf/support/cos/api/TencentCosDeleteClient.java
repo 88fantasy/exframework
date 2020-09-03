@@ -1,7 +1,7 @@
 package com.gzmpc.tsf.support.cos.api;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -10,8 +10,8 @@ import com.qcloud.cos.COSClient;
 
 @Component
 public class TencentCosDeleteClient {
-	private Log log = LogFactory.getLog(TencentCosDeleteClient.class.getName());
-
+	private final Logger LOG = LoggerFactory.getLogger(this.getClass());
+	
 	@Autowired
 	private COSClient cosClient;
 	
@@ -27,9 +27,7 @@ public class TencentCosDeleteClient {
 			// 指定要删除的 bucket 和路径
 			cosClient.deleteObject(bucketName, fileUrl);
 		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("com.gzmpc.support.tencentCOS.api.TencentCosDeleteClient-001-error "+e.getMessage());
-			log.error("com.gzmpc.support.tencentCOS.api.TencentCosDeleteClient-001-error "+e.getMessage());
+			LOG.error("com.gzmpc.support.tencentCOS.api.TencentCosDeleteClient-001-error "+e.getMessage(), e);
 		}
 	}
 

@@ -3,8 +3,8 @@ package com.gzmpc.tsf.support.cos.api;
 import java.io.File;
 import java.io.InputStream;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -17,7 +17,7 @@ import com.qcloud.cos.model.ObjectMetadata;
 
 @Component
 public class TencentCosDownLoadClient {
-	private Log log = LogFactory.getLog(TencentCosDownLoadClient.class.getName());
+	private final Logger LOG = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
 	private COSClient cosClient;
@@ -37,9 +37,7 @@ public class TencentCosDownLoadClient {
 			COSObject cosObject = cosClient.getObject(getObjectRequest);
 			cosObjectInput = cosObject.getObjectContent();
 		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("com.gzmpc.support.tencentCOS.api.TencentCosDownLoadClient-001-error "+e.getMessage());
-			log.error("com.gzmpc.support.tencentCOS.api.TencentCosDownLoadClient-001-error "+e.getMessage());
+			LOG.error("com.gzmpc.support.tencentCOS.api.TencentCosDownLoadClient-001-error "+e.getMessage(), e);
 		}
 		return cosObjectInput;
 	}
@@ -56,15 +54,12 @@ public class TencentCosDownLoadClient {
 		ObjectMetadata downObjectMeta = null;
 		GetObjectRequest getObjectRequest = null;
 		try {
-			Long times = System.currentTimeMillis();
 			String outputFilePath = fileSavePath + "/" + fileSaveName;// 保存文件到本地
 			File downFile = new File(outputFilePath);
 			getObjectRequest = new GetObjectRequest(bucketName, fileUrl);
 			downObjectMeta = cosClient.getObject(getObjectRequest, downFile);
 		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("com.gzmpc.support.tencentCOS.api.TencentCosDownLoadClient-002-error "+e.getMessage());
-			log.error("com.gzmpc.support.tencentCOS.api.TencentCosDownLoadClient-002-error "+e.getMessage());
+			LOG.error("com.gzmpc.support.tencentCOS.api.TencentCosDownLoadClient-002-error "+e.getMessage(), e);
 		} 
 	}
 

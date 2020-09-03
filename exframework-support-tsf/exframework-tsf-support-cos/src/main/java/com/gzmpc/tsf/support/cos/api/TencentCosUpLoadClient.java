@@ -16,12 +16,13 @@ import com.qcloud.cos.model.PutObjectRequest;
 import com.qcloud.cos.model.PutObjectResult;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Component
 public class TencentCosUpLoadClient {
-	private Log log = LogFactory.getLog(TencentCosUpLoadClient.class.getName());
+	private final Logger LOG = LoggerFactory.getLogger(this.getClass());
+	
 	@Autowired
 	private COSClient cosClient;
 	
@@ -53,9 +54,7 @@ public class TencentCosUpLoadClient {
 			// 设置 Content type, 默认是 application/octet-stream
 			PutObjectResult putObjectResult = cosClient.putObject(bucketName, fileStore, fileInputStream, objectMetadata);
 		} catch (Exception e) {
-			e.printStackTrace();
-			log.error("com.gzmpc.support.tencentCOS.api.TencentCosUpLoadClient-001-error "+e.getMessage());
-            System.out.println("com.gzmpc.support.tencentCOS.api.TencentCosUpLoadClient-001-error "+e.getMessage());
+			LOG.error("com.gzmpc.support.tencentCOS.api.TencentCosUpLoadClient-001-error "+e.getMessage(), e);
 			return null;
 		}
     
@@ -87,9 +86,7 @@ public class TencentCosUpLoadClient {
 			}
 			PutObjectResult putObjectResult = cosClient.putObject(putObjectRequest);
 		} catch (Exception e) {
-			e.printStackTrace();
-			log.error("com.gzmpc.support.tencentCOS.api.TencentCosUpLoadClient-002-error "+e.getMessage());
-            System.out.println("com.gzmpc.support.tencentCOS.api.TencentCosUpLoadClient-002-error "+e.getMessage());
+			LOG.error("com.gzmpc.support.tencentCOS.api.TencentCosUpLoadClient-002-error "+e.getMessage(), e);
 			return null;
 		} 
 		return bucketNameUrl+"/"+fileStore;
@@ -115,9 +112,7 @@ public class TencentCosUpLoadClient {
 			PutObjectRequest putObjectRequest = new PutObjectRequest(bucketName, fileStore, file);
 			PutObjectResult putObjectResult = cosClient.putObject(putObjectRequest);
 		} catch (Exception e) {
-			e.printStackTrace();
-			log.error("com.gzmpc.support.tencentCOS.api.TencentCosUpLoadClient-003-error "+e.getMessage());
-            System.out.println("com.gzmpc.support.tencentCOS.api.TencentCosUpLoadClient-003-error "+e.getMessage());
+			LOG.error("com.gzmpc.support.tencentCOS.api.TencentCosUpLoadClient-003-error "+e.getMessage(), e);
 			return null;
 		} finally {
 			Date expiration = new Date(new Date().getTime() + expirationTime);
@@ -148,9 +143,7 @@ public class TencentCosUpLoadClient {
 			PutObjectRequest putObjectRequest = new PutObjectRequest(bucketName, fileStore, file);
 			PutObjectResult putObjectResult = cosClient.putObject(putObjectRequest);
 		} catch (Exception e) {
-			e.printStackTrace();
-            System.out.println("com.gzmpc.support.tencentCOS.api.TencentCosUpLoadClient-004-error "+e.getMessage());
-			log.error("com.gzmpc.support.tencentCOS.api.TencentCosUpLoadClient-004-error "+e.getMessage());
+            LOG.error("com.gzmpc.support.tencentCOS.api.TencentCosUpLoadClient-004-error "+e.getMessage(), e);
            return null;
 		} 
 		return bucketNameUrl+"/"+fileStore;
@@ -185,9 +178,7 @@ public class TencentCosUpLoadClient {
 			PutObjectRequest putObjectRequest = new PutObjectRequest(bucketName, fileStore, file);
 			PutObjectResult putObjectResult = cosClient.putObject(putObjectRequest);
 		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("com.gzmpc.support.tencentCOS.api.TencentCosUpLoadClient-005-error "+e.getMessage());
-			log.error("com.gzmpc.support.tencentCOS.api.TencentCosUpLoadClient-005-error "+e.getMessage());
+			LOG.error("com.gzmpc.support.tencentCOS.api.TencentCosUpLoadClient-005-error "+e.getMessage(), e);
 			return null;
 		} 
 		return bucketNameUrl+"/"+fileStore;

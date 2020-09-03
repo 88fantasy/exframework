@@ -1,7 +1,7 @@
 package com.gzmpc.tsf.support.cos.api;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -15,7 +15,7 @@ import com.qcloud.cos.model.ObjectListing;
 
 @Component
 public class TencentCosQuery {
-	private Log log = LogFactory.getLog(TencentCosQuery.class.getName());
+	private final Logger LOG = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
 	private COSClient cosClient;
@@ -48,13 +48,9 @@ public class TencentCosQuery {
 						"key:" + key + "; etag:" + etag + "; fileSize:" + fileSize + ";storageClass:" + storageClass);
 			}
 		} catch (CosServiceException serverException) {
-			serverException.printStackTrace();
-			System.out.println("com.gzmpc.support.tencentCOS.api.TencentCosQuery-001-error "+serverException.getMessage());
-			log.error("com.gzmpc.support.tencentCOS.api.TencentCosQuery-001-error "+serverException.getMessage());
+			LOG.error("com.gzmpc.support.tencentCOS.api.TencentCosQuery-001-error "+serverException.getMessage(), serverException);
 		} catch (CosClientException clientException) {
-			clientException.printStackTrace();
-			System.out.println("com.gzmpc.support.tencentCOS.api.TencentCosQuery-002-error "+clientException.getMessage());
-			log.error("com.gzmpc.support.tencentCOS.api.TencentCosQuery-002-error "+clientException.getMessage());
+			LOG.error("com.gzmpc.support.tencentCOS.api.TencentCosQuery-002-error "+clientException.getMessage(), clientException);
 		}
 
 	}
