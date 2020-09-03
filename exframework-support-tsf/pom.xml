@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.gzmpc.exframework</groupId>
 		<artifactId>exframework-root</artifactId>
-		<version>0.3.9.1</version>
+		<version>0.3.9.2</version>
 	</parent>
 	<artifactId>exframework-support-tsf</artifactId>
 	<packaging>pom</packaging>
@@ -14,9 +16,10 @@
 		<module>exframework-tsf-consumer-quickstart</module>
 		<module>exframework-tsf-provider-quickstart</module>
 		<module>exframework-tsf-support-sso</module>
-    <module>exframework-tsf-microservice-quickstart</module>
-  </modules>
-	
+		<module>exframework-tsf-microservice-quickstart</module>
+		<module>exframework-tsf-support-cos</module>
+	</modules>
+
 	<build>
 		<finalName>exframework-support-tsf</finalName>
 	</build>
@@ -33,7 +36,7 @@
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-tsf-support-sso</artifactId>
-				<version>0.3.9.1</version>
+				<version>0.3.9.2</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
