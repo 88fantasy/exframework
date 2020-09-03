@@ -69,9 +69,12 @@ public class LoginUserService {
                 case UserConstants.USER_TYPE_CUSTOMER:
                     user.setCustomer(true);
                     break;
-                default:
+                case UserConstants.USER_TYPE_EMPLOYEE:
+                    user.setEmployee(true);
+                    break;
 
-            }
+                default:
+        }
         }
         httpSession.setAttribute("currentUser", user);
 
