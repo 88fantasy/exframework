@@ -1,0 +1,20 @@
+server:
+    port: 80
+    
+logging:
+    file: /gzmpc-cloud-logs/${spring.application.name}/root.log
+    level:
+        root: INFO
+spring:
+    application:
+        name: microservice-wechat-provider
+    profiles:
+        active: "@profile.active@"
+    jackson:
+        date-format: yyyy-MM-dd HH:mm:ss
+        time-zone: GMT+8
+        
+tsf:
+    swagger: 
+        enabled: true
+        basePackage: com.gzmpc.microservice.wechat.controller
