@@ -34,7 +34,6 @@ public class SaveEventIdGeneratorListener extends AbstractMongoEventListener<Obj
  
 	@Override
 	public void onBeforeConvert(BeforeConvertEvent<Object> event) {
-		System.out.println("SaveEventIdGeneratorListener监听器生效");
 		super.onBeforeConvert(event);
 		Object source = event.getSource();
 		if (source != null) {

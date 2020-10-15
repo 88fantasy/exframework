@@ -5,6 +5,6 @@ package com.gzmpc.microservice.demo.constant;
  * @author pro
  *
  */
-public interface DemoConstants {
+public class DemoConstants {
 
 }

@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>com.gzmpc.exframework</groupId>
 		<artifactId>exframework-root</artifactId>
-		<version>0.3.9.3</version>
+		<version>0.4.1</version>
 	</parent>
 	<artifactId>exframework-support-tsf</artifactId>
 	<packaging>pom</packaging>
@@ -29,19 +29,19 @@
 			<dependency>
 				<groupId>com.tencent.tsf</groupId>
 				<artifactId>spring-cloud-tsf-dependencies</artifactId>
-				<version>1.23.4-Greenwich-RELEASE</version>
+				<version>1.24.0-Greenwich-RELEASE</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-tsf-support-sso</artifactId>
-				<version>0.3.9.3</version>
+				<version>0.4.1</version>
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-tsf-support-cos</artifactId>
-				<version>0.3.9.3</version>
+				<version>0.4.1</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
@@ -59,6 +59,15 @@
 					<artifactId>spring-cloud-tsf-schedule</artifactId>
 				</exclusion>
 			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>io.zipkin.brave</groupId>
+			<artifactId>brave-instrumentation-http</artifactId>
+			<version>5.10.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-sleuth</artifactId>
 		</dependency>
 	</dependencies>
 
