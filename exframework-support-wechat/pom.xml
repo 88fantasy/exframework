@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -7,36 +8,27 @@
 		<artifactId>exframework-root</artifactId>
 		<version>0.4.2</version>
 	</parent>
-	<artifactId>exframework-support-job</artifactId>
+	<artifactId>exframework-support-wechat</artifactId>
 	<packaging>jar</packaging>
-	<name>PlanJob Extension</name>
+	<name>wechat support</name>
 
 	<build>
-		<finalName>exframework-support-job</finalName>
+		<finalName>exframework-support-wechat</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 			</plugin>
 		</plugins>
+
 	</build>
+
 
 	<dependencies>
 		<dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-quartz</artifactId>
-        </dependency>
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
+			<groupId>com.dtflys.forest</groupId>
+			<artifactId>spring-boot-starter-forest</artifactId>
 		</dependency>
 	</dependencies>
 
-	<properties>
-
-	</properties>
-
-	<scm>
-		<tag>exframework-root-0.4.2</tag>
-	</scm>
 </project>
