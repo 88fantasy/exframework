@@ -20,6 +20,12 @@ public class LoginUserDto implements Serializable {
 
     private String telphone;
 
+
+
+    private String sourceId;
+
+    private String sourceAccount;
+
     public String getEmail() {
         return email;
     }
@@ -132,6 +138,21 @@ public class LoginUserDto implements Serializable {
         this.username = username;
     }
 
+    public String getSourceId() {
+        return sourceId;
+    }
+
+    public void setSourceId(String sourceId) {
+        this.sourceId = sourceId;
+    }
+
+    public String getSourceAccount() {
+        return sourceAccount;
+    }
+
+    public void setSourceAccount(String sourceAccount) {
+        this.sourceAccount = sourceAccount;
+    }
 
 }
 
