@@ -133,9 +133,9 @@
 			</releases>
 		</repository>
 	</repositories>
-	
+
 	<pluginRepositories>
-		<repository>
+		<pluginRepository>
 			<id>gzmpc</id>
 			<name>Gzmpc Repository</name>
 			<url>http://maven.gzmpc.com/repository/maven-public/</url>
@@ -145,7 +145,7 @@
 			<releases>
 				<enabled>true</enabled>
 			</releases>
-		</repository>
+		</pluginRepository>
 	</pluginRepositories>
 
 	<distributionManagement>
@@ -260,7 +260,7 @@
 				<artifactId>exframework-support-tsf</artifactId>
 				<version>0.4.2.1</version>
 			</dependency>
-			
+
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-wechat</artifactId>
@@ -272,7 +272,7 @@
 				<artifactId>javax.servlet-api</artifactId>
 				<version>4.0.1</version>
 			</dependency>
-			
+
 
 			<dependency>
 				<groupId>org.springframework.boot</groupId>
