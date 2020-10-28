@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>com.gzmpc.exframework</groupId>
 		<artifactId>exframework-root</artifactId>
-		<version>0.4.2</version>
+		<version>0.4.2.1</version>
 	</parent>
 	<artifactId>exframework-support-tsf</artifactId>
 	<packaging>pom</packaging>
@@ -36,12 +36,12 @@
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-tsf-support-sso</artifactId>
-				<version>0.4.2</version>
+				<version>0.4.2.1</version>
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-tsf-support-cos</artifactId>
-				<version>0.4.2</version>
+				<version>0.4.2.1</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

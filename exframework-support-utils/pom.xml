@@ -3,13 +3,13 @@
   <parent>
     <groupId>com.gzmpc.exframework</groupId>
     <artifactId>exframework-root</artifactId>
-    <version>0.4.2</version>
+    <version>0.4.2.1</version>
   </parent>
   <artifactId>exframework-support-utils</artifactId>
   <packaging>jar</packaging>
   <name>utils extension</name>
 
   <scm>
-    <tag>exframework-root-0.4.2</tag>
+    <tag>exframework-root-0.4.2.1</tag>
   </scm>
 </project>
