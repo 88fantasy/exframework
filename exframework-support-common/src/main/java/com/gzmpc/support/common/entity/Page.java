@@ -1,5 +1,7 @@
 package com.gzmpc.support.common.entity;
 
+import org.springframework.lang.Nullable;
+
 /**
 * @author rwe
 * @version 创建时间：Jun 10, 2020 12:53:48 PM
@@ -11,12 +13,14 @@ public class Page {
 	/**
 	 * 当前页
 	 */
-    private Integer current = 1;
+	@Nullable
+    private Integer current;
 
 	/**
 	 * 每页条数
 	 */
-    private Integer pageSize = 20;
+	@Nullable
+    private Integer pageSize;
 	
 	public Page() {
 		
@@ -46,4 +50,6 @@ public class Page {
 	public Integer skip() {
 		return (this.getCurrent() - 1 ) * this.getPageSize();
 	}
+	
+	public static Page DEFAULT = new Page(1,20);
 }
