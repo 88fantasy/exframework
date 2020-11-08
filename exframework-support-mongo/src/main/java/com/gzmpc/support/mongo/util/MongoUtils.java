@@ -11,7 +11,7 @@ import com.gzmpc.support.common.entity.Pager;
 
 public class MongoUtils {
 
-	public <T> PageModel<T> queryListByPage(MongoTemplate template, Query query, Page page, Class<T> entityClass) {
+	public static <T> PageModel<T> queryListByPage(MongoTemplate template, Query query, Page page, Class<T> entityClass) {
 		long total = template.count(query, entityClass);
 		Pager pager = new Pager(total, page);
 		query.skip(page.skip()).limit(page.getPageSize());
