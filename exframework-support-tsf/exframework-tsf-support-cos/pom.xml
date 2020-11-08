@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>com.gzmpc.exframework</groupId>
 		<artifactId>exframework-support-tsf</artifactId>
-		<version>0.4.2.1</version>
+		<version>0.5</version>
 	</parent>
 	<artifactId>exframework-tsf-support-cos</artifactId>
 	<packaging>jar</packaging>
@@ -24,7 +24,6 @@
        <dependency>
 			<groupId>com.qcloud</groupId>
 			<artifactId>cos_api</artifactId>
-			<version>5.6.8</version>
 		</dependency>
 	</dependencies>
 

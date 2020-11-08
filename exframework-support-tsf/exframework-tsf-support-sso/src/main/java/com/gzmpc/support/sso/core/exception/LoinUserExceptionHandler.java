@@ -1,7 +1,6 @@
 package com.gzmpc.support.sso.core.exception;
 
 import com.gzmpc.support.sso.core.dto.ResponseResult;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;

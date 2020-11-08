@@ -3,8 +3,6 @@ package com.gzmpc.exframework.support.log;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.http.Consts;
-import org.apache.http.entity.ContentType;
 import com.alibaba.fastjson.JSONObject;
 
 import com.gzmpc.exframework.support.log.util.ClientUtil;

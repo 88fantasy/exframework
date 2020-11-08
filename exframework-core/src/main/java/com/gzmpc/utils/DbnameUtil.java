@@ -1,20 +1,8 @@
 package com.gzmpc.utils;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
-import org.apache.commons.dbutils.DbUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
-import com.gzmpc.support.common.util.SpringContextUtils;
-import com.gzmpc.support.jdbc.dao.DbDao;
 
 /**
  * 管理DBNAME类

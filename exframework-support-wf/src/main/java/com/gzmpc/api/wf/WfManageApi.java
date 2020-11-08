@@ -3,24 +3,19 @@ package com.gzmpc.api.wf;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.FormParam;
-import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.apache.commons.dbutils.DbUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -31,10 +26,7 @@ import com.gzmpc.exception.StartException;
 import com.gzmpc.login.LoginService;
 import com.gzmpc.metadata.sys.Account;
 import com.gzmpc.support.common.exception.BuildException;
-import com.gzmpc.support.common.util.JSONUtil;
 import com.gzmpc.utils.Const;
-import com.gzmpc.utils.QuerySupport;
-import com.gzmpc.wf.AssService;
 
 @Controller
 @Path("wfmgr")
