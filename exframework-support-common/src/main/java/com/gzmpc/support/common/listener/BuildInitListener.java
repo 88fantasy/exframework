@@ -1,4 +1,4 @@
-package com.gzmpc.support.common.init;
+package com.gzmpc.support.common.listener;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;

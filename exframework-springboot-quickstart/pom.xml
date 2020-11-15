@@ -4,7 +4,7 @@
 	<parent>
         <groupId>com.gzmpc.exframework</groupId>
         <artifactId>exframework-root</artifactId>
-        <version>0.5</version>
+        <version>0.5.1</version>
     </parent>
 	<artifactId>exframework-springboot-quickstart</artifactId>
 	<name>exframework-springboot-quickstart</name>

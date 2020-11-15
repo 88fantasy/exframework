@@ -27,7 +27,7 @@ public class BuildService {
 			Buildable b = SpringContextUtils.getBeanById(beanid,Buildable.class);
 			if(b != null ) {
 				try {
-					b.build();
+					b.build(SpringContextUtils.getApplicationContext());
 				} catch (BuildException e) {
 					log.error(e.getMessage(), e);
 					throw new RuntimeException("找不到实现接口Bean["+beanid+"]加载失败");
@@ -51,7 +51,7 @@ public class BuildService {
 			if(o instanceof Buildable){	//判断是否实现了接口
 				log.info("加载["+o.getClass().getName()+"]开始");
 				try{
-					((Buildable) o).build();
+					((Buildable) o).build(ac);
 					log.info("加载["+o.getClass().getName()+"]结束");
 				} catch (BuildException e) {
 					log.error("加载["+o.getClass().getName()+"]失败:"+e.getMessage(),e);

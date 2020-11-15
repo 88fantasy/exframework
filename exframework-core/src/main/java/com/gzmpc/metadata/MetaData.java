@@ -7,6 +7,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import org.apache.commons.dbutils.DbUtils;
 import org.apache.commons.logging.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Repository;
 
 import com.gzmpc.dao.SystemDao;
@@ -121,7 +122,7 @@ public class MetaData implements Buildable {
 	 */
 	
 	@Override
-	public void build() {
+	public void build(ApplicationContext ac) {
 		
 		if("webapp".equals(systemConst.SYS_TABLE_CONFIG)) {
 		
