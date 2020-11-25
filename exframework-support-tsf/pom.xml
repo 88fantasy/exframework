@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.gzmpc.exframework</groupId>
@@ -16,8 +18,8 @@
 		<module>exframework-tsf-support-sso</module>
 		<module>exframework-tsf-microservice-quickstart</module>
 		<module>exframework-tsf-support-cos</module>
-    <module>exframework-tsf-support-tdmq</module>
-  </modules>
+		<module>exframework-tsf-support-tdmq</module>
+	</modules>
 
 	<build>
 		<finalName>exframework-support-tsf</finalName>
@@ -43,6 +45,11 @@
 				<version>0.5.1</version>
 			</dependency>
 			<dependency>
+				<groupId>com.gzmpc.exframework</groupId>
+				<artifactId>exframework-tsf-support-tdmq</artifactId>
+				<version>0.5.1</version>
+			</dependency>
+			<dependency>
 				<groupId>com.tencent.cloud </groupId>
 				<artifactId>tct-spring-boot-starter </artifactId>
 				<version>1.2.0</version>
@@ -57,22 +64,16 @@
 				<artifactId>cos_api</artifactId>
 				<version>5.6.24</version>
 			</dependency>
-			
-			<dependency>
-			    <groupId>org.redisson</groupId>
-			    <artifactId>redisson-spring-boot-starter</artifactId>
-			    <version>3.11.5</version>
-			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
 
 	<dependencies>
 		<dependency>
-	      <groupId>com.gzmpc.exframework</groupId>
-	      <artifactId>exframework-support-common</artifactId>
-	    </dependency>
-		
+			<groupId>com.gzmpc.exframework</groupId>
+			<artifactId>exframework-support-common</artifactId>
+		</dependency>
+
 		<!-- TSF 启动器 -->
 		<dependency>
 			<groupId>com.tencent.tsf</groupId>
