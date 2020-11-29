@@ -4,7 +4,7 @@
 	<parent>
         <groupId>com.gzmpc.exframework</groupId>
         <artifactId>exframework-root</artifactId>
-        <version>0.5.1</version>
+        <version>0.5.2</version>
     </parent>
 	<artifactId>exframework-springboot-quickstart</artifactId>
 	<name>exframework-springboot-quickstart</name>
@@ -35,9 +35,17 @@
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>
+				<excludes>
+					<exclude>application*.yml</exclude>
+				</excludes>
 			</resource>
 			<resource>
-				<directory>src/main/resources.${build.profile.id}</directory>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+				<includes>
+					<include>application.yml</include>
+					<include>application-${profile.active}.yml</include>
+				</includes>
 			</resource>
 		</resources>
 	</build>
@@ -47,7 +55,7 @@
 		<profile>
 			<id>dev</id>
 			<properties>
-				<build.profile.id>dev</build.profile.id>
+				<profile.active>dev</profile.active>
 			</properties>
 			<activation>
 				<activeByDefault>true</activeByDefault>
@@ -57,88 +65,34 @@
 		<profile>
 			<id>test</id>
 			<properties>
-				<build.profile.id>test</build.profile.id>
+				<profile.active>test</profile.active>
 			</properties>
 		</profile>
 		<!--预生产环境 -->
 		<profile>
 			<id>pre</id>
 			<properties>
-				<build.profile.id>pre</build.profile.id>
+				<profile.active>pre</profile.active>
 			</properties>
 		</profile>
 		<!--生产环境 -->
 		<profile>
 			<id>prod</id>
 			<properties>
-				<build.profile.id>prod</build.profile.id>
+				<profile.active>prod</profile.active>
 			</properties>
 		</profile>
 	</profiles>
 
 	<dependencies>
-	    <dependency>
-		    <groupId>javax.servlet</groupId>
-		    <artifactId>javax.servlet-api</artifactId>
-		    <scope>provided</scope>
-		</dependency>
-		
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>javax.validation</groupId>
-			<artifactId>validation-api</artifactId>
-		</dependency>
-
 		<dependency>
 			<groupId>com.gzmpc.exframework</groupId>
-			<artifactId>exframework-support-rest</artifactId>
+			<artifactId>exframework-support-jersey</artifactId>
 		</dependency>
 		
 		<dependency>
             <groupId>com.gzmpc.exframework</groupId>
             <artifactId>exframework-support-jdbc</artifactId>
-        </dependency>
-
-		 <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-jdbc</artifactId>
-        </dependency>
-
-        <!-- Compile -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-jersey</artifactId>
-             <exclusions>  
-                <exclusion>  
-                    <groupId>org.springframework.boot</groupId>  
-                    <artifactId>spring-boot-starter-tomcat</artifactId>  
-                </exclusion>
-                <exclusion>
-                    <groupId>org.apache.tomcat.embed</groupId>
-                    <artifactId>tomcat-embed-el</artifactId>
-                </exclusion>
-             </exclusions>
-        </dependency>
-
-        <!-- Provided -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-            <exclusions>  
-                <exclusion>  
-                    <groupId>org.springframework.boot</groupId>  
-                    <artifactId>spring-boot-starter-tomcat</artifactId>  
-                </exclusion>  
-            </exclusions>
-            <!-- <scope>provided</scope> -->
-        </dependency>
-        
-        <dependency>  
-            <groupId>org.springframework.boot</groupId>  
-            <artifactId>spring-boot-starter-undertow</artifactId>
         </dependency>
         
         <dependency>

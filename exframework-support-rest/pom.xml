@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>com.gzmpc.exframework</groupId>
 		<artifactId>exframework-root</artifactId>
-		<version>0.5.1</version>
+		<version>0.5.2</version>
 	</parent>
 	<artifactId>exframework-support-rest</artifactId>
 	<packaging>jar</packaging>
@@ -25,57 +25,31 @@
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
-				<groupId>org.glassfish.jersey</groupId>
-				<artifactId>jersey-bom</artifactId>
-				<version>${jersey.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
+				<groupId>com.dtflys.forest</groupId>
+				<artifactId>spring-boot-starter-forest</artifactId>
+				<version>${forest.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
 	<dependencies>
 		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
 		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
+			<groupId>com.gzmpc.exframework</groupId>
+			<artifactId>exframework-support-common</artifactId>
 		</dependency>
-		
 		<dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-jersey</artifactId>
-		</dependency>
-		
-		<dependency>
-            <groupId>org.glassfish.jersey.media</groupId>
-            <artifactId>jersey-media-multipart</artifactId>
-        </dependency>
-		
-
-
-		<dependency>
-			<groupId>io.swagger.core.v3</groupId>
-			<artifactId>swagger-jaxrs2</artifactId>
-			<version>2.1.2</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.apache.httpcomponents</groupId>
-			<artifactId>httpclient</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>fastjson</artifactId>
+			<groupId>com.dtflys.forest</groupId>
+			<artifactId>spring-boot-starter-forest</artifactId>
 		</dependency>
 
 	</dependencies>
 
 	<properties>
-		<jersey.version>2.30</jersey.version>
+		<forest.version>1.4.12</forest.version>
 	</properties>
 </project>

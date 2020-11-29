@@ -1,4 +1,4 @@
-package com.gzmpc.support.common.enums;
+package com.gzmpc.support.rest.enums;
 
 /**
  * API 响应码

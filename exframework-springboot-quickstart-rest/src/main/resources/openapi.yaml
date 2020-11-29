@@ -1,0 +1,15 @@
+resourcePackages:
+- io.swagger.sample.resource
+prettyPrint: true
+cacheTTL: 0
+openAPI:
+  info:
+    version: '1.0'
+    title: '微信中心'
+    description: '接口文档'
+    termsOfService: http://swagger.io/terms/
+    contact:
+      email: ruanweier@gzmpc.com
+    license:
+      name: Apache 2.0
+      url: http://www.apache.org/licenses/LICENSE-2.0.html

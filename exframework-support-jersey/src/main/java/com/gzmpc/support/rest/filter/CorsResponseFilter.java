@@ -6,8 +6,8 @@ import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerResponseContext;
 import javax.ws.rs.container.ContainerResponseFilter;
 
-import org.apache.http.HttpStatus;
-import org.apache.http.entity.StringEntity;
+import org.springframework.http.HttpStatus;
+
 
 /**
 * @author rwe
@@ -33,8 +33,7 @@ public class CorsResponseFilter implements ContainerResponseFilter {
 		// 浏览器是会先发一次options请求，如果请求通过，则继续发送正式的post请求
         // 配置options的请求返回
 		if ("OPTIONS".equals(requestContext.getMethod())) {
-			responseContext.setStatus(HttpStatus.SC_OK);
-			responseContext.setEntity(new StringEntity("OPTIONS returns OK","utf-8"));
+			responseContext.setStatus(HttpStatus.OK.value());
 		}
 	}
 

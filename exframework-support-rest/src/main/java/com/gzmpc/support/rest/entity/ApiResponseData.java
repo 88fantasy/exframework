@@ -1,6 +1,6 @@
-package com.gzmpc.support.common.entity;
+package com.gzmpc.support.rest.entity;
 
-import com.gzmpc.support.common.enums.ResultCode;
+import com.gzmpc.support.rest.enums.ResultCode;
 
 public class ApiResponseData<T> extends ApiResponse {
 
