@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>com.gzmpc.exframework</groupId>
 		<artifactId>exframework-root</artifactId>
-		<version>0.5.2</version>
+		<version>0.5.2.1</version>
 	</parent>
 	<artifactId>exframework-support-redis</artifactId>
 	<packaging>jar</packaging>
@@ -22,16 +22,10 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-redis</artifactId>
 		</dependency>
-		<!-- 
-		<dependency>
-			<groupId>org.redisson</groupId>
-			<artifactId>redisson-spring-boot-starter</artifactId>
-			<version>${redisson.version}</version>
-		</dependency> -->
 	</dependencies>
 
 	<properties>
-		<redisson.version>3.13.6</redisson.version>
+	
 	</properties>
 
 </project>

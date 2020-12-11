@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>com.gzmpc.exframework</groupId>
 		<artifactId>exframework-root</artifactId>
-		<version>0.5.2</version>
+		<version>0.5.2.1</version>
 	</parent>
 	<artifactId>exframework-support-jdbc-mysql</artifactId>
 	<packaging>jar</packaging>

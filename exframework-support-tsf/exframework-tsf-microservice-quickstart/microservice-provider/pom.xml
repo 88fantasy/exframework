@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>com.gzmpc.exframework</groupId>
 		<artifactId>exframework-tsf-microservice-quickstart</artifactId>
-		<version>0.5.2</version>
+		<version>0.5.2.1</version>
 	</parent>
 	<artifactId>microservice-provider</artifactId>
 	<name>microservice-provider</name>
