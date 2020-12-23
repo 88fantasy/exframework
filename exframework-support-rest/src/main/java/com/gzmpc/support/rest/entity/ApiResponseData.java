@@ -9,6 +9,10 @@ public class ApiResponseData<T> extends ApiResponse {
 	 */
 	private T data;
 	
+	public ApiResponseData() {
+		this(ResultCode.INTERNAL_SERVER_ERROR, null);
+	}
+	
 	public ApiResponseData(T data) {
 		this(ResultCode.OK, data);
 	}
@@ -23,6 +27,10 @@ public class ApiResponseData<T> extends ApiResponse {
 	
 	public ApiResponseData(int code, String message, boolean status, T data) {
 		super(code, message, status);
+		this.data = data;
+	}
+
+	public void setData(T data) {
 		this.data = data;
 	}
 

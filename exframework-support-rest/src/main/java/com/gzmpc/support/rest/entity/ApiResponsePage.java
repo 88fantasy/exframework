@@ -5,10 +5,15 @@ import com.gzmpc.support.rest.enums.ResultCode;
 
 public class ApiResponsePage<T> extends ApiResponse {
 
-
+	/**
+	 * 分页数据
+	 */
 	private PageModel<T> data;
 	
-
+	public ApiResponsePage() {
+		this(ResultCode.INTERNAL_SERVER_ERROR, null);
+	}
+	
 	public ApiResponsePage(PageModel<T> data) {
 		this(ResultCode.OK, data);
 	}
@@ -26,6 +31,10 @@ public class ApiResponsePage<T> extends ApiResponse {
 		this.data = data;
 	}
 
+
+	public void setData(PageModel<T> data) {
+		this.data = data;
+	}
 
 	public PageModel<T> getData() {
 		return data;

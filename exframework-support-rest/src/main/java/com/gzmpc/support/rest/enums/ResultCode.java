@@ -22,7 +22,7 @@ public enum ResultCode {
 	
 	
 	INTERNAL_SERVER_ERROR(500, "服务器处理请求发生错误"),
-	Bad_Gateway(502, "网关错误"),
+	BAD_GATEWAY(502, "网关错误"),
 	SERVICE_UNAVAILABLE(503, "服务不可用,无法处理请求"),
 	GATEWAY_TIMEOUT(504, "网关超时")
 	;
