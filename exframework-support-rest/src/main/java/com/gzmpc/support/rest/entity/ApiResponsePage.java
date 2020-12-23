@@ -31,5 +31,7 @@ public class ApiResponsePage<T> extends ApiResponse {
 		return data;
 	}
 	
-	
+	public PageModel<T> getDataOrElse(PageModel<T> d) {
+		return data == null ? d : data ;
+	}
 }

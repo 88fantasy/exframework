@@ -29,4 +29,8 @@ public class ApiResponseData<T> extends ApiResponse {
 	public T getData() {
 		return data;
 	}
+	
+	public T getDataOrElse(T d) {
+		return data == null ? d : data ;
+	}
 }
