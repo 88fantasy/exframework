@@ -20,7 +20,9 @@ import com.gzmpc.support.rest.enums.ResultCode;
  * 接口全局处理
  */
 @RestControllerAdvice
-public class ControllerExceptionControllerAdvice {
+public class GlobalControllerExceptionControllerAdvice {
+	
+	public static final String PARAMS_ERROR = "参数校验错误";
 
 	/**
 	 * 参数范围校验错误
@@ -30,7 +32,7 @@ public class ControllerExceptionControllerAdvice {
 	@ExceptionHandler(MethodArgumentNotValidException.class)
     public ApiResponseData<List<String>> MethodArgumentNotValidExceptionHandler(MethodArgumentNotValidException e) {
 		// 从异常对象中拿到ObjectError对象
-        return new ApiResponseData<List<String>>(ResultCode.BAD_REQUEST, "参数校验错误", e.getBindingResult().getAllErrors().stream().map(ObjectError::getDefaultMessage).collect(Collectors.toList()));
+        return new ApiResponseData<List<String>>(ResultCode.BAD_REQUEST, PARAMS_ERROR, e.getBindingResult().getAllErrors().stream().map(ObjectError::getDefaultMessage).collect(Collectors.toList()));
     }
 	
 	@ExceptionHandler(ApiException.class)
