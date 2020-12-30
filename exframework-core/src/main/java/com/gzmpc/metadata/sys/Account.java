@@ -2,158 +2,96 @@ package com.gzmpc.metadata.sys;
 
 import java.util.*;
 
-import com.gzmpc.metadata.func.Func;
+import com.gzmpc.metadata.dict.DictionaryEnum;
+import com.gzmpc.metadata.module.Module;
 
 import java.io.*;
 
 /**
- *对表 SYS_ACCOUNT：登陆账号 进行数据映射的bean
- * <p>
- * Title:
- * </p>
- * <p>
- * Description:
- * </p>
- * <p>
- * Copyright: Copyright (c) 2016
- * </p>
- * <p>
- * Company:
- * </p>
+ * 帐号实体类
  * 
- * @author unascribed
- * @version 1.0
+ * @author rwe
+ *
  */
-public class Account implements Serializable{
+public class Account implements Serializable {
+
+	private static final long serialVersionUID = -1150456135277097507L;
 
 	/**
-	 * 
+	 * 登陆账号ID
 	 */
-	private static final long serialVersionUID = -1150456135277097507L;
-	// 登陆账号ID
 	private String accountId;
-	private String password;
-	private Date lastLoginDate;
-	private String lastLoginIp;
-	private String lastLoginArea;
-	private Long accounttype;
-	private Long accountStatus;
 
-	public void setAccountId(String accountId) {
-		this.accountId = accountId;
-	}
+	/**
+	 * 密码
+	 */
+	private String password;
+
+	// 帐号名称
+	private String accountName;
+
+	/**
+	 * 最近登录日期
+	 */
+	private Date lastLoginDate;
+
+	/**
+	 * 最近登录 IP
+	 */
+	private String lastLoginIp;
+
+	/**
+	 * 最近登录地区
+	 */
+	private String lastLoginArea;
+
+	/**
+	 * 帐号类型
+	 */
+	private Long accounttype;
+
+	/**
+	 * 帐号状态
+	 */
+	private AccountStatusTypeEnum accountStatus;
+
+	// 截止日期
+	private Date accountInvalidDate;
+
+	private Map<String, Permission> permissions;
+
+	private List<Module> modules;
 
 	public String getAccountId() {
 		return accountId;
 	}
 
-	public void setAccountPassword(String accountPassword) {
-		try {
-			// this.internalAccountPassword = Encrypter.encode(accountPassword);
-			// mod by clq 20090730 密码加密方式变更
-			this.password = accountPassword;
-		} catch (Exception ex) {
-			this.password = null;
-		}
+	public void setAccountId(String accountId) {
+		this.accountId = accountId;
 	}
 
-	public String getAccountPassword() {
-		try {
-			// return Encrypter.decode(internalAccountPassword);
-			return password;
-		} catch (Exception ex) {
-			return null;
-		}
-
+	public String getPassword() {
+		return password;
 	}
 
-	// 状态
-	public void setAccountStatus(Long accountStatus) {
-		this.accountStatus = accountStatus;
-	}
-
-	public Long getAccountStatus() {
-		return accountStatus;
-	}
-
-	// 帐号名称
-	private String accountName;
-
-	public void setAccountName(String accountName) {
-		this.accountName = accountName;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getAccountName() {
 		return accountName;
 	}
 
-	// 截止日期
-	private Date accountInvalidDate;
-
-	public Date getAccountInvalidDate() {
-		return new Date(accountInvalidDate.getTime());
-	}
-
-	public void setAccountInvalidDate(Date accountInvalidDate) {
-		this.accountInvalidDate = new Date(accountInvalidDate.getTime());
-	}
-
-	// 拥有的角色
-
-	/**
-	 * @link dependency
-	 * @stereotype bind
-	 * @clientRole 0..n
-	 * @supplierRole 0..n
-	 */
-	/* # Role lnkRole; */
-	private List<Role> roles;
-
-	public List<Role> getRoles() {
-		return roles;
-	}
-
-	public void setRoles(List<Role> roles) {
-		this.roles = roles;
-	}
-	
-	public Role getRoleById(String role_id){
-		if(roles == null)
-			return null;
-		for(int i=0;i<roles.size();i++){
-			Role r = (Role) roles.get(i);
-			if(r.getRoleId().longValue() == new Long(role_id).longValue()){
-				return r;
-			}
-		}
-		return null;
-	}
-
-	private Map<String,Module> modules ;
-	
-
-	public Map<String,Module> getModules() {
-		return modules;
-	}
-
-	public void setModules(Map<String,Module> modules) {
-		this.modules = modules;
-	}
-
-	public String getLastLoginArea() {
-		return lastLoginArea;
-	}
-
-	public void setLastLoginArea(String lastLoginArea) {
-		this.lastLoginArea = lastLoginArea;
-	}
-
-	public void setLastLoginDate(Date lastLoginDate) {
-		this.lastLoginDate = lastLoginDate;
+	public void setAccountName(String accountName) {
+		this.accountName = accountName;
 	}
 
 	public Date getLastLoginDate() {
 		return lastLoginDate;
+	}
+
+	public void setLastLoginDate(Date lastLoginDate) {
+		this.lastLoginDate = lastLoginDate;
 	}
 
 	public String getLastLoginIp() {
@@ -164,6 +102,14 @@ public class Account implements Serializable{
 		this.lastLoginIp = lastLoginIp;
 	}
 
+	public String getLastLoginArea() {
+		return lastLoginArea;
+	}
+
+	public void setLastLoginArea(String lastLoginArea) {
+		this.lastLoginArea = lastLoginArea;
+	}
+
 	public Long getAccounttype() {
 		return accounttype;
 	}
@@ -171,15 +117,81 @@ public class Account implements Serializable{
 	public void setAccounttype(Long accounttype) {
 		this.accounttype = accounttype;
 	}
-	
-	private List<Func> funcs;
 
-	public List<Func> getFuncs() {
-		return funcs;
+	public AccountStatusTypeEnum getAccountStatus() {
+		return accountStatus;
 	}
 
-	public void setFuncs(List<Func> funcs) {
-		this.funcs = funcs;
+	public void setAccountStatus(AccountStatusTypeEnum accountStatus) {
+		this.accountStatus = accountStatus;
 	}
+
+	public Date getAccountInvalidDate() {
+		return accountInvalidDate;
+	}
+
+	public void setAccountInvalidDate(Date accountInvalidDate) {
+		this.accountInvalidDate = accountInvalidDate;
+	}
+
+	public Map<String, Permission> getPermissions() {
+		return permissions;
+	}
+
+	public void setPermissions(Map<String, Permission> permissions) {
+		this.permissions = permissions;
+	}
+
+	public List<Module> getModules() {
+		return modules;
+	}
+
+	public void setModules(List<Module> modules) {
+		this.modules = modules;
+	}
+
 	
+	public enum AccountStatusTypeEnum implements DictionaryEnum<AccountStatusTypeEnum> {
+
+		/**
+		 * 有效
+		 */
+		VALID("valid", "有效"),
+
+		/**
+		 * 失效
+		 */
+		INVALID("invalid", "失效"),
+
+		/**
+		 * 禁止
+		 */
+		FORBIDDEN("forbidden", "禁止")
+
+		;
+
+		private String key;
+
+		private String name;
+
+		private AccountStatusTypeEnum(String key, String name) {
+			this.key = key;
+			this.name = name;
+		}
+
+		@Override
+		public String getKey() {
+			return key;
+		}
+
+		@Override
+		public String getName() {
+			return name;
+		}
+
+		@Override
+		public AccountStatusTypeEnum[] getValues() {
+			return AccountStatusTypeEnum.values();
+		}
+	}
 }

@@ -1,11 +1,11 @@
 package com.gzmpc.metadata.queryparam;
 
 
-import com.gzmpc.metadata.MDObject;
+import com.gzmpc.metadata.Meta;
 /**
  * 查询框类
  * */
-public class QueryParam extends MDObject {
+public class QueryParam extends Meta {
 	/**
 	 * 
 	 */
@@ -26,5 +26,4 @@ public class QueryParam extends MDObject {
 	public void setQueryParamItems(QueryParamItem[] queryParamItems) {
 		this.queryParamItems = queryParamItems;
 	}
-
 }

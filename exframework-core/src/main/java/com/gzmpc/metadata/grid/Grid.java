@@ -1,57 +1,33 @@
 package com.gzmpc.metadata.grid;
 
-public class Grid {
-	String toolbarCode;
-	String funcCode;
-	String gridCode;
-	String gridname;
+import com.gzmpc.metadata.Meta;
+
+public class Grid extends Meta {
+
+	private static final long serialVersionUID = -3738140236694706028L;
+
+	String moduleKey;
+	
 	String dataSource;
+	
 	String dataIndex;
+	
 	String queryType;
+	
 	String autoQuery;
+	
 	String pagesize;
+	
 	String querymoduleid;
+	
 	String downloadmoduleid;
-	String sumfieldnames;
-	int selectmodel;
-	String defalutToolbar;
-	String extendBeanName;
-	String orderby;
 
-	String dbbeanname;// 查询数据时调用的数据库名称
-	boolean needpagecount; // 查询数据时是否提供总页数
-	String afterQueryBeanName;// 查询后处理类
-
-	public String getToolbarCode() {
-		return toolbarCode;
+	public String getModuleKey() {
+		return moduleKey;
 	}
 
-	public void setToolbarCode(String toolbarCode) {
-		this.toolbarCode = toolbarCode;
-	}
-
-	public String getFuncCode() {
-		return funcCode;
-	}
-
-	public void setFuncCode(String funcCode) {
-		this.funcCode = funcCode;
-	}
-
-	public String getGridCode() {
-		return gridCode;
-	}
-
-	public void setGridCode(String gridCode) {
-		this.gridCode = gridCode;
-	}
-
-	public String getGridname() {
-		return gridname;
-	}
-
-	public void setGridname(String gridname) {
-		this.gridname = gridname;
+	public void setModuleKey(String moduleKey) {
+		this.moduleKey = moduleKey;
 	}
 
 	public String getDataSource() {
@@ -109,69 +85,16 @@ public class Grid {
 	public void setDownloadmoduleid(String downloadmoduleid) {
 		this.downloadmoduleid = downloadmoduleid;
 	}
+	
+//	String sumfieldnames;
+//	int selectmodel;
+//	String defalutToolbar;
+//	String extendBeanName;
+//	String orderby;
+//
+//	String dbbeanname;// 查询数据时调用的数据库名称
+//	boolean needpagecount; // 查询数据时是否提供总页数
+//	String afterQueryBeanName;// 查询后处理类
 
-	public String getSumfieldnames() {
-		return sumfieldnames;
-	}
-
-	public void setSumfieldnames(String sumfieldnames) {
-		this.sumfieldnames = sumfieldnames;
-	}
-
-	public int getSelectmodel() {
-		return selectmodel;
-	}
-
-	public void setSelectmodel(int selectmodel) {
-		this.selectmodel = selectmodel;
-	}
-
-	public String getDefalutToolbar() {
-		return defalutToolbar;
-	}
-
-	public void setDefalutToolbar(String defalutToolbar) {
-		this.defalutToolbar = defalutToolbar;
-	}
-
-	public String getExtendBeanName() {
-		return extendBeanName;
-	}
-
-	public void setExtendBeanName(String extendBeanName) {
-		this.extendBeanName = extendBeanName;
-	}
-
-	public String getOrderby() {
-		return orderby;
-	}
-
-	public void setOrderby(String orderby) {
-		this.orderby = orderby;
-	}
-
-	public String getDbbeanname() {
-		return dbbeanname;
-	}
-
-	public void setDbbeanname(String dbbeanname) {
-		this.dbbeanname = dbbeanname;
-	}
-
-	public boolean getNeedpagecount() {
-		return needpagecount;
-	}
-
-	public void setNeedpagecount(boolean needpagecount) {
-		this.needpagecount = needpagecount;
-	}
-
-	public String getAfterQueryBeanName() {
-		return afterQueryBeanName;
-	}
-
-	public void setAfterQueryBeanName(String afterQueryBeanName) {
-		this.afterQueryBeanName = afterQueryBeanName;
-	}
-
+	
 }

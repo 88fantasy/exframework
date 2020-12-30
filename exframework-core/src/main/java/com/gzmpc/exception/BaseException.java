@@ -1,7 +1,7 @@
 package com.gzmpc.exception;
 
 @SuppressWarnings("serial")
-public class BaseException extends Exception {
+public class BaseException extends RuntimeException {
 
 	public BaseException() {
 		super();

@@ -1,39 +1,37 @@
 package com.gzmpc.metadata.queryparam;
 
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-
-import org.springframework.stereotype.Component;
-
-import com.gzmpc.metadata.queryparamitem.QueryParamBase;
-import com.gzmpc.support.common.util.SpringContextUtils;
-
 /**
  * 查询适配器
  * 
  */
 
-@Component
-public class QueryParamAdapter {
-	public Map<String, String> queryparamClassMap;
+public enum QueryParamAdapter {
 
-	QueryParamAdapter() {
-		queryparamClassMap = new ConcurrentHashMap<String, String>();
-		queryparamClassMap.put("s", "QPIString");
-		queryparamClassMap.put("su", "QPIStringUpper");
-		queryparamClassMap.put("sl", "QPIStringLower");
-		queryparamClassMap.put("tree", "QPITree");// 树形
-		queryparamClassMap.put("n", "QPINumber");
-		queryparamClassMap.put("h", "QPIHov");
-		queryparamClassMap.put("dt", "QPIDate");
-		queryparamClassMap.put("ddl", "QPIDdl");
-		queryparamClassMap.put("sddl", "QPISqlDdl");
+	STRING("s", "QPIString"),
+	STRING_UPPER("su", "QPIStringUpper"),
+	STRING_LOWER("sl", "QPIStringLower"),
+	NUMBER("n", "QPINumber"),
+	HOV("h", "QPIHov"),
+	DATE("dt", "QPIDate"),
+	DDL("ddl", "QPIDdl")
+	
+	;
+	private String type;
+
+	private String bean;
+
+	private QueryParamAdapter(String type, String bean) {
+		this.type = type;
+		this.bean = bean;
 	}
 
-
-	public QueryParamBase retBase(QueryParamItem qpi) {
-		String beanid = queryparamClassMap.get(qpi.getQpitype());
-		QueryParamBase instance = SpringContextUtils.getBeanById(beanid, QueryParamBase.class);
-		return instance;
+	public String getType() {
+		return type;
 	}
+
+	public String getBean() {
+		return bean;
+	}
+
+	
 }

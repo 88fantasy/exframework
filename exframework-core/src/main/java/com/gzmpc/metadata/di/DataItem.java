@@ -1,78 +1,215 @@
 package com.gzmpc.metadata.di;
 
-import com.gzmpc.metadata.MDObject;
+import com.gzmpc.metadata.Meta;
+import com.gzmpc.metadata.dict.Dictionary;
+import com.gzmpc.metadata.dict.DictionaryEnum;
 
 /**
  * 数据项
  */
-public class DataItem extends MDObject {
+public class DataItem extends Meta {
+
+	private static final long serialVersionUID = -6304054523810170909L;
+
 	/**
-	 * 
+	 * 显示风格
 	 */
-	private static final long serialVersionUID = -4460273388483569516L;
-	
-	private String disptypecfg;// 显示风格
-	private String disptypekey;// 风格的关键值（如果是querylist形的，就配置key,如果是sqllist形的就配置sqllist,如果是list形的，就直接配置list列表内容)
-	private String validataTypecfg;// 校证输入值类型。可以为int,email,float形等
-	private String maxlength;//////////// 允许可输入的最长字节。默认取CDM里生成的信息
-	private String precision;// 精度
-	private String sequence;// 查询顺序
-	private String querysql;// 查询语句
+	@Dictionary(key = "displayType")
+	private DataItemDisplayTypeEnum type;
 
-	public String getDisptypecfg() {
-		return disptypecfg;
+	/**
+	 * 风格的关键值（如果是querylist形的，就配置key,如果是sqllist形的就配置sqllist,如果是list形的，就直接配置list列表内容)
+	 */
+	private String displayKey;
+
+	/**
+	 * 校证输入值类型
+	 */
+	@Dictionary(key = "valueType")
+	private DataItemValueTypeEnum valueType;
+
+	/**
+	 * 长度
+	 */
+	private int maxlength;
+
+	/**
+	 * 精度
+	 */
+	private int precision;
+
+
+
+	public DataItemDisplayTypeEnum getType() {
+		return type;
 	}
 
-	public String getDisptypekey() {
-		return disptypekey;
+	public void setType(DataItemDisplayTypeEnum type) {
+		this.type = type;
 	}
 
-	public String getMaxlength() {
+	public DataItemValueTypeEnum getValueType() {
+		return valueType;
+	}
+
+	public void setValueType(DataItemValueTypeEnum valueType) {
+		this.valueType = valueType;
+	}
+
+	public String getDisplayKey() {
+		return displayKey;
+	}
+
+	public void setDisplayKey(String displayKey) {
+		this.displayKey = displayKey;
+	}
+
+
+	public int getMaxlength() {
 		return maxlength;
 	}
 
-	public void setMaxlength(String maxlength) {
+	public void setMaxlength(int maxlength) {
 		this.maxlength = maxlength;
 	}
 
-	public void setDisptypekey(String disptypekey) {
-		this.disptypekey = disptypekey;
-	}
-
-	public void setDisptypecfg(String disptypecfg) {
-		this.disptypecfg = disptypecfg;
-	}
-
-	public String getPrecision() {
+	public int getPrecision() {
 		return precision;
 	}
 
-	public void setPrecision(String precision) {
+	public void setPrecision(int precision) {
 		this.precision = precision;
 	}
 
-	public String getValidataTypecfg() {
-		return validataTypecfg;
+	/**
+	 * 数据项显示类型
+	 * 
+	 * @author rwe
+	 *
+	 */
+	public enum DataItemDisplayTypeEnum implements DictionaryEnum<DataItemDisplayTypeEnum> {
+		/**
+		 * 输入
+		 */
+		INPUT("input", "输入框"),
+		
+		/**
+		 * 密码输入框
+		 */
+		PASSWORD("password", "密码输入框"),
+
+		/**
+		 * 只读
+		 */
+		READONLY("readonly", "只读"),
+
+		/**
+		 * 是否
+		 */
+		CHECKBOX("checkbox", "是否"),
+
+		/**
+		 * 字典
+		 */
+		DICTIONARY("dictionary", "字典");
+
+		private String key;
+
+		private String name;
+
+		private DataItemDisplayTypeEnum(String key, String name) {
+			this.key = key;
+			this.name = name;
+		}
+
+		@Override
+		public String getKey() {
+			return key;
+		}
+
+		@Override
+		public String getName() {
+			return name;
+		}
+
+		@Override
+		public DataItemDisplayTypeEnum[] getValues() {
+			return DataItemDisplayTypeEnum.values();
+		}
+
 	}
 
-	public void setValidataTypecfg(String validataTypecfg) {
-		this.validataTypecfg = validataTypecfg;
-	}
+	/**
+	 * 验证数据类型
+	 * @author rwe
+	 *
+	 */
+	public enum DataItemValueTypeEnum implements DictionaryEnum<DataItemValueTypeEnum> {
 
-	public String getQuerySql() {
-		return querysql;
-	}
+		/**
+		 * 整数
+		 */
+		LONG("long", "整数"),
 
-	public void setQuerySql(String querysql) {
-		this.querysql = querysql;
-	}
+		/**
+		 * 字符串
+		 */
+		STRING("string", "字符串"),
+		
+		/**
+		 * 大写字符串
+		 */
+		UPPERSTRING("upperstring", "大写字符串"),
+		
+		/**
+		 * 小写字符串
+		 */
+		LOWERSTRING("lowerstring", "大写字符串"),
 
-	public String getSequence() {
-		return sequence;
-	}
+		/**
+		 * 小数
+		 */
+		BIGDECIMAL("bigdecimal", "小数"),
 
-	public void setSequence(String sequence) {
-		this.sequence = sequence;
-	}
+		/**
+		 * 布尔
+		 */
+		BOOLEAN("boolean", "布尔"),
 
+		/**
+		 * 日期
+		 */
+		DATE("date", "日期"),
+
+		/**
+		 * 日期
+		 */
+		DATETIME("datetime", "日期时间")
+
+		;
+
+		private String key;
+
+		private String name;
+
+		private DataItemValueTypeEnum(String key, String name) {
+			this.key = key;
+			this.name = name;
+		}
+
+		@Override
+		public String getKey() {
+			return key;
+		}
+
+		@Override
+		public String getName() {
+			return name;
+		}
+
+		@Override
+		public DataItemValueTypeEnum[] getValues() {
+			return DataItemValueTypeEnum.values();
+		}
+	}
 }

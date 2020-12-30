@@ -2,25 +2,12 @@ package com.gzmpc.utils;
 
 import java.text.*;
 
-/**
- *
- * <p>
- * Title:定义常量及类型转化注册类
- * </p>
- * <p>
- * Description:
- * </p>
- * <p>
- * Copyright: Copyright (c) 2016
- * </p>
- * <p>
- * Company:
- * </p>
- * 
- * @author rwe
- * @version 1.0
- */
 
+/**
+ * 定义常量
+ * @author rwe
+ *
+ */
 public class Const {
 
 	public static final String SYSTEM_PROPERTIES = "classpath:system.properties";
@@ -109,19 +96,6 @@ public class Const {
 	public final static String PRFIX_VALUE2 = "value2";
 
 	public static String PRFIX_LENGTH = "oper_length";
-
-	public final static String OPER_EQUAL = "equal";//等于
-	public final static String OPER_GREATER = "greater";//大于
-	public final static String OPER_LESS = "less";//小于
-	public final static String OPER_BETWEEN = "between";//介于
-	public final static String OPER_GREATER_EQUAL = "greater_equal";//大于等于
-	public final static String OPER_LESS_EQUAL = "less_equal";//小于等于
-	public final static String OPER_IN = "in";
-	public final static String OPER_MATCHING = "matching";//匹配
-	public final static String OPER_NOT_EQUAL = "not_equal";//不等于
-	public final static String OPER_ISNULL = "is_null";//为空
-	public final static String OPER_IS_NOT_NULL = "is_not_null";//不为空
-	public final static String OPER_STR  = "str";//为空
 
 	public final static String GRID_OPER_FLAG = "gridOperFlag";
 	public final static String GRID_OPER_FLAG_INSERT = "INSERT";

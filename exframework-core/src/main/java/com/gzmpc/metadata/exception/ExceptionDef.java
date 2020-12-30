@@ -1,8 +1,8 @@
 package com.gzmpc.metadata.exception;
 
-import com.gzmpc.metadata.MDObject;
+import com.gzmpc.metadata.Meta;
 
-public class ExceptionDef extends MDObject{
+public class ExceptionDef extends Meta{
 
 	/**
 	 * 错误定义

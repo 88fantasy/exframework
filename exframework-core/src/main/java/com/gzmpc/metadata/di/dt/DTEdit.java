@@ -27,7 +27,7 @@ import java.util.Map;
  * @version 1.0
  */
 @Component("DTEdit")
-public class DTEdit extends DispType {
+public class DTEdit implements DispType {
 	public Map<String,Object> retDisplay(Form form, Attribute formAttr) {
 		return retDisplayCommon(form,formAttr);
 	}

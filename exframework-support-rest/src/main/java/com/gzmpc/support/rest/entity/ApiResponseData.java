@@ -41,4 +41,8 @@ public class ApiResponseData<T> extends ApiResponse {
 	public T getDataOrElse(T d) {
 		return data == null ? d : data ;
 	}
+	
+	public static <T> ApiResponseData<T> notEnough() {
+		return new ApiResponseData<T>(ResultCode.BAD_REQUEST, PARAM_NOT_ENOUGH, null);
+	}
 }

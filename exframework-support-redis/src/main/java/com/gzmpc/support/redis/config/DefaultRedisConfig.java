@@ -41,9 +41,9 @@ public class DefaultRedisConfig extends CachingConfigurerSupport {
 		om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
 		jacksonSeial.setObjectMapper(om);
 		template.setValueSerializer((RedisSerializer<Object>) jacksonSeial);
-		template.setKeySerializer((RedisSerializer) new StringRedisSerializer());
-		template.setHashKeySerializer((RedisSerializer) new StringRedisSerializer());
-		template.setHashValueSerializer((RedisSerializer) jacksonSeial);
+		template.setKeySerializer((RedisSerializer<?>) new StringRedisSerializer());
+		template.setHashKeySerializer((RedisSerializer<?>) new StringRedisSerializer());
+		template.setHashValueSerializer((RedisSerializer<?>) jacksonSeial);
 		template.afterPropertiesSet();
 		return template;
 	}

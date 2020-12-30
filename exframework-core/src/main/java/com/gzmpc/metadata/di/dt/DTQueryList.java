@@ -3,11 +3,12 @@ package com.gzmpc.metadata.di.dt;
 import com.gzmpc.metadata.attribute.Attribute;
 import com.gzmpc.metadata.di.DataItem;
 import com.gzmpc.metadata.form.Form;
+import com.gzmpc.service.sys.DdlService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.gzmpc.metadata.OperatorPool;
+import com.gzmpc.exception.InitException;
 import java.util.Map;
 
 /**
@@ -30,19 +31,19 @@ import java.util.Map;
  * @version 1.0
  */
 @Component("DTQueryList")
-public class DTQueryList extends DispType {
+public class DTQueryList implements DispType {
 	
 	@Autowired
-	OperatorPool operatorPool;
+	DdlService ddlService;
 	
 	public Map<String,Object> retDisplay(Form form, Attribute formAttr) {
 		Map<String,Object> result = retDisplayCommon(form,formAttr);
 		DataItem di = formAttr.getDi();
-		String key = di.getDisptypekey();
-		if (key == null || "".equals(key))
-			throw new IllegalArgumentException(di.getCode() + "没有配置disptypekey,请先配置");
-		
-		Map<String,String> dict = operatorPool.retDtDictionary(key);
+		String key = di.getDisplayKey();
+		if (key == null || "".equals(key)) {
+			throw new InitException(di.getKey() + "没有配置disptypekey,请先配置");
+		}
+		Map<String,String> dict = ddlService.get(key);
 		result.put("type", "list");
 		result.put("list", dict);
 		return result;

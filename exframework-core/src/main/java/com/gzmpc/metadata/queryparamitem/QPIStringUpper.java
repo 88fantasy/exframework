@@ -17,7 +17,7 @@ public class QPIStringUpper extends QPIString {
 	@Override
 	public void initBase(Account account, QueryParamItem qpi) {
 		super.initBase(account, qpi);
-		this.setDatatype(QUERYPARAM_DATATYPE_STRINGUPPER);
+		this.setDataType(QUERYPARAM_DATATYPE_STRINGUPPER);
 	}
 
 }

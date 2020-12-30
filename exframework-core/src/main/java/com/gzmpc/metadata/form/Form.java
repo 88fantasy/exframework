@@ -1,6 +1,6 @@
 package com.gzmpc.metadata.form;
 
-import com.gzmpc.metadata.MDObject;
+import com.gzmpc.metadata.Meta;
 import com.gzmpc.metadata.attribute.Attribute;
 
 /**
@@ -10,7 +10,7 @@ import com.gzmpc.metadata.attribute.Attribute;
  * @version 1.0
  */
 
-public class Form extends MDObject {
+public class Form extends Meta {
 	/**
 	 * 
 	 */

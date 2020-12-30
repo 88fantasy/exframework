@@ -13,7 +13,7 @@ public class QPIStringLower extends QPIString {
 	@Override
 	public void initBase(Account account, QueryParamItem qpi) {
 		super.initBase(account, qpi);
-		this.setDatatype(QUERYPARAM_DATATYPE_STRINGLOWER);
+		this.setDataType(QUERYPARAM_DATATYPE_STRINGLOWER);
 	}
 
 }

@@ -7,10 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import com.gzmpc.metadata.MetaData;
 import com.gzmpc.metadata.grid.Grid;
 import com.gzmpc.metadata.queryparam.QueryParamItem;
 import com.gzmpc.metadata.sys.Account;
+import com.gzmpc.service.sys.GridService;
 import com.gzmpc.support.common.util.MapUtil;
 import com.gzmpc.utils.Const;
 
@@ -19,7 +19,7 @@ import com.gzmpc.utils.Const;
 public class QPIHov extends QueryParamBase {
 	
 	@Autowired
-	MetaData metaData;
+	GridService gridService;
 
 	@Override
 	public void initBase(Account account,QueryParamItem qpi) {
@@ -31,8 +31,8 @@ public class QPIHov extends QueryParamBase {
 		if(qpi.getSnsretcolname()!=null){
 			result.put(Const.QUERY_PARAM_ITEM_GRID_INDEXNAME, qpi.getSnsretcolname());
 		}else{
-			String gridcode = qpi.getQueryoper();
-			Grid g = metaData.findGridDefByCode(gridcode);
+			String gridKey = qpi.getQpiParam();
+			Grid g = gridService.findByKey(gridKey);
 			String pkname = g.getDataIndex();
 			MapUtil.putIfNotNull(result, Const.QUERY_PARAM_ITEM_GRID_INDEXNAME, pkname);
 		}

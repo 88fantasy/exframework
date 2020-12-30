@@ -1,5 +1,6 @@
 package com.gzmpc.support.redis.util;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -12,7 +13,6 @@ import org.springframework.data.redis.connection.DataType;
 import org.springframework.data.redis.core.BoundListOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
-import org.springframework.util.CollectionUtils;
 
 @Component
 public class RedisUtil {
@@ -86,13 +86,12 @@ public class RedisUtil {
      * 删除缓存
      * @param key 可以传一个值 或多个
      */
-    @SuppressWarnings("unchecked")
     public void del(String ... key){
         if(key!=null&&key.length>0){
             if(key.length==1){
                 redisTemplate.delete(key[0]);
             }else{
-                redisTemplate.delete(CollectionUtils.arrayToList(key));
+                redisTemplate.delete(Arrays.asList(key));
             }
         }
     }

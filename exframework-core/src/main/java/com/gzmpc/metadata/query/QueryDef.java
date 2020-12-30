@@ -1,6 +1,6 @@
 package com.gzmpc.metadata.query;
 
-import com.gzmpc.metadata.MDObject;
+import com.gzmpc.metadata.Meta;
 
 /**
  *
@@ -21,7 +21,7 @@ import com.gzmpc.metadata.MDObject;
  * @version 1.0
  */
 
-public class QueryDef extends MDObject {
+public class QueryDef extends Meta {
 	/**
 	 * 
 	 */

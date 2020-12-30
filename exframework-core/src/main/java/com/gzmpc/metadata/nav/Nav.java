@@ -1,9 +1,9 @@
 package com.gzmpc.metadata.nav;
 
-import com.gzmpc.metadata.MDObject;
-import com.gzmpc.metadata.func.Func;
+import com.gzmpc.metadata.Meta;
+import com.gzmpc.metadata.module.Module;
 
-public class Nav extends MDObject{
+public class Nav extends Meta{
 	
 	/**
 	 * 导航栏
@@ -12,7 +12,7 @@ public class Nav extends MDObject{
 	
 	private String icon;
 	
-	private Func[] list;
+	private Module[] list;
 	
 	public String getIcon() {
 		return icon;
@@ -20,10 +20,10 @@ public class Nav extends MDObject{
 	public void setIcon(String icon) {
 		this.icon = icon;
 	}
-	public Func[] getList() {
+	public Module[] getList() {
 		return list;
 	}
-	public void setList(Func[] list) {
+	public void setList(Module[] list) {
 		this.list = list;
 	}
 	

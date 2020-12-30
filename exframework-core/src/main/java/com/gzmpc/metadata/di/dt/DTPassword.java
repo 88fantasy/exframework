@@ -27,7 +27,7 @@ import java.util.Map;
  * @version 1.0
  */
 @Component("DTPassword")
-public class DTPassword extends DispType {
+public class DTPassword implements DispType {
 	
 	public Map<String,Object> retDisplay(Form form, Attribute formAttr) {
 		return retDisplayCommon(form,formAttr);

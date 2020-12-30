@@ -1,12 +1,12 @@
 package com.gzmpc.metadata.projectgrid;
 
-import com.gzmpc.metadata.MDObject;
+import com.gzmpc.metadata.Meta;
 /**
  * 功能相关数据表格配置
  * CLQ
  * 20100409
  * */
-public class ProjectGrid extends MDObject {
+public class ProjectGrid extends Meta {
 	
 	private String project_code; //功能编码
 	private String sort;//更新顺序

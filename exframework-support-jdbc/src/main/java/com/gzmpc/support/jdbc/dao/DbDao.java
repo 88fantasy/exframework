@@ -5,13 +5,25 @@ import java.sql.SQLException;
 
 import javax.sql.DataSource;
 
-public abstract class DbDao {
+import org.springframework.jdbc.core.JdbcTemplate;
+
+public interface DbDao {
 	
-	public abstract DataSource getDataSource();
+	DataSource getDataSource();
 	
-	public abstract void setDataSource(DataSource dataSource);
+	void setDataSource(DataSource dataSource);
 	
-	public Connection getConnection() throws SQLException {
+	default Connection getConnection() throws SQLException {
 		return getDataSource().getConnection();
+	}
+	
+	default Connection getUnautocommitConnection() throws SQLException {
+		Connection con = getDataSource().getConnection();
+		con.setAutoCommit(false);
+		return con;
+	}
+	
+	default JdbcTemplate getTemplate() {
+		return new JdbcTemplate(getDataSource());
 	}
 }

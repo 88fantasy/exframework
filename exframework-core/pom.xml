@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>com.gzmpc.exframework</groupId>
 		<artifactId>exframework-root</artifactId>
-		<version>0.5.2.1</version>
+		<version>0.6</version>
 	</parent>
 	<artifactId>exframework-core</artifactId>
 	<packaging>jar</packaging>
@@ -29,10 +29,6 @@
 		<dependency>
 			<groupId>com.gzmpc.exframework</groupId>
 			<artifactId>exframework-support-common</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.gzmpc.exframework</groupId>
-			<artifactId>exframework-support-jdbc</artifactId>
 		</dependency>
 
 		<dependency>

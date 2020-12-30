@@ -6,9 +6,11 @@ import com.gzmpc.support.rest.enums.ResultCode;
  * Api 通用返回类
  * @author rwe
  *
- * @param <T>
+ * @param
  */
 public class ApiResponse {
+	
+	public static final String PARAM_NOT_ENOUGH = "缺少必要参数";
 
 	/**
 	 * http 状态码

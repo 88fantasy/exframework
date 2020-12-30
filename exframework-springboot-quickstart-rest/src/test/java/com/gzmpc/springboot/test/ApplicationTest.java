@@ -2,15 +2,15 @@ package com.gzmpc.springboot.test;
 
 import java.net.URL;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.ResponseEntity;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.gzmpc.springboot.application.Application;
 
@@ -19,7 +19,7 @@ import com.gzmpc.springboot.application.Application;
  * @version 创建时间：Jan 20, 2020 12:07:32 AM 类说明
  */
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = Application.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class ApplicationTest {
 	@LocalServerPort
@@ -30,7 +30,7 @@ public class ApplicationTest {
 	@Autowired
 	private TestRestTemplate restTemplate;
 
-	@Before
+	@BeforeAll
 	public void setUp() throws Exception {
 		String url = String.format("http://localhost:%d/", port);
 		System.out.println(String.format("port is : [%d]", port));

@@ -1,6 +1,6 @@
 package com.gzmpc.metadata.attribute;
 
-import com.gzmpc.metadata.MDObject;
+import com.gzmpc.metadata.Meta;
 import com.gzmpc.metadata.di.DataItem;
 
 /**
@@ -21,7 +21,7 @@ import com.gzmpc.metadata.di.DataItem;
  * @author rwe
  * @version 1.0
  */
-public class Attribute extends MDObject {
+public class Attribute extends Meta {
 	/**
 	 * 
 	 */
@@ -96,7 +96,7 @@ public class Attribute extends MDObject {
 	}
 
 	public String retCode() {
-		return getCode();
+		return getKey();
 	}
 
 	public String getShortcutkey() {
