@@ -15,13 +15,6 @@ public class Permission extends Meta implements Serializable {
 
 	private static final long serialVersionUID = -7275087103665173246L;
 
-	public static final long MODULETYPE_FOLDER = 1;
-	public static final long MODULETYPE_FUNCTION = 2;
-	public static final long MODULETYPE_OPERATION = 3;
-
-	public static final long MODULEVALID_VALID = 1;
-	public static final long MODULEVALID_INVALID = 0;
-
 	
 	private String permissionEntry;
 	

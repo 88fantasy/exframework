@@ -30,7 +30,7 @@ public class AccountParameter extends Meta {
 	
 	public AccountParameter( Account account, String key, String name, String value, String comment) {
 		this.account = account.getAccountId();
-		this.setKey(key);
+		this.setCode(key);
 		this.setName(name);
 		this.value = value;
 		this.setComment(comment);

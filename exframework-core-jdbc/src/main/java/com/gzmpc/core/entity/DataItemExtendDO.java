@@ -1,5 +1,6 @@
 package com.gzmpc.core.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 /**
@@ -15,6 +16,7 @@ public class DataItemExtendDO extends DataItemDO {
 
 	private static final long serialVersionUID = -9073006232793863130L;
 	
+	@TableField
 	private String objectCode;
 
 	public String getObjectCode() {

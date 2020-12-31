@@ -46,11 +46,6 @@ public class Account implements Serializable {
 	private String lastLoginArea;
 
 	/**
-	 * 帐号类型
-	 */
-	private Long accounttype;
-
-	/**
 	 * 帐号状态
 	 */
 	private AccountStatusTypeEnum accountStatus;
@@ -110,14 +105,6 @@ public class Account implements Serializable {
 		this.lastLoginArea = lastLoginArea;
 	}
 
-	public Long getAccounttype() {
-		return accounttype;
-	}
-
-	public void setAccounttype(Long accounttype) {
-		this.accounttype = accounttype;
-	}
-
 	public AccountStatusTypeEnum getAccountStatus() {
 		return accountStatus;
 	}
@@ -150,7 +137,6 @@ public class Account implements Serializable {
 		this.modules = modules;
 	}
 
-	
 	public enum AccountStatusTypeEnum implements DictionaryEnum<AccountStatusTypeEnum> {
 
 		/**
@@ -194,4 +180,6 @@ public class Account implements Serializable {
 			return AccountStatusTypeEnum.values();
 		}
 	}
+	
+	
 }

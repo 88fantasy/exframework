@@ -52,11 +52,11 @@ public class FormServiceDefaultImpl implements FormService {
 					v = calcInitValue(account, initValue);
 				} catch (Exception e) {
 					log.error(e.getMessage(),e);
-					throw new IllegalArgumentException("初始化字段"+attr.getKey()+"时出现错误["+e.getMessage()+"]");
+					throw new IllegalArgumentException("初始化字段"+attr.getCode()+"时出现错误["+e.getMessage()+"]");
 				}
-				result.put(attr.getKey(), v);
+				result.put(attr.getCode(), v);
 			} else if (initValue == null) {
-				result.put(attr.getKey(), "");
+				result.put(attr.getCode(), "");
 			}
 		}
 		return result;

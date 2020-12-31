@@ -1,6 +1,7 @@
 package com.gzmpc.core.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
@@ -18,10 +19,13 @@ public class DictionaryDO {
 	@TableId(type = IdType.ASSIGN_ID)
 	private String id;
 	
+	@TableField
 	private String dictKey;
 	
+	@TableField
 	private String itemKey;
 	
+	@TableField
 	private String itemValue;
 
 	public String getId() {

@@ -7,7 +7,10 @@ import org.springframework.security.core.context.SecurityContextImpl;
 
 import com.gzmpc.exception.NotAuthorizedException;
 import com.gzmpc.metadata.sys.Account;
-import com.gzmpc.support.web.service.LoginService;
+import com.gzmpc.support.rest.entity.ApiResponseData;
+import com.gzmpc.web.entity.LoginDTO;
+import com.gzmpc.web.service.LoginService;
+import com.gzmpc.web.vo.LoginResponse;
 
 public class SSOLoginServiceImpl implements LoginService {
 	private final String sessionKey = "SPRING_SECURITY_CONTEXT";
@@ -28,6 +31,12 @@ public class SSOLoginServiceImpl implements LoginService {
 	@Override
 	public boolean isSSO() {
 		return true;
+	}
+
+	@Override
+	public ApiResponseData<LoginResponse> login(LoginDTO dto) throws NotAuthorizedException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

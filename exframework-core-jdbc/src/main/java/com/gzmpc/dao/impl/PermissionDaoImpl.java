@@ -1,6 +1,5 @@
 package com.gzmpc.dao.impl;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,7 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.gzmpc.core.entity.PermissionDO;
-import com.gzmpc.core.entity.mapper.PermissionMapper;
+import com.gzmpc.core.mapper.PermissionMapper;
 import com.gzmpc.dao.PermissionDao;
 import com.gzmpc.metadata.sys.Permission;
 
@@ -35,30 +34,30 @@ public class PermissionDaoImpl implements PermissionDao {
 
 	@Override
 	public String[] findTopPermissionKeys() {
-		List<PermissionDO> permissions = permissionMapper.list(new QueryWrapper<PermissionDO>().isNull("parent_permission_key"));
-		return permissions.stream().map(Permission::getKey).collect(Collectors.toList()).toArray(new String[permissions.size()]);
+		List<PermissionDO> permissions = permissionMapper.selectList(new QueryWrapper<PermissionDO>().isNull("parent_permission_key"));
+		return permissions.stream().map(PermissionDO::getCode).collect(Collectors.toList()).toArray(new String[permissions.size()]);
 	}
 
 	@Override
 	public Permission findByKey(String key) {
-		PermissionDO p =  permissionMapper.getOne(new QueryWrapper<PermissionDO>().eq("key", key));
-		if(!StringUtils.isEmpty(p.getParentPermissionKey())) {
-			List<PermissionDO> children = permissionMapper.list(new QueryWrapper<PermissionDO>().eq("parent_permission_key", p.getKey()));
-			p.setChildren(new ArrayList<Permission>(children));
+		PermissionDO entity =  permissionMapper.selectOne(new QueryWrapper<PermissionDO>().eq("key", key));
+		Permission p = entity.mapper(Permission.class);
+		if(!StringUtils.isEmpty(entity.getParentPermissionKey())) {
+			List<PermissionDO> children = permissionMapper.selectList(new QueryWrapper<PermissionDO>().eq("parent_permission_key", p.getCode()));
+			List<Permission> permissions = children.stream().map(e -> e.mapper(Permission.class)).collect(Collectors.toList());
+			p.setChildren(permissions);
 		}
 		return p;
 	}
 
 	@Override
 	public Collection<String> allKeys() {
-		// TODO Auto-generated method stub
-		return null;
+		return all().stream().map(Permission::getCode).collect(Collectors.toList());
 	}
 
 	@Override
 	public Collection<Permission> all() {
-		// TODO Auto-generated method stub
-		return null;
+		return permissionMapper.selectList(null).stream().map(e -> e.mapper(Permission.class)).collect(Collectors.toList());
 	}
 
 	

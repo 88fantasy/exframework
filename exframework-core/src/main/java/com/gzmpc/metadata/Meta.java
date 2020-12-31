@@ -9,9 +9,20 @@ public class Meta implements Serializable {
 	
 	private static final long serialVersionUID = 3327328749207805102L;
 	
-	private String key;// 代码
-	private String name;// 名称
-	private String comment;// 备注
+	/**
+	 * 代码
+	 */
+	private String code;
+	
+	/**
+	 * 名称
+	 */
+	private String name;
+	
+	/**
+	 * 备注
+	 */
+	private String comment;
 
 	public String getName() {
 		return name;
@@ -29,17 +40,17 @@ public class Meta implements Serializable {
 		this.comment = comment;
 	}
 
-	public String getKey() {
-		return key;
+	public String getCode() {
+		return code;
 	}
 
-	public void setKey(String key) {
-		this.key = key;
+	public void setCode(String code) {
+		this.code = code;
 	}
 
 	public String toString() {
 		String shortName = getClass().getName();
 		shortName = shortName.substring(shortName.lastIndexOf(".") + 1);
-		return shortName + ",name:" + getName() + ",key:" + getKey();
+		return shortName + ",name:" + getName() + ",key:" + getCode();
 	}
 }

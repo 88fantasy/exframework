@@ -10,8 +10,8 @@ import org.springframework.stereotype.Repository;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.gzmpc.core.entity.ModuleDO;
 import com.gzmpc.core.entity.ModuleHovDO;
-import com.gzmpc.core.entity.mapper.ModuleHovMapper;
-import com.gzmpc.core.entity.mapper.ModuleMapper;
+import com.gzmpc.core.mapper.ModuleHovMapper;
+import com.gzmpc.core.mapper.ModuleMapper;
 import com.gzmpc.dao.ModuleDao;
 import com.gzmpc.exception.NotFoundException;
 import com.gzmpc.metadata.module.ModuleEntity;
@@ -34,7 +34,7 @@ public class ModuleDaoImpl implements ModuleDao {
 	@Override
 	public Collection<String> allKeys() {
 		return moduleMapper.selectList(new QueryWrapper<ModuleDO>().eq("valid", true))
-				.stream().map(ModuleDO::getKey)
+				.stream().map(ModuleDO::getCode)
 				.collect(Collectors.toList());
 	}
 
@@ -54,7 +54,7 @@ public class ModuleDaoImpl implements ModuleDao {
 
 	@Override
 	public Collection<String> findHovKeyByEntity(ModuleEntity entity) {
-		return moduleHovMapper.selectList(new QueryWrapper<ModuleHovDO>().eq("moduleKey", entity.getKey())).stream()
+		return moduleHovMapper.selectList(new QueryWrapper<ModuleHovDO>().eq("moduleKey", entity.getCode())).stream()
 				.map(ModuleHovDO::getHovKey).collect(Collectors.toList());
 	}
 

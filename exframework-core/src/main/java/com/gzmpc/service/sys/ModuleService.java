@@ -48,7 +48,7 @@ public class ModuleService {
 		Collection<String> dataItemKeys = getDataItems(entity);
 		Collection<String> permissions = moduleDao.findPermissionKeyByEntity(entity);
 		Collection<String> hovs = moduleDao.findHovKeyByEntity(entity);
-		module.setDataItems(dataItemKeys.stream().map(itemKey -> dataItemService.findDataItem(entity.getKey(), itemKey)).collect(Collectors.toList()));
+		module.setDataItems(dataItemKeys.stream().map(itemKey -> dataItemService.findDataItem(entity.getCode(), itemKey)).collect(Collectors.toList()));
 		module.setPermissions(permissions);
 		module.setHovs(hovs.stream().map(hovKey -> hovService.findByKey(key)).collect(Collectors.toList()));
 		return module;

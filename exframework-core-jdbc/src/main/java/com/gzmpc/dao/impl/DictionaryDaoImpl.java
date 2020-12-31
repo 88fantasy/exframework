@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.gzmpc.core.entity.DictionaryDO;
-import com.gzmpc.core.entity.mapper.DictionaryMapper;
+import com.gzmpc.core.mapper.DictionaryMapper;
 import com.gzmpc.dao.DictionaryDao;
 import com.gzmpc.exception.NotFoundException;
 

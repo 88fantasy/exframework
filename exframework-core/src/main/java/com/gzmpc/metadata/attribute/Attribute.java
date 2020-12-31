@@ -96,7 +96,7 @@ public class Attribute extends Meta {
 	}
 
 	public String retCode() {
-		return getKey();
+		return getCode();
 	}
 
 	public String getShortcutkey() {

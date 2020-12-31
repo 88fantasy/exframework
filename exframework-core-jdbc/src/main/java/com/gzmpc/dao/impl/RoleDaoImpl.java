@@ -14,9 +14,9 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.gzmpc.core.entity.AccountRoleDO;
 import com.gzmpc.core.entity.RoleDO;
 import com.gzmpc.core.entity.RolePermissionDO;
-import com.gzmpc.core.entity.mapper.AccountRoleMapper;
-import com.gzmpc.core.entity.mapper.RoleMapper;
-import com.gzmpc.core.entity.mapper.RolePermissionMapper;
+import com.gzmpc.core.mapper.AccountRoleMapper;
+import com.gzmpc.core.mapper.RoleMapper;
+import com.gzmpc.core.mapper.RolePermissionMapper;
 import com.gzmpc.dao.RoleDao;
 import com.gzmpc.metadata.sys.Permission;
 import com.gzmpc.metadata.sys.Role;
@@ -50,7 +50,7 @@ public class RoleDaoImpl implements RoleDao {
 
 	@Override
 	public Collection<String> allKeys() {
-		return all().stream().map(Role::getKey).collect(Collectors.toList());
+		return all().stream().map(Role::getCode).collect(Collectors.toList());
 	}
 
 	@Override
@@ -66,7 +66,7 @@ public class RoleDaoImpl implements RoleDao {
 			List<RoleDO> childrens = roleMapper.list(new QueryWrapper<RoleDO>().eq("parentKey", key));
 			List<Role> roles = new ArrayList<Role>();
 			for(RoleDO child : childrens) {
-				Role childRole = findByKey(child.getKey());
+				Role childRole = findByKey(child.getCode());
 				roles.add(childRole);
 			}
 			role.setChildren(roles);
@@ -97,7 +97,7 @@ public class RoleDaoImpl implements RoleDao {
 	private Role getByKey(String key){
 		RoleDO entity = roleMapper.getOne(new QueryWrapper<RoleDO>().eq("key", key));
 		if(entity != null) {
-			List<String> permissionKeys = rolePermissionMapper.selectList(new QueryWrapper<RolePermissionDO>().eq("role", entity.getKey()))
+			List<String> permissionKeys = rolePermissionMapper.selectList(new QueryWrapper<RolePermissionDO>().eq("role", entity.getCode()))
 					.stream().map(RolePermissionDO::getPermission).collect(Collectors.toList());;
 			Map<String,Permission> permissionMap = new ConcurrentHashMap<String,Permission>();
 			for(String permission : permissionKeys) {

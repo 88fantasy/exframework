@@ -34,7 +34,7 @@ public class RoleBaseAccount extends Account {
 			return null;
 		}
 		for (Role r : roles) {
-			if (r.getKey().equals(key)) {
+			if (r.getCode().equals(key)) {
 				return r;
 			}
 		}

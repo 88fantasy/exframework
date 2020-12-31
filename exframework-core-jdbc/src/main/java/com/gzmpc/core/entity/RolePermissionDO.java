@@ -1,6 +1,7 @@
 package com.gzmpc.core.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
@@ -18,8 +19,10 @@ public class RolePermissionDO {
 	@TableId(type = IdType.ASSIGN_ID)
 	private String id;
 	
+	@TableField
 	private String role;
 	
+	@TableField
 	private String permission;
 
 	public String getId() {

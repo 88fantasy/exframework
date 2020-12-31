@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.gzmpc.core.entity.AccountDO;
-import com.gzmpc.core.entity.mapper.AccountMapper;
+import com.gzmpc.core.mapper.AccountMapper;
 import com.gzmpc.dao.AccountDao;
 import com.gzmpc.exception.NotFoundException;
 import com.gzmpc.metadata.sys.Account;

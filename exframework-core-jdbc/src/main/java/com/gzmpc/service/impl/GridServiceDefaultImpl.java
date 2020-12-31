@@ -64,7 +64,7 @@ public class GridServiceDefaultImpl implements GridService {
 			DataItem dt = dataItemService.findDataItem(gridcode, fieldname);
 			if (dt == null) {
 				dt = new DataItem();
-				dt.setKey(fieldname.toUpperCase());
+				dt.setCode(fieldname.toUpperCase());
 				dt.setName(fieldname);
 				dt.setType(DataItemDisplayTypeEnum.INPUT);
 			}

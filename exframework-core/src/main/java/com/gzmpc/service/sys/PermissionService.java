@@ -61,7 +61,7 @@ public class PermissionService implements Buildable, PermissionSupport {
 	}
 	
 	private void putModuleToMap(Permission m) {
-		String key = m.getKey();
+		String key = m.getCode();
 		allPermissions.put(key, m);
 		List<Permission> children = m.getChildren();
 		if( children != null && children.size()>0) {

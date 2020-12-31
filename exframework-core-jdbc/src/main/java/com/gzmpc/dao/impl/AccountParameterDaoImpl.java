@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.gzmpc.core.entity.AccountParameterDO;
-import com.gzmpc.core.entity.mapper.AccountParameterMapper;
+import com.gzmpc.core.mapper.AccountParameterMapper;
 import com.gzmpc.dao.AccountParameterDao;
 import com.gzmpc.metadata.sys.Account;
 

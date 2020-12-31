@@ -41,7 +41,7 @@ public class DTQueryList implements DispType {
 		DataItem di = formAttr.getDi();
 		String key = di.getDisplayKey();
 		if (key == null || "".equals(key)) {
-			throw new InitException(di.getKey() + "没有配置disptypekey,请先配置");
+			throw new InitException(di.getCode() + "没有配置disptypekey,请先配置");
 		}
 		Map<String,String> dict = ddlService.get(key);
 		result.put("type", "list");
