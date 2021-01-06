@@ -1,4 +1,4 @@
-package com.gzmpc.core.entity;
+package com.gzmpc.core.entity.mapper;
 
 import org.springframework.beans.BeanUtils;
 
