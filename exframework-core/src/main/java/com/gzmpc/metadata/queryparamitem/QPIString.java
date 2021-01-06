@@ -3,7 +3,7 @@ package com.gzmpc.metadata.queryparamitem;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import com.gzmpc.metadata.FilterCondition.Oper;
+import com.gzmpc.metadata.enums.FilterConditionOper;
 import com.gzmpc.metadata.queryparam.QueryParamItem;
 import com.gzmpc.metadata.sys.Account;
 
@@ -14,7 +14,7 @@ public class QPIString extends QueryParamBase {
 	@Override
 	public void initBase(Account account,QueryParamItem qpi) {
 		initBaseCommon(account,qpi);
-		Oper[] operations = { Oper.EQUAL, Oper.MATCHING, Oper.ISNULL, Oper.ISNULL };
+		FilterConditionOper[] operations = { FilterConditionOper.EQUAL, FilterConditionOper.MATCHING, FilterConditionOper.ISNULL, FilterConditionOper.ISNULL };
 		this.setOperations(operations);
 	}
 }

@@ -1,9 +1,17 @@
 package com.gzmpc.support.rest.entity;
 
+
 import com.gzmpc.support.rest.enums.ResultCode;
+import com.gzmpc.support.rest.exception.GlobalControllerExceptionControllerAdvice;
 
 public class ApiResponseData<T> extends ApiResponse {
-
+	
+	@SuppressWarnings("rawtypes")
+	public static final ApiResponseData NOT_ENOUGH = new ApiResponseData<>(ResultCode.BAD_REQUEST, PARAM_NOT_ENOUGH, null);
+	
+	@SuppressWarnings("rawtypes")
+	public static final ApiResponseData PARAM_ERROR = new ApiResponseData<>(ResultCode.BAD_REQUEST, GlobalControllerExceptionControllerAdvice.PARAMS_ERROR, null);
+	
 	/**
 	 * 数据信息
 	 */
@@ -42,7 +50,13 @@ public class ApiResponseData<T> extends ApiResponse {
 		return data == null ? d : data ;
 	}
 	
-	public static <T> ApiResponseData<T> notEnough() {
-		return new ApiResponseData<T>(ResultCode.BAD_REQUEST, PARAM_NOT_ENOUGH, null);
+	@SuppressWarnings("unchecked")
+	public static <E> ApiResponseData<E> notEnough() {
+		return (ApiResponseData<E>)NOT_ENOUGH;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public static final <E> ApiResponseData<E> paramError() {
+		return (ApiResponseData<E>)PARAM_ERROR;
 	}
 }

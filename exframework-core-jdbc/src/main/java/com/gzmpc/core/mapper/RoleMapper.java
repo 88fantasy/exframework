@@ -1,6 +1,6 @@
 package com.gzmpc.core.mapper;
 
-import com.baomidou.mybatisplus.extension.service.IService;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.gzmpc.core.entity.RoleDO;
 
 /**
@@ -11,6 +11,6 @@ import com.gzmpc.core.entity.RoleDO;
  * Copyright @ 2020 
  * 
  */
-public interface RoleMapper extends IService<RoleDO> {
+public interface RoleMapper extends BaseMapper<RoleDO> {
 
 }

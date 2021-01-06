@@ -11,7 +11,7 @@
 		<module>exframework-core</module>
 		<module>exframework-core-jdbc</module>
 		<module>exframework-web</module>
-		<module>exframework-support-admin</module>
+		<module>exframework-core-admin</module>
 		<module>exframework-support-job</module>
 		<module>exframework-support-mail</module>
 		<module>exframework-support-utils</module>
@@ -29,12 +29,13 @@
 		<module>exframework-support-redis</module>
 		<module>exframework-support-jdbc-oracle</module>
 		<module>exframework-support-jdbc-mysql</module>
+	    <module>exframework-support-cos</module>
 		<module>exframework-springboot-quickstart</module>
 		<module>exframework-springboot-quickstart-rest</module>
 		<module>exframework-support-mongo</module>
 		<module>exframework-support-tsf</module>
 		<module>exframework-support-wechat</module>
-    <module>exframework-backend-quickstart</module>
+	    <module>exframework-backend-quickstart</module>
   </modules>
 	<build>
 		<pluginManagement>
@@ -169,6 +170,11 @@
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
+				<artifactId>exframework-core-admin</artifactId>
+				<version>0.6</version>
+			</dependency>
+			<dependency>
+				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-core-jdbc</artifactId>
 				<version>0.6</version>
 			</dependency>
@@ -195,11 +201,6 @@
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-job</artifactId>
-				<version>0.6</version>
-			</dependency>
-			<dependency>
-				<groupId>com.gzmpc.exframework</groupId>
-				<artifactId>exframework-support-admin</artifactId>
 				<version>0.6</version>
 			</dependency>
 
@@ -281,6 +282,11 @@
 				<artifactId>exframework-support-wechat</artifactId>
 				<version>0.6</version>
 			</dependency>
+			<dependency>
+				<groupId>com.gzmpc.exframework</groupId>
+				<artifactId>exframework-support-cos</artifactId>
+				<version>0.6</version>
+			</dependency>
 
 			<dependency>
 				<groupId>javax.servlet</groupId>
@@ -359,13 +365,18 @@
 				<artifactId>spring-boot-starter-forest</artifactId>
 				<version>1.4.12</version>
 			</dependency>
+			<dependency>
+				<groupId>com.qcloud</groupId>
+				<artifactId>cos_api</artifactId>
+				<version>5.6.24</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot</artifactId>
+			<artifactId>spring-boot-starter</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -374,6 +385,10 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
 		</dependency>
 	</dependencies>
 

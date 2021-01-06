@@ -2,7 +2,7 @@ package com.gzmpc.dao;
 
 import java.util.Collection;
 
-import com.gzmpc.metadata.module.ModuleEntity;
+import com.gzmpc.metadata.module.Module;
 
 /**
  *
@@ -12,9 +12,9 @@ import com.gzmpc.metadata.module.ModuleEntity;
  * Copyright @ 2020 
  * 
  */
-public interface ModuleDao extends MetaDao<ModuleEntity> {
+public interface ModuleDao extends MetaDao<Module> {
 	
-	Collection<String> findPermissionKeyByEntity(ModuleEntity entity);
+	Collection<String> findPermissionKeyByEntity(Module entity);
 	
-	Collection<String> findHovKeyByEntity(ModuleEntity entity);
+	Collection<String> findHovKeyByEntity(Module entity);
 }

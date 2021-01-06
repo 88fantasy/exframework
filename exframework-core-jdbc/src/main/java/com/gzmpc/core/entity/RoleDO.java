@@ -13,7 +13,7 @@ import com.gzmpc.metadata.sys.Role;
  * Copyright @ 2020 
  * 
  */
-@TableName("sys_role")
+@TableName( value = "sys_role", excludeProperty = "children")
 public class RoleDO extends Role {
 
 	private static final long serialVersionUID = 939184434239094313L;
@@ -25,7 +25,7 @@ public class RoleDO extends Role {
 	private String name;
 	
 	@TableField
-	private String comment;
+	private String description;
 	
 	@TableField
 	private String  parentKey;

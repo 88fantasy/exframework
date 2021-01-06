@@ -2,11 +2,13 @@ package com.gzmpc.core.entity;
 
 import java.util.Date;
 
+import com.baomidou.mybatisplus.annotation.EnumValue;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
 import com.gitee.sunchenbin.mybatis.actable.constants.MySqlTypeConstant;
+import com.gzmpc.metadata.enums.AccountStatusTypeEnum;
 import com.gzmpc.metadata.sys.Account;
 
 /**
@@ -63,6 +65,7 @@ public class AccountDO extends Account {
 	 * 帐号状态
 	 */
 	@TableField
+	@EnumValue
 	@ColumnType(value = MySqlTypeConstant.VARCHAR)
 	private AccountStatusTypeEnum accountStatus;
 

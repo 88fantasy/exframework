@@ -19,5 +19,11 @@ public interface MetaDao<T extends Meta> {
 	
 	Collection<T> all();
 	
-	T findByKey(String key) throws NotFoundException;
+	T findByKey(String code) throws NotFoundException;
+	
+	int insert(T entity);
+	
+	int update(T entity);
+	
+	int remove(String code);
 }

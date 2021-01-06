@@ -7,12 +7,14 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.gzmpc.core.entity.DictionaryDO;
 import com.gzmpc.core.mapper.DictionaryMapper;
 import com.gzmpc.dao.DictionaryDao;
 import com.gzmpc.exception.NotFoundException;
+import com.gzmpc.support.jdbc.exception.SessionExcetpion;
 
 /**
  *
@@ -30,7 +32,7 @@ public class DictionaryDaoImpl implements DictionaryDao {
 
 	@Override
 	public Map<String, String> findByKey(String dictKey) throws NotFoundException {
-		List<DictionaryDO> entities = dictionaryMapper.selectList(new QueryWrapper<DictionaryDO>().eq("dictKey", dictKey));
+		List<DictionaryDO> entities = findListByKey(dictKey);
 		if( entities == null || entities.size() == 0) {
 			throw new NotFoundException();
 		}
@@ -47,4 +49,28 @@ public class DictionaryDaoImpl implements DictionaryDao {
 		return entities.stream().map(DictionaryDO::getDictKey).collect(Collectors.toList()).toArray(new String[entities.size()]);
 	}
 
+	@Override
+	@Transactional(rollbackFor = Exception.class)
+	public boolean saveDictionary(String dictKey, Map<String, String> value) {
+		List<DictionaryDO> entities = findListByKey(dictKey);
+		if( entities != null && entities.size() > 0) {
+			dictionaryMapper.delete(getWrapperByKey(dictKey));
+		}
+		List<DictionaryDO> newEntities = value.keySet().stream().map(key -> new DictionaryDO(dictKey, key, value.get(key))).collect(Collectors.toList());
+		for(DictionaryDO entity : newEntities) {
+			int success = dictionaryMapper.insert(entity);
+			if(success < 1) {
+				throw new SessionExcetpion("插入数据失败");
+			}
+		}
+		return true;
+	}
+
+	private List<DictionaryDO> findListByKey(String dictKey) {
+		return dictionaryMapper.selectList(getWrapperByKey(dictKey));
+	}
+	
+	private QueryWrapper<DictionaryDO> getWrapperByKey(String dictKey) {
+		return new QueryWrapper<DictionaryDO>().eq("dictKey", dictKey);
+	}
 }

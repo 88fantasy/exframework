@@ -1,5 +1,7 @@
 package com.gzmpc.metadata.sys;
 
+import javax.validation.constraints.NotEmpty;
+
 import com.gzmpc.metadata.Meta;
 
 /**
@@ -17,23 +19,25 @@ public class AccountParameter extends Meta {
 	/**
 	 * 帐号
 	 */
+	@NotEmpty
 	private String account;
 	
 	/**
 	 * 值
 	 */
+	@NotEmpty
 	private String value;
 	
 	public AccountParameter() {
 		
 	}
 	
-	public AccountParameter( Account account, String key, String name, String value, String comment) {
+	public AccountParameter( Account account, String key, String name, String value, String description) {
 		this.account = account.getAccountId();
 		this.setCode(key);
 		this.setName(name);
 		this.value = value;
-		this.setComment(comment);
+		this.setDescription(description);
 	}
 
 	public String getAccount() {

@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import com.gzmpc.dao.ModuleDao;
 import com.gzmpc.metadata.module.Module;
-import com.gzmpc.metadata.module.ModuleEntity;
 
 /**
  * 模块业务类
@@ -42,7 +41,7 @@ public class ModuleService {
 	
 	@Nullable
 	public Module findByKey(String key) {
-		ModuleEntity entity = moduleDao.findByKey(key);
+		Module entity = moduleDao.findByKey(key);
 		Module module = new Module();
 		BeanUtils.copyProperties(entity, module);
 		Collection<String> dataItemKeys = getDataItems(entity);
@@ -54,7 +53,7 @@ public class ModuleService {
 		return module;
 	}
 	
-	private Collection<String>  getDataItems(ModuleEntity entity) {
+	private Collection<String>  getDataItems(Module entity) {
 		return Collections.emptyList();
 	}
 }

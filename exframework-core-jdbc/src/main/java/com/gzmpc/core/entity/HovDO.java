@@ -13,7 +13,7 @@ import com.gzmpc.metadata.hov.Hov;
  * Copyright @ 2020 
  * 
  */
-@TableName("sys_hov")
+@TableName( value = "sys_hov", excludeProperty = {"queryParamItems", "columns"})
 public class HovDO extends Hov {
 
 	private static final long serialVersionUID = 7765402758315833737L;
@@ -25,7 +25,7 @@ public class HovDO extends Hov {
 	private String name;
 	
 	@TableField
-	private String comment;
+	private String description;
 	
 	@TableField
 	private String returnKey;

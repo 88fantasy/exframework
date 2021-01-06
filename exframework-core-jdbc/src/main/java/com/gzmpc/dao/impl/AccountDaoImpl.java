@@ -37,6 +37,6 @@ public class AccountDaoImpl implements AccountDao {
 	}
 
 	private AccountDO getAccountDO(String accountId) throws NotFoundException {
-		return accountMapper.getOne(new QueryWrapper<AccountDO>().eq("accountId", accountId));
+		return accountMapper.selectOne(new QueryWrapper<AccountDO>().eq("accountId", accountId));
 	}
 }

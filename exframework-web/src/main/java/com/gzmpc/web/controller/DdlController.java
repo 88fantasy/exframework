@@ -41,7 +41,7 @@ public class DdlController {
 			return new ApiResponseData<Map<String,String>>(result);
 		}
 		else {
-			return ApiResponseData.<Map<String,String>>notEnough();
+			return ApiResponseData.notEnough();
 		}
 	}
 	

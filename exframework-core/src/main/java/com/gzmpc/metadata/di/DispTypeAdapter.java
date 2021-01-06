@@ -3,8 +3,8 @@ package com.gzmpc.metadata.di;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
-import com.gzmpc.metadata.di.DataItem.DataItemDisplayTypeEnum;
 import com.gzmpc.metadata.di.dt.DispType;
+import com.gzmpc.metadata.enums.DataItemDisplayTypeEnum;
 import com.gzmpc.support.common.util.SpringContextUtils;
 
 import org.springframework.stereotype.Component;

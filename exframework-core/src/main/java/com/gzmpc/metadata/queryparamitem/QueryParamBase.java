@@ -1,6 +1,6 @@
 package com.gzmpc.metadata.queryparamitem;
 
-import com.gzmpc.metadata.FilterCondition.Oper;
+import com.gzmpc.metadata.enums.FilterConditionOper;
 import com.gzmpc.metadata.queryparam.QueryParamItem;
 import com.gzmpc.metadata.sys.Account;
 
@@ -36,7 +36,7 @@ public abstract class QueryParamBase {
 	/**
 	 * 可选操作
 	 */
-	private Oper[] operations;
+	private FilterConditionOper[] operations;
 	
 	private Object operdata;
 
@@ -64,11 +64,11 @@ public abstract class QueryParamBase {
 		this.dataType = dataType;
 	}
 
-	public Oper[] getOperations() {
+	public FilterConditionOper[] getOperations() {
 		return operations;
 	}
 
-	public void setOperations(Oper[] operations) {
+	public void setOperations(FilterConditionOper[] operations) {
 		this.operations = operations;
 	}
 

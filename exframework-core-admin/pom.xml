@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.gzmpc.exframework</groupId>
+		<artifactId>exframework-root</artifactId>
+		<version>0.6</version>
+	</parent>
+	<artifactId>exframework-core-admin</artifactId>
+	<name>exframework-admin</name>
+
+	<build>
+		<resources>
+			<resource>
+				<directory>${project.basedir}/src/main/resources</directory>
+				<targetPath>META-INF/resources/</targetPath>
+			</resource>
+		</resources>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.gzmpc.exframework</groupId>
+			<artifactId>exframework-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.gzmpc.exframework</groupId>
+			<artifactId>exframework-web</artifactId>
+		</dependency>
+
+	</dependencies>
+</project>

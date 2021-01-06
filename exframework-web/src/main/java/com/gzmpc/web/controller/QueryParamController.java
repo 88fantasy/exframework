@@ -42,7 +42,7 @@ public class QueryParamController {
 			QueryParamBase[] bases = queryparamService.get(queryparamcode);
 			return new ApiResponseData<QueryParamBase[]>(bases);
 		} else {
-			return ApiResponseData.<QueryParamBase[]>notEnough();
+			return ApiResponseData.notEnough();
 		}
 	}
 

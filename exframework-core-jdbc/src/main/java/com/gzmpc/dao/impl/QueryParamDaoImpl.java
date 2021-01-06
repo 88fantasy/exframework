@@ -1,17 +1,12 @@
 package com.gzmpc.dao.impl;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.stream.Collectors;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.gzmpc.core.entity.QueryParamDO;
 import com.gzmpc.core.mapper.QueryParamMapper;
 import com.gzmpc.dao.QueryParamDao;
-import com.gzmpc.exception.NotFoundException;
 import com.gzmpc.metadata.queryparam.QueryParam;
 
 /**
@@ -23,24 +18,20 @@ import com.gzmpc.metadata.queryparam.QueryParam;
  * 
  */
 @Repository
-public class QueryParamDaoImpl implements QueryParamDao {
+public class QueryParamDaoImpl extends MetaDaoImpl<QueryParamDO,QueryParam> implements QueryParamDao {
 	
 	@Autowired
 	QueryParamMapper queryParamMapper;
 
 	@Override
-	public Collection<String> allKeys() {
-		return all().stream().map(QueryParam::getCode).collect(Collectors.toList());
+	public BaseMapper<QueryParamDO> getBaseMapper() {
+		return queryParamMapper;
 	}
 
 	@Override
-	public Collection<QueryParam> all() {
-		return new ArrayList<QueryParam>(queryParamMapper.selectList(null));
+	public QueryParamDO genInstance() {
+		return new QueryParamDO();
 	}
 
-	@Override
-	public QueryParam findByKey(String key) throws NotFoundException {
-		return queryParamMapper.selectOne(new QueryWrapper<QueryParamDO>().eq("key", key));
-	}
 
 }

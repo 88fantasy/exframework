@@ -10,11 +10,11 @@ package com.gzmpc.metadata.dict;
  */
 public interface DictionaryEnum<T> {
 	
-	T[] getValues();
+	T getValue();
 
-	String getKey();
+//	String getKey();
 
-	String getName();
+//	String getName();
 	
 //	T enumOf(String key);
 }

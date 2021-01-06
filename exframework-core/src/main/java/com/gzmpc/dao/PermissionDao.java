@@ -14,5 +14,5 @@ public interface PermissionDao extends MetaDao<Permission> {
 
 	String[] findTopPermissionKeys();
 	
-	Permission findByKey(String key);
+	Permission findByKey(String code);
 }

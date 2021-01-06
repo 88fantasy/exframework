@@ -2,7 +2,7 @@ package com.gzmpc.metadata.sys;
 
 import java.util.*;
 
-import com.gzmpc.metadata.dict.DictionaryEnum;
+import com.gzmpc.metadata.enums.AccountStatusTypeEnum;
 import com.gzmpc.metadata.module.Module;
 
 import java.io.*;
@@ -137,49 +137,7 @@ public class Account implements Serializable {
 		this.modules = modules;
 	}
 
-	public enum AccountStatusTypeEnum implements DictionaryEnum<AccountStatusTypeEnum> {
-
-		/**
-		 * 有效
-		 */
-		VALID("valid", "有效"),
-
-		/**
-		 * 失效
-		 */
-		INVALID("invalid", "失效"),
-
-		/**
-		 * 禁止
-		 */
-		FORBIDDEN("forbidden", "禁止")
-
-		;
-
-		private String key;
-
-		private String name;
-
-		private AccountStatusTypeEnum(String key, String name) {
-			this.key = key;
-			this.name = name;
-		}
-
-		@Override
-		public String getKey() {
-			return key;
-		}
-
-		@Override
-		public String getName() {
-			return name;
-		}
-
-		@Override
-		public AccountStatusTypeEnum[] getValues() {
-			return AccountStatusTypeEnum.values();
-		}
-	}
+	
 	
 	
 }

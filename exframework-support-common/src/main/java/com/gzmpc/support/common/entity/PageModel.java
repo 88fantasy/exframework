@@ -1,6 +1,9 @@
 package com.gzmpc.support.common.entity;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.BeanUtils;
 
 /**
 * @author rwe
@@ -41,5 +44,17 @@ public class PageModel<T> {
 		this.list = list;
 	}
 
-	
+	public  <E> PageModel<E> copy(Class<E> clazz) {
+		List<T> tlist = this.getList();
+		List<E> elist = tlist.stream().map(row -> {
+			try {
+				E e = clazz.newInstance();
+				BeanUtils.copyProperties(row, e);
+				return e;
+			} catch (InstantiationException | IllegalAccessException e1) {
+				return null;
+			}
+		}).collect(Collectors.toList());
+		return new PageModel<E>(this.getPager(), elist);
+	}
 }

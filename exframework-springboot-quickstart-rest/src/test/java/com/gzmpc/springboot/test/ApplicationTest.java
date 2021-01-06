@@ -45,8 +45,8 @@ public class ApplicationTest {
 	@Test
 	public void test1() throws Exception {
 
-		ResponseEntity<String> response = this.restTemplate.getForEntity(this.base.toString() + "/hello", String.class,
-				"");
-		System.out.println(String.format("测试结果为：%s", response.getBody()));
+//		ResponseEntity<String> response = this.restTemplate.getForEntity(this.base.toString() + "/hello", String.class,
+//				"");
+//		System.out.println(String.format("测试结果为：%s", response.getBody()));
 	}
 }

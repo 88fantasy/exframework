@@ -32,10 +32,10 @@ public class AccountParameterDO extends AccountParameter {
 	private String name;
 	
 	/**
-	 * 备注
+	 * 描述
 	 */
 	@TableField
-	private String comment;
+	private String description;
 	
 	/**
 	 * 帐号
@@ -50,8 +50,8 @@ public class AccountParameterDO extends AccountParameter {
 	private String value;
 	
 
-	public AccountParameterDO(Account account, String key, String name, String value, String comment) {
-		super(account, key, name, value, comment);
+	public AccountParameterDO(Account account, String key, String name, String value, String description) {
+		super(account, key, name, value, description);
 	}
 
 }

@@ -28,6 +28,17 @@ public class DictionaryDO {
 	@TableField
 	private String itemValue;
 
+	public DictionaryDO() {
+		super();
+	}
+
+	public DictionaryDO(String dictKey, String itemKey, String itemValue) {
+		super();
+		this.dictKey = dictKey;
+		this.itemKey = itemKey;
+		this.itemValue = itemValue;
+	}
+
 	public String getId() {
 		return id;
 	}

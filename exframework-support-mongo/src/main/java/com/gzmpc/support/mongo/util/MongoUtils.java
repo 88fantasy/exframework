@@ -17,7 +17,7 @@ public class MongoUtils {
 		}
 		long total = template.count(query, entityClass);
 		Pager pager = new Pager(total, page);
-		query.skip(page.skip()).limit(page.getPageSize());
+		query.skip(page.skip()).limit(page.getPageSize().intValue());
 		List<T> list = template.find(query, entityClass);
 		PageModel<T> model = new PageModel<T>(pager, list);
 		return model;

@@ -6,9 +6,9 @@ import java.util.Map;
 import com.gzmpc.dao.AccountDao;
 import com.gzmpc.exception.NotAuthorizedException;
 import com.gzmpc.exception.NotFoundException;
+import com.gzmpc.metadata.enums.AccountStatusTypeEnum;
 import com.gzmpc.metadata.sys.Account;
 import com.gzmpc.metadata.sys.Permission;
-import com.gzmpc.metadata.sys.Account.AccountStatusTypeEnum;
 import com.gzmpc.pub.Security;
 
 public interface AccountService {

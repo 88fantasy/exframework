@@ -4,7 +4,6 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
-import org.springframework.context.annotation.ComponentScan;
 
 import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure;
 
@@ -20,7 +19,7 @@ import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure;
     },
 	exclude = DruidDataSourceAutoConfigure.class
 )
-@MapperScan("com.gitee.sunchenbin.mybatis.actable.dao.*")
+@MapperScan(basePackages = {"com.gzmpc.core.mapper.*","com.gitee.sunchenbin.mybatis.actable.dao.*"})
 public class Application extends SpringBootServletInitializer {
 
 	public static void main(String[] args) {

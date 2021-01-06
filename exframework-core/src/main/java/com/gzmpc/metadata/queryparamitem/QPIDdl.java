@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import com.gzmpc.metadata.FilterCondition.Oper;
+import com.gzmpc.metadata.enums.FilterConditionOper;
 import com.gzmpc.metadata.queryparam.QueryParamItem;
 import com.gzmpc.metadata.sys.Account;
 import com.gzmpc.service.sys.DdlService;
@@ -24,7 +24,7 @@ public class QPIDdl extends QueryParamBase {
 		this.setDataType(QueryParamBase.QUERYPARAM_DATATYPE_DDL);
 		Map<String, String> dict = getDdl(qpi);
 		this.setOperdata(dict);
-		Oper[] operations = { Oper.IN, Oper.ISNULL };
+		FilterConditionOper[] operations = { FilterConditionOper.IN, FilterConditionOper.ISNULL };
 		this.setOperations(operations);
 	}
 

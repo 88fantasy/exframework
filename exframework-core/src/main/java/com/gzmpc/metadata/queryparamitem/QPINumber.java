@@ -4,7 +4,7 @@ package com.gzmpc.metadata.queryparamitem;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import com.gzmpc.metadata.FilterCondition.Oper;
+import com.gzmpc.metadata.enums.FilterConditionOper;
 import com.gzmpc.metadata.queryparam.QueryParamItem;
 import com.gzmpc.metadata.sys.Account;
 
@@ -19,7 +19,7 @@ public class QPINumber extends QueryParamBase {
 	public void initBase(Account account,QueryParamItem qpi) {
 		initBaseCommon(account,qpi);
 		this.setDataType(QUERYPARAM_DATATYPE_NUMBER);
-		Oper[] operations = { Oper.EQUAL, Oper.BETWEEN, Oper.GREATER, Oper.LESS, Oper.GREATER_EQUAL, Oper.LESS_EQUAL, Oper.NOT_EQUAL, Oper.ISNULL, Oper.ISNULL };
+		FilterConditionOper[] operations = { FilterConditionOper.EQUAL, FilterConditionOper.BETWEEN, FilterConditionOper.GREATER, FilterConditionOper.LESS, FilterConditionOper.GREATER_EQUAL, FilterConditionOper.LESS_EQUAL, FilterConditionOper.NOT_EQUAL, FilterConditionOper.ISNULL, FilterConditionOper.ISNULL };
 		this.setOperations(operations);
 	}
 }

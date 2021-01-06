@@ -1,11 +1,14 @@
 package com.gzmpc.core.entity;
 
+import com.baomidou.mybatisplus.annotation.EnumValue;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
 import com.gitee.sunchenbin.mybatis.actable.constants.MySqlTypeConstant;
 import com.gzmpc.metadata.di.DataItem;
+import com.gzmpc.metadata.enums.DataItemDisplayTypeEnum;
+import com.gzmpc.metadata.enums.DataItemValueTypeEnum;
 
 /**
  * 数据项
@@ -33,15 +36,16 @@ public class DataItemDO extends DataItem {
 	private String name;
 	
 	/**
-	 * 备注
+	 * 描述
 	 */
 	@TableField
-	private String comment;
+	private String description;
 	
 	/**
 	 * 显示风格
 	 */
 	@TableField
+	@EnumValue
 	@ColumnType(value = MySqlTypeConstant.VARCHAR)
 	private DataItemDisplayTypeEnum type;
 
@@ -55,6 +59,7 @@ public class DataItemDO extends DataItem {
 	 * 校证输入值类型
 	 */
 	@TableField
+	@EnumValue
 	@ColumnType(value = MySqlTypeConstant.VARCHAR)
 	private DataItemValueTypeEnum valueType;
 

@@ -1,6 +1,6 @@
 package com.gzmpc.core.mapper;
 
-import com.baomidou.mybatisplus.extension.service.IService;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.gzmpc.core.entity.AccountParameterDO;
 
 /**
@@ -11,6 +11,6 @@ import com.gzmpc.core.entity.AccountParameterDO;
  * Copyright @ 2020 
  * 
  */
-public interface AccountParameterMapper extends IService<AccountParameterDO> {
+public interface AccountParameterMapper extends BaseMapper<AccountParameterDO> {
 
 }

@@ -13,7 +13,7 @@ import com.gzmpc.metadata.queryparam.QueryParam;
  * Copyright @ 2020 
  * 
  */
-@TableName("sys_queryparam")
+@TableName( value = "sys_queryparam", excludeProperty = "queryParamItems")
 public class QueryParamDO extends QueryParam {
 
 	private static final long serialVersionUID = -7715558276022717832L;
@@ -25,7 +25,7 @@ public class QueryParamDO extends QueryParam {
 	private String name;
 	
 	@TableField
-	private String comment;
+	private String description;
 	
 	@TableField
 	private String moduleKey;

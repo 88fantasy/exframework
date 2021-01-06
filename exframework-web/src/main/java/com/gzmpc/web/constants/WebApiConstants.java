@@ -9,6 +9,11 @@ package com.gzmpc.web.constants;
  */
 public interface WebApiConstants {
 	
+	String API_PARAM = "/param";
+	String API_PARAM_GET = API_PARAM + "/get/{code}";
+	String API_PARAM_QUERY = API_PARAM + "/queryList";
+	String API_PARAM_DELETE = API_PARAM + "/delete";
+	String API_PARAM_POST = API_PARAM + "/post";
 
 	String API_DDL = "/ddl";
 	String API_DDL_GET = API_DDL + "/get/{ddlkey}";

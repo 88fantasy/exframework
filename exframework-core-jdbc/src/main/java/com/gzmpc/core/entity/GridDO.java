@@ -26,7 +26,7 @@ public class GridDO extends Grid {
 	private String name;
 	
 	@TableField
-	private String comment;
+	private String description;
 	
 	@TableField
 	private String moduleKey;

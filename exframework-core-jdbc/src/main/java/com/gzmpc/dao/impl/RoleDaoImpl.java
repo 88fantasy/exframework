@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.gzmpc.core.entity.AccountRoleDO;
 import com.gzmpc.core.entity.RoleDO;
 import com.gzmpc.core.entity.RolePermissionDO;
@@ -32,7 +33,7 @@ import com.gzmpc.service.sys.PermissionService;
  * 
  */
 @Repository
-public class RoleDaoImpl implements RoleDao {
+public class RoleDaoImpl extends MetaDaoImpl<RoleDO,Role> implements RoleDao {
 	
 	@Autowired
 	RoleMapper roleMapper;
@@ -55,7 +56,7 @@ public class RoleDaoImpl implements RoleDao {
 
 	@Override
 	public Collection<Role> all() {
-		List<RoleDO> entities = roleMapper.list();
+		List<RoleDO> entities = roleMapper.selectList(null);
 		return entities.stream().map(entity -> (Role) entity).collect(Collectors.toList());
 	}
 	
@@ -63,7 +64,7 @@ public class RoleDaoImpl implements RoleDao {
 	public Role findByKey(String key) {
 		Role role = getByKey(key);
 		if(role != null) {
-			List<RoleDO> childrens = roleMapper.list(new QueryWrapper<RoleDO>().eq("parentKey", key));
+			List<RoleDO> childrens = roleMapper.selectList(new QueryWrapper<RoleDO>().eq("parentKey", key));
 			List<Role> roles = new ArrayList<Role>();
 			for(RoleDO child : childrens) {
 				Role childRole = findByKey(child.getCode());
@@ -95,7 +96,7 @@ public class RoleDaoImpl implements RoleDao {
 	 * @return
 	 */
 	private Role getByKey(String key){
-		RoleDO entity = roleMapper.getOne(new QueryWrapper<RoleDO>().eq("key", key));
+		RoleDO entity = roleMapper.selectOne(new QueryWrapper<RoleDO>().eq("key", key));
 		if(entity != null) {
 			List<String> permissionKeys = rolePermissionMapper.selectList(new QueryWrapper<RolePermissionDO>().eq("role", entity.getCode()))
 					.stream().map(RolePermissionDO::getPermission).collect(Collectors.toList());;
@@ -106,6 +107,17 @@ public class RoleDaoImpl implements RoleDao {
 			entity.setPermissionMap(permissionMap);
 		}
 		return entity;
+	}
+
+
+	@Override
+	public BaseMapper<RoleDO> getBaseMapper() {
+		return roleMapper;
+	}
+
+	@Override
+	public RoleDO genInstance() {
+		return new RoleDO();
 	}
 
 }

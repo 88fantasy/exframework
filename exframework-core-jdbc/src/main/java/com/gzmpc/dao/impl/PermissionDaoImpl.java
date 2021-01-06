@@ -1,16 +1,15 @@
 package com.gzmpc.dao.impl;
 
-import java.util.Collection;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.gzmpc.core.entity.PermissionDO;
 import com.gzmpc.core.mapper.PermissionMapper;
 import com.gzmpc.dao.PermissionDao;
@@ -25,7 +24,7 @@ import com.gzmpc.metadata.sys.Permission;
  * 
  */
 @Repository
-public class PermissionDaoImpl implements PermissionDao {
+public class PermissionDaoImpl extends MetaDaoImpl<PermissionDO,Permission> implements PermissionDao {
 	
 //	private final Logger log = LoggerFactory.getLogger(this.getClass());
 	
@@ -40,24 +39,23 @@ public class PermissionDaoImpl implements PermissionDao {
 
 	@Override
 	public Permission findByKey(String key) {
-		PermissionDO entity =  permissionMapper.selectOne(new QueryWrapper<PermissionDO>().eq("key", key));
-		Permission p = entity.mapper(Permission.class);
+		Permission entity =  super.findByKey(key);
 		if(!StringUtils.isEmpty(entity.getParentPermissionKey())) {
-			List<PermissionDO> children = permissionMapper.selectList(new QueryWrapper<PermissionDO>().eq("parent_permission_key", p.getCode()));
-			List<Permission> permissions = children.stream().map(e -> e.mapper(Permission.class)).collect(Collectors.toList());
-			p.setChildren(permissions);
+			List<PermissionDO> children = permissionMapper.selectList(new QueryWrapper<PermissionDO>().eq("parent_permission_key", entity.getCode()));
+			List<Permission> permissions = new ArrayList<Permission>(children);
+			entity.setChildren(permissions);
 		}
-		return p;
+		return entity;
 	}
 
 	@Override
-	public Collection<String> allKeys() {
-		return all().stream().map(Permission::getCode).collect(Collectors.toList());
+	public BaseMapper<PermissionDO> getBaseMapper() {
+		return permissionMapper;
 	}
 
 	@Override
-	public Collection<Permission> all() {
-		return permissionMapper.selectList(null).stream().map(e -> e.mapper(Permission.class)).collect(Collectors.toList());
+	public PermissionDO genInstance() {
+		return new PermissionDO();
 	}
 
 	

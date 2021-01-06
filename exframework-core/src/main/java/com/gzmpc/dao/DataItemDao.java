@@ -20,5 +20,5 @@ public interface DataItemDao extends MetaDao<DataItem> {
 	Map<String,List<DataItem>> allExtends();
 	
 	@Nullable
-	DataItem findExtend(String objectCode, String key);
+	DataItem findExtend(String objectCode, String code);
 }

@@ -18,4 +18,5 @@ public interface DictionaryDao {
 	
 	String[] allKeys();
 	
+	boolean saveDictionary(String dictKey, Map<String,String> value);
 }

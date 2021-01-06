@@ -14,42 +14,43 @@ public class Page {
 	 * 当前页
 	 */
 	@Nullable
-    private Integer current;
+    private Long current;
 
 	/**
 	 * 每页条数
 	 */
 	@Nullable
-    private Integer pageSize;
+    private Long pageSize;
 	
 	public Page() {
-		
+		this.current = DEFAULT.current;
+		this.pageSize = DEFAULT.pageSize;
 	}
 	
-	public Page(Integer current, Integer pageSize) {
+	public Page(Long current, Long pageSize) {
 		this.current = current;
 		this.pageSize = pageSize;
 	}
 
-	public Integer getCurrent() {
+	public Long getCurrent() {
 		return current;
 	}
 
-	public void setCurrent(Integer current) {
+	public void setCurrent(Long current) {
 		this.current = current;
 	}
 
-	public Integer getPageSize() {
+	public Long getPageSize() {
 		return pageSize;
 	}
 
-	public void setPageSize(Integer pageSize) {
+	public void setPageSize(Long pageSize) {
 		this.pageSize = pageSize;
 	}
 
-	public Integer skip() {
+	public Long skip() {
 		return (this.getCurrent() - 1 ) * this.getPageSize();
 	}
 	
-	public static Page DEFAULT = new Page(1,20);
+	public static Page DEFAULT = new Page(1L,20L);
 }

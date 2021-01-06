@@ -16,6 +16,10 @@ public class InitException extends BaseException {
 		super(msg);
 	}
 	
+	public InitException(Throwable e) {
+		super(e);
+	}
+	
 	@Override
 	public String getMessage() {
 		return "初始化错误["+super.getMessage()+"]";

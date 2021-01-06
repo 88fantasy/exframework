@@ -111,6 +111,11 @@
             </exclusions>
         </dependency>
         
+        <dependency>
+            <groupId>com.gzmpc.exframework</groupId>
+            <artifactId>exframework-core-admin</artifactId>
+        </dependency>
+        
 	</dependencies>
 
 	<properties>

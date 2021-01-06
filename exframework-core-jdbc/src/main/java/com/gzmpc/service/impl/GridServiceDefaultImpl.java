@@ -18,10 +18,10 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.gzmpc.metadata.FilterCondition.Oper;
 import com.gzmpc.metadata.di.DataItem;
-import com.gzmpc.metadata.di.DataItem.DataItemDisplayTypeEnum;
-import com.gzmpc.metadata.di.DataItem.DataItemValueTypeEnum;
+import com.gzmpc.metadata.enums.DataItemDisplayTypeEnum;
+import com.gzmpc.metadata.enums.DataItemValueTypeEnum;
+import com.gzmpc.metadata.enums.FilterConditionOper;
 import com.gzmpc.metadata.grid.Grid;
 import com.gzmpc.metadata.sys.Account;
 import com.gzmpc.service.sys.DataItemService;
@@ -127,7 +127,7 @@ public class GridServiceDefaultImpl implements GridService {
 	@Override
 	public String makeupCondition(String oprea, String fieldname, String value1, String value2, List<Object> conditions,
 			List<Map<String, Object>> fields) {
-		if (oprea.equals(Oper.STR.getKey())) {
+		if (oprea.equals(FilterConditionOper.STR.getKey())) {
 			return " (" + value1 + ") ";
 		}
 
@@ -157,7 +157,7 @@ public class GridServiceDefaultImpl implements GridService {
 
 			StringBuffer condition = new StringBuffer();
 
-			if (oprea.equals(Oper.EQUAL.getKey())) { // 等于号
+			if (oprea.equals(FilterConditionOper.EQUAL.getKey())) { // 等于号
 				condition.append(fieldname);
 				if (!isDdateType) {
 					condition.append(" = ? ");
@@ -170,7 +170,7 @@ public class GridServiceDefaultImpl implements GridService {
 					conditions.add(dt1);
 					conditions.add(dt2);
 				}
-			} else if (oprea.equals(Oper.MATCHING.getKey())) { // 匹配
+			} else if (oprea.equals(FilterConditionOper.MATCHING.getKey())) { // 匹配
 				condition.append(fieldname);
 				condition.append(" like ?");
 				if (!value1.endsWith(".")) // 如果以.号为结束的表示模糊查询时后面没有%号
@@ -178,7 +178,7 @@ public class GridServiceDefaultImpl implements GridService {
 				else
 					value1 = value1.substring(0, value1.length() - 1);
 				conditions.add(value1);
-			} else if (oprea.equals(Oper.GREATER_EQUAL.getKey())) { // 大于等于
+			} else if (oprea.equals(FilterConditionOper.GREATER_EQUAL.getKey())) { // 大于等于
 				condition.append(fieldname);
 				if (isDdateType) {
 					condition.append(" >= ?");
@@ -189,7 +189,7 @@ public class GridServiceDefaultImpl implements GridService {
 					condition.append(" >=?");
 					conditions.add(value1);
 				}
-			} else if (oprea.equals(Oper.LESS_EQUAL.getKey())) { // 小于等于
+			} else if (oprea.equals(FilterConditionOper.LESS_EQUAL.getKey())) { // 小于等于
 				condition.append(fieldname);
 				if (isDdateType) {
 					condition.append(" < ?");
@@ -200,7 +200,7 @@ public class GridServiceDefaultImpl implements GridService {
 					condition.append(" <=?");
 					conditions.add(value1);
 				}
-			} else if (oprea.equals(Oper.IN.getKey())) { // in 语句
+			} else if (oprea.equals(FilterConditionOper.IN.getKey())) { // in 语句
 				condition.append(fieldname);
 				if (value1.length() > 0) {
 					String[] arr_str = value1.split(",");
@@ -216,7 +216,7 @@ public class GridServiceDefaultImpl implements GridService {
 					}
 					condition.append(" )");
 				}
-			} else if (oprea.equals(Oper.GREATER.getKey())) { // 大于号
+			} else if (oprea.equals(FilterConditionOper.GREATER.getKey())) { // 大于号
 				condition.append(fieldname);
 				if (isDdateType) {
 					condition.append(" >= ?"); // 取下一天
@@ -228,7 +228,7 @@ public class GridServiceDefaultImpl implements GridService {
 					condition.append(" > ?");
 					conditions.add(value1);
 				}
-			} else if (oprea.equals(Oper.LESS.getKey())) { // 小于号
+			} else if (oprea.equals(FilterConditionOper.LESS.getKey())) { // 小于号
 				condition.append(fieldname);
 				if (isDdateType) {
 					condition.append(" < ?");
@@ -239,7 +239,7 @@ public class GridServiceDefaultImpl implements GridService {
 					condition.append(" < ?");
 					conditions.add(value1);
 				}
-			} else if (oprea.equals(Oper.BETWEEN.getKey())) { // between
+			} else if (oprea.equals(FilterConditionOper.BETWEEN.getKey())) { // between
 				condition.append(fieldname);
 				if (isDdateType) {
 					condition.append(" between ? and ?");
@@ -255,7 +255,7 @@ public class GridServiceDefaultImpl implements GridService {
 					conditions.add(value1);
 					conditions.add(value2);
 				}
-			} else if (oprea.equals(Oper.NOT_EQUAL.getKey())) { // 不等于
+			} else if (oprea.equals(FilterConditionOper.NOT_EQUAL.getKey())) { // 不等于
 				condition.append(fieldname);
 				if (!isDdateType) {
 					condition.append(" != ?");

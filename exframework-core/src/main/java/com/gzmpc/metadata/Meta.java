@@ -2,6 +2,8 @@ package com.gzmpc.metadata;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotEmpty;
+
 /**
  * 元数据元素的基类，包含名称信息、版本信息、与显示信息，form,attribute,dataItem等继承这个基类
  */
@@ -12,17 +14,19 @@ public class Meta implements Serializable {
 	/**
 	 * 代码
 	 */
+	@NotEmpty
 	private String code;
 	
 	/**
 	 * 名称
 	 */
+	@NotEmpty
 	private String name;
 	
 	/**
-	 * 备注
+	 * 描述
 	 */
-	private String comment;
+	private String  description;
 
 	public String getName() {
 		return name;
@@ -32,12 +36,12 @@ public class Meta implements Serializable {
 		this.name = name;
 	}
 
-	public String getComment() {
-		return comment;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setComment(String comment) {
-		this.comment = comment;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public String getCode() {

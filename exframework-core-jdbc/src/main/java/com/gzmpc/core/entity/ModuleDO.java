@@ -3,7 +3,7 @@ package com.gzmpc.core.entity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.gzmpc.metadata.module.ModuleEntity;
+import com.gzmpc.metadata.module.Module;
 
 /**
  * 功能实体类
@@ -13,8 +13,8 @@ import com.gzmpc.metadata.module.ModuleEntity;
  * Copyright @ 2020 
  * 
  */
-@TableName("sys_module")
-public class ModuleDO extends ModuleEntity {
+@TableName( value = "sys_module", excludeProperty = {"dataItems", "permissions", "hovs"})
+public class ModuleDO extends Module {
 
 	private static final long serialVersionUID = 5740415660479029153L;
 	
@@ -25,8 +25,11 @@ public class ModuleDO extends ModuleEntity {
 	private String name;
 	
 	@TableField
-	private String comment;
+	private String description;
 	
 	@TableField
 	private boolean valid;
+	
+	@TableField
+	private long star;
 }
