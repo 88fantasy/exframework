@@ -1,4 +1,4 @@
-package com.gzmpc.web.controller;
+package com.gzmpc.core.admin.controller;
 
 import javax.validation.Valid;
 
@@ -12,12 +12,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.gzmpc.core.admin.constant.AdminApiConstants;
 import com.gzmpc.exception.NotAuthorizedException;
 import com.gzmpc.exception.NotFoundException;
 import com.gzmpc.metadata.sys.AccountParameter;
 import com.gzmpc.support.rest.entity.ApiResponseData;
 import com.gzmpc.support.rest.entity.ApiResponsePage;
 import com.gzmpc.web.constants.WebApiConstants;
+import com.gzmpc.web.controller.ParamController;
 import com.gzmpc.web.entity.dto.DeleteParamRequest;
 import com.gzmpc.web.entity.dto.PostParamQueryRequest;
 import com.gzmpc.web.service.LoginService;
@@ -27,8 +29,12 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 
-
-public class ParamController {
+@RestController
+@CrossOrigin(origins = "*", maxAge = 3600, methods = { RequestMethod.GET, RequestMethod.OPTIONS, RequestMethod.DELETE,
+		RequestMethod.POST })
+@RequestMapping(AdminApiConstants.API_ADMIN_PREFIX)
+@Api(tags = "参数")
+public class SystemParamController extends ParamController {
 
 	@Autowired
 	LoginService loginService;
