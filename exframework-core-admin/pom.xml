@@ -23,11 +23,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.gzmpc.exframework</groupId>
-			<artifactId>exframework-core</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.gzmpc.exframework</groupId>
-			<artifactId>exframework-web</artifactId>
+			<artifactId>exframework-core-web</artifactId>
 		</dependency>
 
 	</dependencies>

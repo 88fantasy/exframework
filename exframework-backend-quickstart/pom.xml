@@ -92,7 +92,7 @@
 		
 		<dependency>
             <groupId>com.gzmpc.exframework</groupId>
-            <artifactId>exframework-web</artifactId>
+            <artifactId>exframework-core-web</artifactId>
         </dependency>
         
         <dependency>

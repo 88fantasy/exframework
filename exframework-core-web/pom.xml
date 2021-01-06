@@ -6,9 +6,9 @@
 		<artifactId>exframework-root</artifactId>
 		<version>0.6</version>
 	</parent>
-	<artifactId>exframework-web</artifactId>
+	<artifactId>exframework-core-web</artifactId>
 	<packaging>jar</packaging>
-	<name>exframework-web</name>
+	<name>exframework-core-web</name>
 	
 	<build>
         <plugins>

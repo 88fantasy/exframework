@@ -10,7 +10,7 @@
 	<modules>
 		<module>exframework-core</module>
 		<module>exframework-core-jdbc</module>
-		<module>exframework-web</module>
+		<module>exframework-core-web</module>
 		<module>exframework-core-admin</module>
 		<module>exframework-support-job</module>
 		<module>exframework-support-mail</module>
@@ -185,7 +185,7 @@
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
-				<artifactId>exframework-web</artifactId>
+				<artifactId>exframework-core-web</artifactId>
 				<version>0.6</version>
 			</dependency>
 			<dependency>
