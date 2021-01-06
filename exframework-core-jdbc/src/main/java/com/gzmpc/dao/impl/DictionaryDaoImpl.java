@@ -34,7 +34,7 @@ public class DictionaryDaoImpl implements DictionaryDao {
 	public Map<String, String> findByKey(String dictKey) throws NotFoundException {
 		List<DictionaryDO> entities = findListByKey(dictKey);
 		if( entities == null || entities.size() == 0) {
-			throw new NotFoundException();
+			throw new NotFoundException("找不到此字典");
 		}
 		Map<String, String> dict = new ConcurrentHashMap<String,String>();
 		for( DictionaryDO entity : entities) {
@@ -45,7 +45,7 @@ public class DictionaryDaoImpl implements DictionaryDao {
 
 	@Override
 	public String[] allKeys() {
-		List<DictionaryDO> entities = dictionaryMapper.selectList(new QueryWrapper<DictionaryDO>().select(" distinct dictKey "));
+		List<DictionaryDO> entities = dictionaryMapper.selectList(new QueryWrapper<DictionaryDO>().select(" distinct dict_key "));
 		return entities.stream().map(DictionaryDO::getDictKey).collect(Collectors.toList()).toArray(new String[entities.size()]);
 	}
 
@@ -71,6 +71,6 @@ public class DictionaryDaoImpl implements DictionaryDao {
 	}
 	
 	private QueryWrapper<DictionaryDO> getWrapperByKey(String dictKey) {
-		return new QueryWrapper<DictionaryDO>().eq("dictKey", dictKey);
+		return new QueryWrapper<DictionaryDO>().eq("dict_key", dictKey);
 	}
 }
