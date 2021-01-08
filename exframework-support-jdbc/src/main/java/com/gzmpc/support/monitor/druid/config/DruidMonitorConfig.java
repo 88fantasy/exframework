@@ -10,7 +10,6 @@ import com.alibaba.druid.filter.logging.Log4j2Filter;
 import com.alibaba.druid.filter.stat.StatFilter;
 import com.alibaba.druid.wall.WallConfig;
 import com.alibaba.druid.wall.WallFilter;
-import com.gzmpc.support.jdbc.listener.DbInitListener;
 
 /**
 * @author rwe

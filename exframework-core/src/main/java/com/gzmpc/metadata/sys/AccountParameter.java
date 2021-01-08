@@ -31,14 +31,6 @@ public class AccountParameter extends Meta {
 	public AccountParameter() {
 		
 	}
-	
-	public AccountParameter( Account account, String key, String name, String value, String description) {
-		this.account = account.getAccountId();
-		this.setCode(key);
-		this.setName(name);
-		this.value = value;
-		this.setDescription(description);
-	}
 
 	public String getAccount() {
 		return account;
@@ -55,6 +47,4 @@ public class AccountParameter extends Meta {
 	public void setValue(String value) {
 		this.value = value;
 	}
-	
-	
 }

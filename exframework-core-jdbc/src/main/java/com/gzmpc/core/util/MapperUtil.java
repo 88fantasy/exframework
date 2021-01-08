@@ -19,6 +19,9 @@ import com.gzmpc.support.common.entity.Pager;
 public interface MapperUtil<T> {
 
 	default QueryWrapper<T> wrapperFromCondition(Collection<FilterCondition> conditions) {
+		if(conditions == null || conditions.size() == 0) {
+			return null;
+		}
 		QueryWrapper<T> wrapper = new QueryWrapper<T>();
 		for (FilterCondition fc : conditions) {
 			if(fc.getFilterValue() == null) {

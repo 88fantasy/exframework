@@ -12,7 +12,7 @@ package com.gzmpc.core.entity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.gzmpc.core.entity.mapper.AutoMapper;
+import com.gzmpc.core.mapper.AutoMapper;
 import com.gzmpc.metadata.sys.Permission;
 
 @TableName( value = "sys_permission", excludeProperty = "children")

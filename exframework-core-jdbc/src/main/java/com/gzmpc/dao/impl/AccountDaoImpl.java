@@ -1,5 +1,7 @@
 package com.gzmpc.dao.impl;
 
+import java.text.MessageFormat;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -37,6 +39,10 @@ public class AccountDaoImpl implements AccountDao {
 	}
 
 	private AccountDO getAccountDO(String accountId) throws NotFoundException {
-		return accountMapper.selectOne(new QueryWrapper<AccountDO>().eq("accountId", accountId));
+		AccountDO entity = accountMapper.selectOne(new QueryWrapper<AccountDO>().lambda().eq(AccountDO::getAccountId, accountId));
+		if( entity == null ) {
+			throw new NotFoundException(MessageFormat.format("不存在该帐号{0}", accountId));
+		}
+		return entity;
 	}
 }

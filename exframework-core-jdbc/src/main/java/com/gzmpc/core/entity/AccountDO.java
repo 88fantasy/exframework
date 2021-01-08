@@ -19,7 +19,7 @@ import com.gzmpc.metadata.sys.Account;
  * Copyright @ 2020 
  * 
  */
-@TableName("sys_account")
+@TableName( value = "sys_account", excludeProperty = {"permissions", "modules"})
 public class AccountDO extends Account {
 
 	/**

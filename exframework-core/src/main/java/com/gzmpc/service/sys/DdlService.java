@@ -1,6 +1,5 @@
 package com.gzmpc.service.sys;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -24,13 +23,12 @@ public class DdlService {
 	AccountService accountService;
 
 	public Collection<String> getAllKeys() {
-		return Arrays.asList(dictionaryDao.allKeys());
+		return dictionaryDao.allKeys();
 	}
 	
-	public Map<String, String> get(String ddlkey) {
-		Map<String, String> ddl = dictionaryDao.findByKey(ddlkey);
+	public Map<String, String> get(Account account, String ddlkey) {
+		Map<String, String> ddl = get(ddlkey);
 		Map<String,String> result = new ConcurrentHashMap<String,String>(ddl);
-		Account account = accountService.getAccount();
 		for(String key : ddl.keySet()) {
 			//由于字典不限权限比较多,故采用排除算法
 			if(permissionService.hasRight(account, "ddl-"+ddlkey+"-"+key)) {
@@ -40,11 +38,15 @@ public class DdlService {
 		return result;
 	}
 	
+	public Map<String, String> get(String ddlkey) {
+		return dictionaryDao.findMapByKey(ddlkey);
+	}
+	
 	public String getValue(String ddlKey, String itemKey) {
 		return get(ddlKey).get(itemKey);
 	}
 	
-	public boolean saveDictionary(String dictKey, Map<String,String> value) {
-		return dictionaryDao.saveDictionary(dictKey, value);
+	public boolean saveDictionary(String code, String name, Map<String,String> value) {
+		return dictionaryDao.saveDictionary(code, name, value);
 	}
 }

@@ -9,6 +9,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.gzmpc.core.entity.AccountParameterDO;
@@ -58,9 +60,24 @@ public class AccountParameterDaoImpl implements AccountParameterDao, MapperUtil<
 	
 
 	@Override
-	public boolean putAccountKey(Account account, String key, String name, String value, String description) {
-		AccountParameterDO entity = new AccountParameterDO(account, key, name, value, description);
-		return accountParameterMapper.update(entity, getUniqueWrapper(account, key)) > 0;
+	public boolean putAccountKey(Account account, String code, String name, String value, String description) {
+		Wrapper<AccountParameterDO> wrapper = getUniqueWrapper(account, code);
+		AccountParameterDO entity = accountParameterMapper.selectOne(wrapper);
+		if(entity  == null) {
+			entity = new AccountParameterDO();
+			entity.setCode(code);
+			entity.setAccount(account.getAccountId());
+			entity.setName(name);
+			entity.setValue(value);
+			entity.setDescription(description);
+			return accountParameterMapper.insert(entity) > 0;
+		}
+		else {
+			entity.setName(name);
+			entity.setValue(value);
+			entity.setDescription(description);
+			return accountParameterMapper.update(entity, wrapper) > 0;
+		}
 	}
 
 	@Override
@@ -69,8 +86,8 @@ public class AccountParameterDaoImpl implements AccountParameterDao, MapperUtil<
 	}
 
 
-	private QueryWrapper<AccountParameterDO> getUniqueWrapper(Account account, String key) {
-		return new QueryWrapper<AccountParameterDO>().eq("account", account.getAccountId()).eq("key", key);
+	private LambdaQueryWrapper<AccountParameterDO> getUniqueWrapper(Account account, String key) {
+		return new QueryWrapper<AccountParameterDO>().lambda().eq(AccountParameterDO::getAccount, account.getAccountId()).eq(AccountParameterDO::getCode, key);
 	}
 
 	@Override

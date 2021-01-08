@@ -5,12 +5,12 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextImpl;
 
+import com.gzmpc.core.web.entity.LoginDTO;
+import com.gzmpc.core.web.service.LoginService;
+import com.gzmpc.core.web.vo.LoginResponse;
 import com.gzmpc.exception.NotAuthorizedException;
 import com.gzmpc.metadata.sys.Account;
 import com.gzmpc.support.rest.entity.ApiResponseData;
-import com.gzmpc.web.entity.LoginDTO;
-import com.gzmpc.web.service.LoginService;
-import com.gzmpc.web.vo.LoginResponse;
 
 public class SSOLoginServiceImpl implements LoginService {
 	private final String sessionKey = "SPRING_SECURITY_CONTEXT";

@@ -4,6 +4,9 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
+import com.gitee.sunchenbin.mybatis.actable.constants.MySqlTypeConstant;
+import com.gzmpc.metadata.dict.DictionaryItem;
 
 /**
  * 字典实体类
@@ -13,63 +16,30 @@ import com.baomidou.mybatisplus.annotation.TableName;
  * Copyright @ 2020 
  * 
  */
-@TableName("sys_dictionary")
-public class DictionaryDO {
+@TableName( value = "sys_dictionary", excludeProperty = {"value"} )
+public class DictionaryDO extends DictionaryItem {
+
+	private static final long serialVersionUID = 5176816281781626949L;
 
 	@TableId(type = IdType.ASSIGN_ID)
-	private String id;
+	private String code;
 	
 	@TableField
-	private String dictKey;
+	private String name;
 	
 	@TableField
-	private String itemKey;
+	private String description;
 	
 	@TableField
-	private String itemValue;
-
-	public DictionaryDO() {
-		super();
+	@ColumnType(value = MySqlTypeConstant.VARCHAR, length = 2000)
+	private String valueJson;
+ 
+	public String getValueJson() {
+		return valueJson;
 	}
 
-	public DictionaryDO(String dictKey, String itemKey, String itemValue) {
-		super();
-		this.dictKey = dictKey;
-		this.itemKey = itemKey;
-		this.itemValue = itemValue;
+	public void setValueJson(String valueJson) {
+		this.valueJson = valueJson;
 	}
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public String getDictKey() {
-		return dictKey;
-	}
-
-	public void setDictKey(String dictKey) {
-		this.dictKey = dictKey;
-	}
-
-	public String getItemKey() {
-		return itemKey;
-	}
-
-	public void setItemKey(String itemKey) {
-		this.itemKey = itemKey;
-	}
-
-	public String getItemValue() {
-		return itemValue;
-	}
-
-	public void setItemValue(String itemValue) {
-		this.itemValue = itemValue;
-	}
-	
 	
 }

@@ -1,9 +1,9 @@
 package com.gzmpc.core.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.gzmpc.metadata.sys.Account;
 import com.gzmpc.metadata.sys.AccountParameter;
 
 /**
@@ -18,11 +18,16 @@ import com.gzmpc.metadata.sys.AccountParameter;
 public class AccountParameterDO extends AccountParameter {
 
 	private static final long serialVersionUID = 1988325593021911178L;
+	/**
+	 * 代码
+	 */
+	@TableId( type = IdType.ASSIGN_ID)
+	private Long id;
 	
 	/**
 	 * 代码
 	 */
-	@TableId
+	@TableField
 	private String code;
 	
 	/**
@@ -49,9 +54,13 @@ public class AccountParameterDO extends AccountParameter {
 	@TableField
 	private String value;
 	
+	
+	public Long getId() {
+		return id;
+	}
 
-	public AccountParameterDO(Account account, String key, String name, String value, String description) {
-		super(account, key, name, value, description);
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 }

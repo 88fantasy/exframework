@@ -1,23 +1,29 @@
 package com.gzmpc.dao.impl;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.gzmpc.core.entity.DictionaryDO;
 import com.gzmpc.core.mapper.DictionaryMapper;
+import com.gzmpc.core.util.MapperUtil;
 import com.gzmpc.dao.DictionaryDao;
 import com.gzmpc.exception.NotFoundException;
-import com.gzmpc.support.jdbc.exception.SessionExcetpion;
+import com.gzmpc.metadata.FilterCondition;
+import com.gzmpc.metadata.dict.DictionaryItem;
+import com.gzmpc.support.common.entity.PageModel;
 
 /**
- *
+ * 字典数据类
  * Author: rwe
  * Date: Dec 29, 2020
  *
@@ -25,52 +31,64 @@ import com.gzmpc.support.jdbc.exception.SessionExcetpion;
  * 
  */
 @Repository
-public class DictionaryDaoImpl implements DictionaryDao {
+public class DictionaryDaoImpl extends MetaDaoImpl<DictionaryDO, DictionaryItem> implements DictionaryDao, MapperUtil<DictionaryDO> {
 	
 	@Autowired
 	DictionaryMapper dictionaryMapper;
 
 	@Override
-	public Map<String, String> findByKey(String dictKey) throws NotFoundException {
-		List<DictionaryDO> entities = findListByKey(dictKey);
-		if( entities == null || entities.size() == 0) {
-			throw new NotFoundException("找不到此字典");
+	public Map<String, String> findMapByKey(String code) throws NotFoundException {
+		DictionaryDO entity = dictionaryMapper.selectById(code);
+		if( entity == null) {
+			throw new NotFoundException();
 		}
 		Map<String, String> dict = new ConcurrentHashMap<String,String>();
-		for( DictionaryDO entity : entities) {
-			dict.put(entity.getItemKey(), entity.getItemValue());
+		String json = entity.getValueJson();
+		JSONObject map = JSON.parseObject(json);
+		for( String key : map.keySet()) {
+			dict.put(key, map.getString(key));
 		}
 		return dict;
 	}
 
 	@Override
-	public String[] allKeys() {
-		List<DictionaryDO> entities = dictionaryMapper.selectList(new QueryWrapper<DictionaryDO>().select(" distinct dict_key "));
-		return entities.stream().map(DictionaryDO::getDictKey).collect(Collectors.toList()).toArray(new String[entities.size()]);
-	}
-
-	@Override
-	@Transactional(rollbackFor = Exception.class)
-	public boolean saveDictionary(String dictKey, Map<String, String> value) {
-		List<DictionaryDO> entities = findListByKey(dictKey);
-		if( entities != null && entities.size() > 0) {
-			dictionaryMapper.delete(getWrapperByKey(dictKey));
+	public boolean saveDictionary(String code,  String name, Map<String, String> value) {
+		DictionaryDO entity = dictionaryMapper.selectById(code);
+		Map<String, Object> object = new ConcurrentHashMap<String, Object>();
+		object.putAll(value);
+		String json = new JSONObject(object).toJSONString();
+		if(entity == null) {
+			DictionaryDO newEntity = genInstance();
+			newEntity.setCode(code);
+			newEntity.setName(name);
+			newEntity.setValueJson(json);
+			dictionaryMapper.insert(newEntity);
 		}
-		List<DictionaryDO> newEntities = value.keySet().stream().map(key -> new DictionaryDO(dictKey, key, value.get(key))).collect(Collectors.toList());
-		for(DictionaryDO entity : newEntities) {
-			int success = dictionaryMapper.insert(entity);
-			if(success < 1) {
-				throw new SessionExcetpion("插入数据失败");
-			}
+		else {
+			entity.setValueJson(json);
+			dictionaryMapper.updateById(entity);
 		}
 		return true;
 	}
 
-	private List<DictionaryDO> findListByKey(String dictKey) {
-		return dictionaryMapper.selectList(getWrapperByKey(dictKey));
+	@Override
+	public BaseMapper<DictionaryDO> getBaseMapper() {
+		return dictionaryMapper;
 	}
-	
-	private QueryWrapper<DictionaryDO> getWrapperByKey(String dictKey) {
-		return new QueryWrapper<DictionaryDO>().eq("dict_key", dictKey);
+
+	@Override
+	public DictionaryDO genInstance() {
+		return new DictionaryDO();
+	}
+
+	@Override
+	public PageModel<DictionaryItem> query(Collection<FilterCondition> params, com.gzmpc.support.common.entity.Page page) {
+		Page<DictionaryDO> p = dictionaryMapper.selectPage(new Page<DictionaryDO>(page.getCurrent(), page.getPageSize()), wrapperFromCondition(params));
+		return modelFromPage(p,DictionaryItem.class);
+	}
+
+	@Override
+	public List<DictionaryItem> list(Collection<FilterCondition> params) {
+		return new ArrayList<DictionaryItem>(dictionaryMapper.selectList(wrapperFromCondition(params)));
 	}
 }

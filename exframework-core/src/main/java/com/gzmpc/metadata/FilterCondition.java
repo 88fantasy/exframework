@@ -15,6 +15,7 @@ import org.springframework.lang.Nullable;
 
 import com.gzmpc.metadata.enums.FilterConditionDataType;
 import com.gzmpc.metadata.enums.FilterConditionOper;
+import com.gzmpc.support.common.entity.Page;
 
 public class FilterCondition {
 
@@ -136,7 +137,9 @@ public class FilterCondition {
 									readMethod.setAccessible(true);
 								}
 								Object value = readMethod.invoke(editable);
-//								targetPd.getPropertyType()
+								if(value == null || value.getClass().isAssignableFrom(Page.class)) {
+									continue;
+								}
 								FilterCondition fc = new FilterCondition(targetPd.getName(),
 										FilterConditionOper.MATCHING, value);
 								fcList.add(fc);
