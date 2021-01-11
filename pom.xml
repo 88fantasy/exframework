@@ -8,10 +8,10 @@
 	<packaging>pom</packaging>
 	<name>exframework </name>
 	<modules>
-		<module>exframework-core</module>
-		<module>exframework-core-jdbc</module>
-		<module>exframework-core-web</module>
-		<module>exframework-core-admin</module>
+		<module>exframework-portal-core</module>
+		<module>exframework-portal-jdbc</module>
+		<module>exframework-portal-web</module>
+		<module>exframework-portal-admin</module>
 		<module>exframework-support-job</module>
 		<module>exframework-support-mail</module>
 		<module>exframework-support-utils</module>
@@ -165,17 +165,17 @@
 		<dependencies>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
-				<artifactId>exframework-core</artifactId>
+				<artifactId>exframework-portal-core</artifactId>
 				<version>0.6</version>
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
-				<artifactId>exframework-core-admin</artifactId>
+				<artifactId>exframework-portal-admin</artifactId>
 				<version>0.6</version>
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
-				<artifactId>exframework-core-jdbc</artifactId>
+				<artifactId>exframework-portal-jdbc</artifactId>
 				<version>0.6</version>
 			</dependency>
 			<dependency>
@@ -185,7 +185,7 @@
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
-				<artifactId>exframework-core-web</artifactId>
+				<artifactId>exframework-portal-web</artifactId>
 				<version>0.6</version>
 			</dependency>
 			<dependency>

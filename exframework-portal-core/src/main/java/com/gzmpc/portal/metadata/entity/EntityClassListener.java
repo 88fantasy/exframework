@@ -1,0 +1,129 @@
+package com.gzmpc.portal.metadata.entity;
+
+import java.lang.reflect.Field;
+import java.text.MessageFormat;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationListener;
+import org.springframework.stereotype.Repository;
+import org.springframework.util.ReflectionUtils;
+import org.springframework.util.StringUtils;
+
+import com.gzmpc.portal.dao.DataItemDao;
+import com.gzmpc.portal.metadata.di.DataItem;
+import com.gzmpc.portal.metadata.di.DataItemField;
+import com.gzmpc.portal.metadata.di.DataItem.DataItemDisplayTypeEnum;
+import com.gzmpc.portal.metadata.di.DataItem.DataItemValueTypeEnum;
+import com.gzmpc.portal.metadata.dict.Dictionary;
+import com.gzmpc.portal.metadata.dict.DictionaryEnum;
+import com.gzmpc.portal.metadata.dict.DictionaryEnumClass;
+import com.gzmpc.service.sys.DdlService;
+
+/**
+ * 加载EntityClass注解
+ * Author: rwe
+ * Date: Jan 11, 2021
+ *
+ * Copyright @ 2021 
+ * 
+ */
+@Repository
+public class EntityClassListener implements ApplicationListener<ApplicationReadyEvent> {
+	
+	private Logger log = LoggerFactory.getLogger(EntityClassListener.class.getName());
+
+	@Autowired
+	DdlService ddlService;
+	
+	@Autowired
+	DataItemDao dataItemDao;
+	
+	
+	@Override
+	public void onApplicationEvent(ApplicationReadyEvent event) {
+		ApplicationContext ac = event.getApplicationContext();
+		log.info("开始扫描注解"+EntityScan.class.getName());
+		Map<String, Object> entities = ac.getBeansWithAnnotation(EntityClass.class);
+		for (String dn : entities.keySet()) {
+			Object entityClass = entities.get(dn);
+			log.info(MessageFormat.format("正在检查{0}", entityClass.getClass().getName()));
+			ReflectionUtils.doWithFields(entityClass.getClass(), new ReflectionUtils.FieldCallback() {
+				@Override
+				public void doWith(Field field) throws IllegalArgumentException, IllegalAccessException {
+					ReflectionUtils.makeAccessible(field);
+					Object value = field.get(entityClass);
+					try {
+						// 如果字段添加了我们自定义注解
+						if (field.isAnnotationPresent(DataItemField.class)) {
+							log.info(MessageFormat.format("正在检查数据项{0}",  field.getName()));
+							DataItemField item = field.getAnnotation(DataItemField.class);
+							String code = item.value();
+							String name = item.name();
+							String description = item.description();
+							DataItemDisplayTypeEnum type = item.type();
+							DataItemValueTypeEnum valueType = item.valueType();
+							String displayKey = item.displayKey();
+							int length = item.maxlength();
+							int precision = item.precision();
+							String objectCode = item.objectCode();
+							boolean forceUpdate = item.forceUpdate();
+							
+							if(valueType == DataItemValueTypeEnum.DEFAULT) {
+								valueType = dataItemDao.defaultValueType(value);
+							}
+							
+							if(StringUtils.hasText(objectCode)) {
+								
+							}
+							else {
+								DataItem dataitem = dataItemDao.findByKey(code);
+								if(dataitem == null) {
+									dataitem = new DataItem(code, name, description, type, displayKey, valueType, length, precision);
+									dataItemDao.insert(dataitem);
+								}
+								else if(forceUpdate) {
+									dataitem = new DataItem(code, name, description, type, displayKey, valueType, length, precision);
+									dataItemDao.update(dataitem);
+								}
+							}
+						}
+					} catch ( Exception e) {
+						log.error(MessageFormat.format("设置配置项[{0}]失败: {1}", field.getName(), e.getMessage()),e);
+					}
+				}
+			});
+			
+			if(DictionaryEnumClass.class.isAssignableFrom(entityClass.getClass())) {		
+				DictionaryEnumClass dec = (DictionaryEnumClass) entityClass;
+				Class<?>[] enumclasses =  dec.getEnums();
+				if(enumclasses != null) {
+					for(Class<?> enumclass : enumclasses) {
+						Dictionary d = enumclass.getAnnotation(Dictionary.class);
+						String dictName = d.name();
+						String dictCode = d.value();
+						if (StringUtils.hasText(dictCode) && enumclass.isEnum()) {
+							log.info(MessageFormat.format("加载字典{0}", dictCode));
+							Map<String, String> vv = new ConcurrentHashMap<String, String>();
+							Object[] objs = enumclass.getEnumConstants();
+							for (Object obj : objs) {
+								if(DictionaryEnum.class.isAssignableFrom(obj.getClass())) {
+									DictionaryEnum<?> e = (DictionaryEnum<?>) obj;
+									String v = String.valueOf(e.getValue());
+									String enumName = e.getName();
+									vv.put(v, enumName);
+								}
+							}
+							ddlService.saveDictionary(dictCode, dictName, vv);
+						}
+					}
+				}
+			}
+		}
+	}
+}

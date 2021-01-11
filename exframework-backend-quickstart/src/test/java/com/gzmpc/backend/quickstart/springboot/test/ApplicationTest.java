@@ -13,9 +13,10 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.gzmpc.backend.quickstart.springboot.application.Application;
-import com.gzmpc.core.entity.AccountDO;
-import com.gzmpc.core.mapper.AccountMapper;
-import com.gzmpc.metadata.enums.AccountStatusTypeEnum;
+import com.gzmpc.portal.jdbc.entity.AccountDO;
+import com.gzmpc.portal.jdbc.mapper.AccountMapper;
+import com.gzmpc.portal.metadata.sys.Account.AccountStatusTypeEnum;
+
 import static org.assertj.core.api.Assertions.assertThat;
 /**
  * @author rwe

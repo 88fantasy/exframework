@@ -6,6 +6,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure;
+import com.gzmpc.portal.metadata.entity.EntityScan;
 
 /**
 * @author rwe
@@ -19,7 +20,8 @@ import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure;
     },
 	exclude = DruidDataSourceAutoConfigure.class
 )
-@MapperScan(basePackages = {"com.gzmpc.core.mapper.*","com.gitee.sunchenbin.mybatis.actable.dao.*"})
+@MapperScan(basePackages = {"com.gzmpc.portal.jdbc.mapper.*","com.gitee.sunchenbin.mybatis.actable.dao.*"})
+@EntityScan("com.gzmpc.portal.metadata")
 public class Application extends SpringBootServletInitializer {
 
 	public static void main(String[] args) {

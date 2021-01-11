@@ -23,11 +23,11 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.gzmpc.exframework</groupId>
-			<artifactId>exframework-core-jdbc</artifactId>
+			<artifactId>exframework-portal-jdbc</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.gzmpc.exframework</groupId>
-			<artifactId>exframework-core-web</artifactId>
+			<artifactId>exframework-portal-web</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.security</groupId>
