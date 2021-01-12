@@ -44,29 +44,20 @@ public class DictionaryDaoImpl extends MetaDaoImpl<DictionaryDO, DictionaryItem>
 		if (entity == null) {
 			throw new NotFoundException();
 		}
-		Map<String, String> dict = new ConcurrentHashMap<String, String>();
-		String json = entity.getValueJson();
-		JSONObject map = JSON.parseObject(json);
-		for (String key : map.keySet()) {
-			dict.put(key, map.getString(key));
-		}
-		return dict;
+		return entity.getValue();
 	}
 
 	@Override
 	public boolean saveDictionary(String code, String name, Map<String, String> value) {
 		DictionaryDO entity = dictionaryMapper.selectById(code);
-		Map<String, Object> object = new ConcurrentHashMap<String, Object>();
-		object.putAll(value);
-		String json = new JSONObject(object).toJSONString();
 		if (entity == null) {
 			DictionaryDO newEntity = genInstance();
 			newEntity.setCode(code);
 			newEntity.setName(name);
-			newEntity.setValueJson(json);
+			newEntity.setValue(value);
 			dictionaryMapper.insert(newEntity);
 		} else {
-			entity.setValueJson(json);
+			entity.setValue(value);
 			dictionaryMapper.updateById(entity);
 		}
 		return true;
@@ -90,15 +81,15 @@ public class DictionaryDaoImpl extends MetaDaoImpl<DictionaryDO, DictionaryItem>
 		List<DictionaryItem> list = p.getRecords().stream().map(d -> {
 			DictionaryItem item = new DictionaryItem();
 			BeanUtils.copyProperties(d, item);
-			String jsonString = d.getValueJson();
-			if (StringUtils.hasText(jsonString)) {
-				Map<String, String> value = new ConcurrentHashMap<String, String>();
-				JSONObject json = JSON.parseObject(jsonString);
-				for (String key : json.keySet()) {
-					value.put(key, json.getString(key));
-				}
-				item.setValue(value);
-			}
+//			String jsonString = d.getValueJson();
+//			if (StringUtils.hasText(jsonString)) {
+//				Map<String, String> value = new ConcurrentHashMap<String, String>();
+//				JSONObject json = JSON.parseObject(jsonString);
+//				for (String key : json.keySet()) {
+//					value.put(key, json.getString(key));
+//				}
+//				item.setValue(value);
+//			}
 			return item;
 		}).collect(Collectors.toList());
 		PageModel<DictionaryItem> model = new PageModel<DictionaryItem>(

@@ -59,4 +59,8 @@ public class ApiResponseData<T> extends ApiResponse {
 	public static final <E> ApiResponseData<E> paramError() {
 		return (ApiResponseData<E>)PARAM_ERROR;
 	}
+	
+	public static final <E> ApiResponseData<E> notFound(String message) {
+		return new ApiResponseData<E>(ResultCode.NOT_FOUND, message, null);
+	}
 }

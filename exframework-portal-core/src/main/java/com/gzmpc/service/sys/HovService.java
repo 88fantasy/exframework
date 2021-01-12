@@ -20,7 +20,8 @@ public class HovService {
 	@Autowired
 	HovDao hovDao;
 	
-	public Hov findByKey(String key) {
-		return hovDao.findByKey(key);
+	public Hov findByKey(String code) {
+		return hovDao.findByKey(code);
 	}
+	
 }

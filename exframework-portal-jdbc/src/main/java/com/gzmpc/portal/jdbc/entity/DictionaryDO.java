@@ -1,9 +1,12 @@
 package com.gzmpc.portal.jdbc.entity;
 
+import java.util.Map;
+
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
 import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
 import com.gitee.sunchenbin.mybatis.actable.constants.MySqlTypeConstant;
 import com.gzmpc.portal.metadata.dict.DictionaryItem;
@@ -16,7 +19,7 @@ import com.gzmpc.portal.metadata.dict.DictionaryItem;
  * Copyright @ 2020 
  * 
  */
-@TableName( value = "sys_dictionary", excludeProperty = {"value"} )
+@TableName( value = "sys_dictionary", autoResultMap = true )
 public class DictionaryDO extends DictionaryItem {
 
 	private static final long serialVersionUID = 5176816281781626949L;
@@ -30,16 +33,8 @@ public class DictionaryDO extends DictionaryItem {
 	@TableField
 	private String description;
 	
-	@TableField
+	@TableField(typeHandler = JacksonTypeHandler.class)
 	@ColumnType(value = MySqlTypeConstant.VARCHAR, length = 2000)
-	private String valueJson;
- 
-	public String getValueJson() {
-		return valueJson;
-	}
-
-	public void setValueJson(String valueJson) {
-		this.valueJson = valueJson;
-	}
+	private Map<String,String> value;
 	
 }
