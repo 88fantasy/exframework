@@ -27,6 +27,9 @@ public interface DataItemDao extends MetaDao<DataItem> {
 	@Nullable
 	DataItem findExtend(String objectCode, String code);
 	
+	@Nullable
+	Collection<DataItem> findExtendByObjectCode(String objectCode);
+	
 	PageModel<DataItem> query(Collection<FilterCondition> params, Page page);
 	
 	List<DataItem> list(Collection<FilterCondition> params);

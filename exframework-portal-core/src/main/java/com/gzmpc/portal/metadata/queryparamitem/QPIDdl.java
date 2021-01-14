@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import com.gzmpc.portal.metadata.FilterCondition.FilterConditionOper;
 import com.gzmpc.portal.metadata.queryparam.QueryParamItem;
 import com.gzmpc.portal.metadata.sys.Account;
-import com.gzmpc.service.sys.DdlService;
+import com.gzmpc.portal.service.sys.DdlService;
 
 @Component
 @Scope(value = org.springframework.beans.factory.config.ConfigurableBeanFactory.SCOPE_PROTOTYPE)

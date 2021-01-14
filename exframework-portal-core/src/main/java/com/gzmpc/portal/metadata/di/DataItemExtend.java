@@ -18,7 +18,7 @@ public class DataItemExtend extends DataItem {
 	/**
 	 * 对象码
 	 */
-	@DataItemField(value = "objectCode", name = "对象码")
+	@DataItemEntity(value = "objectCode", name = "对象码")
 	private String objectCode;
 
 	public String getObjectCode() {

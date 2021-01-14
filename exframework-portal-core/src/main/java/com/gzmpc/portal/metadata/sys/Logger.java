@@ -2,64 +2,126 @@ package com.gzmpc.portal.metadata.sys;
 
 import java.util.Date;
 
+import javax.validation.constraints.NotEmpty;
+
+import com.gzmpc.portal.metadata.di.DataItemEntity;
+import com.gzmpc.portal.metadata.di.DataItemRef;
+import com.gzmpc.portal.metadata.entity.EntityClass;
+
+@EntityClass
 public class Logger {
-  private Long loggerid;//主键
-  private String cremanname;//制单人
-  private Long cremanid;//制单人ID
-  private Date credate;//制单时间
-  private String funcname;//功能名
-  private String operatype;//操作类型
-  private String content;//操作内容
-  private String moduleid;//模块ID
-  public Logger() {
-  }
-  public Long getLoggerid() {
-    return loggerid;
-  }
-  public void setLoggerid(Long loggerid) {
-    this.loggerid = loggerid;
-  }
-  public String getCremanname() {
-    return cremanname;
-  }
-  public void setCremanname(String cremanname) {
-    this.cremanname = cremanname;
-  }
-  public Long getCremanid() {
-    return cremanid;
-  }
-  public void setCremanid(Long cremanid) {
-    this.cremanid = cremanid;
-  }
-  public Date getCredate() {
-    return credate;
-  }
-  public void setCredate(Date credate) {
-    this.credate = credate;
-  }
-  public String getFuncname() {
-    return funcname;
-  }
-  public void setFuncname(String funcname) {
-    this.funcname = funcname;
-  }
-  public String getOperatype() {
-    return operatype;
-  }
-  public void setOperatype(String operatype) {
-    this.operatype = operatype;
-  }
-  public String getContent() {
-    return content;
-  }
-  public void setContent(String content) {
-    this.content = content;
-  }
-  public String getModuleid() {
-    return moduleid;
-  }
-  public void setModuleid(String moduleid) {
-    this.moduleid = moduleid;
-  }
+	
+	/**
+	 * 主键
+	 */
+	@DataItemEntity(value = "loggerId", name = "日志id")
+	private Long loggerId;
+	
+	/**
+	 * 模块code
+	 */
+	@DataItemRef("code")
+	private String moduleCode;
+	
+	/**
+	 * 日志内容
+	 */
+	@NotEmpty
+	@DataItemEntity(value = "content", name = "内容")
+	private String content;
+	
+	/**
+	 * 相关业务单据
+	 */
+	@DataItemEntity(value = "sourceId", name = "相关业务单据")
+	private String sourceId;
+	
+	/**
+	 * 操作参数(用于记录当时上下文)
+	 */
+	@DataItemEntity(value = "param", name = "操作参数")
+	private String param;
+	
+	/**
+	 * 帐号
+	 */
+	@DataItemRef(value = "accountId")
+	private String account;
+	
+	/**
+	 * 帐号名称
+	 */
+	@DataItemRef(value = "accountName")
+	private String accountName;
+	
+	/**
+	 * 创建时间
+	 */
+	private Date credate;
+
+
+	public Long getLoggerId() {
+		return loggerId;
+	}
+
+	public void setLoggerId(Long loggerId) {
+		this.loggerId = loggerId;
+	}
+
+	public String getModuleCode() {
+		return moduleCode;
+	}
+
+	public void setModuleCode(String moduleCode) {
+		this.moduleCode = moduleCode;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public String getSourceId() {
+		return sourceId;
+	}
+
+	public void setSourceId(String sourceId) {
+		this.sourceId = sourceId;
+	}
+
+	public String getParam() {
+		return param;
+	}
+
+	public void setParam(String param) {
+		this.param = param;
+	}
+
+	public String getAccount() {
+		return account;
+	}
+
+	public void setAccount(String account) {
+		this.account = account;
+	}
+
+	public String getAccountName() {
+		return accountName;
+	}
+
+	public void setAccountName(String accountName) {
+		this.accountName = accountName;
+	}
+
+	public Date getCredate() {
+		return credate;
+	}
+
+	public void setCredate(Date credate) {
+		this.credate = credate;
+	}
 
 }

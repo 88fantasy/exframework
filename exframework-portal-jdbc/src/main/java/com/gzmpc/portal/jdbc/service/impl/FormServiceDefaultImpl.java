@@ -13,7 +13,7 @@ import com.gzmpc.portal.metadata.di.DispTypeAdapter;
 import com.gzmpc.portal.metadata.di.dt.DispType;
 import com.gzmpc.portal.metadata.form.Form;
 import com.gzmpc.portal.metadata.sys.Account;
-import com.gzmpc.service.sys.FormService;
+import com.gzmpc.portal.service.sys.FormService;
 
 @Service
 public class FormServiceDefaultImpl implements FormService {

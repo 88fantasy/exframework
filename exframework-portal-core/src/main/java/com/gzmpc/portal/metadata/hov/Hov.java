@@ -1,49 +1,57 @@
 package com.gzmpc.portal.metadata.hov;
+
+import java.util.Collection;
+
+import com.gzmpc.portal.metadata.grid.Column;
+
 /**
  *
  * Author: rwe
- * Date: Dec 29, 2020
+ * Date: Jan 14, 2021
  *
- * Copyright @ 2020 
+ * Copyright @ 2021 
  * 
  */
+public class Hov {
 
-import com.gzmpc.portal.metadata.Meta;
-import com.gzmpc.portal.metadata.queryparam.QueryParamItem;
-
-public class Hov extends Meta {
-
-	private static final long serialVersionUID = 8096784702772680510L;
-
-	private QueryParamItem[] queryParamItems;
+	private Collection<HovQueryParams> queryParams;
 	
-	private String[] columns;
+	private Collection<Column> columns;
 	
 	private String returnKey;
-
-	public QueryParamItem[] getQueryParamItems() {
-		return queryParamItems;
+	
+	public Collection<HovQueryParams> getQueryParams() {
+		return queryParams;
 	}
 
-	public void setQueryParamItems(QueryParamItem[] queryParamItems) {
-		this.queryParamItems = queryParamItems;
+
+
+	public void setQueryParams(Collection<HovQueryParams> queryParams) {
+		this.queryParams = queryParams;
 	}
 
-	public String[] getColumns() {
+
+
+	public Collection<Column> getColumns() {
 		return columns;
 	}
 
-	public void setColumns(String[] columns) {
+
+
+	public void setColumns(Collection<Column> columns) {
 		this.columns = columns;
 	}
+
+
 
 	public String getReturnKey() {
 		return returnKey;
 	}
 
+
+
 	public void setReturnKey(String returnKey) {
 		this.returnKey = returnKey;
 	}
-	
-	
+
 }

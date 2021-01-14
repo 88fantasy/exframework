@@ -4,11 +4,13 @@ import java.io.Serializable;
 
 import javax.validation.constraints.NotEmpty;
 
-import com.gzmpc.portal.metadata.di.DataItemField;
+import com.gzmpc.portal.metadata.di.DataItemEntity;
+import com.gzmpc.portal.metadata.entity.EntityClass;
 
 /**
  * 元数据元素的基类，包含名称信息、版本信息、与显示信息，form,attribute,dataItem等继承这个基类
  */
+@EntityClass
 public class Meta implements Serializable {
 	
 	private static final long serialVersionUID = 3327328749207805102L;
@@ -17,20 +19,20 @@ public class Meta implements Serializable {
 	 * 代码
 	 */
 	@NotEmpty
-	@DataItemField(value = "code", name = "代码")
+	@DataItemEntity(value = "code", name = "代码")
 	private String code;
 	
 	/**
 	 * 名称
 	 */
 	@NotEmpty
-	@DataItemField(value = "name", name = "名称")
+	@DataItemEntity(value = "name", name = "名称")
 	private String name;
 	
 	/**
 	 * 描述
 	 */
-	@DataItemField(value = "description", name = "描述")
+	@DataItemEntity(value = "description", name = "描述")
 	private String  description;
 
 	public Meta() {

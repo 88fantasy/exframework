@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import com.gzmpc.portal.metadata.di.DataItemField;
+import com.gzmpc.portal.metadata.di.DataItemEntity;
 import com.gzmpc.portal.metadata.di.DataItem.DataItemDisplayTypeEnum;
 import com.gzmpc.portal.metadata.di.DataItem.DataItemValueTypeEnum;
 import com.gzmpc.portal.metadata.dict.Dictionary;
@@ -29,19 +29,19 @@ public class Account implements Serializable, DictionaryEnumClass {
 	/**
 	 * 登陆账号ID
 	 */
-	@DataItemField(value = "accountId", name = "帐号")
+	@DataItemEntity(value = "accountId", name = "帐号")
 	private String accountId;
 
 	/**
 	 * 密码
 	 */
-	@DataItemField(value = "password", name = "密码")
+	@DataItemEntity(value = "password", name = "密码")
 	private String password;
 
 	/**
 	 * 帐号密码
 	 */
-	@DataItemField(value = "accountName", name = "帐号")
+	@DataItemEntity(value = "accountName", name = "帐号")
 	private String accountName;
 
 	/**
@@ -63,7 +63,7 @@ public class Account implements Serializable, DictionaryEnumClass {
 	/**
 	 * 帐号状态
 	 */
-	@DataItemField(value = "accountStatus", name = "帐号状态", type = DataItemDisplayTypeEnum.DICTIONARY, displayKey="AccountStatusType", valueType = DataItemValueTypeEnum.STRING)
+	@DataItemEntity(value = "accountStatus", name = "帐号状态", type = DataItemDisplayTypeEnum.DICTIONARY, displayKey="AccountStatusType", valueType = DataItemValueTypeEnum.STRING)
 	private AccountStatusTypeEnum accountStatus;
 
 	// 截止日期

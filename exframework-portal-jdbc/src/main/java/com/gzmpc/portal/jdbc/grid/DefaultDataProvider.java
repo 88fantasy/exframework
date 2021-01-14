@@ -21,9 +21,9 @@ import com.gzmpc.portal.exception.InitException;
 import com.gzmpc.portal.grid.IDataProvider;
 import com.gzmpc.portal.metadata.grid.Grid;
 import com.gzmpc.portal.metadata.sys.Account;
-import com.gzmpc.service.sys.GridService;
+import com.gzmpc.portal.service.sys.GridService;
+import com.gzmpc.portal.utils.Const;
 import com.gzmpc.support.common.exception.BuildException;
-import com.gzmpc.utils.Const;
 
 @Component
 public abstract class DefaultDataProvider implements IDataProvider {

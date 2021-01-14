@@ -16,14 +16,17 @@ import org.springframework.util.ReflectionUtils;
 import org.springframework.util.StringUtils;
 
 import com.gzmpc.portal.dao.DataItemDao;
+import com.gzmpc.portal.dao.HovDao;
 import com.gzmpc.portal.metadata.di.DataItem;
-import com.gzmpc.portal.metadata.di.DataItemField;
+import com.gzmpc.portal.metadata.di.DataItemEntity;
 import com.gzmpc.portal.metadata.di.DataItem.DataItemDisplayTypeEnum;
 import com.gzmpc.portal.metadata.di.DataItem.DataItemValueTypeEnum;
 import com.gzmpc.portal.metadata.dict.Dictionary;
 import com.gzmpc.portal.metadata.dict.DictionaryEnum;
 import com.gzmpc.portal.metadata.dict.DictionaryEnumClass;
-import com.gzmpc.service.sys.DdlService;
+import com.gzmpc.portal.metadata.hov.HovBase;
+import com.gzmpc.portal.metadata.hov.HovEntity;
+import com.gzmpc.portal.service.sys.DdlService;
 
 /**
  * 加载EntityClass注解
@@ -43,7 +46,9 @@ public class EntityClassListener implements ApplicationListener<ApplicationReady
 	
 	@Autowired
 	DataItemDao dataItemDao;
-	
+
+	@Autowired
+	HovDao hovDao;
 	
 	@Override
 	public void onApplicationEvent(ApplicationReadyEvent event) {
@@ -60,9 +65,9 @@ public class EntityClassListener implements ApplicationListener<ApplicationReady
 					Object value = field.get(entityClass);
 					try {
 						// 如果字段添加了我们自定义注解
-						if (field.isAnnotationPresent(DataItemField.class)) {
+						if (field.isAnnotationPresent(DataItemEntity.class)) {
 							log.info(MessageFormat.format("正在检查数据项{0}",  field.getName()));
-							DataItemField item = field.getAnnotation(DataItemField.class);
+							DataItemEntity item = field.getAnnotation(DataItemEntity.class);
 							String code = item.value();
 							String name = item.name();
 							String description = item.description();
@@ -99,7 +104,7 @@ public class EntityClassListener implements ApplicationListener<ApplicationReady
 				}
 			});
 			
-			if(DictionaryEnumClass.class.isAssignableFrom(entityClass.getClass())) {		
+			if(DictionaryEnumClass.class.isAssignableFrom(entityClass.getClass())) {
 				DictionaryEnumClass dec = (DictionaryEnumClass) entityClass;
 				Class<?>[] enumclasses =  dec.getEnums();
 				if(enumclasses != null) {
@@ -122,6 +127,26 @@ public class EntityClassListener implements ApplicationListener<ApplicationReady
 							ddlService.saveDictionary(dictCode, dictName, vv);
 						}
 					}
+				}
+			}
+			
+			HovEntity hov = entityClass.getClass().getAnnotation(HovEntity.class);
+			if(hov != null) {
+				String code = hov.value();
+				String name = hov.name();
+				String description = hov.description();
+				Class<?> request = hov.requestEntity();
+				Class<?> daoClass = hov.hovDao();
+				String returnKey = hov.returnKey();
+				boolean force = hov.forceUpdate();
+				HovBase entity = hovDao.findByKey(code);
+				if(entity == null ) {
+					entity = new HovBase(code, name, description, request.getName(), daoClass.getName(), returnKey);
+					hovDao.insert(entity);
+				}
+				else if(force) {
+					entity = new HovBase(code, name, description, request.getName(), daoClass.getName(), returnKey);
+					hovDao.update(entity);
 				}
 			}
 		}

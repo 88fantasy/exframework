@@ -1,6 +1,6 @@
 package com.gzmpc.portal.metadata;
 
-import com.gzmpc.portal.metadata.di.DataItemField;
+import com.gzmpc.portal.metadata.di.DataItemEntity;
 import com.gzmpc.portal.metadata.entity.EntityClass;
 
 /**
@@ -14,12 +14,12 @@ import com.gzmpc.portal.metadata.entity.EntityClass;
 @EntityClass
 public class MetaEntity {
 
-	@DataItemField(value = "code", name = "代码")
+	@DataItemEntity(value = "code", name = "代码")
 	private String code;
 	
-	@DataItemField(value = "name", name = "名称")
+	@DataItemEntity(value = "name", name = "名称")
 	private String name;
 	
-	@DataItemField(value = "description", name = "描述")
+	@DataItemEntity(value = "description", name = "描述")
 	private String  description;
 }

@@ -16,13 +16,13 @@ import com.gzmpc.portal.dao.RoleDao;
 import com.gzmpc.portal.metadata.sys.Permission;
 import com.gzmpc.portal.metadata.sys.Role;
 import com.gzmpc.portal.metadata.sys.RoleBaseAccount;
+import com.gzmpc.portal.service.sys.PermissionService;
 import com.gzmpc.portal.jdbc.entity.AccountRoleDO;
 import com.gzmpc.portal.jdbc.entity.RoleDO;
 import com.gzmpc.portal.jdbc.entity.RolePermissionDO;
 import com.gzmpc.portal.jdbc.mapper.AccountRoleMapper;
 import com.gzmpc.portal.jdbc.mapper.RoleMapper;
 import com.gzmpc.portal.jdbc.mapper.RolePermissionMapper;
-import com.gzmpc.service.sys.PermissionService;
 
 /**
  * 角色数据类

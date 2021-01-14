@@ -1,5 +1,7 @@
 package com.gzmpc.portal.admin.dto;
 
+import com.gzmpc.portal.web.dto.GlobalPostQueryRequest;
+
 import io.swagger.annotations.ApiModel;
 
 /**

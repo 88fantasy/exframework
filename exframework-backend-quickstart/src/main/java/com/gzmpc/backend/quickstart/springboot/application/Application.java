@@ -21,7 +21,7 @@ import com.gzmpc.portal.metadata.entity.EntityScan;
 	exclude = DruidDataSourceAutoConfigure.class
 )
 @MapperScan(basePackages = {"com.gzmpc.portal.jdbc.mapper.*","com.gitee.sunchenbin.mybatis.actable.dao.*"})
-@EntityScan("com.gzmpc.portal.metadata")
+@EntityScan({"com.gzmpc.portal.metadata","com.gzmpc.portal.web.entity.*"})
 public class Application extends SpringBootServletInitializer {
 
 	public static void main(String[] args) {

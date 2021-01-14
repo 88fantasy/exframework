@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.gzmpc.exframework</groupId>
@@ -11,6 +13,7 @@
 		<module>exframework-portal-core</module>
 		<module>exframework-portal-jdbc</module>
 		<module>exframework-portal-web</module>
+		<module>exframework-portal-web-jdbc</module>
 		<module>exframework-portal-admin</module>
 		<module>exframework-support-job</module>
 		<module>exframework-support-mail</module>
@@ -29,14 +32,14 @@
 		<module>exframework-support-redis</module>
 		<module>exframework-support-jdbc-oracle</module>
 		<module>exframework-support-jdbc-mysql</module>
-	    <module>exframework-support-cos</module>
+		<module>exframework-support-cos</module>
 		<module>exframework-springboot-quickstart</module>
 		<module>exframework-springboot-quickstart-rest</module>
 		<module>exframework-support-mongo</module>
 		<module>exframework-support-tsf</module>
 		<module>exframework-support-wechat</module>
-	    <module>exframework-backend-quickstart</module>
-  </modules>
+		<module>exframework-backend-quickstart</module>
+	</modules>
 	<build>
 		<pluginManagement>
 			<plugins>
@@ -170,6 +173,11 @@
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
+				<artifactId>exframework-portal-web</artifactId>
+				<version>0.6</version>
+			</dependency>
+			<dependency>
+				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-portal-admin</artifactId>
 				<version>0.6</version>
 			</dependency>
@@ -180,12 +188,12 @@
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
-				<artifactId>exframework-support-common</artifactId>
+				<artifactId>exframework-portal-web-jdbc</artifactId>
 				<version>0.6</version>
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
-				<artifactId>exframework-portal-web</artifactId>
+				<artifactId>exframework-support-common</artifactId>
 				<version>0.6</version>
 			</dependency>
 			<dependency>

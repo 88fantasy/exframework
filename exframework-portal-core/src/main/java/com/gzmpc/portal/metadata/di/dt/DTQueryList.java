@@ -4,7 +4,7 @@ import com.gzmpc.portal.exception.InitException;
 import com.gzmpc.portal.metadata.attribute.Attribute;
 import com.gzmpc.portal.metadata.di.DataItem;
 import com.gzmpc.portal.metadata.form.Form;
-import com.gzmpc.service.sys.DdlService;
+import com.gzmpc.portal.service.sys.DdlService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

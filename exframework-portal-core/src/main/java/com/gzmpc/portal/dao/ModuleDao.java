@@ -1,8 +1,13 @@
 package com.gzmpc.portal.dao;
 
 import java.util.Collection;
+import java.util.List;
 
-import com.gzmpc.portal.metadata.module.Module;
+import com.gzmpc.portal.metadata.FilterCondition;
+import com.gzmpc.portal.metadata.di.DataItem;
+import com.gzmpc.portal.metadata.module.ModuleBase;
+import com.gzmpc.support.common.entity.Page;
+import com.gzmpc.support.common.entity.PageModel;
 
 /**
  *
@@ -12,9 +17,15 @@ import com.gzmpc.portal.metadata.module.Module;
  * Copyright @ 2020 
  * 
  */
-public interface ModuleDao extends MetaDao<Module> {
+public interface ModuleDao extends MetaDao<ModuleBase> {
 	
-	Collection<String> findPermissionKeyByEntity(Module entity);
+	Collection<DataItem> findDataItemByEntity(ModuleBase entity);
 	
-	Collection<String> findHovKeyByEntity(Module entity);
+	Collection<String> findPermissionKeyByEntity(ModuleBase entity);
+	
+	Collection<String> findHovKeyByEntity(ModuleBase entity);
+	
+	PageModel<ModuleBase> query(Collection<FilterCondition> params, Page page);
+	
+	List<ModuleBase> list(Collection<FilterCondition> params);
 }

@@ -3,7 +3,7 @@ package com.gzmpc.portal.jdbc.entity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.gzmpc.portal.metadata.module.Module;
+import com.gzmpc.portal.metadata.module.ModuleBase;
 
 /**
  * 功能实体类
@@ -14,7 +14,7 @@ import com.gzmpc.portal.metadata.module.Module;
  * 
  */
 @TableName( value = "sys_module", excludeProperty = {"dataItems", "permissions", "hovs"})
-public class ModuleDO extends Module {
+public class ModuleDO extends ModuleBase {
 
 	private static final long serialVersionUID = 5740415660479029153L;
 	

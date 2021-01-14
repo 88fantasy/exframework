@@ -17,31 +17,31 @@ public class DataItem extends Meta implements DictionaryEnumClass {
 	/**
 	 * 显示风格
 	 */
-	@DataItemField(value = "DataItemDisplayType", name = "显示风格", type = DataItemDisplayTypeEnum.DICTIONARY, displayKey = "DataItemDisplayType")
+	@DataItemEntity(value = "DataItemDisplayType", name = "显示风格", type = DataItemDisplayTypeEnum.DICTIONARY, displayKey = "DataItemDisplayType")
 	private DataItemDisplayTypeEnum type;
 
 	/**
 	 * 风格的关键值（如果是querylist形的，就配置key,如果是sqllist形的就配置sqllist,如果是list形的，就直接配置list列表内容)
 	 */
-	@DataItemField(value = "DataItemDisplayType", name = "风格的关键值")
+	@DataItemEntity(value = "DataItemDisplayType", name = "风格的关键值")
 	private String displayKey;
 
 	/**
 	 * 校证输入值类型
 	 */
-	@DataItemField(value = "DataItemValueType", name = "校证输入值类型", type = DataItemDisplayTypeEnum.DICTIONARY, displayKey = "DataItemValueType")
+	@DataItemEntity(value = "DataItemValueType", name = "校证输入值类型", type = DataItemDisplayTypeEnum.DICTIONARY, displayKey = "DataItemValueType")
 	private DataItemValueTypeEnum valueType;
 
 	/**
 	 * 长度
 	 */
-	@DataItemField(value = "maxlength", name = "长度")
+	@DataItemEntity(value = "maxlength", name = "长度")
 	private int maxlength;
 
 	/**
 	 * 精度
 	 */
-	@DataItemField(value = "digits", name = "精度")
+	@DataItemEntity(value = "digits", name = "精度")
 	private int digits;
 
 	public DataItem() {

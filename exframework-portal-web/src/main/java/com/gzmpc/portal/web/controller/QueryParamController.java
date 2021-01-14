@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gzmpc.portal.metadata.queryparamitem.QueryParamBase;
+import com.gzmpc.portal.service.sys.QueryparamService;
 import com.gzmpc.portal.web.annotation.RequireLogin;
 import com.gzmpc.portal.web.constants.WebApiConstants;
 import com.gzmpc.portal.web.service.LoginService;
-import com.gzmpc.service.sys.QueryparamService;
 import com.gzmpc.support.rest.entity.ApiResponseData;
 
 import io.swagger.annotations.Api;

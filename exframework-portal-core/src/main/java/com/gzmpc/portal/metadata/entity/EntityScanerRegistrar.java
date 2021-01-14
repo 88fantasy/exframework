@@ -13,6 +13,8 @@ import org.springframework.core.annotation.AnnotationAttributes;
 import org.springframework.core.type.AnnotationMetadata;
 import org.springframework.util.StringUtils;
 
+import com.gzmpc.portal.pub.AnnotationClassPathBeanDefinitionScanner;
+
 /**
  *
  * Author: rwe
@@ -38,7 +40,7 @@ public class EntityScanerRegistrar implements ImportBeanDefinitionRegistrar {
 	        .collect(Collectors.toList()));
 
 	    if (basePackages.size() > 0) {
-	    	EntityClassPathBeanDefinitionScanner scanner = new EntityClassPathBeanDefinitionScanner(registry);
+	    	AnnotationClassPathBeanDefinitionScanner scanner = new AnnotationClassPathBeanDefinitionScanner(registry, EntityClass.class);
 	    	int count = scanner.scan(StringUtils.toStringArray(basePackages));
 	    	String basePackagesLog = "";
 	    	for(String pack : basePackages) {

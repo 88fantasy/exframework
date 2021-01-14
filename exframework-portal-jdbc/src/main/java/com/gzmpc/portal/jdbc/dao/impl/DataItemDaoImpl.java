@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.gzmpc.portal.dao.DataItemDao;
@@ -59,8 +59,14 @@ public class DataItemDaoImpl extends MetaDaoImpl<DataItemDO, DataItem> implement
 	}
 
 	@Override
-	public DataItem findExtend(String objectCode, String key) {
-		return dataItemExtendMapper.selectOne(new QueryWrapper<DataItemExtendDO>().eq("key", key).eq("objectCode", objectCode));
+	public Collection<DataItem> findExtendByObjectCode(String objectCode) {
+		List<DataItemExtendDO> extendList = dataItemExtendMapper.selectList(new LambdaQueryWrapper<DataItemExtendDO>().eq(DataItemExtendDO::getObjectCode, objectCode));
+		return new ArrayList<DataItem>(extendList);
+	}
+
+	@Override
+	public DataItem findExtend(String objectCode, String code) {
+		return dataItemExtendMapper.selectOne(new LambdaQueryWrapper<DataItemExtendDO>().eq(DataItemExtendDO::getCode, code).eq(DataItemExtendDO::getObjectCode, objectCode));
 	}
 
 	@Override
@@ -78,5 +84,6 @@ public class DataItemDaoImpl extends MetaDaoImpl<DataItemDO, DataItem> implement
 	public List<DataItem> list(Collection<FilterCondition> params) {
 		return new ArrayList<DataItem>(dataItemMapper.selectList(wrapperFromCondition(params)));
 	}
+
 
 }

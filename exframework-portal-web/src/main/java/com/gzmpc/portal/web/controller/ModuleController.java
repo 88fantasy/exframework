@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gzmpc.portal.metadata.module.Module;
+import com.gzmpc.portal.service.sys.ModuleService;
 import com.gzmpc.portal.web.constants.WebApiConstants;
 import com.gzmpc.portal.web.service.LoginService;
-import com.gzmpc.service.sys.ModuleService;
 import com.gzmpc.support.rest.entity.ApiResponseData;
 
 import io.swagger.annotations.Api;
