@@ -9,18 +9,18 @@ package com.gzmpc.portal.metadata.hov;
  */
 public class HovQueryParams {
 	
-	private String code;
+	private String key;
 	
 	private String dataIndex;
 	
 	private String title;
 
-	public String getCode() {
-		return code;
+	public String getKey() {
+		return key;
 	}
 
-	public void setCode(String code) {
-		this.code = code;
+	public void setKey(String key) {
+		this.key = key;
 	}
 
 	public String getDataIndex() {

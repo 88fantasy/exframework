@@ -1,6 +1,6 @@
 package com.gzmpc.portal.dao;
 
-import com.gzmpc.portal.metadata.hov.HovBase;
+import com.gzmpc.portal.metadata.hov.Hov;
 
 /**
  *
@@ -10,6 +10,6 @@ import com.gzmpc.portal.metadata.hov.HovBase;
  * Copyright @ 2020 
  * 
  */
-public interface HovDao extends MetaDao<HovBase> {
+public interface HovDao extends MetaDao<Hov> {
 
 }

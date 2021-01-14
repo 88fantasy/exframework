@@ -58,7 +58,7 @@ public @interface HovEntity {
 	 * 查询数据的实体
 	 * @return
 	 */
-	Class<? extends IHovDao> hovDao();
+	Class<? extends IHovDao<?>> hovDao();
 	
 	boolean forceUpdate() default true;
 }

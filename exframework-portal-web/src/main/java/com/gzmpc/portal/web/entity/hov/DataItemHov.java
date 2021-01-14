@@ -1,6 +1,6 @@
 package com.gzmpc.portal.web.entity.hov;
 
-import com.gzmpc.portal.metadata.hov.HovBase;
+import com.gzmpc.portal.metadata.hov.Hov;
 import com.gzmpc.portal.metadata.hov.HovEntity;
 import com.gzmpc.portal.web.dto.DataItemHovRequest;
 

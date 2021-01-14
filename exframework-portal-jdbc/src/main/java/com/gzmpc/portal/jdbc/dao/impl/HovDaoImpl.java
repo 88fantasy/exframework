@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.gzmpc.portal.dao.HovDao;
-import com.gzmpc.portal.metadata.hov.HovBase;
+import com.gzmpc.portal.metadata.hov.Hov;
 import com.gzmpc.portal.jdbc.entity.HovDO;
 import com.gzmpc.portal.jdbc.mapper.HovMapper;
 
@@ -19,7 +19,7 @@ import com.gzmpc.portal.jdbc.mapper.HovMapper;
  * 
  */
 @Repository
-public class HovDaoImpl extends MetaDaoImpl<HovDO,HovBase> implements HovDao {
+public class HovDaoImpl extends MetaDaoImpl<HovDO,Hov> implements HovDao {
 	
 	@Autowired
 	HovMapper hovMapper;

@@ -1,19 +1,21 @@
 package com.gzmpc.portal.web.service;
 
 import java.text.MessageFormat;
-import java.util.Collection;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.gzmpc.portal.metadata.FilterCondition;
-import com.gzmpc.portal.metadata.hov.HovBase;
+import com.gzmpc.portal.metadata.hov.Hov;
+import com.gzmpc.portal.metadata.hov.HovQueryParams;
 import com.gzmpc.portal.metadata.hov.IHovDao;
-import com.gzmpc.portal.pub.PageRequest;
 import com.gzmpc.portal.service.sys.HovService;
 import com.gzmpc.support.common.entity.Page;
 import com.gzmpc.support.common.entity.PageModel;
@@ -38,47 +40,50 @@ public class WebHovService {
 	HovService hovService;
 	
 
-	public ApiResponsePage<?> query(String code, Object request) {
-		HovBase hov = hovService.findByKey(code);
+	public ApiResponsePage<?> query(String code, String requestJson) {
+		Hov hov = hovService.findByKey(code);
 		if(hov != null) {
-			String requestClassName = hov.getRequestClass();
+			HovQueryParams[] params = hov.getQueryParams();
 			String dataClassName = hov.getDataClass();
-			Class<? extends PageRequest> requestClass = null;
 			Class<? extends IHovDao<?>> dataClass = null;
 			try {
-				requestClass = hovService.getRequestClass(hov);
-			} catch ( Exception e) {
-				String message = MessageFormat.format("请求实体类{0}转换失败", requestClassName);
-				log.error(message, e);
-				return new ApiResponsePage<>(ResultCode.INTERNAL_SERVER_ERROR,message, null);
-			}
-			try {
-				dataClass = hovService.getDataClass(hov);
+				dataClass = (Class<? extends IHovDao<?>>) Class.forName(hov.getDataClass());
 			} catch ( Exception e) {
 				String message = MessageFormat.format("返回实体类{0}转换失败", dataClassName);
 				log.error(message, e);
 				return new ApiResponsePage<>(ResultCode.INTERNAL_SERVER_ERROR,message, null);
 			}
+			JSONObject request = JSON.parseObject(requestJson);
+			Page page = Page.DEFAULT;
+			if(request.containsKey("page")) {
+				page = request.getObject("page", Page.class);
+				request.remove("page");
+			}
 			
-			return query(request, requestClass, dataClass);
+			List<FilterCondition> fcs = new ArrayList<FilterCondition>();
+			for(HovQueryParams param : params) {
+				String dataIndex = param.getDataIndex();
+				if(request.containsKey(dataIndex)) {
+					Object value = request.get(dataIndex);
+					if( value != null) {
+						FilterCondition fc = new FilterCondition(dataIndex, value);
+						fcs.add(fc);
+					}
+				}
+			}
+			
+			try {
+				IHovDao<?> v = SpringContextUtils.getBeanByClass(dataClass);
+				PageModel<?> model = v.query(fcs, page);
+				return new ApiResponsePage<>(model);
+			}
+			catch ( BeansException e ) {
+				return new ApiResponsePage<>(ResultCode.INTERNAL_SERVER_ERROR, dataClassName+"缺少实现: "+e.getMessage(), null);
+			}
+			
 		}
 		else {
 			return ApiResponsePage.notFound("找不到此hov") ;
-		}
-	}
-	
-	private <U extends PageRequest,V extends IHovDao<?>> ApiResponsePage<V> query(Object request, Class<U> requestClass, Class<V> responseClass) {
-		U u = BeanUtils.instantiateClass(requestClass);
-		BeanUtils.copyProperties(request, u);
-		Collection<FilterCondition> params = FilterCondition.fromDTO(u);
-		Page page = u.getPage();
-		try {
-			V v = SpringContextUtils.getBeanByClass(responseClass);
-			PageModel<V> model = (PageModel<V>) v.query(params, page);
-			return new ApiResponsePage<V>(model);
-		}
-		catch ( BeansException e ) {
-			return new ApiResponsePage<V>(ResultCode.INTERNAL_SERVER_ERROR, responseClass+"缺少实现: "+e.getMessage(), null);
 		}
 	}
 }

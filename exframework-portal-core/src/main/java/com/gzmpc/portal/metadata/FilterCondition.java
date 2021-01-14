@@ -46,12 +46,12 @@ public class FilterCondition implements DictionaryEnumClass {
 		
 	}
 	
+	public FilterCondition(String key, Object filterValue) {
+		this(key, defaultOper(filterValue), filterValue);
+	}
+	
 	public FilterCondition(String key, FilterConditionOper oper, Object filterValue) {
-		super();
-		this.key = key;
-		this.oper = oper;
-		this.filterValue = filterValue;
-		this.filterDataType = defaultType(filterValue);
+		this(key, oper, filterValue, defaultType(filterValue));
 	}
 
 	public FilterCondition(String key, FilterConditionOper oper, Object filterValue,
@@ -94,8 +94,29 @@ public class FilterCondition implements DictionaryEnumClass {
 	public void setFilterDataType(FilterConditionDataType filterDataType) {
 		this.filterDataType = filterDataType;
 	}
+	
+	private static FilterConditionOper defaultOper(Object value) {
+		if( value != null) {
+			Class<?> c = value.getClass();
+			if(c.isArray()) {
+				return FilterConditionOper.IN;
+			}
+			switch (c.getName()) {
+				case "java.lang.String":
+					return FilterConditionOper.MATCHING;
+				case "java.util.List":
+				case "java.util.Collection":
+					return FilterConditionOper.IN;
+				default:
+					return FilterConditionOper.EQUAL;
+			}
+		}
+		else {
+			return FilterConditionOper.EQUAL;
+		}
+	}
 
-	private FilterConditionDataType defaultType(Object value) {
+	private static FilterConditionDataType defaultType(Object value) {
 		if( value != null) {
 			Class<?> c = value.getClass();
 			if(c.isArray()) {
@@ -147,8 +168,7 @@ public class FilterCondition implements DictionaryEnumClass {
 								if(value == null || value.getClass().isAssignableFrom(Page.class)) {
 									continue;
 								}
-								FilterCondition fc = new FilterCondition(targetPd.getName(),
-										FilterConditionOper.MATCHING, value);
+								FilterCondition fc = new FilterCondition(targetPd.getName(), value);
 								fcList.add(fc);
 							} catch (Throwable ex) {
 								throw new FatalBeanException(

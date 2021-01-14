@@ -29,9 +29,9 @@ public class HovController {
 
 	@ApiOperation(value = "获取模块内容")
 	@RequestMapping(value = WebApiConstants.API_HOV_QUERY, method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public ApiResponsePage<?> init(@Valid @ApiParam(value = "code", required = true) @PathVariable String code,
-			@ApiParam(value = "保存dto", required = true) @Valid @RequestBody Object request) {
-		return webHovService.query(code, request);
+	public ApiResponsePage<?> query(@Valid @ApiParam(value = "code", required = true) @PathVariable String code,
+			@ApiParam(value = "保存dto", required = true) @Valid @RequestBody String requestJson) {
+		return webHovService.query(code, requestJson);
 	}
 
 }

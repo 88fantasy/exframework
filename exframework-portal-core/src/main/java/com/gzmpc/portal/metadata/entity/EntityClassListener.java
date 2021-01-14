@@ -24,8 +24,11 @@ import com.gzmpc.portal.metadata.di.DataItem.DataItemValueTypeEnum;
 import com.gzmpc.portal.metadata.dict.Dictionary;
 import com.gzmpc.portal.metadata.dict.DictionaryEnum;
 import com.gzmpc.portal.metadata.dict.DictionaryEnumClass;
-import com.gzmpc.portal.metadata.hov.HovBase;
+import com.gzmpc.portal.metadata.hov.Hov;
 import com.gzmpc.portal.metadata.hov.HovEntity;
+import com.gzmpc.portal.metadata.hov.IHovDao;
+import com.gzmpc.portal.pub.PageRequest;
+import com.gzmpc.portal.service.sys.DataItemService;
 import com.gzmpc.portal.service.sys.DdlService;
 
 /**
@@ -49,6 +52,9 @@ public class EntityClassListener implements ApplicationListener<ApplicationReady
 
 	@Autowired
 	HovDao hovDao;
+	
+	@Autowired
+	DataItemService dataItemService;
 	
 	@Override
 	public void onApplicationEvent(ApplicationReadyEvent event) {
@@ -135,17 +141,17 @@ public class EntityClassListener implements ApplicationListener<ApplicationReady
 				String code = hov.value();
 				String name = hov.name();
 				String description = hov.description();
-				Class<?> request = hov.requestEntity();
-				Class<?> daoClass = hov.hovDao();
+				Class<? extends PageRequest> request = hov.requestEntity();
+				Class<? extends IHovDao<?>> daoClass = hov.hovDao();
 				String returnKey = hov.returnKey();
 				boolean force = hov.forceUpdate();
-				HovBase entity = hovDao.findByKey(code);
+				Hov entity = hovDao.findByKey(code);
 				if(entity == null ) {
-					entity = new HovBase(code, name, description, request.getName(), daoClass.getName(), returnKey);
+					entity = Hov.instanceByClass(dataItemService, code, name, description, request, daoClass, returnKey);
 					hovDao.insert(entity);
 				}
 				else if(force) {
-					entity = new HovBase(code, name, description, request.getName(), daoClass.getName(), returnKey);
+					entity = Hov.instanceByClass(dataItemService, code, name, description, request, daoClass, returnKey);
 					hovDao.update(entity);
 				}
 			}

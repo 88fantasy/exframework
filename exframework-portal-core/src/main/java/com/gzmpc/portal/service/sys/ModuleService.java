@@ -2,24 +2,18 @@ package com.gzmpc.portal.service.sys;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 
 import com.gzmpc.portal.dao.ModuleDao;
 import com.gzmpc.portal.metadata.di.DataItem;
-import com.gzmpc.portal.metadata.entity.EntityClass;
 import com.gzmpc.portal.metadata.hov.Hov;
-import com.gzmpc.portal.metadata.hov.HovBase;
 import com.gzmpc.portal.metadata.module.IModuleService;
 import com.gzmpc.portal.metadata.module.Module;
-import com.gzmpc.portal.metadata.module.ModuleBase;
 import com.gzmpc.portal.metadata.module.ModuleEntity;
 import com.gzmpc.portal.metadata.sys.Permission;
 import com.gzmpc.support.common.util.SpringContextUtils;
@@ -84,8 +78,7 @@ public class ModuleService {
 				if(IModuleService.class.isAssignableFrom(bean.getClass())) {
 					IModuleService moduleService = (IModuleService) bean;
 					Collection<DataItem> serviceItems = moduleService.getDataItems();
-					Collection<HovBase> bases = moduleService.getHovBases();
-					Collection<Hov> serviceHovs = moduleService.getHovs(bases);
+					Collection<Hov> serviceHovs = moduleService.getHovs();
 					Collection<Permission> servicePermissions = moduleService.getPermissions();
 					
 					if(serviceItems.isEmpty()) {
@@ -95,7 +88,7 @@ public class ModuleService {
 						module.setDataItems(serviceItems);
 					}
 					if(serviceHovs.isEmpty()) {
-						module.setHovs(moduleService.getHovs(Arrays.asList(entity.hovRef()).stream().map(itemKey -> hovService.findByKey(itemKey)).collect(Collectors.toList())));
+						module.setHovs(Arrays.asList(entity.hovRef()).stream().map(itemKey -> hovService.findByKey(itemKey)).collect(Collectors.toList()));
 					}
 					else {
 						module.setHovs(serviceHovs);;
