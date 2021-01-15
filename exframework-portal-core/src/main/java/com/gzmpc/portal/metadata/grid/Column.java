@@ -13,8 +13,6 @@ public class Column {
 	
 	private String dataIndex;
 	
-	private String title;
-
 	public String getKey() {
 		return key;
 	}
@@ -29,13 +27,5 @@ public class Column {
 
 	public void setDataIndex(String dataIndex) {
 		this.dataIndex = dataIndex;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
 	}
 }

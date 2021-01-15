@@ -112,7 +112,7 @@ public class EntityClassListener implements ApplicationListener<ApplicationReady
 			
 			if(DictionaryEnumClass.class.isAssignableFrom(entityClass.getClass())) {
 				DictionaryEnumClass dec = (DictionaryEnumClass) entityClass;
-				Class<?>[] enumclasses =  dec.getEnums();
+				Class<?>[] enumclasses =  dec.enums();
 				if(enumclasses != null) {
 					for(Class<?> enumclass : enumclasses) {
 						Dictionary d = enumclass.getAnnotation(Dictionary.class);

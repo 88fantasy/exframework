@@ -17,6 +17,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.gzmpc.portal.dao.DataItemDao;
 import com.gzmpc.portal.metadata.FilterCondition;
 import com.gzmpc.portal.metadata.di.DataItem;
+import com.gzmpc.portal.metadata.di.DataItemExtend;
 import com.gzmpc.portal.jdbc.entity.DataItemDO;
 import com.gzmpc.portal.jdbc.entity.DataItemExtendDO;
 import com.gzmpc.portal.jdbc.mapper.DataItemExtendMapper;
@@ -66,7 +67,11 @@ public class DataItemDaoImpl extends MetaDaoImpl<DataItemDO, DataItem> implement
 
 	@Override
 	public DataItem findExtend(String objectCode, String code) {
-		return dataItemExtendMapper.selectOne(new LambdaQueryWrapper<DataItemExtendDO>().eq(DataItemExtendDO::getCode, code).eq(DataItemExtendDO::getObjectCode, objectCode));
+		DataItemExtendDO entity = dataItemExtendMapper.selectOne(new LambdaQueryWrapper<DataItemExtendDO>().eq(DataItemExtendDO::getCode, code).eq(DataItemExtendDO::getObjectCode, objectCode));
+		if(entity != null) {
+			entity.setCode(entity.getCode()+DataItemExtend.SPLITER+objectCode);
+		}
+		return entity;
 	}
 
 	@Override

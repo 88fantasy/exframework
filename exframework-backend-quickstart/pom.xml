@@ -95,6 +95,10 @@
             <groupId>com.gzmpc.exframework</groupId>
             <artifactId>exframework-support-jdbc-mysql</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.gzmpc.exframework</groupId>
+            <artifactId>exframework-support-jdbc-oracle</artifactId>
+        </dependency>
         
         <dependency>
             <groupId>org.springframework.boot</groupId>

@@ -1,7 +1,9 @@
 package com.gzmpc.portal.service.sys;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -11,7 +13,9 @@ import org.springframework.stereotype.Service;
 
 import com.gzmpc.portal.dao.ModuleDao;
 import com.gzmpc.portal.metadata.di.DataItem;
+import com.gzmpc.portal.metadata.grid.Column;
 import com.gzmpc.portal.metadata.hov.Hov;
+import com.gzmpc.portal.metadata.hov.HovQueryParams;
 import com.gzmpc.portal.metadata.module.IModuleService;
 import com.gzmpc.portal.metadata.module.Module;
 import com.gzmpc.portal.metadata.module.ModuleEntity;
@@ -80,19 +84,47 @@ public class ModuleService {
 					Collection<DataItem> serviceItems = moduleService.getDataItems();
 					Collection<Hov> serviceHovs = moduleService.getHovs();
 					Collection<Permission> servicePermissions = moduleService.getPermissions();
-					
-					if(serviceItems.isEmpty()) {
-						module.setDataItems(Arrays.asList(entity.dataItemRef()).stream().map(itemKey -> dataItemService.findDataItem(entity.value(), itemKey)).collect(Collectors.toList()));
-					}
-					else {
-						module.setDataItems(serviceItems);
-					}
+					List<Hov> moduleHovs = new ArrayList<Hov>();
+					List<DataItem> moduleItems = new ArrayList<DataItem>();
+
 					if(serviceHovs.isEmpty()) {
-						module.setHovs(Arrays.asList(entity.hovRef()).stream().map(itemKey -> hovService.findByKey(itemKey)).collect(Collectors.toList()));
+						moduleHovs.addAll(Arrays.asList(entity.hovRef()).stream().map(itemKey -> hovService.findByKey(itemKey)).collect(Collectors.toList()));
 					}
 					else {
-						module.setHovs(serviceHovs);;
+						moduleHovs.addAll(serviceHovs);
 					}
+					if(serviceItems.isEmpty()) {
+						moduleItems.addAll(Arrays.asList(entity.dataItemRef()).stream().map(itemKey -> dataItemService.findDataItem(entity.value(), itemKey)).collect(Collectors.toList()));
+					}
+					else {
+						moduleItems.addAll(serviceItems);
+					}
+					for(Hov hov : moduleHovs) {
+						HovQueryParams[] params = hov.getQueryParams();
+						if(params != null) {
+							for(HovQueryParams p : params) {
+								DataItem item = dataItemService.findDataItemWithSpliter(p.getKey());
+								if(item != null) {
+									if(!contains(moduleItems,item)) {
+										moduleItems.add(item);
+									}
+								}
+							}
+						}
+						Column[] columns = hov.getColumns();
+						if(columns != null) {
+							for(Column c : columns) {
+								DataItem item = dataItemService.findDataItemWithSpliter(c.getKey());
+								if(item != null) {
+									if(!contains(moduleItems,item)) {
+										moduleItems.add(item);
+									}
+								}
+							}
+						}
+					}
+					module.setHovs(moduleHovs);
+					module.setDataItems(moduleItems);
 				}
 				
 				break;
@@ -101,5 +133,12 @@ public class ModuleService {
 		return module;
 	}
 		
-		
+	private boolean contains(Collection<DataItem> items, DataItem item) {
+		if(items == null) {
+			return false;
+		}
+		else {
+			return items.stream().anyMatch(r -> r.getCode().contentEquals(item.getCode()));
+		}
+	}
 }

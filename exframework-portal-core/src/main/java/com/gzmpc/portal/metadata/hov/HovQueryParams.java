@@ -1,6 +1,6 @@
 package com.gzmpc.portal.metadata.hov;
 /**
- *
+ * 查询条件
  * Author: rwe
  * Date: Jan 14, 2021
  *
@@ -12,8 +12,6 @@ public class HovQueryParams {
 	private String key;
 	
 	private String dataIndex;
-	
-	private String title;
 
 	public String getKey() {
 		return key;
@@ -30,12 +28,5 @@ public class HovQueryParams {
 	public void setDataIndex(String dataIndex) {
 		this.dataIndex = dataIndex;
 	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}	
+	
 }

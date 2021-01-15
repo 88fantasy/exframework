@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.gzmpc.portal.dao.DataItemDao;
 import com.gzmpc.portal.metadata.di.DataItem;
+import com.gzmpc.portal.metadata.di.DataItemExtend;
 
 /**
  *
@@ -46,4 +47,15 @@ public class DataItemService {
 		return result;
 	}
 
+	public DataItem findDataItemWithSpliter(String code) {
+		int index = code.lastIndexOf(DataItemExtend.SPLITER);
+		if(index == -1) {
+			return findDataItemByKey(code);
+		}
+		else {
+			String key = code.substring(0,index);
+			String objectCode = code.substring(index+1);
+			return findExtend(objectCode, key);
+		}
+	}
 }

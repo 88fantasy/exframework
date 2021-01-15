@@ -250,7 +250,7 @@ public class FilterCondition implements DictionaryEnumClass {
 	}
 
 	@Override
-	public Class<? extends DictionaryEnum<?>>[] getEnums() {
+	public Class<? extends DictionaryEnum<?>>[] enums() {
 		return new Class[] {FilterConditionDataType.class, FilterConditionOper.class };
 	}
 

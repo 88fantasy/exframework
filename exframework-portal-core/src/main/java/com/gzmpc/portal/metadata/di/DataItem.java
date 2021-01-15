@@ -228,8 +228,11 @@ public class DataItem extends Meta implements DictionaryEnumClass {
 	}
 
 	@Override
-	public Class<? extends DictionaryEnum<?>>[] getEnums() {
+	public Class<? extends DictionaryEnum<?>>[] enums() {
 		return new Class[] {DataItemDisplayTypeEnum.class, DataItemValueTypeEnum.class} ;
 	}
 
+	boolean isExtend() {
+		return false;
+	}
 }

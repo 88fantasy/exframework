@@ -15,6 +15,7 @@ public class DataItemExtend extends DataItem {
 
 	private static final long serialVersionUID = -3668210131610717427L;
 	
+	public static final String SPLITER = "#";
 	/**
 	 * 对象码
 	 */
@@ -29,5 +30,7 @@ public class DataItemExtend extends DataItem {
 		this.objectCode = objectCode;
 	}
 	
-	
+	boolean isExtend() {
+		return true;
+	}
 }

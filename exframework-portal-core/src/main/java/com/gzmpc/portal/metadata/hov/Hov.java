@@ -118,13 +118,11 @@ public class Hov extends Meta {
 				HovQueryParams param = new HovQueryParams();
 				param.setKey(field.getName());
 				param.setDataIndex(field.getName());
-				param.setTitle(field.getName());
 				if (field.isAnnotationPresent(DataItemRef.class)) {
 					DataItemRef ref = field.getAnnotation(DataItemRef.class);
 					String dataItemCode = ref.value();
 					String objectCode = ref.objectCode();
 					DataItem item = dataItemService.findDataItem(objectCode, dataItemCode);
-					param.setTitle(item.getName());
 					param.setKey(item.getCode());
 				}
 				params.add(param);
@@ -147,21 +145,18 @@ public class Hov extends Meta {
 				String fieldName = field.getName();
 				column.setKey(fieldName);
 				column.setDataIndex(fieldName);
-				column.setTitle(fieldName);
 				if (field.isAnnotationPresent(DataItemRef.class)) {
 					DataItemRef ref = field.getAnnotation(DataItemRef.class);
 					String dataItemCode = ref.value();
 					String objectCode = ref.objectCode();
 					DataItem item = dataItemService.findDataItem(objectCode, dataItemCode);
 					if(item != null) {
-						column.setTitle(item.getName());
 						column.setKey(item.getCode());
 					}
 				}
 				else {
 					DataItem item = dataItemService.findDataItem(code, fieldName);
 					if(item != null) {
-						column.setTitle(item.getName());
 						column.setKey(item.getCode());
 					}
 				}
