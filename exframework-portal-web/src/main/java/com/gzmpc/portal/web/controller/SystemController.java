@@ -29,14 +29,14 @@ public class SystemController {
 	@Autowired
 	BuildService buildService;
 			
-	@ApiOperation(value = "获取表单属性")
+	@ApiOperation(value = "更新配置(bean)")
 	@RequestMapping(value = WebApiConstants.API_SYS_BUILD, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ApiResponse build(@Valid @ApiParam(value = "beanid", required = true)  @NotEmpty @PathVariable String beanid) {
 		buildService.build(beanid);
 		return new ApiResponse();
 	}
 	
-	@ApiOperation(value = "获取表单属性")
+	@ApiOperation(value = "全量更新配置")
 	@RequestMapping(value = WebApiConstants.API_SYS_RELOAD, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ApiResponse reload() {
 		buildService.reload();
