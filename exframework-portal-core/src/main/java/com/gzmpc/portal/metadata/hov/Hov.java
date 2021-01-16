@@ -123,7 +123,9 @@ public class Hov extends Meta {
 					String dataItemCode = ref.value();
 					String objectCode = ref.objectCode();
 					DataItem item = dataItemService.findDataItem(objectCode, dataItemCode);
-					param.setKey(item.getCode());
+					if(item != null) {
+						param.setDataIndex(item.getCode());
+					}
 				}
 				params.add(param);
 			}
@@ -151,7 +153,7 @@ public class Hov extends Meta {
 					String objectCode = ref.objectCode();
 					DataItem item = dataItemService.findDataItem(objectCode, dataItemCode);
 					if(item != null) {
-						column.setKey(item.getCode());
+						column.setDataIndex(item.getCode());
 					}
 				}
 				else {
