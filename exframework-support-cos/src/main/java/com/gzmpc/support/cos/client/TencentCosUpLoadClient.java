@@ -129,7 +129,7 @@ public interface TencentCosUpLoadClient  extends TencentCosClient {
 		String bucketName = request.getBucketName();
 		String requestKey = getKey(request.getKey());
 		TransferManager cosTransferManager = getCosTransferManager();
-		if(StringUtils.hasLength(bucketName) ) {
+		if(!StringUtils.hasLength(bucketName) ) {
 			throw new CosClientException("bucketName不能为null");
 		}
 		if(!replace) {
