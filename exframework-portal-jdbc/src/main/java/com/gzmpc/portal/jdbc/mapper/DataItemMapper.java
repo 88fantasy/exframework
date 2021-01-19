@@ -1,7 +1,7 @@
 package com.gzmpc.portal.jdbc.mapper;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.gzmpc.portal.jdbc.entity.DataItemDO;
+import com.gzmpc.portal.jdbc.util.ExBaseMapper;
 
 /**
  * 数据项映射
@@ -11,6 +11,6 @@ import com.gzmpc.portal.jdbc.entity.DataItemDO;
  * Copyright @ 2020 
  * 
  */
-public interface DataItemMapper extends BaseMapper<DataItemDO> {
+public interface DataItemMapper extends ExBaseMapper<DataItemDO> {
 
 }

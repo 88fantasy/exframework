@@ -44,6 +44,9 @@ public interface WebApiConstants {
 	String API_SYS_RELOAD = API_SYS + "/reload";
 	
 
+	String API_LOG = "/log";
+	String API_LOG_QUERY = API_LOG + "/queryList";
+	
 	String API_LOGIN = "/login";
 	String API_LOGIN_ASYNC = API_LOGIN+"/async";
 }

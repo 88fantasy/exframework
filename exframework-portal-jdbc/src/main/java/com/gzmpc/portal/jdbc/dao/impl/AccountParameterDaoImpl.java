@@ -1,6 +1,5 @@
 package com.gzmpc.portal.jdbc.dao.impl;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -10,14 +9,12 @@ import org.springframework.stereotype.Repository;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.gzmpc.portal.dao.AccountParameterDao;
 import com.gzmpc.portal.metadata.FilterCondition;
 import com.gzmpc.portal.metadata.sys.Account;
 import com.gzmpc.portal.metadata.sys.AccountParameter;
 import com.gzmpc.portal.jdbc.entity.AccountParameterDO;
 import com.gzmpc.portal.jdbc.mapper.AccountParameterMapper;
-import com.gzmpc.portal.jdbc.util.MapperUtil;
 import com.gzmpc.support.common.entity.PageModel;
 
 /**
@@ -29,7 +26,7 @@ import com.gzmpc.support.common.entity.PageModel;
  * 
  */
 @Repository
-public class AccountParameterDaoImpl implements AccountParameterDao, MapperUtil<AccountParameterDO> {
+public class AccountParameterDaoImpl implements AccountParameterDao {
 	
 //	private final Logger log = LoggerFactory.getLogger(this.getClass());
 	
@@ -90,13 +87,12 @@ public class AccountParameterDaoImpl implements AccountParameterDao, MapperUtil<
 
 	@Override
 	public PageModel<AccountParameter> query(Collection<FilterCondition> params, com.gzmpc.support.common.entity.Page page) {
-		Page<AccountParameterDO> p = accountParameterMapper.selectPage(new Page<AccountParameterDO>(page.getCurrent(), page.getPageSize()), wrapperFromCondition(params));
-		return modelFromPage(p,AccountParameter.class);
+		return accountParameterMapper.query(params, page, AccountParameter.class);
 	}
 
 	@Override
 	public List<AccountParameter> list(Collection<FilterCondition> params) {
-		return new ArrayList<AccountParameter>(accountParameterMapper.selectList(wrapperFromCondition(params)));
+		return accountParameterMapper.list(params, AccountParameter.class);
 	}
 
 }

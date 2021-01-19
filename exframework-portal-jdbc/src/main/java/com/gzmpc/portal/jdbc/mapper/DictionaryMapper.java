@@ -1,7 +1,7 @@
 package com.gzmpc.portal.jdbc.mapper;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.gzmpc.portal.jdbc.entity.DictionaryDO;
+import com.gzmpc.portal.jdbc.util.ExBaseMapper;
 
 /**
  * 字典映射类
@@ -11,6 +11,6 @@ import com.gzmpc.portal.jdbc.entity.DictionaryDO;
  * Copyright @ 2020 
  * 
  */
-public interface DictionaryMapper extends BaseMapper<DictionaryDO> {
+public interface DictionaryMapper extends ExBaseMapper<DictionaryDO> {
 
 }

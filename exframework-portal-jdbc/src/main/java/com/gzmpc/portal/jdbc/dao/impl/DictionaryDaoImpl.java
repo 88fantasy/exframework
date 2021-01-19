@@ -1,30 +1,19 @@
 package com.gzmpc.portal.jdbc.dao.impl;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.stream.Collectors;
-
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.util.StringUtils;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.gzmpc.portal.dao.DictionaryDao;
 import com.gzmpc.portal.exception.NotFoundException;
 import com.gzmpc.portal.metadata.FilterCondition;
 import com.gzmpc.portal.metadata.dict.DictionaryItem;
 import com.gzmpc.portal.jdbc.entity.DictionaryDO;
 import com.gzmpc.portal.jdbc.mapper.DictionaryMapper;
-import com.gzmpc.portal.jdbc.util.MapperUtil;
 import com.gzmpc.support.common.entity.PageModel;
-import com.gzmpc.support.common.entity.Pager;
 
 /**
  * 字典数据类 Author: rwe Date: Dec 29, 2020
@@ -34,7 +23,7 @@ import com.gzmpc.support.common.entity.Pager;
  */
 @Repository
 public class DictionaryDaoImpl extends MetaDaoImpl<DictionaryDO, DictionaryItem>
-		implements DictionaryDao, MapperUtil<DictionaryDO> {
+		implements DictionaryDao {
 	@Autowired
 	DictionaryMapper dictionaryMapper;
 
@@ -76,29 +65,11 @@ public class DictionaryDaoImpl extends MetaDaoImpl<DictionaryDO, DictionaryItem>
 	@Override
 	public PageModel<DictionaryItem> query(Collection<FilterCondition> params,
 			com.gzmpc.support.common.entity.Page page) {
-		Page<DictionaryDO> p = dictionaryMapper.selectPage(
-				new Page<DictionaryDO>(page.getCurrent(), page.getPageSize()), wrapperFromCondition(params));
-		List<DictionaryItem> list = p.getRecords().stream().map(d -> {
-			DictionaryItem item = new DictionaryItem();
-			BeanUtils.copyProperties(d, item);
-//			String jsonString = d.getValueJson();
-//			if (StringUtils.hasText(jsonString)) {
-//				Map<String, String> value = new ConcurrentHashMap<String, String>();
-//				JSONObject json = JSON.parseObject(jsonString);
-//				for (String key : json.keySet()) {
-//					value.put(key, json.getString(key));
-//				}
-//				item.setValue(value);
-//			}
-			return item;
-		}).collect(Collectors.toList());
-		PageModel<DictionaryItem> model = new PageModel<DictionaryItem>(
-				new Pager(p.getTotal(), new com.gzmpc.support.common.entity.Page(p.getCurrent(), p.getSize())), list);
-		return model;
+		return dictionaryMapper.query(params, page, DictionaryItem.class);
 	}
 
 	@Override
 	public List<DictionaryItem> list(Collection<FilterCondition> params) {
-		return new ArrayList<DictionaryItem>(dictionaryMapper.selectList(wrapperFromCondition(params)));
+		return dictionaryMapper.list(params, DictionaryItem.class);
 	}
 }

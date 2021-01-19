@@ -13,7 +13,6 @@ import org.springframework.stereotype.Repository;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.gzmpc.portal.dao.DataItemDao;
 import com.gzmpc.portal.metadata.FilterCondition;
 import com.gzmpc.portal.metadata.di.DataItem;
@@ -22,7 +21,6 @@ import com.gzmpc.portal.jdbc.entity.DataItemDO;
 import com.gzmpc.portal.jdbc.entity.DataItemExtendDO;
 import com.gzmpc.portal.jdbc.mapper.DataItemExtendMapper;
 import com.gzmpc.portal.jdbc.mapper.DataItemMapper;
-import com.gzmpc.portal.jdbc.util.MapperUtil;
 import com.gzmpc.support.common.entity.PageModel;
 
 /**
@@ -32,7 +30,7 @@ import com.gzmpc.support.common.entity.PageModel;
  * 
  */
 @Repository
-public class DataItemDaoImpl extends MetaDaoImpl<DataItemDO, DataItem> implements DataItemDao, MapperUtil<DataItemDO> {
+public class DataItemDaoImpl extends MetaDaoImpl<DataItemDO, DataItem> implements DataItemDao {
 
 	@Autowired
 	DataItemMapper dataItemMapper;
@@ -81,13 +79,12 @@ public class DataItemDaoImpl extends MetaDaoImpl<DataItemDO, DataItem> implement
 
 	@Override
 	public PageModel<DataItem> query(Collection<FilterCondition> params, com.gzmpc.support.common.entity.Page page) {
-		Page<DataItemDO> p = dataItemMapper.selectPage(new Page<DataItemDO>(page.getCurrent(), page.getPageSize()), wrapperFromCondition(params));
-		return modelFromPage(p,DataItem.class);
+		return dataItemMapper.query(params, page, DataItem.class);
 	}
 
 	@Override
 	public List<DataItem> list(Collection<FilterCondition> params) {
-		return new ArrayList<DataItem>(dataItemMapper.selectList(wrapperFromCondition(params)));
+		return dataItemMapper.list(params, DataItem.class);
 	}
 
 

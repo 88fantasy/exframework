@@ -2,12 +2,16 @@ package com.gzmpc.portal.jdbc.util;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
+
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.gzmpc.portal.metadata.FilterCondition;
 import com.gzmpc.support.common.entity.PageModel;
 import com.gzmpc.support.common.entity.Pager;
+import com.gzmpc.support.common.util.BeanUtil;
 
 /**
  *
@@ -16,15 +20,15 @@ import com.gzmpc.support.common.entity.Pager;
  * Copyright @ 2021
  * 
  */
-public interface MapperUtil<T> {
+public interface ExBaseMapper<T> extends BaseMapper<T> {
 
 	default QueryWrapper<T> wrapperFromCondition(Collection<FilterCondition> conditions) {
-		if(conditions == null || conditions.size() == 0) {
+		if (conditions == null || conditions.size() == 0) {
 			return null;
 		}
 		QueryWrapper<T> wrapper = new QueryWrapper<T>();
 		for (FilterCondition fc : conditions) {
-			if(fc.getFilterValue() == null) {
+			if (fc.getFilterValue() == null) {
 				continue;
 			}
 			switch (fc.getOper()) {
@@ -167,5 +171,18 @@ public interface MapperUtil<T> {
 				new Pager(page.getTotal(), new com.gzmpc.support.common.entity.Page(page.getCurrent(), page.getSize())),
 				page.getRecords());
 		return model.copy(clazz);
+	}
+
+	default <E> PageModel<E> query(Collection<FilterCondition> params, com.gzmpc.support.common.entity.Page page,
+			Class<E> clazz) {
+		Page<T> p = selectPage(new Page<T>(page.getCurrent(), page.getPageSize()), wrapperFromCondition(params));
+		return modelFromPage(p, clazz);
+	}
+
+	default <E> List<E> list(Collection<FilterCondition> params, Class<E> clazz) {
+		List<T> t = selectList(wrapperFromCondition(params));
+		return t.stream().map(row -> {
+			return BeanUtil.copyTo(row, clazz);
+		}).collect(Collectors.toList());
 	}
 }

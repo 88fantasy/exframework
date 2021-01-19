@@ -1,6 +1,5 @@
 package com.gzmpc.portal.jdbc.dao.impl;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -11,18 +10,17 @@ import org.springframework.stereotype.Repository;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.gzmpc.portal.dao.DataItemDao;
 import com.gzmpc.portal.dao.ModuleDao;
 import com.gzmpc.portal.metadata.FilterCondition;
 import com.gzmpc.portal.metadata.di.DataItem;
 import com.gzmpc.portal.metadata.module.ModuleBase;
+import com.gzmpc.support.common.entity.Page;
 import com.gzmpc.support.common.entity.PageModel;
 import com.gzmpc.portal.jdbc.entity.ModuleDO;
 import com.gzmpc.portal.jdbc.entity.ModuleHovDO;
 import com.gzmpc.portal.jdbc.mapper.ModuleHovMapper;
 import com.gzmpc.portal.jdbc.mapper.ModuleMapper;
-import com.gzmpc.portal.jdbc.util.MapperUtil;
 
 /**
  * 模块数据类 Author: rwe Date: Dec 29, 2020
@@ -31,7 +29,7 @@ import com.gzmpc.portal.jdbc.util.MapperUtil;
  * 
  */
 @Repository
-public class ModuleDaoImpl extends MetaDaoImpl<ModuleDO, ModuleBase> implements ModuleDao, MapperUtil<ModuleDO> {
+public class ModuleDaoImpl extends MetaDaoImpl<ModuleDO, ModuleBase> implements ModuleDao {
 
 	@Autowired
 	ModuleMapper moduleMapper;
@@ -75,14 +73,13 @@ public class ModuleDaoImpl extends MetaDaoImpl<ModuleDO, ModuleBase> implements 
 	}
 
 	@Override
-	public PageModel<ModuleBase> query(Collection<FilterCondition> params, com.gzmpc.support.common.entity.Page page) {
-		Page<ModuleDO> p = moduleMapper.selectPage(new Page<ModuleDO>(page.getCurrent(), page.getPageSize()), wrapperFromCondition(params));
-		return modelFromPage(p,ModuleBase.class);
+	public PageModel<ModuleBase> query(Collection<FilterCondition> params, Page page) {
+		return moduleMapper.query(params, page, ModuleBase.class);
 	}
 
 	@Override
 	public List<ModuleBase> list(Collection<FilterCondition> params) {
-		return new ArrayList<ModuleBase>(moduleMapper.selectList(wrapperFromCondition(params)));
+		return moduleMapper.list(params, ModuleBase.class);
 	}
 
 
