@@ -69,7 +69,7 @@ public class DruidMonitorConfig {
 	    WallConfig wallConfig = new WallConfig();
 	    wallConfig.setAlterTableAllow(false);
 	    wallConfig.setCreateTableAllow(false);
-	    wallConfig.setDeleteAllow(false);
+//	    wallConfig.setDeleteAllow(false);
 	    wallConfig.setMergeAllow(false);
 	    wallConfig.setDescribeAllow(false);
 	    wallConfig.setShowAllow(false);
