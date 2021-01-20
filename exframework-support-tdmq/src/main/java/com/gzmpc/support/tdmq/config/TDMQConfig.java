@@ -20,13 +20,13 @@ public class TDMQConfig {
 	private Log log = LogFactory.getLog(TDMQConfig.class.getName());
 	
 
-	@Value("tdmq.tunnel.url")
+	@Value("${tdmq.tunnel.url}")
 	String tunnerUrl;
 
-	@Value("tdmq.tunnel.netModel")
+	@Value("${tdmq.tunnel.netModel}")
 	String netModel;
 
-	@Value("tdmq.tunnel.secret")
+	@Value("${tdmq.tunnel.secret}")
 	String secret;
 	
 	@Bean
