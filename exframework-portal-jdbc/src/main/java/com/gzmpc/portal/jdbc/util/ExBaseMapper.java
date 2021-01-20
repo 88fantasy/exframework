@@ -31,6 +31,9 @@ public interface ExBaseMapper<T> extends BaseMapper<T> {
 			if (fc.getFilterValue() == null) {
 				continue;
 			}
+			else if(fc.getFilterDataType() == null) {
+				fc.setFilterDataType(FilterCondition.defaultType(fc.getFilterValue()));
+			}
 			switch (fc.getOper()) {
 			case BETWEEN:
 				switch (fc.getFilterDataType()) {

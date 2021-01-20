@@ -95,7 +95,7 @@ public class FilterCondition implements DictionaryEnumClass {
 		this.filterDataType = filterDataType;
 	}
 	
-	private static FilterConditionOper defaultOper(Object value) {
+	public static FilterConditionOper defaultOper(Object value) {
 		if( value != null) {
 			Class<?> c = value.getClass();
 			if(c.isArray()) {
@@ -116,7 +116,7 @@ public class FilterCondition implements DictionaryEnumClass {
 		}
 	}
 
-	private static FilterConditionDataType defaultType(Object value) {
+	public static FilterConditionDataType defaultType(Object value) {
 		if( value != null) {
 			Class<?> c = value.getClass();
 			if(c.isArray()) {
