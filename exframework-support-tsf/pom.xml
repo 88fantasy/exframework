@@ -49,6 +49,7 @@
 				<artifactId>exframework-tsf-support-tdmq</artifactId>
 				<version>0.6</version>
 			</dependency>
+			<!-- spring 版本问题需要降级 -->
 			<dependency>
 				<groupId>com.github.xiaoymin</groupId>
 				<artifactId>knife4j-spring-boot-starter</artifactId>
@@ -60,14 +61,23 @@
 				<version>1.2.0</version>
 			</dependency>
 			<dependency>
-				<groupId>com.tencent.tdmq</groupId>
-				<artifactId>tdmq-client</artifactId>
-				<version>2.6.0</version>
+				<groupId>com.gzmpc.microservice</groupId>
+				<artifactId>microservice-config-core</artifactId>
+				<version>1.4.1</version>
+			</dependency>
+			
+			<!-- 根据 tsf 调整 -->
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-data-mongodb</artifactId>
+				<version>${springboot.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>com.qcloud</groupId>
-				<artifactId>cos_api</artifactId>
-				<version>5.6.24</version>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-dependencies</artifactId>
+				<version>${springboot.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
@@ -102,6 +112,6 @@
 	</dependencies>
 
 	<properties>
-
+		<springboot.version>2.1.15.RELEASE</springboot.version>
 	</properties>
 </project>

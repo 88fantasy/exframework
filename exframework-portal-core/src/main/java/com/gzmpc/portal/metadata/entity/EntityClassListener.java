@@ -63,6 +63,7 @@ public class EntityClassListener implements ApplicationListener<ApplicationReady
 		Map<String, Object> entities = ac.getBeansWithAnnotation(EntityClass.class);
 		for (String dn : entities.keySet()) {
 			Object entityClass = entities.get(dn);
+			Class<? extends Object> clazz = entityClass.getClass();
 			log.info(MessageFormat.format("正在检查{0}", entityClass.getClass().getName()));
 			ReflectionUtils.doWithFields(entityClass.getClass(), new ReflectionUtils.FieldCallback() {
 				@Override
@@ -110,7 +111,7 @@ public class EntityClassListener implements ApplicationListener<ApplicationReady
 				}
 			});
 			
-			if(DictionaryEnumClass.class.isAssignableFrom(entityClass.getClass())) {
+			if(DictionaryEnumClass.class.isAssignableFrom(clazz) && clazz.isEnum()) {
 				DictionaryEnumClass dec = (DictionaryEnumClass) entityClass;
 				Class<?>[] enumclasses =  dec.enums();
 				if(enumclasses != null) {

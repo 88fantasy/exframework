@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.gzmpc.exframework</groupId>
@@ -33,13 +31,14 @@
 		<module>exframework-support-jdbc-oracle</module>
 		<module>exframework-support-jdbc-mysql</module>
 		<module>exframework-support-cos</module>
+    	<module>exframework-support-tdmq</module>
 		<module>exframework-springboot-quickstart</module>
 		<module>exframework-springboot-quickstart-rest</module>
 		<module>exframework-support-mongo</module>
 		<module>exframework-support-tsf</module>
 		<module>exframework-support-wechat</module>
 		<module>exframework-backend-quickstart</module>
-	</modules>
+  </modules>
 	<build>
 		<pluginManagement>
 			<plugins>
@@ -295,6 +294,11 @@
 				<artifactId>exframework-support-cos</artifactId>
 				<version>0.6</version>
 			</dependency>
+			<dependency>
+				<groupId>com.gzmpc.exframework</groupId>
+				<artifactId>exframework-support-tdmq</artifactId>
+				<version>0.6</version>
+			</dependency>
 
 			<dependency>
 				<groupId>javax.servlet</groupId>
@@ -377,6 +381,11 @@
 				<groupId>com.qcloud</groupId>
 				<artifactId>cos_api</artifactId>
 				<version>5.6.24</version>
+			</dependency>
+			<dependency>
+				<groupId>com.tencent.tdmq</groupId>
+				<artifactId>tdmq-client</artifactId>
+				<version>2.6.0</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

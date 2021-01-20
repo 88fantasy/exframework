@@ -1,4 +1,4 @@
-package com.gzmpc.tsf.support.tdmq.config;
+package com.gzmpc.support.tdmq.config;
 
 import java.text.MessageFormat;
 
@@ -20,31 +20,31 @@ public class TDMQConfig {
 	private Log log = LogFactory.getLog(TDMQConfig.class.getName());
 	
 
-	@Value("microservice.config.tunnel.url")
+	@Value("tdmq.tunnel.url")
 	String tunnerUrl;
 
-	@Value("microservice.config.tunnel.netModel")
+	@Value("tdmq.tunnel.netModel")
 	String netModel;
 
-	@Value("microservice.config.tunnel.secret")
+	@Value("tdmq.tunnel.secret")
 	String secret;
 	
 	@Bean
 	@ConditionalOnMissingBean(name = "defaultPulsarClient")
 	public PulsarClient defaultPulsarClient() {
-		log.warn("如非使用默认配置tunnerUrl，请自行配置microservice.config.tunnel.url");
-		log.warn("如非使用默认配置netModel，请自行配置microservice.config.tunnel.netModel");
-		log.warn("如非使用默认配置secret，请自行配置microservice.config.tunnel.secret");
-		if(StringUtils.isEmpty(tunnerUrl)) {
-			log.error("tunnerUrl不能为null，配置microservice.config.tunnel.url");
+		log.warn("如非使用默认配置tunnerUrl，请自行配置tdmq.tunnel.url");
+		log.warn("如非使用默认配置netModel，请自行配置tdmq.tunnel.netModel");
+		log.warn("如非使用默认配置secret，请自行配置tdmq.tunnel.secret");
+		if(!StringUtils.hasText(tunnerUrl)) {
+			log.error("tunnerUrl不能为null，配置tdmq.tunnel.url");
 			return null;
 		}
-		if(StringUtils.isEmpty(netModel)) {
-			log.error("netModel不能为null，配置microservice.config.tunnel.netModel");
+		if(!StringUtils.hasText(netModel)) {
+			log.error("netModel不能为null，配置tdmq.tunnel.netModel");
 			return null;
 		}
-		if(StringUtils.isEmpty(secret)) {
-			log.error("secret不能为null，配置microservice.config.tunnel.secret");
+		if(!StringUtils.hasText(secret)) {
+			log.error("secret不能为null，配置tdmq.tunnel.secret");
 			return null;
 		}
 		

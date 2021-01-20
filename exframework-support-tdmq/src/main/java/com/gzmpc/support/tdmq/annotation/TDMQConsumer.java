@@ -1,4 +1,4 @@
-package com.gzmpc.tsf.support.tdmq.annotation;
+package com.gzmpc.support.tdmq.annotation;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;

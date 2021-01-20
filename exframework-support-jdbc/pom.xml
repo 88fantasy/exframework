@@ -103,6 +103,6 @@
 	</dependencies>
 
 	<properties>
-		<mybatis-plus.version>3.4.1</mybatis-plus.version>
+		<mybatis-plus.version>3.4.2</mybatis-plus.version>
 	</properties>
 </project>

@@ -5,26 +5,28 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.gzmpc.exframework</groupId>
-		<artifactId>exframework-support-tsf</artifactId>
+		<artifactId>exframework-root</artifactId>
 		<version>0.6</version>
 	</parent>
-	<artifactId>exframework-tsf-support-tdmq</artifactId>
+	<artifactId>exframework-support-tdmq</artifactId>
 	<packaging>jar</packaging>
-	<name>exframework-tsf-support-tdmq</name>
+	<name>tdmq support</name>
 
 	<build>
-		<finalName>exframework-tsf-support-tdmq</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+			</plugin>
+		</plugins>
+
 	</build>
 
 
 	<dependencies>
 		<dependency>
-			<groupId>com.gzmpc.exframework</groupId>
-			<artifactId>exframework-support-tdmq</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.gzmpc.microservice</groupId>
-			<artifactId>microservice-config-core</artifactId>
+			<groupId>com.tencent.tdmq</groupId>
+			<artifactId>tdmq-client</artifactId>
 		</dependency>
 	</dependencies>
 

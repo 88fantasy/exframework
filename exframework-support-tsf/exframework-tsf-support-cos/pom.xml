@@ -30,7 +30,6 @@
 		<dependency>
 			<groupId>com.gzmpc.microservice</groupId>
 			<artifactId>microservice-config-core</artifactId>
-			<version>1.4.1</version>
 		</dependency>
 	</dependencies>
 

@@ -1,4 +1,4 @@
-package com.gzmpc.tsf.support.tdmq.listener;
+package com.gzmpc.support.tdmq.listener;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
@@ -22,7 +22,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
-import com.gzmpc.tsf.support.tdmq.annotation.TDMQConsumer;
+import com.gzmpc.support.tdmq.annotation.TDMQConsumer;
 
 
 /**

@@ -1,4 +1,4 @@
-package com.gzmpc.tsf.support.tdmq.exception;
+package com.gzmpc.support.tdmq.exception;
 
 /**
 * @author rwe
