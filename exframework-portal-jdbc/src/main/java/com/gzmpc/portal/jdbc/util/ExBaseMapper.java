@@ -2,6 +2,8 @@ package com.gzmpc.portal.jdbc.util;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 
@@ -34,6 +36,8 @@ public interface ExBaseMapper<T> extends BaseMapper<T> {
 			else if(fc.getFilterDataType() == null) {
 				fc.setFilterDataType(FilterCondition.defaultType(fc.getFilterValue()));
 			}
+			
+			String key = HumpToUnderline(fc.getKey());
 			switch (fc.getOper()) {
 			case BETWEEN:
 				switch (fc.getFilterDataType()) {
@@ -42,7 +46,7 @@ public interface ExBaseMapper<T> extends BaseMapper<T> {
 				case NUMBER:
 					List<?> values = (List<?>) fc.getFilterValue();
 					if (values != null && values.size() == 2) {
-						wrapper.between(fc.getKey(), values.get(0), values.get(1));
+						wrapper.between(key, values.get(0), values.get(1));
 					}
 					break;
 				default:
@@ -55,7 +59,7 @@ public interface ExBaseMapper<T> extends BaseMapper<T> {
 				case DATETIME:
 				case NUMBER:
 				case STRING:
-					wrapper.eq(fc.getKey(), fc.getFilterValue());
+					wrapper.eq(key, fc.getFilterValue());
 					break;
 				default:
 					break;
@@ -68,7 +72,7 @@ public interface ExBaseMapper<T> extends BaseMapper<T> {
 				case DATETIME:
 				case NUMBER:
 				case STRING:
-					wrapper.ne(fc.getKey(), fc.getFilterValue());
+					wrapper.ne(key, fc.getFilterValue());
 					break;
 				default:
 					break;
@@ -80,7 +84,7 @@ public interface ExBaseMapper<T> extends BaseMapper<T> {
 				case DATE:
 				case DATETIME:
 				case NUMBER:
-					wrapper.gt(fc.getKey(), fc.getFilterValue());
+					wrapper.gt(key, fc.getFilterValue());
 					break;
 				default:
 					break;
@@ -91,7 +95,7 @@ public interface ExBaseMapper<T> extends BaseMapper<T> {
 				case DATE:
 				case DATETIME:
 				case NUMBER:
-					wrapper.ge(fc.getKey(), fc.getFilterValue());
+					wrapper.ge(key, fc.getFilterValue());
 					break;
 				default:
 					break;
@@ -101,7 +105,7 @@ public interface ExBaseMapper<T> extends BaseMapper<T> {
 				switch (fc.getFilterDataType()) {
 				case LIST:
 					if (fc.getFilterValue() instanceof Collection) {
-						wrapper.in(fc.getKey(), fc.getFilterValue());
+						wrapper.in(key, fc.getFilterValue());
 					}
 					break;
 				default:
@@ -110,17 +114,17 @@ public interface ExBaseMapper<T> extends BaseMapper<T> {
 				}
 				break;
 			case ISNULL:
-				wrapper.isNull(fc.getKey());
+				wrapper.isNull(key);
 				break;
 			case IS_NOT_NULL:
-				wrapper.isNotNull(fc.getKey());
+				wrapper.isNotNull(key);
 				break;
 			case LESS:
 				switch (fc.getFilterDataType()) {
 				case DATE:
 				case DATETIME:
 				case NUMBER:
-					wrapper.lt(fc.getKey(), fc.getFilterValue());
+					wrapper.lt(key, fc.getFilterValue());
 					break;
 				default:
 					break;
@@ -131,7 +135,7 @@ public interface ExBaseMapper<T> extends BaseMapper<T> {
 				case DATE:
 				case DATETIME:
 				case NUMBER:
-					wrapper.le(fc.getKey(), fc.getFilterValue());
+					wrapper.le(key, fc.getFilterValue());
 					break;
 				default:
 					break;
@@ -141,7 +145,7 @@ public interface ExBaseMapper<T> extends BaseMapper<T> {
 				switch (fc.getFilterDataType()) {
 				case STRING:
 					if (fc.getFilterValue() instanceof String) {
-						wrapper.like(fc.getKey(), fc.getFilterValue());
+						wrapper.like(key, fc.getFilterValue());
 					}
 					break;
 				default:
@@ -188,4 +192,15 @@ public interface ExBaseMapper<T> extends BaseMapper<T> {
 			return BeanUtil.copyTo(row, clazz);
 		}).collect(Collectors.toList());
 	}
+	
+	default String HumpToUnderline(String camelCase){
+		Pattern humpPattern = Pattern.compile("[A-Z]");
+        Matcher matcher = humpPattern.matcher(camelCase);
+        StringBuffer sb = new StringBuffer();
+        while(matcher.find()){
+            matcher.appendReplacement(sb, "_"+matcher.group(0).toLowerCase());
+        }
+        matcher.appendTail(sb);
+        return sb.toString();
+    }
 }
