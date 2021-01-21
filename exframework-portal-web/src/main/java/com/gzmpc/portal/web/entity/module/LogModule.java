@@ -11,7 +11,7 @@ import com.gzmpc.portal.metadata.module.ModuleEntity;
  * Copyright @ 2021 
  * 
  */
-@ModuleEntity( value = "logModule", name = "日志模块", hovRef = {"moduleHov"}, dataItemRef = {"loggerId", "content","sourceId", "param", "accountName"})
+@ModuleEntity( value = "log", name = "日志模块", hovRef = {"moduleHov"}, dataItemRef = {"loggerId", "content","sourceId", "param", "accountName"})
 public class LogModule implements IModuleService {
 
 }

@@ -17,6 +17,7 @@ import org.springframework.util.StringUtils;
 
 import com.gzmpc.portal.dao.DataItemDao;
 import com.gzmpc.portal.dao.HovDao;
+import com.gzmpc.portal.dao.ModuleDao;
 import com.gzmpc.portal.metadata.di.DataItem;
 import com.gzmpc.portal.metadata.di.DataItemEntity;
 import com.gzmpc.portal.metadata.di.DataItem.DataItemDisplayTypeEnum;
@@ -27,9 +28,13 @@ import com.gzmpc.portal.metadata.dict.DictionaryEnumClass;
 import com.gzmpc.portal.metadata.hov.Hov;
 import com.gzmpc.portal.metadata.hov.HovEntity;
 import com.gzmpc.portal.metadata.hov.IHovDao;
+import com.gzmpc.portal.metadata.module.Module;
+import com.gzmpc.portal.metadata.module.ModuleBase;
+import com.gzmpc.portal.metadata.module.ModuleEntity;
 import com.gzmpc.portal.pub.PageRequest;
 import com.gzmpc.portal.service.sys.DataItemService;
 import com.gzmpc.portal.service.sys.DdlService;
+import com.gzmpc.portal.service.sys.ModuleService;
 
 /**
  * 加载EntityClass注解
@@ -55,6 +60,12 @@ public class EntityClassListener implements ApplicationListener<ApplicationReady
 	
 	@Autowired
 	DataItemService dataItemService;
+	
+	@Autowired
+	ModuleDao moduleDao;
+	
+	@Autowired
+	ModuleService moduleService;
 	
 	@Override
 	public void onApplicationEvent(ApplicationReadyEvent event) {
@@ -156,6 +167,28 @@ public class EntityClassListener implements ApplicationListener<ApplicationReady
 					hovDao.update(entity);
 				}
 			}
+			
+			ModuleEntity module = entityClass.getClass().getAnnotation(ModuleEntity.class);
+			if(module != null) {
+				String code = module.value();
+				String name = module.name();
+				String description = module.description();
+				String[] items = module.dataItemRef();
+				String[] hovs = module.hovRef();
+				String[] permissions = module.permissionRef();
+				boolean force = module.forceUpdate();
+				ModuleBase base = moduleDao.findByKey(code);
+				if(base == null ) {
+					base = new ModuleBase(code, name, description);
+					Module entity = moduleService.instanceByClass(base, items, hovs, permissions);
+					moduleDao.insert(entity);
+				}
+				else if(force) {
+					Module entity = moduleService.instanceByClass(base, items, hovs, permissions);
+					moduleDao.update(entity);
+				}
+			}
+			
 		}
 	}
 }

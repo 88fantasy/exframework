@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
@@ -14,6 +15,8 @@ import com.gzmpc.portal.dao.DataItemDao;
 import com.gzmpc.portal.dao.ModuleDao;
 import com.gzmpc.portal.metadata.FilterCondition;
 import com.gzmpc.portal.metadata.di.DataItem;
+import com.gzmpc.portal.metadata.hov.Hov;
+import com.gzmpc.portal.metadata.module.Module;
 import com.gzmpc.portal.metadata.module.ModuleBase;
 import com.gzmpc.support.common.entity.Page;
 import com.gzmpc.support.common.entity.PageModel;
@@ -82,5 +85,34 @@ public class ModuleDaoImpl extends MetaDaoImpl<ModuleDO, ModuleBase> implements 
 		return moduleMapper.list(params, ModuleBase.class);
 	}
 
+	@Override
+	@Transactional(rollbackFor = Exception.class)
+	public boolean insertModule(Module module) {
+		String code = module.getCode();
+		ModuleBase base = findByKey(code);
+		if(base != null) {
+			return false;
+		}
+		else {
+			base = module;
+			int in = insert(base);
+			if(in > 0) {
+				Collection<Hov> hovs = module.getHovs();
+				for(Hov hov : hovs) {
+					ModuleHovDO mh = new ModuleHovDO();
+					mh.setModuleKey(module.getCode());
+					mh.setHovKey(hov.getCode());
+				}
+//				module.getDataItems();
+			}
+		}
+		return true;
+	}
+
+	@Override
+	public boolean updateModule(Module module) {
+
+		return false;
+	}
 
 }

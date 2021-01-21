@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.gzmpc.portal.metadata.FilterCondition;
 import com.gzmpc.portal.metadata.di.DataItem;
+import com.gzmpc.portal.metadata.module.Module;
 import com.gzmpc.portal.metadata.module.ModuleBase;
 import com.gzmpc.support.common.entity.Page;
 import com.gzmpc.support.common.entity.PageModel;
@@ -28,4 +29,8 @@ public interface ModuleDao extends MetaDao<ModuleBase> {
 	PageModel<ModuleBase> query(Collection<FilterCondition> params, Page page);
 	
 	List<ModuleBase> list(Collection<FilterCondition> params);
+	
+	boolean insertModule(Module module); 
+	
+	boolean updateModule(Module module);
 }
