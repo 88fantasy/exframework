@@ -25,7 +25,7 @@ public @interface TDMQConsumer {
 
 	String value();
 	
-	String subscriptionName();
+	String subscriptionName() default "";
 	
 	SubscriptionType subscriptionType() default SubscriptionType.Failover;
 	

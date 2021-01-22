@@ -68,16 +68,9 @@
 			
 			<!-- 根据 tsf 调整 -->
 			<dependency>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-starter-data-mongodb</artifactId>
-				<version>${springboot.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-dependencies</artifactId>
-				<version>${springboot.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
+				<groupId>com.gzmpc.exframework</groupId>
+				<artifactId>exframework-tsf-support-sso</artifactId>
+				<version>0.5.2.1</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

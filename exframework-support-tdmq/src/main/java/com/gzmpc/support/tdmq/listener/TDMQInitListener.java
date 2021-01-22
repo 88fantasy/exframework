@@ -16,9 +16,11 @@ import org.apache.pulsar.client.api.SubscriptionType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.DisposableBean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
@@ -31,6 +33,9 @@ import com.gzmpc.support.tdmq.annotation.TDMQConsumer;
  */
 @Repository
 public class TDMQInitListener implements ApplicationListener<ApplicationReadyEvent>, DisposableBean {
+	
+	@Autowired 
+	private Environment env;
 
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
 
@@ -65,11 +70,12 @@ public class TDMQInitListener implements ApplicationListener<ApplicationReadyEve
 					if (defines != null && defines.length > 0) {
 
 						for (TDMQConsumer define : defines) {
-							String topic = define.value();
-							if (!StringUtils.isEmpty(topic)) {
+							String spel = define.value();
+							String topic = env.getProperty(spel);
+							if (StringUtils.hasText(topic)) {
 								String topicName = MessageFormat.format("persistent://{0}", topic);
 								String subscriptionName = define.subscriptionName();
-								if (StringUtils.isEmpty(subscriptionName)) {
+								if (!StringUtils.hasText(subscriptionName)) {
 									subscriptionName = className;
 								}
 								SubscriptionType type = define.subscriptionType();
