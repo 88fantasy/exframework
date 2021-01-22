@@ -1,6 +1,5 @@
 package com.gzmpc.support.common.util;
 
-import org.springframework.beans.BeanUtils;
 
 /**
  * 实体工具类
@@ -10,7 +9,7 @@ import org.springframework.beans.BeanUtils;
  * Copyright @ 2021 
  * 
  */
-public class BeanUtil {
+public class BeanUtils extends org.springframework.beans.BeanUtils {
 
 	public static <T> T copyTo(Object o , Class<T> clazz) {
 		T t = BeanUtils.instantiateClass(clazz);

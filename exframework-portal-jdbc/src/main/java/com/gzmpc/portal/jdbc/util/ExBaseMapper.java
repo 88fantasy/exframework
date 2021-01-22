@@ -2,8 +2,6 @@ package com.gzmpc.portal.jdbc.util;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 
@@ -13,7 +11,8 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.gzmpc.portal.metadata.FilterCondition;
 import com.gzmpc.support.common.entity.PageModel;
 import com.gzmpc.support.common.entity.Pager;
-import com.gzmpc.support.common.util.BeanUtil;
+import com.gzmpc.support.common.util.BeanUtils;
+import com.gzmpc.support.common.util.StringUtils;
 
 /**
  *
@@ -37,7 +36,7 @@ public interface ExBaseMapper<T> extends BaseMapper<T> {
 				fc.setFilterDataType(FilterCondition.defaultType(fc.getFilterValue()));
 			}
 			
-			String key = HumpToUnderline(fc.getKey());
+			String key = StringUtils.humpToUnderline(fc.getKey());
 			switch (fc.getOper()) {
 			case BETWEEN:
 				switch (fc.getFilterDataType()) {
@@ -189,18 +188,7 @@ public interface ExBaseMapper<T> extends BaseMapper<T> {
 	default <E> List<E> list(Collection<FilterCondition> params, Class<E> clazz) {
 		List<T> t = selectList(wrapperFromCondition(params));
 		return t.stream().map(row -> {
-			return BeanUtil.copyTo(row, clazz);
+			return BeanUtils.copyTo(row, clazz);
 		}).collect(Collectors.toList());
 	}
-	
-	default String HumpToUnderline(String camelCase){
-		Pattern humpPattern = Pattern.compile("[A-Z]");
-        Matcher matcher = humpPattern.matcher(camelCase);
-        StringBuffer sb = new StringBuffer();
-        while(matcher.find()){
-            matcher.appendReplacement(sb, "_"+matcher.group(0).toLowerCase());
-        }
-        matcher.appendTail(sb);
-        return sb.toString();
-    }
 }

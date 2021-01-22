@@ -3,7 +3,7 @@ package com.gzmpc.support.common.entity;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.gzmpc.support.common.util.BeanUtil;
+import com.gzmpc.support.common.util.BeanUtils;
 
 /**
  * @author rwe
@@ -46,7 +46,7 @@ public class PageModel<T> {
 	public <E> PageModel<E> copy(Class<E> clazz) {
 		List<T> tlist = this.getList();
 		List<E> elist = tlist.stream().map(row -> {
-			return BeanUtil.copyTo(row, clazz);
+			return BeanUtils.copyTo(row, clazz);
 		}).collect(Collectors.toList());
 		return new PageModel<E>(this.getPager(), elist);
 	}

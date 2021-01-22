@@ -20,6 +20,23 @@ import com.qcloud.cos.transfer.Upload;
 
 public interface TencentCosUpLoadClient  extends TencentCosClient {
 	
+	ObjectMetadata DEFAULT = new ObjectMetadata();
+	
+	/**
+	 * 以文件流的形式上传文件
+	 * 
+	 * @param FileInputStream   fileInputStream 文件输入流
+	 * @param String targetUrl 上传的路径(含文件名)
+	 * @return com.qcloud.cos.model.UploadResult
+	 * @throws InterruptedException 
+	 * @throws CosClientException 
+	 * @throws CosServiceException 
+	 */
+	default UploadResult upload(FileInputStream fileInputStream, String targetUrl) throws CosServiceException, CosClientException, InterruptedException {
+		PutObjectRequest request = new PutObjectRequest(getBucketName(), targetUrl, fileInputStream, DEFAULT);
+		return upload(request, -1, true);
+	}
+	
 	/**
 	 * 以文件流的形式上传文件
 	 * 
