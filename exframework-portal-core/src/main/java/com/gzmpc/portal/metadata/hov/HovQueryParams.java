@@ -9,8 +9,14 @@ package com.gzmpc.portal.metadata.hov;
  */
 public class HovQueryParams {
 	
+	/**
+	 * 提交字段
+	 */
 	private String key;
 	
+	/**
+	 * 数据字段
+	 */
 	private String dataIndex;
 
 	public String getKey() {

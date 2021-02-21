@@ -32,7 +32,7 @@ import com.gzmpc.support.common.util.MapUtil;
 @Service
 public class RoleBaseAccountServiceImpl implements AccountService {
 
-	private Logger log = LoggerFactory.getLogger(RoleBaseAccountServiceImpl.class.getName());
+	private Logger log = LoggerFactory.getLogger(this.getClass().getName());
 
 	@Autowired
 	SystemConst systemConst;
@@ -62,7 +62,7 @@ public class RoleBaseAccountServiceImpl implements AccountService {
 		if (account == null) {
 			return false;
 		}
-		if (account.getAccountId().equals(systemConst.ACCOUNT_ADMIN)) {
+		if (account.getAccount().equals(systemConst.ACCOUNT_ADMIN)) {
 			return true;
 		}
 		if (account.getPermissions().containsKey(key)) {
@@ -136,7 +136,7 @@ public class RoleBaseAccountServiceImpl implements AccountService {
 	 */
 	private Collection<Role> accountRoleList(RoleBaseAccount account) {
 		// 全局帐号具有所有模块权限
-		if (systemConst.ACCOUNT_ADMIN.equals(account.getAccountId())) {
+		if (systemConst.ACCOUNT_ADMIN.equals(account.getAccount())) {
 			return roleService.getAllRoles().values();
 		} else {
 			return roleService.findByAccount(account);
@@ -146,7 +146,7 @@ public class RoleBaseAccountServiceImpl implements AccountService {
 	public Map<String, Permission> accountPermissionMap(Account account) {
 		Map<String, Permission> allPermissions = permissionService.getAllPermissions();
 		// 全局帐号具有所有模块权限
-		if (systemConst.ACCOUNT_ADMIN.equals(account.getAccountId())) {
+		if (systemConst.ACCOUNT_ADMIN.equals(account.getAccount())) {
 			return allPermissions;
 		} else {
 			return getRoleBaseAccount(account).getPermissions();

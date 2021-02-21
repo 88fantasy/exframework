@@ -20,7 +20,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 
 @RestController
-@CrossOrigin(origins = "*", maxAge = 3600, methods = { RequestMethod.GET })
+@CrossOrigin(origins = "*", maxAge = 3600, methods = { RequestMethod.POST  })
 @Api(tags = "参照")
 public class HovController {
 

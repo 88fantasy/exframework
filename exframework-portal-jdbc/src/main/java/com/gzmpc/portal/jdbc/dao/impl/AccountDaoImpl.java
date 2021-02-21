@@ -34,12 +34,12 @@ public class AccountDaoImpl implements AccountDao {
 
 	@Override
 	public boolean changePassword(Account account, String oldPass, String newPass) {
-		accountMapper.update(null,Wrappers.<AccountDO>lambdaUpdate().set(AccountDO::getPassword, newPass).eq(AccountDO::getAccountId, account.getAccountId()));
+		accountMapper.update(null,Wrappers.<AccountDO>lambdaUpdate().set(AccountDO::getPassword, newPass).eq(AccountDO::getAccount, account.getAccount()));
 		return false;
 	}
 
 	private AccountDO getAccountDO(String accountId) throws NotFoundException {
-		AccountDO entity = accountMapper.selectOne(new QueryWrapper<AccountDO>().lambda().eq(AccountDO::getAccountId, accountId));
+		AccountDO entity = accountMapper.selectOne(new QueryWrapper<AccountDO>().lambda().eq(AccountDO::getAccount, accountId));
 		if( entity == null ) {
 			throw new NotFoundException(MessageFormat.format("不存在该帐号{0}", accountId));
 		}

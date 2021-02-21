@@ -74,8 +74,8 @@ public interface AccountService {
 			return false;
 		}
 
-		String accountid = account.getAccountId();
-		String logpwd = Security.encode(accountid, password);
+		String user = account.getAccount();
+		String logpwd = Security.encode(user, password);
 		if (!logpwd.equals(account.getPassword())) {
 			return false;
 		}

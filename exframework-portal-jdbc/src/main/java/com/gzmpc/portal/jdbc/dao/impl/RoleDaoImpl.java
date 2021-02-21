@@ -81,7 +81,7 @@ public class RoleDaoImpl extends MetaDaoImpl<RoleDO,Role> implements RoleDao {
 	@Override
 	public Collection<Role> findByAccount(RoleBaseAccount account) {
 		List<Role> roles = new ArrayList<Role>();
-		List<AccountRoleDO> relates = accountRoleMapper.selectList(new QueryWrapper<AccountRoleDO>().eq("role", account.getAccountId()));
+		List<AccountRoleDO> relates = accountRoleMapper.selectList(new QueryWrapper<AccountRoleDO>().eq("role", account.getAccount()));
 		for(AccountRoleDO ar : relates) {
 			String roleKey = ar.getRole();
 			Role role = findByKey(roleKey);

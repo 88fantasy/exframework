@@ -61,7 +61,7 @@ public class AccountParameterDaoImpl implements AccountParameterDao {
 		if(entity  == null) {
 			entity = new AccountParameterDO();
 			entity.setCode(code);
-			entity.setAccount(account.getAccountId());
+			entity.setAccount(account.getAccount());
 			entity.setName(name);
 			entity.setValue(value);
 			entity.setDescription(description);
@@ -82,7 +82,7 @@ public class AccountParameterDaoImpl implements AccountParameterDao {
 
 
 	private LambdaQueryWrapper<AccountParameterDO> getUniqueWrapper(Account account, String key) {
-		return new QueryWrapper<AccountParameterDO>().lambda().eq(AccountParameterDO::getAccount, account.getAccountId()).eq(AccountParameterDO::getCode, key);
+		return new QueryWrapper<AccountParameterDO>().lambda().eq(AccountParameterDO::getAccount, account.getAccount()).eq(AccountParameterDO::getCode, key);
 	}
 
 	@Override

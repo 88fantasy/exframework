@@ -49,12 +49,12 @@ public class ApplicationTest {
 	@Test
 	public void  user() throws Exception {
 		AccountDO account = new AccountDO();
-		account.setAccountId("testaccount");
+		account.setAccount("testaccount");
 		account.setAccountStatus(AccountStatusTypeEnum.VALID);
 		assertThat(mapper.insert(account)).isGreaterThan(0);
         // 成功直接拿回写的 ID
-        assertThat(account.getAccountId()).isNotNull();
+        assertThat(account.getAccount()).isNotNull();
         assertThat(mapper.delete(new QueryWrapper<AccountDO>()
-                .lambda().eq(AccountDO::getAccountId, "testaccount"))).isGreaterThan(0);
+                .lambda().eq(AccountDO::getAccount, "testaccount"))).isGreaterThan(0);
 	}
 }

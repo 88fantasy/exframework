@@ -29,8 +29,8 @@ public class Account implements Serializable, DictionaryEnumClass {
 	/**
 	 * 登陆账号ID
 	 */
-	@DataItemEntity(value = "accountId", name = "帐号")
-	private String accountId;
+	@DataItemEntity(value = "account", name = "帐号")
+	private String account;
 
 	/**
 	 * 密码
@@ -73,12 +73,12 @@ public class Account implements Serializable, DictionaryEnumClass {
 
 	private List<Module> modules;
 
-	public String getAccountId() {
-		return accountId;
+	public String getAccount() {
+		return account;
 	}
 
-	public void setAccountId(String accountId) {
-		this.accountId = accountId;
+	public void setAccount(String account) {
+		this.account = account;
 	}
 
 	public String getPassword() {
