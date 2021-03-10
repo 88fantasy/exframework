@@ -13,7 +13,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.gzmpc.portal.dao.DataItemDao;
 import com.gzmpc.portal.dao.ModuleDao;
-import com.gzmpc.portal.metadata.FilterCondition;
+import com.gzmpc.support.common.entity.FilterCondition;
 import com.gzmpc.portal.metadata.di.DataItem;
 import com.gzmpc.portal.metadata.hov.Hov;
 import com.gzmpc.portal.metadata.module.Module;

@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>com.gzmpc.exframework</groupId>
 		<artifactId>exframework-root</artifactId>
-		<version>0.6</version>
+		<version>0.6.1</version>
 	</parent>
 	<artifactId>exframework-support-job</artifactId>
 	<packaging>jar</packaging>
@@ -37,6 +37,6 @@
 	</properties>
 
 	<scm>
-		<tag>exframework-root-0.6</tag>
+		<tag>exframework-root-0.6.1</tag>
 	</scm>
 </project>

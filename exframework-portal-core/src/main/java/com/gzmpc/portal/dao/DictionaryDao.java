@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.gzmpc.portal.exception.NotFoundException;
-import com.gzmpc.portal.metadata.FilterCondition;
+import com.gzmpc.support.common.entity.FilterCondition;
 import com.gzmpc.portal.metadata.dict.DictionaryItem;
 import com.gzmpc.support.common.entity.Page;
 import com.gzmpc.support.common.entity.PageModel;

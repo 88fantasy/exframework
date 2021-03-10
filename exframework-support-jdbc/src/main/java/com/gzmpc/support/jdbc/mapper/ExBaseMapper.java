@@ -1,4 +1,4 @@
-package com.gzmpc.portal.jdbc.util;
+package com.gzmpc.support.jdbc.mapper;
 
 import java.util.Collection;
 import java.util.List;
@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.gzmpc.portal.metadata.FilterCondition;
+import com.gzmpc.support.common.entity.FilterCondition;
 import com.gzmpc.support.common.entity.PageModel;
 import com.gzmpc.support.common.entity.Pager;
 import com.gzmpc.support.common.util.BeanUtils;

@@ -9,7 +9,7 @@ import com.gzmpc.portal.admin.dto.PostDictionaryPostRequest;
 import com.gzmpc.portal.admin.dto.PostDictionaryQueryRequest;
 import com.gzmpc.portal.dao.DictionaryDao;
 import com.gzmpc.portal.exception.NotFoundException;
-import com.gzmpc.portal.metadata.FilterCondition;
+import com.gzmpc.support.common.entity.FilterCondition;
 import com.gzmpc.portal.metadata.dict.DictionaryItem;
 import com.gzmpc.portal.service.sys.AccountService;
 import com.gzmpc.support.common.entity.PageModel;

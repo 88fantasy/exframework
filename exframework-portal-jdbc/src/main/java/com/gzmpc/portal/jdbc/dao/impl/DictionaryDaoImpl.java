@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.gzmpc.portal.dao.DictionaryDao;
 import com.gzmpc.portal.exception.NotFoundException;
-import com.gzmpc.portal.metadata.FilterCondition;
+import com.gzmpc.support.common.entity.FilterCondition;
 import com.gzmpc.portal.metadata.dict.DictionaryItem;
 import com.gzmpc.portal.jdbc.entity.DictionaryDO;
 import com.gzmpc.portal.jdbc.mapper.DictionaryMapper;

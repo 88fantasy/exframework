@@ -41,23 +41,25 @@ public class Account implements Serializable, DictionaryEnumClass {
 	/**
 	 * 帐号密码
 	 */
-	@DataItemEntity(value = "accountName", name = "帐号")
+	@DataItemEntity(value = "accountName", name = "帐号名称")
 	private String accountName;
 
 	/**
 	 * 最近登录日期
 	 */
-//	@DataItemField(value = "accountId", name = "帐号")
+	@DataItemEntity(value = "lastLoginDate", name = "最近登录日期")
 	private Date lastLoginDate;
 
 	/**
 	 * 最近登录 IP
 	 */
+	@DataItemEntity(value = "lastLoginIp", name = "最近登录IP")
 	private String lastLoginIp;
 
 	/**
 	 * 最近登录地区
 	 */
+	@DataItemEntity(value = "lastLoginArea", name = "最近登录地区")
 	private String lastLoginArea;
 
 	/**

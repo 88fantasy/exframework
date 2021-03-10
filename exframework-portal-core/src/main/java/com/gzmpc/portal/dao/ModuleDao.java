@@ -3,7 +3,7 @@ package com.gzmpc.portal.dao;
 import java.util.Collection;
 import java.util.List;
 
-import com.gzmpc.portal.metadata.FilterCondition;
+import com.gzmpc.support.common.entity.FilterCondition;
 import com.gzmpc.portal.metadata.di.DataItem;
 import com.gzmpc.portal.metadata.module.Module;
 import com.gzmpc.portal.metadata.module.ModuleBase;

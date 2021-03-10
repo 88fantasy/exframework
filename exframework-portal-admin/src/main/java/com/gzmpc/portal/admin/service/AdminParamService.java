@@ -9,7 +9,7 @@ import com.gzmpc.portal.admin.dto.DeleteParamRequest;
 import com.gzmpc.portal.admin.dto.ParamKey;
 import com.gzmpc.portal.admin.dto.PostParamQueryRequest;
 import com.gzmpc.portal.dao.AccountParameterDao;
-import com.gzmpc.portal.metadata.FilterCondition;
+import com.gzmpc.support.common.entity.FilterCondition;
 import com.gzmpc.portal.metadata.sys.AccountParameter;
 import com.gzmpc.portal.service.sys.AccountService;
 import com.gzmpc.portal.service.sys.SystemParameterService;

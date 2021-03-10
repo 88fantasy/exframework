@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import com.gzmpc.portal.metadata.FilterCondition.FilterConditionOper;
+import com.gzmpc.support.common.entity.FilterCondition.FilterConditionOper;
 import com.gzmpc.portal.metadata.queryparam.QueryParamItem;
 import com.gzmpc.portal.metadata.sys.Account;
 import com.gzmpc.portal.service.sys.DdlService;

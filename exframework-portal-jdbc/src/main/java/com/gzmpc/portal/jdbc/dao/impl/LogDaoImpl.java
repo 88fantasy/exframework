@@ -11,7 +11,7 @@ import com.gzmpc.portal.dao.LogDao;
 import com.gzmpc.portal.exception.NotFoundException;
 import com.gzmpc.portal.jdbc.entity.LogDO;
 import com.gzmpc.portal.jdbc.mapper.LogMapper;
-import com.gzmpc.portal.metadata.FilterCondition;
+import com.gzmpc.support.common.entity.FilterCondition;
 import com.gzmpc.portal.metadata.sys.Logger;
 import com.gzmpc.support.common.entity.PageModel;
 

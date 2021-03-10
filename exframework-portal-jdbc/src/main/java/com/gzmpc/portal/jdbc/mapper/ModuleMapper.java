@@ -1,7 +1,7 @@
 package com.gzmpc.portal.jdbc.mapper;
 
 import com.gzmpc.portal.jdbc.entity.ModuleDO;
-import com.gzmpc.portal.jdbc.util.ExBaseMapper;
+import com.gzmpc.support.jdbc.mapper.ExBaseMapper;
 
 /**
  * 功能映射类

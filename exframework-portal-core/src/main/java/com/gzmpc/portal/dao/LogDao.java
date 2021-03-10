@@ -4,7 +4,7 @@ import java.util.Collection;
 import java.util.List;
 
 import com.gzmpc.portal.exception.NotFoundException;
-import com.gzmpc.portal.metadata.FilterCondition;
+import com.gzmpc.support.common.entity.FilterCondition;
 import com.gzmpc.portal.metadata.sys.Logger;
 import com.gzmpc.support.common.entity.Page;
 import com.gzmpc.support.common.entity.PageModel;

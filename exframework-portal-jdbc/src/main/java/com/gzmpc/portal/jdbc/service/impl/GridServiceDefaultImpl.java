@@ -18,7 +18,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.gzmpc.portal.metadata.FilterCondition.FilterConditionOper;
+import com.gzmpc.support.common.entity.FilterCondition.FilterConditionOper;
 import com.gzmpc.portal.metadata.di.DataItem;
 import com.gzmpc.portal.metadata.di.DataItem.DataItemDisplayTypeEnum;
 import com.gzmpc.portal.metadata.di.DataItem.DataItemValueTypeEnum;

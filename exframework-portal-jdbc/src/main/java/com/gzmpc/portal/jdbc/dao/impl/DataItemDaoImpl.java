@@ -14,13 +14,13 @@ import org.springframework.stereotype.Repository;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.gzmpc.portal.dao.DataItemDao;
-import com.gzmpc.portal.metadata.FilterCondition;
 import com.gzmpc.portal.metadata.di.DataItem;
 import com.gzmpc.portal.metadata.di.DataItemExtend;
 import com.gzmpc.portal.jdbc.entity.DataItemDO;
 import com.gzmpc.portal.jdbc.entity.DataItemExtendDO;
 import com.gzmpc.portal.jdbc.mapper.DataItemExtendMapper;
 import com.gzmpc.portal.jdbc.mapper.DataItemMapper;
+import com.gzmpc.support.common.entity.FilterCondition;
 import com.gzmpc.support.common.entity.PageModel;
 
 /**

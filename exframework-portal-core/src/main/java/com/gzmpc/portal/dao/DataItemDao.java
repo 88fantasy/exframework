@@ -6,9 +6,9 @@ import java.util.Map;
 
 import org.springframework.lang.Nullable;
 
-import com.gzmpc.portal.metadata.FilterCondition;
 import com.gzmpc.portal.metadata.di.DataItem;
 import com.gzmpc.portal.metadata.di.DataItem.DataItemValueTypeEnum;
+import com.gzmpc.support.common.entity.FilterCondition;
 import com.gzmpc.support.common.entity.Page;
 import com.gzmpc.support.common.entity.PageModel;
 

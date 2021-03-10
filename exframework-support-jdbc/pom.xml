@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>com.gzmpc.exframework</groupId>
 		<artifactId>exframework-root</artifactId>
-		<version>0.6</version>
+		<version>0.6.1</version>
 	</parent>
 	<artifactId>exframework-support-jdbc</artifactId>
 	<packaging>jar</packaging>
@@ -99,6 +99,14 @@
 		  <groupId>com.baomidou</groupId>
 		  <artifactId>dynamic-datasource-spring-boot-starter</artifactId>
 		  <version>3.3.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.gzmpc.exframework</groupId>
+			<artifactId>exframework-support-common</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.gzmpc.exframework</groupId>
+			<artifactId>exframework-support-doc</artifactId>
 		</dependency>
 	</dependencies>
 

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.gzmpc.portal.admin.dto.PostLogQueryRequest;
 import com.gzmpc.portal.dao.LogDao;
-import com.gzmpc.portal.metadata.FilterCondition;
+import com.gzmpc.support.common.entity.FilterCondition;
 import com.gzmpc.portal.metadata.sys.Logger;
 import com.gzmpc.support.common.entity.PageModel;
 import com.gzmpc.support.rest.entity.ApiResponsePage;

@@ -1,6 +1,6 @@
 package com.gzmpc.portal.metadata.queryparamitem;
 
-import com.gzmpc.portal.metadata.FilterCondition.FilterConditionOper;
+import com.gzmpc.support.common.entity.FilterCondition.FilterConditionOper;
 import com.gzmpc.portal.metadata.queryparam.QueryParamItem;
 import com.gzmpc.portal.metadata.sys.Account;
 

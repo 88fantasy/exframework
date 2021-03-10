@@ -10,7 +10,7 @@ import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.gzmpc.portal.dao.AccountParameterDao;
-import com.gzmpc.portal.metadata.FilterCondition;
+import com.gzmpc.support.common.entity.FilterCondition;
 import com.gzmpc.portal.metadata.sys.Account;
 import com.gzmpc.portal.metadata.sys.AccountParameter;
 import com.gzmpc.portal.jdbc.entity.AccountParameterDO;

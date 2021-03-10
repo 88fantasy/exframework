@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.springframework.lang.Nullable;
 
-import com.gzmpc.portal.metadata.FilterCondition;
+import com.gzmpc.support.common.entity.FilterCondition;
 import com.gzmpc.portal.metadata.sys.Account;
 import com.gzmpc.portal.metadata.sys.AccountParameter;
 import com.gzmpc.support.common.entity.Page;

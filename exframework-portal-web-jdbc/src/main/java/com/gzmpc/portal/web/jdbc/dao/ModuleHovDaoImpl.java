@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.gzmpc.portal.dao.ModuleDao;
-import com.gzmpc.portal.metadata.FilterCondition;
+import com.gzmpc.support.common.entity.FilterCondition;
 import com.gzmpc.portal.metadata.module.ModuleBase;
 import com.gzmpc.portal.web.dao.ModuleHovDao;
 import com.gzmpc.support.common.entity.Page;

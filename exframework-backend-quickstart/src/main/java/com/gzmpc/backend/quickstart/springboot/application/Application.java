@@ -7,6 +7,7 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 
 import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure;
 import com.gzmpc.portal.metadata.entity.EntityScan;
+import com.gzmpc.support.jdbc.annotation.TableEntityScan;
 
 /**
 * @author rwe
@@ -22,6 +23,7 @@ import com.gzmpc.portal.metadata.entity.EntityScan;
 )
 @MapperScan(basePackages = {"com.gzmpc.portal.jdbc.mapper.*","com.gitee.sunchenbin.mybatis.actable.dao.*"})
 @EntityScan({"com.gzmpc.portal.metadata","com.gzmpc.portal.web.entity.*"})
+@TableEntityScan({"com.gzmpc.portal.jdbc.entity"})
 public class Application extends SpringBootServletInitializer {
 
 	public static void main(String[] args) {

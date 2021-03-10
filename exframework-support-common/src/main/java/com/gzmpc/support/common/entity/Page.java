@@ -31,6 +31,11 @@ public class Page {
 		this.current = current;
 		this.pageSize = pageSize;
 	}
+	
+	public Page(Integer current, Integer pageSize) {
+		this.current = current.longValue();
+		this.pageSize = pageSize.longValue();
+	}
 
 	public Long getCurrent() {
 		return current;

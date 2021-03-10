@@ -2,7 +2,7 @@ package com.gzmpc.portal.metadata.hov;
 
 import java.util.Collection;
 
-import com.gzmpc.portal.metadata.FilterCondition;
+import com.gzmpc.support.common.entity.FilterCondition;
 import com.gzmpc.support.common.entity.Page;
 import com.gzmpc.support.common.entity.PageModel;
 
