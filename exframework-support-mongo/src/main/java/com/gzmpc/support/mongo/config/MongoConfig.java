@@ -4,7 +4,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.converter.Converter;
-import org.springframework.data.mongodb.MongoDbFactory;
+import org.springframework.data.mongodb.MongoDatabaseFactory;
 import org.springframework.data.mongodb.MongoTransactionManager;
 import org.springframework.data.mongodb.core.convert.MongoCustomConversions;
 
@@ -33,7 +33,7 @@ public class MongoConfig {
     }
 
     @Bean
-    MongoTransactionManager transactionManager(MongoDbFactory factory){
+    MongoTransactionManager transactionManager(MongoDatabaseFactory factory){
         return new MongoTransactionManager(factory);
     }
 }

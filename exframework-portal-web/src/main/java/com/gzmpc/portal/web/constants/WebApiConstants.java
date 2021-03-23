@@ -36,8 +36,11 @@ public interface WebApiConstants {
 	String API_MODULE = "v1/module";
 	String API_MODULE_INIT = API_MODULE+ "/init/{code}";
 	
-	String API_HOV = "v1/hov";
-	String API_HOV_QUERY = API_HOV+ "/queryList/{code}";
+	String API_HOV = "/hov";
+	String API_HOV_QUERY = API_HOV+ "/queryList";
+	
+	String API_HOV_DATA_CONDITION = API_HOV+ "/data/condition/{code}";
+	String API_HOV_DATA_PARAM = API_HOV+ "/data/param/{code}";
 
 	String API_SYS = "/sys";
 	String API_SYS_BUILD = API_SYS + "/build/{beanid}";

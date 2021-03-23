@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.gzmpc.portal.admin.constant.AdminApiConstants;
 import com.gzmpc.portal.admin.dto.DeleteParamRequest;
-import com.gzmpc.portal.admin.dto.PostParamQueryRequest;
 import com.gzmpc.portal.admin.service.AdminParamService;
 import com.gzmpc.portal.exception.NotAuthorizedException;
 import com.gzmpc.portal.exception.NotFoundException;
 import com.gzmpc.portal.metadata.sys.AccountParameter;
 import com.gzmpc.portal.web.constants.WebApiConstants;
 import com.gzmpc.portal.web.controller.ParamController;
+import com.gzmpc.portal.web.dto.PostConditionQueryRequest;
 import com.gzmpc.portal.web.service.LoginService;
 import com.gzmpc.support.rest.entity.ApiResponseData;
 import com.gzmpc.support.rest.entity.ApiResponsePage;
@@ -43,7 +43,7 @@ public class SystemParamController extends ParamController {
 	@ApiOperation(value = "查询参数列表")
 	@RequestMapping(value = WebApiConstants.API_PARAM_QUERY, method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ApiResponsePage<AccountParameter> queryList(
-			@ApiParam(value = "dto", required = true) @Valid @RequestBody PostParamQueryRequest request)
+			@ApiParam(value = "dto", required = true) @Valid @RequestBody PostConditionQueryRequest request)
 			throws NotAuthorizedException, NotFoundException {
 		return paramService.query(request);
 	}

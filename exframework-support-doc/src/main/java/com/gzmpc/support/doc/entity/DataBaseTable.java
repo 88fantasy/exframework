@@ -50,10 +50,10 @@ public class DataBaseTable {
 	public String toMarkdown() {
 		StringBuffer sb = new StringBuffer();
 		sb.append("## "+this.name+"\n");
-		sb.append("| 列名 | 类型 | 说明 | 必填 |\n");
-		sb.append("| --- | --- | --- |\n");
+		sb.append("| 列名 | 类型 | 说明 | 必填 | 默认值 | \n");
+		sb.append("| --- | ------- | ------- | --- |\n");
 		for(DataBaseTableField field: fields) {
-			String line = MessageFormat.format("| {0} | {1} | {2} | {3} |\n", field.getField(),field.getType().getTypeName(), "描述", (field.getNullable()? "是": "-"));
+			String line = MessageFormat.format("| {0} | {1} | {2} | {3} | {4} |\n", field.getField(),field.getType().getTypeName(), field.getDescription(), (field.getNullable()? "-": "是"), field.getDefaultValue());
 			sb.append(line);
 		}
 		return sb.toString();

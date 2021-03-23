@@ -127,7 +127,9 @@ public class Hov extends Meta {
 						param.setDataIndex(item.getCode());
 					}
 				}
-				params.add(param);
+				if(!params.stream().anyMatch(p -> p.getKey().contentEquals(param.getKey()) && p.getDataIndex().contentEquals(param.getDataIndex()) )) {
+					params.add(param);
+				}
 			}
 		}, new ReflectionUtils.FieldFilter() {
 			@Override

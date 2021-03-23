@@ -1,5 +1,6 @@
 package com.gzmpc.portal.admin.service;
 
+import java.util.Arrays;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import com.gzmpc.support.common.entity.FilterCondition;
 import com.gzmpc.portal.metadata.sys.AccountParameter;
 import com.gzmpc.portal.service.sys.AccountService;
 import com.gzmpc.portal.service.sys.SystemParameterService;
+import com.gzmpc.portal.web.dto.PostConditionQueryRequest;
 import com.gzmpc.support.common.entity.PageModel;
 import com.gzmpc.support.rest.entity.ApiResponseData;
 import com.gzmpc.support.rest.entity.ApiResponsePage;
@@ -42,6 +44,11 @@ public class AdminParamService {
 	public ApiResponsePage<AccountParameter> query(PostParamQueryRequest request) {
 		Collection<FilterCondition> params = FilterCondition.fromDTO(request);
 		PageModel<AccountParameter> model = accountParameterDao.query(params, request.getPage());
+		return new ApiResponsePage<AccountParameter>(model);
+	}
+	
+	public ApiResponsePage<AccountParameter> query(PostConditionQueryRequest request) {
+		PageModel<AccountParameter> model = accountParameterDao.query(Arrays.asList(request.getConditions()), request.getPage());
 		return new ApiResponsePage<AccountParameter>(model);
 	}
 

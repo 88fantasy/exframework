@@ -17,6 +17,7 @@ import com.gzmpc.portal.metadata.hov.Hov;
 import com.gzmpc.portal.metadata.hov.HovQueryParams;
 import com.gzmpc.portal.metadata.hov.IHovDao;
 import com.gzmpc.portal.service.sys.HovService;
+import com.gzmpc.portal.web.dto.PostConditionQueryRequest;
 import com.gzmpc.support.common.entity.Page;
 import com.gzmpc.support.common.entity.PageModel;
 import com.gzmpc.support.common.util.SpringContextUtils;
@@ -39,6 +40,46 @@ public class WebHovService {
 	@Autowired
 	HovService hovService;
 	
+	public ApiResponsePage<?> query(String code, PostConditionQueryRequest request) {
+		Hov hov = hovService.findByKey(code);
+		if(hov != null) {
+			HovQueryParams[] params = hov.getQueryParams();
+			String dataClassName = hov.getDataClass();
+			Class<? extends IHovDao<?>> dataClass = null;
+			try {
+				dataClass = (Class<? extends IHovDao<?>>) Class.forName(hov.getDataClass());
+			} catch ( Exception e) {
+				String message = MessageFormat.format("返回实体类{0}转换失败", dataClassName);
+				log.error(message, e);
+				return new ApiResponsePage<>(ResultCode.INTERNAL_SERVER_ERROR,message, null);
+			}
+			
+			List<FilterCondition> fcs = new ArrayList<FilterCondition>();
+			Page page = request.getPage() != null ? request.getPage() : Page.DEFAULT;
+			FilterCondition[] conditions = request.getConditions();
+			for(FilterCondition fc :  conditions) {
+				for(HovQueryParams param : params) {
+					String key = param.getKey();
+					if(key.contentEquals(fc.getKey())) {
+						fcs.add(fc);
+					}
+				}
+			}
+			
+			try {
+				IHovDao<?> v = SpringContextUtils.getBeanByClass(dataClass);
+				PageModel<?> model = v.query(fcs, page);
+				return new ApiResponsePage<>(model);
+			}
+			catch ( BeansException e ) {
+				return new ApiResponsePage<>(ResultCode.INTERNAL_SERVER_ERROR, dataClassName+"缺少实现: "+e.getMessage(), null);
+			}
+			
+		}
+		else {
+			return ApiResponsePage.notFound("找不到此hov") ;
+		}
+	}
 
 	public ApiResponsePage<?> query(String code, String requestJson) {
 		Hov hov = hovService.findByKey(code);

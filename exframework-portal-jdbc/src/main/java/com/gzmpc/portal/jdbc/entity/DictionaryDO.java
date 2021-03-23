@@ -10,6 +10,8 @@ import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
 import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
 import com.gitee.sunchenbin.mybatis.actable.constants.MySqlTypeConstant;
 import com.gzmpc.portal.metadata.dict.DictionaryItem;
+import com.gzmpc.support.doc.annotation.TableDoc;
+import com.gzmpc.support.doc.annotation.TableFieldDoc;
 
 /**
  * 字典实体类
@@ -19,20 +21,37 @@ import com.gzmpc.portal.metadata.dict.DictionaryItem;
  * Copyright @ 2020 
  * 
  */
+@TableDoc("字典")
 @TableName( value = "sys_dictionary", autoResultMap = true )
 public class DictionaryDO extends DictionaryItem {
 
 	private static final long serialVersionUID = 5176816281781626949L;
 
+	/**
+	 * 字典编码
+	 */
+	@TableFieldDoc("字典编码")
 	@TableId(type = IdType.ASSIGN_ID)
 	private String code;
 	
+	/**
+	 * 字典名称
+	 */
+	@TableFieldDoc("字典名称")
 	@TableField
 	private String name;
 	
+	/**
+	 * 字典描述
+	 */
+	@TableFieldDoc("字典描述")
 	@TableField
 	private String description;
 	
+	/**
+	 * 字典值
+	 */
+	@TableFieldDoc("字典值")
 	@TableField(typeHandler = JacksonTypeHandler.class)
 	@ColumnType(value = MySqlTypeConstant.VARCHAR, length = 2000)
 	private Map<String,String> value;

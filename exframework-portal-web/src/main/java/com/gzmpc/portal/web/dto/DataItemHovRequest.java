@@ -1,6 +1,7 @@
 package com.gzmpc.portal.web.dto;
 
 import com.gzmpc.portal.metadata.di.DataItemRef;
+import com.gzmpc.support.common.entity.Page;
 
 /**
  *
@@ -11,7 +12,7 @@ import com.gzmpc.portal.metadata.di.DataItemRef;
  * 
  */
 
-public class DataItemHovRequest {
+public class DataItemHovRequest extends GlobalPostQueryRequest {
 
 	@DataItemRef("code")
 	private String code;
@@ -19,5 +20,5 @@ public class DataItemHovRequest {
 	@DataItemRef("name")
 	private String name;
 	
-	
+	private Page page;
 }

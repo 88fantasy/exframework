@@ -15,12 +15,15 @@ public class DataBaseTableField {
 	private Class<?> type;
 	
 	private boolean nullable;
+	
+	private String defaultValue;
 
-	public DataBaseTableField(String field, String description, Class<?> type, boolean nullable) {
+	public DataBaseTableField(String field, String description, Class<?> type, boolean nullable, String defaultValue) {
 		this.field = field;
 		this.description = description;
 		this.type = type;
 		this.nullable = nullable;
+		this.defaultValue = defaultValue;
 	}
 
 	public String getField() {
@@ -53,6 +56,14 @@ public class DataBaseTableField {
 
 	public void setNullable(boolean nullable) {
 		this.nullable = nullable;
+	}
+
+	public String getDefaultValue() {
+		return defaultValue;
+	}
+
+	public void setDefaultValue(String defaultValue) {
+		this.defaultValue = defaultValue;
 	}
 	
 	

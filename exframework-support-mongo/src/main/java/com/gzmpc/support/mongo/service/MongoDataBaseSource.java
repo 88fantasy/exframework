@@ -17,6 +17,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.util.ReflectionUtils;
 
 import com.gzmpc.support.doc.annotation.DataBaseGen;
+import com.gzmpc.support.doc.annotation.TableFieldDoc;
 import com.gzmpc.support.doc.entity.DataBaseTable;
 import com.gzmpc.support.doc.entity.DataBaseTableField;
 import com.gzmpc.support.doc.entity.DataBaseTableSource;
@@ -49,15 +50,19 @@ public class MongoDataBaseSource implements DataBaseTableSource {
 				@Override
 				public void doWith(java.lang.reflect.Field field) throws IllegalArgumentException, IllegalAccessException {
 					ReflectionUtils.makeAccessible(field);
-					if (field.isAnnotationPresent(Id.class) || field.isAnnotationPresent(Field.class)) {
-						boolean empty = field.isAnnotationPresent(Id.class) || field.isAnnotationPresent(NotNull.class)
-								|| field.isAnnotationPresent(NotEmpty.class);
-						DataBaseTableField f = new DataBaseTableField(field.getName(), "描述", field.getType(), !empty);
-						fields.add(f);
-					}
+					boolean empty = field.isAnnotationPresent(Id.class) || field.isAnnotationPresent(NotNull.class)
+							|| field.isAnnotationPresent(NotEmpty.class);
+					TableFieldDoc doc = getFieldDescription(field);
+					DataBaseTableField f = new DataBaseTableField(field.getName(), doc.value(), field.getType(), !empty, doc.defaultValue());
+					fields.add(f);
+				}
+			}, new ReflectionUtils.FieldFilter() {
+				@Override
+				public boolean matches(java.lang.reflect.Field field) {
+					return field.isAnnotationPresent(Id.class) || field.isAnnotationPresent(Field.class);
 				}
 			});
-			DataBaseTable table = new DataBaseTable(name, "", fields);
+			DataBaseTable table = new DataBaseTable(name, getTableDescription(c), fields);
 			tables.add(table);
 		}
 		return tables;

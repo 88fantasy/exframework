@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gzmpc.portal.web.constants.WebApiConstants;
+import com.gzmpc.portal.web.dto.PostConditionQueryRequest;
 import com.gzmpc.portal.web.service.WebHovService;
 import com.gzmpc.support.rest.entity.ApiResponsePage;
 
@@ -27,10 +28,17 @@ public class HovController {
 	@Autowired
 	WebHovService webHovService;
 
-	@ApiOperation(value = "查询参照")
-	@RequestMapping(value = WebApiConstants.API_HOV_QUERY, method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public ApiResponsePage<?> query(@Valid @ApiParam(value = "code", required = true) @PathVariable String code,
-			@ApiParam(value = "保存dto", required = true) @Valid @RequestBody String requestJson) {
+	@ApiOperation(value = "查询参照 by condition")
+	@RequestMapping(value = WebApiConstants.API_HOV_DATA_CONDITION, method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ApiResponsePage<?> queryCondition(@Valid @ApiParam(value = "code", required = true) @PathVariable String code,
+			@ApiParam(value = "查询dto", required = true) @Valid @RequestBody PostConditionQueryRequest request) {
+		return webHovService.query(code, request);
+	}
+	
+	@ApiOperation(value = "查询参照 by param")
+	@RequestMapping(value = WebApiConstants.API_HOV_DATA_PARAM, method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ApiResponsePage<?> queryParam(@Valid @ApiParam(value = "code", required = true) @PathVariable String code,
+			@ApiParam(value = "查询dto", required = true) @Valid @RequestBody String requestJson) {
 		return webHovService.query(code, requestJson);
 	}
 

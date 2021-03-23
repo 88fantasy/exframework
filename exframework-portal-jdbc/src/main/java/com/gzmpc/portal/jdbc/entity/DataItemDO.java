@@ -7,6 +7,8 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
 import com.gitee.sunchenbin.mybatis.actable.constants.MySqlTypeConstant;
 import com.gzmpc.portal.metadata.di.DataItem;
+import com.gzmpc.support.doc.annotation.TableDoc;
+import com.gzmpc.support.doc.annotation.TableFieldDoc;
 
 /**
  * 数据项
@@ -16,6 +18,7 @@ import com.gzmpc.portal.metadata.di.DataItem;
  * Copyright @ 2020 
  * 
  */
+@TableDoc("数据项")
 @TableName("sys_dataitem")
 public class DataItemDO extends DataItem {
 
@@ -24,24 +27,28 @@ public class DataItemDO extends DataItem {
 	/**
 	 * 代码
 	 */
+	@TableFieldDoc("代码")
 	@TableId
 	private String code;
 	
 	/**
 	 * 名称
 	 */
+	@TableFieldDoc("名称")
 	@TableField
 	private String name;
 	
 	/**
 	 * 描述
 	 */
+	@TableFieldDoc("描述")
 	@TableField
 	private String description;
 	
 	/**
 	 * 显示风格
 	 */
+	@TableFieldDoc("显示风格")
 	@TableField
 	@EnumValue
 	@ColumnType(value = MySqlTypeConstant.VARCHAR)
@@ -50,12 +57,14 @@ public class DataItemDO extends DataItem {
 	/**
 	 * 风格的关键值（如果是querylist形的，就配置key,如果是sqllist形的就配置sqllist,如果是list形的，就直接配置list列表内容)
 	 */
+	@TableFieldDoc("风格的关键值")
 	@TableField
 	private String displayKey;
 
 	/**
 	 * 校证输入值类型
 	 */
+	@TableFieldDoc("校证输入值类型")
 	@TableField
 	@EnumValue
 	@ColumnType(value = MySqlTypeConstant.VARCHAR)
@@ -64,12 +73,14 @@ public class DataItemDO extends DataItem {
 	/**
 	 * 长度
 	 */
+	@TableFieldDoc("长度")
 	@TableField
 	private int maxlength;
 
 	/**
 	 * 精度
 	 */
+	@TableFieldDoc("精度")
 	@TableField
 	private int digits;
 }

@@ -1,5 +1,6 @@
 package com.gzmpc.support.jdbc.service;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -17,6 +18,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.gzmpc.support.doc.annotation.DataBaseGen;
+import com.gzmpc.support.doc.annotation.TableFieldDoc;
 import com.gzmpc.support.doc.entity.DataBaseTable;
 import com.gzmpc.support.doc.entity.DataBaseTableField;
 import com.gzmpc.support.doc.entity.DataBaseTableSource;
@@ -43,22 +45,28 @@ public class JdbcDataBaseSource implements DataBaseTableSource {
 			Object o = entry.getValue();
 			Class<?> c = o.getClass();
 			TableName document = c.getAnnotation(TableName.class);
-			String name = document.value();
-			List<DataBaseTableField> fields = new ArrayList<DataBaseTableField>();
-			ReflectionUtils.doWithFields(o.getClass(), new ReflectionUtils.FieldCallback() {
-				@Override
-				public void doWith(java.lang.reflect.Field field) throws IllegalArgumentException, IllegalAccessException {
-					ReflectionUtils.makeAccessible(field);
-					if (field.isAnnotationPresent(TableId.class) || field.isAnnotationPresent(TableField.class)) {
+			if(document != null) {
+				String name = document.value();
+				List<DataBaseTableField> fields = new ArrayList<DataBaseTableField>();
+				ReflectionUtils.doWithFields(o.getClass(), new ReflectionUtils.FieldCallback() {
+					@Override
+					public void doWith(java.lang.reflect.Field field) throws IllegalArgumentException, IllegalAccessException {
+						ReflectionUtils.makeAccessible(field);
 						boolean empty = field.isAnnotationPresent(TableId.class) || field.isAnnotationPresent(NotNull.class)
 								|| field.isAnnotationPresent(NotEmpty.class);
-						DataBaseTableField f = new DataBaseTableField(field.getName(), "描述", field.getType(), !empty);
+						TableFieldDoc doc = getFieldDescription(field);
+						DataBaseTableField f = new DataBaseTableField(field.getName(), doc.value(), field.getType(), !empty, doc.defaultValue());
 						fields.add(f);
 					}
-				}
-			});
-			DataBaseTable table = new DataBaseTable(name, "", fields);
-			tables.add(table);
+				}, new ReflectionUtils.FieldFilter() {
+					@Override
+					public boolean matches(Field field) {
+						return field.isAnnotationPresent(TableId.class) || field.isAnnotationPresent(TableField.class);
+					}
+				} );
+				DataBaseTable table = new DataBaseTable(name, getTableDescription(c), fields);
+				tables.add(table);
+			}
 		}
 		return tables;
 	}

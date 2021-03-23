@@ -1,7 +1,7 @@
 package com.gzmpc.portal.jdbc.mapper;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.gzmpc.portal.jdbc.entity.HovDO;
+import com.gzmpc.support.jdbc.mapper.ExBaseMapper;
 
 /**
  *
@@ -11,6 +11,6 @@ import com.gzmpc.portal.jdbc.entity.HovDO;
  * Copyright @ 2020 
  * 
  */
-public interface HovMapper extends BaseMapper<HovDO> {
+public interface HovMapper extends ExBaseMapper<HovDO> {
 
 }

@@ -4,7 +4,7 @@
 	<parent>
         <groupId>com.gzmpc.exframework</groupId>
         <artifactId>exframework-root</artifactId>
-        <version>0.6.1</version>
+        <version>0.6.1.1</version>
     </parent>
 	<artifactId>exframework-backend-quickstart</artifactId>
 	<name>exframework-backend-quickstart</name>
@@ -94,10 +94,6 @@
         <dependency>
             <groupId>com.gzmpc.exframework</groupId>
             <artifactId>exframework-support-jdbc-mysql</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.gzmpc.exframework</groupId>
-            <artifactId>exframework-support-jdbc-oracle</artifactId>
         </dependency>
         
         <dependency>

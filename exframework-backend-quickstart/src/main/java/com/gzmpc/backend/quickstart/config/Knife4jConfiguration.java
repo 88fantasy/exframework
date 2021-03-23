@@ -37,6 +37,7 @@ public class Knife4jConfiguration {
                 .select()
                 //这里指定Controller扫描包路径
                 .apis(RequestHandlerSelectors.basePackage("com.gzmpc.backend.quickstart.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.gzmpc.support.doc.controller"))
                 .paths(PathSelectors.any())
                 .build();
         return docket;

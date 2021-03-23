@@ -4,7 +4,7 @@
 	<parent>
         <groupId>com.gzmpc.exframework</groupId>
         <artifactId>exframework-support-tsf</artifactId>
-        <version>0.6.1</version>
+        <version>0.6.1.1</version>
     </parent>
 	<artifactId>exframework-tsf-consumer-quickstart</artifactId>
 	<name>exframework-tsf-consumer-quickstart</name>

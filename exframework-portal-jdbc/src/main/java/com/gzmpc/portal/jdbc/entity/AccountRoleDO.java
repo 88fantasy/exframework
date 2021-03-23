@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.gzmpc.support.doc.annotation.TableDoc;
+import com.gzmpc.support.doc.annotation.TableFieldDoc;
 
 /**
  * 帐号角色关系
@@ -13,15 +15,28 @@ import com.baomidou.mybatisplus.annotation.TableName;
  * Copyright @ 2020 
  * 
  */
+@TableDoc("帐号角色关系")
 @TableName("sys_account_role")
 public class AccountRoleDO {
 
+	/**
+	 * 主键
+	 */
+	@TableFieldDoc("主键")
 	@TableId( type = IdType.ASSIGN_ID)
 	private String id;
 	
+	/**
+	 * 帐号
+	 */
+	@TableFieldDoc("帐号id")
 	@TableField
 	private String account;
 	
+	/**
+	 * 角色
+	 */
+	@TableFieldDoc("角色code")
 	@TableField
 	private String role;
 

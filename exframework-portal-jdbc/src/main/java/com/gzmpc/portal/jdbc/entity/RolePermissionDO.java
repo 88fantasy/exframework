@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.gzmpc.support.doc.annotation.TableDoc;
+import com.gzmpc.support.doc.annotation.TableFieldDoc;
 
 /**
  * 角色权限
@@ -13,15 +15,28 @@ import com.baomidou.mybatisplus.annotation.TableName;
  * Copyright @ 2020 
  * 
  */
+@TableDoc("角色权限")
 @TableName("sys_role_permission")
 public class RolePermissionDO {
 
+	/**
+	 * 主键
+	 */
+	@TableFieldDoc("主键")
 	@TableId(type = IdType.ASSIGN_ID)
 	private String id;
 	
+	/**
+	 * 角色编码
+	 */
+	@TableFieldDoc("角色编码")
 	@TableField
 	private String role;
 	
+	/**
+	 * 权限编码
+	 */
+	@TableFieldDoc("权限编码")
 	@TableField
 	private String permission;
 

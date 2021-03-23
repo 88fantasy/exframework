@@ -10,8 +10,6 @@ import java.lang.annotation.Target;
 
 import org.springframework.stereotype.Repository;
 
-import com.gzmpc.support.doc.entity.DataBaseTableSource;
-
 @Documented
 @Retention(RUNTIME)
 @Target({ TYPE, ANNOTATION_TYPE })

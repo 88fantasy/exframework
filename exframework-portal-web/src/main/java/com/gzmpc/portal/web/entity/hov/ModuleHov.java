@@ -12,7 +12,7 @@ import com.gzmpc.portal.web.dto.ModuleHovRequest;
  * Copyright @ 2021 
  * 
  */
-@HovEntity( value = "moduleHov", name = "功能模块参照", requestEntity = ModuleHovRequest.class, returnKey = "code", hovDao = ModuleHovDao.class )
+@HovEntity( value = "moduleHov", name = "功能模块参照", requestEntity = ModuleHovRequest.class, returnKey = "code", hovDao = ModuleHovDao.class, forceUpdate = true )
 public class ModuleHov {
 
 }
