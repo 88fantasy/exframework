@@ -1,0 +1,36 @@
+server:
+  port: 443
+  error:
+    include-exception: true
+  ssl:
+    enabled: true
+    key-store: classpath:gzmpc.jks
+    key-store-password: gzmpcGZMPC123
+    key-store-type: JKS
+spring:
+  application:
+    name: msgw-scg
+  profiles:
+    active: "@profile.active@"
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: false
+      httpclient:
+        # The connect timeout in millis, the default is 45s.
+        connectTimeout: 200
+        responseTimeout: 10s
+    consul:
+        enabled: true
+        scheme: HTTP
+
+logging:
+  file: /gzmpc-cloud-logs/${spring.application.name}/root.log
+  level:
+    root: INFO
+    com.tencent.tsf: INFO
