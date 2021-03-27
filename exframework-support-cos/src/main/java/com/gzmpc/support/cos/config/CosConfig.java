@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.util.StringUtils;
 
 import com.gzmpc.support.cos.client.CosClient;
+import com.gzmpc.support.cos.constants.CosConstants;
 
 @Configuration
 public class CosConfig {
@@ -24,10 +25,10 @@ public class CosConfig {
 	@Value("${tencentcloud.cos.region}")
 	private String cosRegion;
 	
-	@Value("${tencentcloud.cos.bucket.name}")
+	@Value(CosConstants.BUCKET_KEY)
 	private String bucketName;
 	
-	@Value("${tencentcloud.cos.bucket.path}")
+	@Value(CosConstants.PATH_KEY)
 	private String path;
 
 	@Bean

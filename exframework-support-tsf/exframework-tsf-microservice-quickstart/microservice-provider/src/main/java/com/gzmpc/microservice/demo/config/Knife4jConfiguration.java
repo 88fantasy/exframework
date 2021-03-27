@@ -1,4 +1,4 @@
-package com.gzmpc.portal.admin.config;
+package com.gzmpc.microservice.demo.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,24 +12,23 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 
 /**
- * Knife4j 配置 Author: rwe Date: Dec 31, 2020
+ * 文档配置类
+ * @author pro
  *
- * Copyright @ 2020
- * 
  */
 @Configuration
 @EnableOpenApi
-public class AdminKnife4jConfiguration {
+public class Knife4jConfiguration {
 
-	@Bean(value = "adminApi")
-	public Docket adminApi() {
+	@Bean(value = "defaultApi")
+	public Docket defaultApi() {
 		Docket docket = new Docket(DocumentationType.OAS_30)
 				.apiInfo(new ApiInfoBuilder().title("Admin Web APIs").description("# Admin web RESTful APIs")
 						.termsOfServiceUrl("http://www.xx.com/").contact(new Contact("阮伟儿", "", "ruanweier@gzmpc.com"))
 						.version("1.0").build())
-				.groupName("Admin Web API").select()
+				.groupName("Default API").select()
 				// 这里指定Controller扫描包路径
-				.apis(RequestHandlerSelectors.basePackage("com.gzmpc.portal.admin.controller"))
+				.apis(RequestHandlerSelectors.basePackage("com.gzmpc.microservice.demo.controller"))
 				.paths(PathSelectors.any()).build();
 		return docket;
 	}

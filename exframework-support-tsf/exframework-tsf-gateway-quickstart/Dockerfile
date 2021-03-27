@@ -1,11 +1,7 @@
 FROM centos:7
+
 RUN echo "ip_resolve=4" >> /etc/yum.conf
-# agentjar TencentCloudJvmMonitor-1.1.0-RELEASE.jar 包来自第二步下载的 jar 包, 用来提供jvm监控功能, 需要注意这个 jar 包要和您的dockerfile位于同一级目录
-ENV agentjar TencentCloudJvmMonitor-1.1.0-RELEASE.jar
-RUN wget -O java-8-konajdk.rpm https://resource-1302072249.cos.ap-guangzhou.myqcloud.com/tech/java-8-konajdk.rpm && wget -O ${agentjar} https://resource-1302072249.cos.ap-guangzhou.myqcloud.com/tech/${agentjar} && wget -O tsf-consul-template-docker.tar.gz https://resource-1302072249.cos.ap-guangzhou.myqcloud.com/tech/tsf-consul-template-docker.tar.gz
-ADD ./java-8-konajdk.rpm /java-8-konajdk.rpm
-RUN yum update -y && yum install -y java-8-konajdk.rpm && yum install kde-l10n-Chinese -y && yum install glibc-common -y
-#设置字符
+RUN yum update -y && yum install -y java-1.8.0-openjdk && yum install kde-l10n-Chinese -y && yum install glibc-common -y#设置字符
 RUN localedef -c -f UTF-8 -i zh_CN zh_CN.utf8
 ENV LC_ALL zh_CN.UTF-8
 # 设置时区。这对于日志、调用链等功能能否在 TSF 控制台被检索到非常重要。
@@ -16,6 +12,8 @@ RUN mkdir -p /data/tsf_apm/monitor/jvm-metrics/
 ENV workdir /app/
 # 其中 exframework-tsf-gateway-quickstart.jar 来自于第一步下载并编译的程序包，需要注意这个 jar 包要和您的 dockerfile 位于同一级目录
 ENV jar exframework-tsf-gateway-quickstart.jar
+# agentjar TencentCloudJvmMonitor-1.1.0-RELEASE.jar 包来自第二步下载的 jar 包, 用来提供jvm监控功能, 需要注意这个 jar 包要和您的dockerfile位于同一级目录
+ENV agentjar TencentCloudJvmMonitor-1.1.0-RELEASE.jar
 COPY target/${jar} ${workdir}
 COPY ${agentjar} ${workdir}
 WORKDIR ${workdir}

@@ -48,12 +48,6 @@
 				<artifactId>exframework-tsf-support-tdmq</artifactId>
 				<version>0.6.1.1</version>
 			</dependency>
-			<!-- spring 版本问题需要降级 -->
-			<dependency>
-				<groupId>com.github.xiaoymin</groupId>
-				<artifactId>knife4j-spring-boot-starter</artifactId>
-				<version>2.0.5</version>
-			</dependency>
 			<dependency>
 				<groupId>com.tencent.cloud </groupId>
 				<artifactId>tct-spring-boot-starter </artifactId>
@@ -95,6 +89,11 @@
 					<groupId>com.tencent.tsf</groupId>
 					<artifactId>spring-cloud-tsf-schedule</artifactId>
 				</exclusion>
+				<!-- 切换 knife4j 需要 -->
+				<exclusion>
+					<groupId>com.tencent.tsf</groupId>
+					<artifactId>spring-cloud-tsf-swagger</artifactId>
+				</exclusion>
 			</exclusions>
 		</dependency>
 		<dependency>
@@ -104,6 +103,10 @@
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-sleuth</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
 		</dependency>
 	</dependencies>
 

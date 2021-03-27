@@ -1,5 +1,6 @@
 package com.gzmpc.support.jdbc.mapper;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -179,6 +180,11 @@ public interface ExBaseMapper<T> extends BaseMapper<T> {
 		return model.copy(clazz);
 	}
 
+	default <E> PageModel<E> query(FilterCondition[] params, com.gzmpc.support.common.entity.Page page,
+			Class<E> clazz) {
+		return query(Arrays.asList(params), page, clazz);
+	}
+	
 	default <E> PageModel<E> query(Collection<FilterCondition> params, com.gzmpc.support.common.entity.Page page,
 			Class<E> clazz) {
 		Page<T> p = selectPage(new Page<T>(page.getCurrent(), page.getPageSize()), wrapperFromCondition(params));
