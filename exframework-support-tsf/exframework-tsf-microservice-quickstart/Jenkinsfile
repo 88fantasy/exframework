@@ -21,7 +21,7 @@ pipeline {
     }
     stage('构建 Docker 镜像') {
       steps {
-        sh "docker build -t ${env.CODING_DOCKER_IMAGE_NAME}:${env.DOCKER_IMAGE_VERSION} ./${env.DOCKER_BUILD_CONTEXT}"
+        sh "docker build -t ${env.CODING_DOCKER_IMAGE_NAME}:${env.DOCKER_IMAGE_VERSION} --build-arg jarpath=${env.JARPATH} ."
       }
     }
     stage('推送到 CODING Docker 制品库') {
