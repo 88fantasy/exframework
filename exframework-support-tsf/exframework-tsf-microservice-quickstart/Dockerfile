@@ -10,16 +10,15 @@ RUN echo "Asia/Shanghai" > /etc/timezone
 # 创建 jvm 监控数据采集目录, 如果没有加上此目录将无法正常提供 jvm 监控及诊断能力
 RUN mkdir -p /data/tsf_apm/monitor/jvm-metrics/
 ENV workdir /app/
-ENV jar microservice-provider.jar
 # agentjar TencentCloudJvmMonitor-1.0-RELEASE.jar 包来自第二步下载的 jar 包, 用来提供jvm监控功能, 需要注意这个 jar 包要和您的dockerfile位于同一级目录
 ENV agentjar TencentCloudJvmMonitor-1.0-RELEASE.jar
-COPY target/${jar} ${workdir}
+COPY ${jarpath} ${workdir}/app.jar
 COPY ${agentjar} ${workdir}
 WORKDIR ${workdir}
 # tsf-consul-template-docker 用于文件配置功能，如不需要可注释掉该行
 ADD tsf-consul-template-docker.tar.gz /root/
 # JAVA_OPTS 环境变量的值为部署组的 JVM 启动参数，在运行时 bash 替换。使用 exec 以使 Java 程序可以接收 SIGTERM 信号。
 # TSF 1.21.0 及以上版本提供 jvm 监控能力, 需要加上 gclog 和 javaagent 的配置, 如果没加上此配置将无法提供 jvm 监控能力
-CMD ["sh", "-ec", "sh /root/tsf-consul-template-docker/script/start.sh; exec java -Xloggc:/data/tsf_apm/monitor/jvm-metrics/gclog.log -XX:+PrintGCDateStamps -XX:+PrintGCDetails -verbose:gc -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=8 -XX:GCLogFileSize=50M -javaagent:${workdir}/${agentjar}=hascontroller=true ${JAVA_OPTS} -jar ${jar}"]
+CMD ["sh", "-ec", "sh /root/tsf-consul-template-docker/script/start.sh; exec java -Xloggc:/data/tsf_apm/monitor/jvm-metrics/gclog.log -XX:+PrintGCDateStamps -XX:+PrintGCDetails -verbose:gc -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=8 -XX:GCLogFileSize=50M -javaagent:${workdir}/${agentjar}=hascontroller=true ${JAVA_OPTS} -jar app.jar"]
 # 如果不需要使用文件配置功能，改用下面的启动命令
-# CMD ["sh", "-ec", "exec java -Xloggc:/data/tsf_apm/monitor/jvm-metrics/gclog.log -XX:+PrintGCDateStamps -XX:+PrintGCDetails -verbose:gc -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=8 -XX:GCLogFileSize=50M -javaagent:${workdir}/${agentjar}=hascontroller=true ${JAVA_OPTS} -jar ${jar}"]
+# CMD ["sh", "-ec", "exec java -Xloggc:/data/tsf_apm/monitor/jvm-metrics/gclog.log -XX:+PrintGCDateStamps -XX:+PrintGCDetails -verbose:gc -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=8 -XX:GCLogFileSize=50M -javaagent:${workdir}/${agentjar}=hascontroller=true ${JAVA_OPTS} -jar app.jar"]

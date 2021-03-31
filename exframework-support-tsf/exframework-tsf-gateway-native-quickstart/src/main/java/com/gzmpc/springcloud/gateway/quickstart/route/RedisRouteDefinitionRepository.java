@@ -1,4 +1,4 @@
-package com.gzmpc.tsf.gateway.route;
+package com.gzmpc.springcloud.gateway.quickstart.route;
 
 import java.util.ArrayList;
 import java.util.List;

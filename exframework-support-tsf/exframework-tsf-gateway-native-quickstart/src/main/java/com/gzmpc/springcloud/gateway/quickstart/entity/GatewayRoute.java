@@ -1,4 +1,4 @@
-package com.gzmpc.tsf.gateway.entity;
+package com.gzmpc.springcloud.gateway.quickstart.entity;
 
 import java.util.Date;
 

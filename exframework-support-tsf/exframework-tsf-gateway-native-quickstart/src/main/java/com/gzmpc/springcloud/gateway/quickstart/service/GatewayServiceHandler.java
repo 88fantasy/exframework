@@ -1,22 +1,13 @@
-package com.gzmpc.tsf.gateway.service;
+package com.gzmpc.springcloud.gateway.quickstart.service;
 
-import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.cloud.gateway.event.RefreshRoutesEvent;
-import org.springframework.cloud.gateway.route.RouteDefinition;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.ApplicationEventPublisherAware;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
-
-import com.gzmpc.tsf.gateway.entity.GatewayRoute;
-import com.gzmpc.tsf.gateway.route.RedisRouteDefinitionRepository;
-
-import reactor.core.publisher.Mono;
 
 /**
  *
@@ -30,12 +21,6 @@ import reactor.core.publisher.Mono;
 public class GatewayServiceHandler implements ApplicationEventPublisherAware, CommandLineRunner {
 	
 	private static final Logger logger = LoggerFactory.getLogger(GatewayServiceHandler.class);
-
-	@Autowired
-	private RedisTemplate<String, Object> redisTemplate;
-	
-	@Autowired
-    private RedisRouteDefinitionRepository routeDefinitionWriter;
 	
     private ApplicationEventPublisher publisher;
     

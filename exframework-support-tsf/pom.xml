@@ -13,6 +13,7 @@
 	<name>exframework tsf root</name>
 
 	<modules>
+		<module>exframework-tsf-gateway-native-quickstart</module>
 		<module>exframework-tsf-consumer-quickstart</module>
 		<module>exframework-tsf-provider-quickstart</module>
 		<module>exframework-tsf-support-sso</module>
@@ -65,11 +66,6 @@
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-support-mongo</artifactId>
-				<version>0.5.2.1</version>
-			</dependency>
-			<dependency>
-				<groupId>com.gzmpc.exframework</groupId>
-				<artifactId>exframework-tsf-support-sso</artifactId>
 				<version>0.5.2.1</version>
 			</dependency>
 			<dependency>

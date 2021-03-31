@@ -31,7 +31,7 @@ public class DemoFilter extends AbstractTsfGlobalFilter {
 
 	@Override
 	public int getOrder() {
-		return -1000;
+		return 100;
 	}
 
 	@Override
