@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.util.StringUtils;
 
 import com.gzmpc.support.cos.client.CosClient;
@@ -32,6 +33,7 @@ public class CosConfig {
 	private String path;
 
 	@Bean
+	@Lazy
 	@ConditionalOnMissingBean( name = {"cloudCosClient", "exframeCosClient"})
 	public CosClient exframeCosClient() {
 		log.warn("如非使用默认配置secretId，请自行配置tencentcloud.secret.id");

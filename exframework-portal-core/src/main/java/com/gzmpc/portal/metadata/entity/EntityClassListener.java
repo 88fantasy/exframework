@@ -122,7 +122,7 @@ public class EntityClassListener implements ApplicationListener<ApplicationReady
 				}
 			});
 			
-			if(DictionaryEnumClass.class.isAssignableFrom(clazz) && clazz.isEnum()) {
+			if(DictionaryEnumClass.class.isAssignableFrom(clazz)) {
 				DictionaryEnumClass dec = (DictionaryEnumClass) entityClass;
 				Class<?>[] enumclasses =  dec.enums();
 				if(enumclasses != null) {
@@ -130,7 +130,11 @@ public class EntityClassListener implements ApplicationListener<ApplicationReady
 						Dictionary d = enumclass.getAnnotation(Dictionary.class);
 						String dictName = d.name();
 						String dictCode = d.value();
-						if (StringUtils.hasText(dictCode) && enumclass.isEnum()) {
+						if(!StringUtils.hasText(dictCode)) {
+							String simpleName = enumclass.getSimpleName();
+							dictCode = Character.toLowerCase(simpleName.charAt(0))+simpleName.substring(1);
+						}
+						if (enumclass.isEnum()) {
 							log.info(MessageFormat.format("加载字典{0}", dictCode));
 							Map<String, String> vv = new ConcurrentHashMap<String, String>();
 							Object[] objs = enumclass.getEnumConstants();

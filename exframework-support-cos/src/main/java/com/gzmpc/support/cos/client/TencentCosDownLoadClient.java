@@ -14,32 +14,33 @@ public interface TencentCosDownLoadClient extends TencentCosClient {
 	 * 
 	 * @param String source 图片路径+名称
 	 * @param File 目标文件
-	 * @return InputStream
+	 * @return Download
 	 * @throws InterruptedException 
 	 * @throws CosClientException 
 	 * @throws CosServiceException 
 	 */
-	default void download(String source, File file) throws CosServiceException, CosClientException, InterruptedException {
+	default Download download(String source, File file) throws CosServiceException, CosClientException, InterruptedException {
 		GetObjectRequest getObjectRequest = new GetObjectRequest(getBucketName(), getKey(source));
 		Download download = getCosTransferManager().download(getObjectRequest, file);
 		download.waitForCompletion();
+		return download;
 	}
 
 	/**
 	 * 下载图片到本地指定路径
 	 * 
-	 * @param String source 图片链接地址
-	 * @param String fileSavePath 图片保存路径
-	 * @param String fileSaveName 图片保存名称
-	 * @throws InterruptedException 
-	 * @throws CosClientException 
-	 * @throws CosServiceException 
-	 * 
+	 * @param source 云端路径(key)
+	 * @param target 目标本地路径
+	 * @return download
+	 * @throws CosServiceException
+	 * @throws CosClientException
+	 * @throws InterruptedException
 	 */
-	default void downFileToLocal(String source, String target) throws CosServiceException, CosClientException, InterruptedException {
+	default Download downFileToLocal(String source, String target) throws CosServiceException, CosClientException, InterruptedException {
 		GetObjectRequest getObjectRequest = new GetObjectRequest(getBucketName(), getKey(source));
 		Download download = getCosTransferManager().download(getObjectRequest, new File(target));
 		download.waitForCompletion();
+		return download;
 	}
 
 }

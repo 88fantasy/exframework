@@ -82,7 +82,7 @@ public class TDMQInitListener implements ApplicationListener<ApplicationReadyEve
 
 								@SuppressWarnings("unchecked")
 								MessageListener<String> listener = (MessageListener<String>) o;
-								if (listener != null) {
+								if (listener != null && client != null) {
 									Consumer<String> consumer = null;
 									try {
 										consumer = client.newConsumer(Schema.STRING)

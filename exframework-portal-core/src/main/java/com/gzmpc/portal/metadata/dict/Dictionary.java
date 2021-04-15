@@ -19,7 +19,7 @@ import java.lang.annotation.Target;
  */
 public @interface Dictionary {
 
-	String value() ;
+	String value() default "";
 	
 	String name() default "";
 }

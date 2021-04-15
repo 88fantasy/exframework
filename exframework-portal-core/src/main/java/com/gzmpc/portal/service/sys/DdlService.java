@@ -50,6 +50,16 @@ public class DdlService implements Buildable {
 	public Map<String, String> get(String ddlkey) {
 		return dictionaryDao.findMapByKey(ddlkey);
 	}
+	
+	public Map<String, Map<String, String>> many(String[] ddlkeys) {
+		Map<String, Map<String, String>> dicts = new ConcurrentHashMap<>();
+		if(ddlkeys != null && ddlkeys.length > 0) {
+			for(String key : ddlkeys) {
+				dicts.put(key, get(key));
+			}
+		}
+		return dicts;
+	}
 
 	public String getValue(String ddlKey, String itemKey) {
 		return get(ddlKey).get(itemKey);

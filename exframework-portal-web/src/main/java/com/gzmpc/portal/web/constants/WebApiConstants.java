@@ -17,6 +17,9 @@ public interface WebApiConstants {
 
 	String API_DDL = "/ddl";
 	String API_DDL_GET = API_DDL + "/get/{ddlkey}";
+	String API_DDL_OPTIONS = API_DDL + "/options/{ddlkey}";
+	String API_DDL_MANY = API_DDL + "/many";
+	String API_DDL_MANY_OPTIONS = API_DDL + "/manyOptions";
 	String API_DDL_QUERY = API_DDL + "/queryList";
 	String API_DDL_POST = API_DDL + "/post";
 	

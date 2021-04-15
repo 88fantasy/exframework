@@ -17,7 +17,8 @@ import com.gzmpc.support.jdbc.mapper.ExBaseMapper;
 
 /**
  * @author rwe
- * @version 创建时间：2021年3月27日 上午11:03:35 基础 CRUD 服务
+ * @version 创建时间：2021年3月27日 上午11:03:35 
+ * 基础 CRUD 服务
  */
 
 public class ExBaseService<M extends ExBaseMapper<T>, T> extends ServiceImpl<M, T> {

@@ -15,6 +15,20 @@ public class ServerException extends ApiException {
 	private static final long serialVersionUID = -2886076214889795949L;
 
 	public ServerException() {
-		super(ResultCode.INTERNAL_SERVER_ERROR);
+		this(ResultCode.INTERNAL_SERVER_ERROR);
 	}
+
+	public ServerException(int code, String msg) {
+		super(code, msg);
+	}
+
+	public ServerException(ResultCode code) {
+		super(code);
+	}
+
+	public ServerException(String msg) {
+		super(msg);
+	}
+	
+	
 }
