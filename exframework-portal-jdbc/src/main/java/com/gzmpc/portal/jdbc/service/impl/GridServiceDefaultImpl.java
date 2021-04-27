@@ -74,15 +74,15 @@ public class GridServiceDefaultImpl implements GridService {
 			DataItemValueTypeEnum validtype = dt.getValueType();
 			row.put(FIELDTYPE, t);
 			row.put(HEADER, dt.getName());
-			row.put(DATATYPE, validtype.getKey());
+			row.put(DATATYPE, validtype.name());
 			// 要求浮点的要求能实现小数点自动对齐，因此改为字符串，但整型则不需要，可以排序
 			if (t == Types.DATE || t == Types.TIME || t == Types.TIMESTAMP) {
-				row.put(DATATYPE, DataItemValueTypeEnum.DATETIME.getKey());
+				row.put(DATATYPE, DataItemValueTypeEnum.DATETIME.name());
 			} else {
 				if (t == Types.INTEGER || (t == Types.NUMERIC && (scale == 0 || precision == 0))) {
-					row.put(DATATYPE, DataItemValueTypeEnum.LONG.getKey());
+					row.put(DATATYPE, DataItemValueTypeEnum.LONG.name());
 				} else if (t == Types.FLOAT || t == Types.NUMERIC || t == Types.DOUBLE || t == Types.DECIMAL) {
-					row.put(DATATYPE, DataItemValueTypeEnum.BIGDECIMAL.getKey());
+					row.put(DATATYPE, DataItemValueTypeEnum.BIGDECIMAL.name());
 					if (precision == 0) {
 						row.put(PRECISION, scale);
 					} else {
@@ -102,20 +102,20 @@ public class GridServiceDefaultImpl implements GridService {
 				switch (disptype) {
 					case DICTIONARY:
 						Map<String, String> dict = ddlService.get(dt.getDisplayKey());
-						row.put(DATATYPE, DataItemDisplayTypeEnum.DICTIONARY.getKey());
+						row.put(DATATYPE, DataItemDisplayTypeEnum.DICTIONARY.name());
 						row.put(DATA, dict);
 						break;
 					case CHECKBOX:
-						row.put(DATATYPE, DataItemDisplayTypeEnum.CHECKBOX.getKey());
+						row.put(DATATYPE, DataItemDisplayTypeEnum.CHECKBOX.name());
 						break;
 					case READONLY:
-						row.put(DATATYPE, DataItemDisplayTypeEnum.READONLY.getKey());
+						row.put(DATATYPE, DataItemDisplayTypeEnum.READONLY.name());
 						break;
 					case PASSWORD:
-						row.put(DATATYPE, DataItemDisplayTypeEnum.PASSWORD.getKey());
+						row.put(DATATYPE, DataItemDisplayTypeEnum.PASSWORD.name());
 						break;
 					case INPUT:
-						row.put(DATATYPE, DataItemDisplayTypeEnum.INPUT.getKey());
+						row.put(DATATYPE, DataItemDisplayTypeEnum.INPUT.name());
 						break;
 				}
 			}
@@ -127,7 +127,7 @@ public class GridServiceDefaultImpl implements GridService {
 	@Override
 	public String makeupCondition(String oprea, String fieldname, String value1, String value2, List<Object> conditions,
 			List<Map<String, Object>> fields) {
-		if (oprea.equals(FilterConditionOper.STR.getKey())) {
+		if (oprea.equals(FilterConditionOper.STR.name())) {
 			return " (" + value1 + ") ";
 		}
 
@@ -157,7 +157,7 @@ public class GridServiceDefaultImpl implements GridService {
 
 			StringBuffer condition = new StringBuffer();
 
-			if (oprea.equals(FilterConditionOper.EQUAL.getKey())) { // 等于号
+			if (oprea.equals(FilterConditionOper.EQUAL.name())) { // 等于号
 				condition.append(fieldname);
 				if (!isDdateType) {
 					condition.append(" = ? ");
@@ -170,7 +170,7 @@ public class GridServiceDefaultImpl implements GridService {
 					conditions.add(dt1);
 					conditions.add(dt2);
 				}
-			} else if (oprea.equals(FilterConditionOper.MATCHING.getKey())) { // 匹配
+			} else if (oprea.equals(FilterConditionOper.MATCHING.name())) { // 匹配
 				condition.append(fieldname);
 				condition.append(" like ?");
 				if (!value1.endsWith(".")) // 如果以.号为结束的表示模糊查询时后面没有%号
@@ -178,7 +178,7 @@ public class GridServiceDefaultImpl implements GridService {
 				else
 					value1 = value1.substring(0, value1.length() - 1);
 				conditions.add(value1);
-			} else if (oprea.equals(FilterConditionOper.GREATER_EQUAL.getKey())) { // 大于等于
+			} else if (oprea.equals(FilterConditionOper.GREATER_EQUAL.name())) { // 大于等于
 				condition.append(fieldname);
 				if (isDdateType) {
 					condition.append(" >= ?");
@@ -189,7 +189,7 @@ public class GridServiceDefaultImpl implements GridService {
 					condition.append(" >=?");
 					conditions.add(value1);
 				}
-			} else if (oprea.equals(FilterConditionOper.LESS_EQUAL.getKey())) { // 小于等于
+			} else if (oprea.equals(FilterConditionOper.LESS_EQUAL.name())) { // 小于等于
 				condition.append(fieldname);
 				if (isDdateType) {
 					condition.append(" < ?");
@@ -200,7 +200,7 @@ public class GridServiceDefaultImpl implements GridService {
 					condition.append(" <=?");
 					conditions.add(value1);
 				}
-			} else if (oprea.equals(FilterConditionOper.IN.getKey())) { // in 语句
+			} else if (oprea.equals(FilterConditionOper.IN.name())) { // in 语句
 				condition.append(fieldname);
 				if (value1.length() > 0) {
 					String[] arr_str = value1.split(",");
@@ -216,7 +216,7 @@ public class GridServiceDefaultImpl implements GridService {
 					}
 					condition.append(" )");
 				}
-			} else if (oprea.equals(FilterConditionOper.GREATER.getKey())) { // 大于号
+			} else if (oprea.equals(FilterConditionOper.GREATER.name())) { // 大于号
 				condition.append(fieldname);
 				if (isDdateType) {
 					condition.append(" >= ?"); // 取下一天
@@ -228,7 +228,7 @@ public class GridServiceDefaultImpl implements GridService {
 					condition.append(" > ?");
 					conditions.add(value1);
 				}
-			} else if (oprea.equals(FilterConditionOper.LESS.getKey())) { // 小于号
+			} else if (oprea.equals(FilterConditionOper.LESS.name())) { // 小于号
 				condition.append(fieldname);
 				if (isDdateType) {
 					condition.append(" < ?");
@@ -239,7 +239,7 @@ public class GridServiceDefaultImpl implements GridService {
 					condition.append(" < ?");
 					conditions.add(value1);
 				}
-			} else if (oprea.equals(FilterConditionOper.BETWEEN.getKey())) { // between
+			} else if (oprea.equals(FilterConditionOper.BETWEEN.name())) { // between
 				condition.append(fieldname);
 				if (isDdateType) {
 					condition.append(" between ? and ?");
@@ -255,7 +255,7 @@ public class GridServiceDefaultImpl implements GridService {
 					conditions.add(value1);
 					conditions.add(value2);
 				}
-			} else if (oprea.equals(FilterConditionOper.NOT_EQUAL.getKey())) { // 不等于
+			} else if (oprea.equals(FilterConditionOper.NOT_EQUAL.name())) { // 不等于
 				condition.append(fieldname);
 				if (!isDdateType) {
 					condition.append(" != ?");

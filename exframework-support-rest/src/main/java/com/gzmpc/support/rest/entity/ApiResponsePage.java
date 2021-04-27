@@ -12,6 +12,9 @@ public class ApiResponsePage<T> extends ApiResponse {
 	@SuppressWarnings("rawtypes")
 	public static final ApiResponsePage PARAM_ERROR = new ApiResponsePage<>(ResultCode.BAD_REQUEST, GlobalControllerExceptionControllerAdvice.PARAMS_ERROR, null);
 
+	@SuppressWarnings("rawtypes")
+	public static final ApiResponsePage EMPTY = new ApiResponsePage<>(PageModel.EMPTY);
+	
 	/**
 	 * 分页数据
 	 */

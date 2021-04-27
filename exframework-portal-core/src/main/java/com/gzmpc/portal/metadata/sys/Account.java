@@ -156,50 +156,38 @@ public class Account implements Serializable, DictionaryEnumClass {
 	}
 
 	@Override
-	public Class<? extends DictionaryEnum<?>>[] enums() {
+	public Class<? extends DictionaryEnum>[] enums() {
 		return new Class[] {AccountStatusTypeEnum.class};
 	}
 
 	@Dictionary( value = "AccountStatus", name = "帐号状态")
-	public enum AccountStatusTypeEnum implements DictionaryEnum<String> {
+	public enum AccountStatusTypeEnum implements DictionaryEnum {
 
 		/**
 		 * 有效
 		 */
-		VALID("valid", "有效"),
+		VALID("有效"),
 
 		/**
 		 * 失效
 		 */
-		INVALID("invalid", "失效"),
+		INVALID("失效"),
 
 		/**
 		 * 禁止
 		 */
-		FORBIDDEN("forbidden", "禁止")
+		FORBIDDEN("禁止")
 
 		;
 
-		private String key;
+		private String label;
 
-		private String name;
-
-		private AccountStatusTypeEnum(String key, String name) {
-			this.key = key;
-			this.name = name;
+		private AccountStatusTypeEnum(String label) {
+			this.label = label;
 		}
 
-		public String getKey() {
-			return key;
-		}
-
-		public String getName() {
-			return name;
-		}
-
-		@Override
-		public String getValue() {
-			return this.key;
+		public String getLabel() {
+			return label;
 		}
 
 	}

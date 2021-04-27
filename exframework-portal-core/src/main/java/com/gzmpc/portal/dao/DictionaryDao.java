@@ -24,6 +24,8 @@ public interface DictionaryDao extends MetaDao<DictionaryItem> {
 	
 	boolean saveDictionary(String code, String name, Map<String,String> value);
 	
+	boolean saveDictionary(String code, String name, Map<String,String> value, boolean local);
+	
 	PageModel<DictionaryItem> query(Collection<FilterCondition> params, Page page);
 	
 	List<DictionaryItem> list(Collection<FilterCondition> params);

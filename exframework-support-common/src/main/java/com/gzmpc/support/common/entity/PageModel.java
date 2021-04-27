@@ -1,6 +1,8 @@
 package com.gzmpc.support.common.entity;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import com.gzmpc.support.common.util.BeanUtils;
@@ -11,6 +13,9 @@ import com.gzmpc.support.common.util.BeanUtils;
  */
 
 public class PageModel<T> {
+	
+	@SuppressWarnings("unchecked")
+	public static final PageModel<?> EMPTY = new PageModel<>(new Pager(0l, Page.DEFAULT), Collections.EMPTY_LIST);
 
 	/**
 	 * 分页信息
@@ -48,6 +53,12 @@ public class PageModel<T> {
 		List<E> elist = tlist.stream().map(row -> {
 			return BeanUtils.copyTo(row, clazz);
 		}).collect(Collectors.toList());
+		return new PageModel<E>(this.getPager(), elist);
+	}
+	
+	public <E> PageModel<E> translate(Function<T,E> translator) {
+		List<T> tlist = this.getList();
+		List<E> elist = tlist.stream().map(translator).collect(Collectors.toList());
 		return new PageModel<E>(this.getPager(), elist);
 	}
 }

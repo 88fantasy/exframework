@@ -11,6 +11,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
 import com.gzmpc.portal.dao.DictionaryDao;
+import com.gzmpc.portal.metadata.dict.DictionaryItem;
 import com.gzmpc.portal.metadata.sys.Account;
 import com.gzmpc.support.common.annotation.BuildComponent;
 import com.gzmpc.support.common.build.Buildable;
@@ -21,6 +22,8 @@ import com.gzmpc.support.common.exception.BuildException;
 public class DdlService implements Buildable {
 
 	private Logger log = LoggerFactory.getLogger(DdlService.class.getName());
+	
+	private Map<String,DictionaryItem> localItems = new ConcurrentHashMap<>();
 
 	@Autowired
 	DictionaryDao dictionaryDao;
@@ -30,6 +33,9 @@ public class DdlService implements Buildable {
 
 	@Autowired
 	AccountService accountService;
+	
+	@Autowired
+	ApplicationContext applicationContext;
 
 	public Collection<String> getAllKeys() {
 		return dictionaryDao.allKeys();
@@ -48,7 +54,13 @@ public class DdlService implements Buildable {
 	}
 
 	public Map<String, String> get(String ddlkey) {
-		return dictionaryDao.findMapByKey(ddlkey);
+		//优先查找代码字典
+		if(localItems.containsKey(ddlkey)) {
+			return localItems.get(ddlkey).getValue();
+		}
+		else {
+			return dictionaryDao.findMapByKey(ddlkey);
+		}
 	}
 	
 	public Map<String, Map<String, String>> many(String[] ddlkeys) {
@@ -66,7 +78,19 @@ public class DdlService implements Buildable {
 	}
 
 	public boolean saveDictionary(String code, String name, Map<String, String> value) {
-		return dictionaryDao.saveDictionary(code, name, value);
+		return dictionaryDao.saveDictionary(code, name, value, false);
+	}
+	
+	public boolean saveDictionary(String code, String name, Map<String, String> value, boolean local) {
+		if(local) {
+			DictionaryItem item = new DictionaryItem();
+			item.setCode(code);
+			item.setName(name);
+			item.setValue(value);
+			item.setLocal(local);
+			localItems.put(code, item);
+		}
+		return dictionaryDao.saveDictionary(code, name, value, local);
 	}
 
 	@Override

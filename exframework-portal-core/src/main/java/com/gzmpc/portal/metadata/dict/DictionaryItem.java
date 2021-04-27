@@ -20,6 +20,8 @@ public class DictionaryItem extends Meta {
 	
 	@NotEmpty
 	private Map<String,String> value;
+	
+	private Boolean local;
 
 	public Map<String, String> getValue() {
 		return value;
@@ -28,5 +30,14 @@ public class DictionaryItem extends Meta {
 	public void setValue(Map<String, String> value) {
 		this.value = value;
 	}
+
+	public Boolean getLocal() {
+		return local;
+	}
+
+	public void setLocal(Boolean local) {
+		this.local = local;
+	}
+	
 	
 }

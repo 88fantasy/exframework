@@ -38,15 +38,23 @@ public class DictionaryDaoImpl extends MetaDaoImpl<DictionaryDO, DictionaryItem>
 
 	@Override
 	public boolean saveDictionary(String code, String name, Map<String, String> value) {
+		return saveDictionary(code, name, value, false);
+	}
+
+	@Override
+	public boolean saveDictionary(String code, String name, Map<String, String> value, boolean local) {
 		DictionaryDO entity = dictionaryMapper.selectById(code);
 		if (entity == null) {
 			DictionaryDO newEntity = genInstance();
 			newEntity.setCode(code);
 			newEntity.setName(name);
 			newEntity.setValue(value);
+			newEntity.setLocal(local);
 			dictionaryMapper.insert(newEntity);
 		} else {
+			entity.setName(name);
 			entity.setValue(value);
+			entity.setLocal(local);
 			dictionaryMapper.updateById(entity);
 		}
 		return true;
@@ -72,4 +80,5 @@ public class DictionaryDaoImpl extends MetaDaoImpl<DictionaryDO, DictionaryItem>
 	public List<DictionaryItem> list(Collection<FilterCondition> params) {
 		return dictionaryMapper.list(params, DictionaryItem.class);
 	}
+
 }

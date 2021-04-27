@@ -12,6 +12,9 @@ public class ApiResponseData<T> extends ApiResponse {
 	@SuppressWarnings("rawtypes")
 	public static final ApiResponseData PARAM_ERROR = new ApiResponseData<>(ResultCode.BAD_REQUEST, GlobalControllerExceptionControllerAdvice.PARAMS_ERROR, null);
 	
+	@SuppressWarnings("rawtypes")
+	public static final ApiResponseData EMPTY = new ApiResponseData<>(null);
+	
 	/**
 	 * 数据信息
 	 */

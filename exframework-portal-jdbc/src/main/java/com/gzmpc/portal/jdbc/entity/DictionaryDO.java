@@ -56,4 +56,7 @@ public class DictionaryDO extends DictionaryItem {
 	@ColumnType(value = MySqlTypeConstant.VARCHAR, length = 2000)
 	private Map<String,String> value;
 	
+	@TableFieldDoc("代码字典")
+	@TableField
+	private Boolean local;
 }

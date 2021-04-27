@@ -184,73 +184,51 @@ public class FilterCondition implements DictionaryEnumClass {
 	}
 	
 	@Dictionary( value = "FilterConditionDataType", name = "条件数据类型")
-	public enum FilterConditionDataType implements DictionaryEnum<String> {
+	public enum FilterConditionDataType implements DictionaryEnum {
 
-		STRING("string", "字符串"), 
-		LIST("list", "数组"), 
-		NUMBER("number", "数字"),
-		BOOLEAN("boolean", "布尔"), 
-		JSON("json", "JSON"), 
-		DATE("date", "日期"),
-		DATETIME("datetime", "日期时间")
+		STRING("字符串"), 
+		LIST("数组"), 
+		NUMBER("数字"),
+		BOOLEAN("布尔"), 
+		JSON("JSON"), 
+		DATE("日期"),
+		DATETIME("日期时间")
 		;
 
-		private String key;
+		private String label;
 
-		private String name;
-
-		private FilterConditionDataType(String key, String name) {
-			this.key = key;
-			this.name = name;
+		private FilterConditionDataType(String label) {
+			this.label = label;
 		}
 
-		public String getKey() {
-			return key;
-		}
-
-		public String getName() {
-			return name;
-		}
-
-		@Override
-		public String getValue() {
-			return this.key;
+		public String getLabel() {
+			return label;
 		}
 	}
 
 	@Dictionary(value = "FilterConditionOper", name = "条件操作符")
-	public enum FilterConditionOper implements DictionaryEnum<String> {
+	public enum FilterConditionOper implements DictionaryEnum {
 
-		EQUAL("equal", "等于"), GREATER("greater", "大于"), LESS("less", "小于"), BETWEEN("between", "介于"),
-		GREATER_EQUAL("greater_equal", "大于等于"), LESS_EQUAL("less_equal", "小于等于"), IN("in", "包含"),
-		MATCHING("matching", "匹配"), NOT_EQUAL("not_equal", "不等于"), ISNULL("is_null", "为空"),
-		IS_NOT_NULL("is_not_null", "不为空"), STR("str", "自定义"),;
+		EQUAL("等于"), GREATER("大于"), LESS("小于"), BETWEEN("介于"),
+		GREATER_EQUAL("大于等于"), LESS_EQUAL("小于等于"), IN("包含"),
+		MATCHING("匹配"), NOT_EQUAL("不等于"), ISNULL("为空"),
+		IS_NOT_NULL("不为空"), STR("自定义");
 
-		private String key;
 
-		private String name;
+		private String label;
 
-		private FilterConditionOper(String key, String name) {
-			this.key = key;
-			this.name = name;
+		private FilterConditionOper(String label) {
+			this.label = label;
 		}
 
-		public String getKey() {
-			return key;
-		}
-
-		public String getName() {
-			return name;
-		}
-
-		@Override
-		public String getValue() {
-			return this.key;
+		public String getLabel() {
+			return label;
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public Class<? extends DictionaryEnum<?>>[] enums() {
+	public Class<? extends DictionaryEnum>[] enums() {
 		return new Class[] {FilterConditionDataType.class, FilterConditionOper.class };
 	}
 

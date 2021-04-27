@@ -8,13 +8,9 @@ package com.gzmpc.portal.metadata.dict;
  * Copyright @ 2020 
  * 字典枚举
  */
-public interface DictionaryEnum<T> {
-	
-	T getValue();
+public interface DictionaryEnum {
 
-//	String getKey();
-
-	String getName();
+	String name();
 	
-//	T enumOf(String key);
+	String getLabel();
 }

@@ -100,135 +100,112 @@ public class DataItem extends Meta implements DictionaryEnumClass {
 	}
 	
 	@Dictionary( value = "DataItemDisplayType", name = "数据项显示风格")
-	public enum DataItemDisplayTypeEnum implements DictionaryEnum<String> {
+	public enum DataItemDisplayTypeEnum implements DictionaryEnum {
 		/**
 		 * 输入
 		 */
-		INPUT("input", "输入框"),
+		INPUT("输入框"),
 		
 		/**
 		 * 密码输入框
 		 */
-		PASSWORD("password", "密码输入框"),
+		PASSWORD("密码输入框"),
 
 		/**
 		 * 只读
 		 */
-		READONLY("readonly", "只读"),
+		READONLY("只读"),
 
 		/**
 		 * 是否
 		 */
-		CHECKBOX("checkbox", "是否"),
+		CHECKBOX("是否"),
 
 		/**
 		 * 字典
 		 */
-		DICTIONARY("dictionary", "字典");
+		DICTIONARY("字典");
 
-		private String key;
-
-		private String name;
-
-		private DataItemDisplayTypeEnum() {
-
+		private String label;
+		
+		private DataItemDisplayTypeEnum(String label) {
+			this.label = label;
 		}
 		
-		private DataItemDisplayTypeEnum(String key, String name) {
-			this.key = key;
-			this.name = name;
-		}
-		
-		public String getKey() {
-			return key;
-		}
 
-		public String getName() {
-			return name;
-		}
-
-		@Override
-		public String getValue() {
-			return this.key;
+		public String getLabel() {
+			return label;
 		}
 
 	}
 
 	@Dictionary( value = "DataItemValueType", name = "验证数据类型")
-	public enum DataItemValueTypeEnum implements DictionaryEnum<String> {
+	public enum DataItemValueTypeEnum implements DictionaryEnum {
 		
 		/**
 		 * 默认 按 com.gzmpc.portal.dao.DataItemDao.defaultValueType
 		 */
-		DEFAULT("default", "默认"),
+		DEFAULT("默认"),
 
 		/**
 		 * 整数
 		 */
-		LONG("long", "整数"),
+		LONG("整数"),
 
 		/**
 		 * 字符串
 		 */
-		STRING("string", "字符串"),
+		STRING("字符串"),
 		
 		/**
 		 * 大写字符串
 		 */
-		UPPERSTRING("upperstring", "大写字符串"),
+		UPPERSTRING("大写字符串"),
 		
 		/**
 		 * 小写字符串
 		 */
-		LOWERSTRING("lowerstring", "大写字符串"),
+		LOWERSTRING("大写字符串"),
 
 		/**
 		 * 小数
 		 */
-		BIGDECIMAL("bigdecimal", "小数"),
+		BIGDECIMAL("小数"),
 
 		/**
 		 * 布尔
 		 */
-		BOOLEAN("boolean", "布尔"),
+		BOOLEAN("布尔"),
 
 		/**
 		 * 日期
 		 */
-		DATE("date", "日期"),
+		DATE("日期"),
 
 		/**
 		 * 日期
 		 */
-		DATETIME("datetime", "日期时间")
+		DATETIME("日期时间")
 
 		;
 
-		private String key;
 
-		private String name;
+		private String label;
 
-		private DataItemValueTypeEnum(String key, String name) {
-			this.key = key;
-			this.name = name;
+		private DataItemValueTypeEnum(String label) {
+			this.label = label;
 		}
 
-		public String getKey() {
-			return key;
+
+		public String getLabel() {
+			return label;
 		}
 
-		public String getName() {
-			return name;
-		}
-
-		@Override
-		public String getValue() {
-			return this.key;
-		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public Class<? extends DictionaryEnum<?>>[] enums() {
+	public Class<? extends DictionaryEnum>[] enums() {
 		return new Class[] {DataItemDisplayTypeEnum.class, DataItemValueTypeEnum.class} ;
 	}
 

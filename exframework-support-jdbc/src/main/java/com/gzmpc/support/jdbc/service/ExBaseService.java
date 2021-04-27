@@ -1,18 +1,26 @@
 package com.gzmpc.support.jdbc.service;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Objects;
 import java.util.function.Consumer;
+import java.util.function.Function;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.metadata.TableInfo;
 import com.baomidou.mybatisplus.core.metadata.TableInfoHelper;
 import com.baomidou.mybatisplus.core.toolkit.Assert;
+import com.baomidou.mybatisplus.core.toolkit.Constants;
 import com.baomidou.mybatisplus.core.toolkit.ReflectionKit;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.gzmpc.support.common.entity.FilterCondition;
+import com.gzmpc.support.common.entity.PageModel;
+import com.gzmpc.support.common.util.BeanUtils;
 import com.gzmpc.support.jdbc.mapper.ExBaseMapper;
 
 /**
@@ -113,5 +121,19 @@ public class ExBaseService<M extends ExBaseMapper<T>, T> extends ServiceImpl<M, 
 			}
 		}
 		return false;
+	}
+	
+	public <E> PageModel<E> query(Collection<FilterCondition> params, com.gzmpc.support.common.entity.Page page,
+			Class<E> clazz) {
+		return getBaseMapper().query(page, getBaseMapper().wrapperFromCondition(params), getTranslator(clazz), clazz);
+	}
+	
+	public <E> Function<T,E> getTranslator(Class<E> clazz) {
+		return entity -> BeanUtils.copyTo(entity, clazz);
+	}
+	
+	public <E> PageModel<E> query(@Param(Constants.WRAPPER) Wrapper<T> queryWrapper, com.gzmpc.support.common.entity.Page page,
+			Class<E> clazz) {
+		return getBaseMapper().query(page, queryWrapper, getTranslator(clazz), clazz);
 	}
 }

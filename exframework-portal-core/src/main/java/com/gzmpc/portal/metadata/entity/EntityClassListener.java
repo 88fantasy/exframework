@@ -140,13 +140,13 @@ public class EntityClassListener implements ApplicationListener<ApplicationReady
 							Object[] objs = enumclass.getEnumConstants();
 							for (Object obj : objs) {
 								if(DictionaryEnum.class.isAssignableFrom(obj.getClass())) {
-									DictionaryEnum<?> e = (DictionaryEnum<?>) obj;
-									String v = String.valueOf(e.getValue());
-									String enumName = e.getName();
+									DictionaryEnum e = (DictionaryEnum) obj;
+									String v = e.name();
+									String enumName = e.getLabel();
 									vv.put(v, enumName);
 								}
 							}
-							ddlService.saveDictionary(dictCode, dictName, vv);
+							ddlService.saveDictionary(dictCode, dictName, vv, true);
 						}
 					}
 				}

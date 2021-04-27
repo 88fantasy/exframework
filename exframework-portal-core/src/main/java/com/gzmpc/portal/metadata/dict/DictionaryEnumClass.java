@@ -10,5 +10,5 @@ package com.gzmpc.portal.metadata.dict;
  */
 public interface DictionaryEnumClass {
 
-	Class<? extends DictionaryEnum<?>>[] enums();
+	Class<? extends DictionaryEnum>[] enums();
 }

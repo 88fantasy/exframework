@@ -24,9 +24,6 @@ import com.gzmpc.support.doc.annotation.TableFieldDoc;
 @TableName( value = "sys_account", excludeProperty = {"permissions", "modules"})
 public class AccountDO extends Account {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -3573124333224304627L;
 
 	/**
@@ -34,7 +31,7 @@ public class AccountDO extends Account {
 	 */
 	@TableFieldDoc("登陆账号ID")
 	@TableId
-	private String accountId;
+	private String account;
 
 	/**
 	 * 密码
