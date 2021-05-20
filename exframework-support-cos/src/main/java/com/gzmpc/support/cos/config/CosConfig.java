@@ -52,6 +52,5 @@ public class CosConfig {
 			return null;
 		}
 		return CosClient.init(secretId, secretKey, cosRegion, bucketName, path);
-
 	}
 }

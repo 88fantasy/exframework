@@ -21,6 +21,7 @@ import com.gzmpc.portal.jdbc.entity.DataItemExtendDO;
 import com.gzmpc.portal.jdbc.mapper.DataItemExtendMapper;
 import com.gzmpc.portal.jdbc.mapper.DataItemMapper;
 import com.gzmpc.support.common.entity.FilterCondition;
+import com.gzmpc.support.common.entity.Page;
 import com.gzmpc.support.common.entity.PageModel;
 
 /**
@@ -80,6 +81,11 @@ public class DataItemDaoImpl extends MetaDaoImpl<DataItemDO, DataItem> implement
 	@Override
 	public PageModel<DataItem> query(Collection<FilterCondition> params, com.gzmpc.support.common.entity.Page page) {
 		return dataItemMapper.query(params, page, DataItem.class);
+	}
+
+	@Override
+	public PageModel<DataItem> query(Collection<FilterCondition> params, Page page, Collection<String> sorts) {
+		return dataItemMapper.query(params, page, sorts, DataItem.class);
 	}
 
 	@Override

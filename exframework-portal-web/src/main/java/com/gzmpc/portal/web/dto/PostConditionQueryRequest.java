@@ -23,6 +23,9 @@ public class PostConditionQueryRequest {
 	@ApiModelProperty(value = "分页信息")
 	Page page;
 	
+	@ApiModelProperty(value = "排序信息")
+	String[] sorts;
+	
 	public PostConditionQueryRequest() {
 		this.page = Page.DEFAULT;
 		this.conditions = new FilterCondition[]{};
@@ -42,6 +45,14 @@ public class PostConditionQueryRequest {
 
 	public void setPage(Page page) {
 		this.page = page;
+	}
+
+	public String[] getSorts() {
+		return sorts;
+	}
+
+	public void setSorts(String[] sorts) {
+		this.sorts = sorts;
 	}
 	
 	

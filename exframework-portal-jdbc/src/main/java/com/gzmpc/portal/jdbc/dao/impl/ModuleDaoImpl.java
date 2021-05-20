@@ -79,6 +79,11 @@ public class ModuleDaoImpl extends MetaDaoImpl<ModuleDO, ModuleBase> implements 
 	public PageModel<ModuleBase> query(Collection<FilterCondition> params, Page page) {
 		return moduleMapper.query(params, page, ModuleBase.class);
 	}
+	
+	@Override
+	public PageModel<ModuleBase> query(Collection<FilterCondition> params, Page page, Collection<String> sorts) {
+		return moduleMapper.query(params, page, sorts, ModuleBase.class);
+	}
 
 	@Override
 	public List<ModuleBase> list(Collection<FilterCondition> params) {
@@ -114,5 +119,6 @@ public class ModuleDaoImpl extends MetaDaoImpl<ModuleDO, ModuleBase> implements 
 
 		return false;
 	}
+
 
 }

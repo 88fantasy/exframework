@@ -1,5 +1,6 @@
 package com.gzmpc.portal.admin.dao;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -36,6 +37,11 @@ public class HovDataClassHovDao implements IHovDao<HovDataClass> {
 
 	@Override
 	public PageModel<HovDataClass> query(Collection<FilterCondition> conditions, Page page) {
+		return query(conditions, page, Arrays.asList());
+	}
+
+	@Override
+	public PageModel<HovDataClass> query(Collection<FilterCondition> conditions, Page page, Collection<String> sorts) {
 		Map<String, IHovDao> beans = applicationContext.getBeansOfType(IHovDao.class);
 		Map<String,String> fcmap = conditions.stream().collect(Collectors.toMap(FilterCondition::getKey, fc -> (String)fc.getFilterValue()));
 		List<HovDataClass> list = beans.values().stream()

@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>com.gzmpc.exframework</groupId>
 		<artifactId>exframework-root</artifactId>
-		<version>0.6.1.1</version>
+		<version>0.6.2</version>
 	</parent>
 	<artifactId>exframework-support-tsf</artifactId>
 	<packaging>pom</packaging>
@@ -18,7 +18,6 @@
 		<module>exframework-tsf-provider-quickstart</module>
 		<module>exframework-tsf-support-sso</module>
 		<module>exframework-tsf-microservice-quickstart</module>
-		<module>exframework-tsf-support-cos</module>
 		<module>exframework-tsf-support-tdmq</module>
 		<module>exframework-tsf-gateway-quickstart</module>
 	</modules>
@@ -39,17 +38,17 @@
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-tsf-support-sso</artifactId>
-				<version>0.6.1.1</version>
+				<version>0.6.2</version>
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-tsf-support-cos</artifactId>
-				<version>0.6.1.1</version>
+				<version>0.6.2</version>
 			</dependency>
 			<dependency>
 				<groupId>com.gzmpc.exframework</groupId>
 				<artifactId>exframework-tsf-support-tdmq</artifactId>
-				<version>0.6.1.1</version>
+				<version>0.6.2</version>
 			</dependency>
 			<dependency>
 				<groupId>com.tencent.cloud </groupId>

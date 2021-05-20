@@ -1,5 +1,6 @@
 package com.gzmpc.portal.web.jdbc.dao;
 
+import java.util.Arrays;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,12 +29,17 @@ public class DataItemHovDaoImpl implements DataItemHovDao {
 
 	@Override
 	public PageModel<DataItem> query(Collection<FilterCondition> conditions, Page page) {
-		return dataItemDao.query(conditions, page);
+		return query(conditions, page, Arrays.asList());
 	}
 
 	@Override
 	public Class<DataItem> getEntityClass() {
 		return DataItem.class;
+	}
+
+	@Override
+	public PageModel<DataItem> query(Collection<FilterCondition> conditions, Page page, Collection<String> sorts) {
+		return dataItemDao.query(conditions, page, sorts);
 	}
 
 }

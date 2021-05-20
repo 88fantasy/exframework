@@ -20,4 +20,6 @@ public interface IHovDao<T> {
 
 	PageModel<T> query(Collection<FilterCondition> conditions, Page page);
 	
+	PageModel<T> query(Collection<FilterCondition> conditions, Page page, Collection<String> sorts);
+	
 }

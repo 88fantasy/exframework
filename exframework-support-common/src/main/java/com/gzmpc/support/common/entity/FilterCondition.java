@@ -201,7 +201,7 @@ public class FilterCondition {
 	public enum FilterConditionOper {
 
 		EQUAL("equal", "等于"), GREATER("greater", "大于"), LESS("less", "小于"), BETWEEN("between", "介于"),
-		GREATER_EQUAL("greater_equal", "大于等于"), LESS_EQUAL("less_equal", "小于等于"), IN("in", "包含"),
+		GREATER_EQUAL("greater_equal", "大于等于"), LESS_EQUAL("less_equal", "小于等于"), IN("in", "包含"),NOT_IN("not_in", "不包含"),
 		MATCHING("matching", "匹配"), NOT_EQUAL("not_equal", "不等于"), ISNULL("is_null", "为空"),
 		IS_NOT_NULL("is_not_null", "不为空"), STR("str", "自定义");
 

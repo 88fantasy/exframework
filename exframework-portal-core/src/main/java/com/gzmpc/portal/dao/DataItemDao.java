@@ -32,6 +32,8 @@ public interface DataItemDao extends MetaDao<DataItem> {
 	
 	PageModel<DataItem> query(Collection<FilterCondition> params, Page page);
 	
+	PageModel<DataItem> query(Collection<FilterCondition> params, Page page, Collection<String> sorts);
+	
 	List<DataItem> list(Collection<FilterCondition> params);
 	
 	default DataItemValueTypeEnum defaultValueType(Object value) {

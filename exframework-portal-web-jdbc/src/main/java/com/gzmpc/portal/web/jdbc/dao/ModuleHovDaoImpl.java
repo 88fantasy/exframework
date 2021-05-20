@@ -1,5 +1,6 @@
 package com.gzmpc.portal.web.jdbc.dao;
 
+import java.util.Arrays;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,12 +29,17 @@ public class ModuleHovDaoImpl implements ModuleHovDao {
 
 	@Override
 	public PageModel<ModuleBase> query(Collection<FilterCondition> conditions, Page page) {
-		return moduleDao.query(conditions, page);
+		return query(conditions, page, Arrays.asList());
 	}
 
 	@Override
 	public Class<ModuleBase> getEntityClass() {
 		return ModuleBase.class;
+	}
+
+	@Override
+	public PageModel<ModuleBase> query(Collection<FilterCondition> conditions, Page page, Collection<String> sorts) {
+		return moduleDao.query(conditions, page, sorts);
 	}
 
 }

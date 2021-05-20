@@ -28,6 +28,8 @@ public interface ModuleDao extends MetaDao<ModuleBase> {
 	
 	PageModel<ModuleBase> query(Collection<FilterCondition> params, Page page);
 	
+	PageModel<ModuleBase> query(Collection<FilterCondition> params, Page page, Collection<String> sorts);
+	
 	List<ModuleBase> list(Collection<FilterCondition> params);
 	
 	boolean insertModule(Module module); 

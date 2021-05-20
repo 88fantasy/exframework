@@ -30,6 +30,10 @@ import com.gzmpc.support.common.util.StringUtils;
 public interface ExBaseMapper<T> extends BaseMapper<T> {
 
 	default QueryWrapper<T> wrapperFromCondition(Collection<FilterCondition> conditions) {
+		return wrapperFromConditionAndSort(conditions, Arrays.asList());
+	}
+	
+	default QueryWrapper<T> wrapperFromConditionAndSort(Collection<FilterCondition> conditions, Collection<String> sorts) {
 		if (conditions == null || conditions.size() == 0) {
 			return Wrappers.emptyWrapper();
 		}
@@ -123,6 +127,23 @@ public interface ExBaseMapper<T> extends BaseMapper<T> {
 
 				}
 				break;
+			case NOT_IN:
+				switch (fc.getFilterDataType()) {
+				case LIST:
+					Object fv = fc.getFilterValue();
+					if ( Collection.class.isAssignableFrom(fv.getClass())) {
+						Collection<?> value = (Collection<?>) fv;
+						wrapper.notIn(key, value);
+					}
+					else {
+						wrapper.notIn(key, Arrays.asList(fv));
+					}
+					break;
+				default:
+					break;
+
+				}
+				break;
 			case ISNULL:
 				wrapper.isNull(key);
 				break;
@@ -180,6 +201,23 @@ public interface ExBaseMapper<T> extends BaseMapper<T> {
 
 			}
 		}
+		if(sorts != null && sorts.size() > 0) {
+			for(String sort : sorts) {
+				if(StringUtils.hasLength(sort)) {
+					if("+".equals(sort.substring(sort.length()-1))) {
+						wrapper.orderByAsc(sort.substring(0, sort.length()-2).trim());
+					}
+					else {
+						if("-".equals(sort.substring(sort.length()-1))) {
+							wrapper.orderByDesc(sort.substring(0, sort.length()-2).trim());
+						}
+						else {
+							wrapper.orderByDesc(sort.trim());
+						}
+					}
+				}
+			}
+		}
 		return wrapper;
 	}
 
@@ -198,22 +236,27 @@ public interface ExBaseMapper<T> extends BaseMapper<T> {
 
 	default <E> PageModel<E> query(FilterCondition[] params, com.gzmpc.support.common.entity.Page page,
 			Class<E> clazz) {
-		return query(Arrays.asList(params), page, getTranslator(clazz), clazz);
+		return query(Arrays.asList(params), page, Arrays.asList(),  getTranslator(clazz), clazz);
 	}
 	
 	default <E> PageModel<E> query(FilterCondition[] params, com.gzmpc.support.common.entity.Page page,
 			Function<T,E> translator, Class<E> clazz) {
-		return query(Arrays.asList(params), page, translator, clazz);
+		return query(Arrays.asList(params), page, Arrays.asList(), translator, clazz);
 	}
 	
 	default <E> PageModel<E> query(Collection<FilterCondition> params, com.gzmpc.support.common.entity.Page page,
 			Class<E> clazz) {
-		return query(params, page, getTranslator(clazz), clazz);
+		return query(params, page, Arrays.asList(), getTranslator(clazz), clazz);
 	}
 	
 	default <E> PageModel<E> query(Collection<FilterCondition> params, com.gzmpc.support.common.entity.Page page,
-			Function<T,E> translator, Class<E> clazz) {
-		return query(page, wrapperFromCondition(params), translator, clazz);
+			Collection<String> sorts, Class<E> clazz) {
+		return query(params, page, sorts, getTranslator(clazz), clazz);
+	}
+	
+	default <E> PageModel<E> query(Collection<FilterCondition> params, com.gzmpc.support.common.entity.Page page,
+			Collection<String> sorts, Function<T,E> translator, Class<E> clazz) {
+		return query(page, wrapperFromConditionAndSort(params, sorts), translator, clazz);
 	}
 	
 	default PageModel<T> query(com.gzmpc.support.common.entity.Page page, @Param(Constants.WRAPPER) Wrapper<T> queryWrapper) {
@@ -230,13 +273,17 @@ public interface ExBaseMapper<T> extends BaseMapper<T> {
 		Page<T> p = selectPage(new Page<T>(page.getCurrent(), page.getPageSize()), queryWrapper);
 		return modelFromPage(p, translator, clazz);
 	}
-
+	
 	default <E> List<E> list(Collection<FilterCondition> params, Class<E> clazz) {
-		return list(params, getTranslator(clazz), clazz);
+		return list(params, Arrays.asList(), getTranslator(clazz), clazz);
+	}
+
+	default <E> List<E> list(Collection<FilterCondition> params, Collection<String> sorts, Class<E> clazz) {
+		return list(params, sorts, getTranslator(clazz), clazz);
 	}
 	
-	default <E> List<E> list(Collection<FilterCondition> params, Function<T,E> translator, Class<E> clazz) {
-		return list(wrapperFromCondition(params),translator, clazz);
+	default <E> List<E> list(Collection<FilterCondition> params, Collection<String> sorts, Function<T,E> translator, Class<E> clazz) {
+		return list(wrapperFromConditionAndSort(params, sorts),translator, clazz);
 	}
 	
 	default <E> List<E> list(@Param(Constants.WRAPPER) Wrapper<T> queryWrapper, Function<T,E> translator, Class<E> clazz) {
