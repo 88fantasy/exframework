@@ -94,6 +94,7 @@ public class ExBaseService<M extends ExBaseMapper<T>, T> extends ServiceImpl<M, 
 	 */
 	@Transactional(rollbackFor = Exception.class)
 	public boolean saveOrUpdateTrigger(T t, Consumer<T> beforeSave, Consumer<T> afterSave, Consumer<T> beforeUpdate, Consumer<T> afterUpdate) {
+		boolean success = false;
 		if (null != t) {
 			TableInfo tableInfo = TableInfoHelper.getTableInfo(this.entityClass);
 			Assert.notNull(tableInfo, "error: can not execute. because can not find cache of TableInfo for entity!");
@@ -105,7 +106,7 @@ public class ExBaseService<M extends ExBaseMapper<T>, T> extends ServiceImpl<M, 
 				if (beforeSave != null) {
 					beforeSave.accept(t);
 				}
-				boolean success = save(t);
+				success = save(t);
 				if( success && afterSave != null) {
 					afterSave.accept(t);
 				}
@@ -114,13 +115,13 @@ public class ExBaseService<M extends ExBaseMapper<T>, T> extends ServiceImpl<M, 
 				if (beforeUpdate != null) {
 					beforeUpdate.accept(t);
 				}
-				boolean success = updateById(t);
+				success = updateById(t);
 				if( success && afterUpdate != null) {
 					afterUpdate.accept(t);
 				}
 			}
 		}
-		return false;
+		return success;
 	}
 	
 	public <E> PageModel<E> query(Collection<FilterCondition> params, com.gzmpc.support.common.entity.Page page,

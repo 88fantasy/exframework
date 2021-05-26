@@ -12,5 +12,6 @@
 
   <modules>
     <module>cos-spring-boot-starter</module>
+    <module>developer-spring-boot-starter</module>
   </modules>
 </project>

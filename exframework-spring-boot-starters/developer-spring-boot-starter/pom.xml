@@ -7,12 +7,12 @@
 		<artifactId>exframework-spring-boot-starters</artifactId>
 		<version>0.6.2</version>
 	</parent>
-	<artifactId>cos-spring-boot-starter</artifactId>
+	<artifactId>developer-spring-boot-starter</artifactId>
 
 	<dependencies>
 		<dependency>
 			<groupId>com.gzmpc.exframework</groupId>
-			<artifactId>cos-spring-boot-autoconfigure</artifactId>
+			<artifactId>developer-spring-boot-autoconfigure</artifactId>
 		</dependency>
 	</dependencies>
 </project>

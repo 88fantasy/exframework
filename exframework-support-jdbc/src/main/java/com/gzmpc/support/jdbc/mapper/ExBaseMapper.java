@@ -14,6 +14,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.toolkit.Constants;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.github.xiaoymin.knife4j.core.util.CollectionUtils;
 import com.gzmpc.support.common.entity.FilterCondition;
 import com.gzmpc.support.common.entity.PageModel;
 import com.gzmpc.support.common.entity.Pager;
@@ -34,182 +35,184 @@ public interface ExBaseMapper<T> extends BaseMapper<T> {
 	}
 	
 	default QueryWrapper<T> wrapperFromConditionAndSort(Collection<FilterCondition> conditions, Collection<String> sorts) {
-		if (conditions == null || conditions.size() == 0) {
+		if ( CollectionUtils.isEmpty(conditions) && CollectionUtils.isEmpty(sorts)) {
 			return Wrappers.emptyWrapper();
 		}
 		QueryWrapper<T> wrapper = new QueryWrapper<T>();
-		for (FilterCondition fc : conditions) {
-			if (fc.getFilterValue() == null) {
-				continue;
-			}
-			else if(fc.getFilterDataType() == null) {
-				fc.setFilterDataType(FilterCondition.defaultType(fc.getFilterValue()));
-			}
-			
-			String key = StringUtils.humpToUnderline(fc.getKey());
-			switch (fc.getOper()) {
-			case BETWEEN:
-				switch (fc.getFilterDataType()) {
-				case DATE:
-				case DATETIME:
-				case NUMBER:
-					List<?> values = (List<?>) fc.getFilterValue();
-					if (values != null && values.size() == 2) {
-						wrapper.between(key, values.get(0), values.get(1));
+		if(!CollectionUtils.isEmpty(conditions)) {
+			for (FilterCondition fc : conditions) {
+				if (fc.getFilterValue() == null) {
+					continue;
+				}
+				else if(fc.getFilterDataType() == null) {
+					fc.setFilterDataType(FilterCondition.defaultType(fc.getFilterValue()));
+				}
+				
+				String key = StringUtils.humpToUnderline(fc.getKey());
+				switch (fc.getOper()) {
+				case BETWEEN:
+					switch (fc.getFilterDataType()) {
+					case DATE:
+					case DATETIME:
+					case NUMBER:
+						List<?> values = (List<?>) fc.getFilterValue();
+						if (values != null && values.size() == 2) {
+							wrapper.between(key, values.get(0), values.get(1));
+						}
+						break;
+					default:
+						break;
+					}
+					break;
+				case EQUAL:
+					switch (fc.getFilterDataType()) {
+					case DATE:
+					case DATETIME:
+					case NUMBER:
+					case STRING:
+						wrapper.eq(key, fc.getFilterValue());
+						break;
+					default:
+						break;
+	
+					}
+					break;
+				case NOT_EQUAL:
+					switch (fc.getFilterDataType()) {
+					case DATE:
+					case DATETIME:
+					case NUMBER:
+					case STRING:
+						wrapper.ne(key, fc.getFilterValue());
+						break;
+					default:
+						break;
+	
+					}
+					break;
+				case GREATER:
+					switch (fc.getFilterDataType()) {
+					case DATE:
+					case DATETIME:
+					case NUMBER:
+						wrapper.gt(key, fc.getFilterValue());
+						break;
+					default:
+						break;
+					}
+					break;
+				case GREATER_EQUAL:
+					switch (fc.getFilterDataType()) {
+					case DATE:
+					case DATETIME:
+					case NUMBER:
+						wrapper.ge(key, fc.getFilterValue());
+						break;
+					default:
+						break;
+					}
+					break;
+				case IN:
+					switch (fc.getFilterDataType()) {
+					case LIST:
+						Object fv = fc.getFilterValue();
+						if ( Collection.class.isAssignableFrom(fv.getClass())) {
+							Collection<?> value = (Collection<?>) fv;
+							wrapper.in(key, value);
+						}
+						else {
+							wrapper.in(key, Arrays.asList(fv));
+						}
+						break;
+					default:
+						break;
+	
+					}
+					break;
+				case NOT_IN:
+					switch (fc.getFilterDataType()) {
+					case LIST:
+						Object fv = fc.getFilterValue();
+						if ( Collection.class.isAssignableFrom(fv.getClass())) {
+							Collection<?> value = (Collection<?>) fv;
+							wrapper.notIn(key, value);
+						}
+						else {
+							wrapper.notIn(key, Arrays.asList(fv));
+						}
+						break;
+					default:
+						break;
+	
+					}
+					break;
+				case ISNULL:
+					wrapper.isNull(key);
+					break;
+				case IS_NOT_NULL:
+					wrapper.isNotNull(key);
+					break;
+				case LESS:
+					switch (fc.getFilterDataType()) {
+					case DATE:
+					case DATETIME:
+					case NUMBER:
+						wrapper.lt(key, fc.getFilterValue());
+						break;
+					default:
+						break;
+					}
+					break;
+				case LESS_EQUAL:
+					switch (fc.getFilterDataType()) {
+					case DATE:
+					case DATETIME:
+					case NUMBER:
+						wrapper.le(key, fc.getFilterValue());
+						break;
+					default:
+						break;
+					}
+					break;
+				case MATCHING:
+					switch (fc.getFilterDataType()) {
+					case STRING:
+						if (fc.getFilterValue() instanceof String) {
+							wrapper.like(key, fc.getFilterValue());
+						}
+						break;
+					default:
+						break;
+					}
+					break;
+				case STR:
+					switch (fc.getFilterDataType()) {
+					case STRING:
+						if (fc.getFilterValue() instanceof String) {
+							String value = (String) fc.getFilterValue();
+							wrapper.apply(value);
+						}
+						break;
+					default:
+						break;
+	
 					}
 					break;
 				default:
 					break;
+	
 				}
-				break;
-			case EQUAL:
-				switch (fc.getFilterDataType()) {
-				case DATE:
-				case DATETIME:
-				case NUMBER:
-				case STRING:
-					wrapper.eq(key, fc.getFilterValue());
-					break;
-				default:
-					break;
-
-				}
-				break;
-			case NOT_EQUAL:
-				switch (fc.getFilterDataType()) {
-				case DATE:
-				case DATETIME:
-				case NUMBER:
-				case STRING:
-					wrapper.ne(key, fc.getFilterValue());
-					break;
-				default:
-					break;
-
-				}
-				break;
-			case GREATER:
-				switch (fc.getFilterDataType()) {
-				case DATE:
-				case DATETIME:
-				case NUMBER:
-					wrapper.gt(key, fc.getFilterValue());
-					break;
-				default:
-					break;
-				}
-				break;
-			case GREATER_EQUAL:
-				switch (fc.getFilterDataType()) {
-				case DATE:
-				case DATETIME:
-				case NUMBER:
-					wrapper.ge(key, fc.getFilterValue());
-					break;
-				default:
-					break;
-				}
-				break;
-			case IN:
-				switch (fc.getFilterDataType()) {
-				case LIST:
-					Object fv = fc.getFilterValue();
-					if ( Collection.class.isAssignableFrom(fv.getClass())) {
-						Collection<?> value = (Collection<?>) fv;
-						wrapper.in(key, value);
-					}
-					else {
-						wrapper.in(key, Arrays.asList(fv));
-					}
-					break;
-				default:
-					break;
-
-				}
-				break;
-			case NOT_IN:
-				switch (fc.getFilterDataType()) {
-				case LIST:
-					Object fv = fc.getFilterValue();
-					if ( Collection.class.isAssignableFrom(fv.getClass())) {
-						Collection<?> value = (Collection<?>) fv;
-						wrapper.notIn(key, value);
-					}
-					else {
-						wrapper.notIn(key, Arrays.asList(fv));
-					}
-					break;
-				default:
-					break;
-
-				}
-				break;
-			case ISNULL:
-				wrapper.isNull(key);
-				break;
-			case IS_NOT_NULL:
-				wrapper.isNotNull(key);
-				break;
-			case LESS:
-				switch (fc.getFilterDataType()) {
-				case DATE:
-				case DATETIME:
-				case NUMBER:
-					wrapper.lt(key, fc.getFilterValue());
-					break;
-				default:
-					break;
-				}
-				break;
-			case LESS_EQUAL:
-				switch (fc.getFilterDataType()) {
-				case DATE:
-				case DATETIME:
-				case NUMBER:
-					wrapper.le(key, fc.getFilterValue());
-					break;
-				default:
-					break;
-				}
-				break;
-			case MATCHING:
-				switch (fc.getFilterDataType()) {
-				case STRING:
-					if (fc.getFilterValue() instanceof String) {
-						wrapper.like(key, fc.getFilterValue());
-					}
-					break;
-				default:
-					break;
-				}
-				break;
-			case STR:
-				switch (fc.getFilterDataType()) {
-				case STRING:
-					if (fc.getFilterValue() instanceof String) {
-						String value = (String) fc.getFilterValue();
-						wrapper.apply(value);
-					}
-					break;
-				default:
-					break;
-
-				}
-				break;
-			default:
-				break;
-
 			}
 		}
-		if(sorts != null && sorts.size() > 0) {
+		if(!CollectionUtils.isEmpty(sorts)) {
 			for(String sort : sorts) {
 				if(StringUtils.hasLength(sort)) {
 					if("+".equals(sort.substring(sort.length()-1))) {
-						wrapper.orderByAsc(sort.substring(0, sort.length()-2).trim());
+						wrapper.orderByAsc(sort.substring(0, sort.length()-1).trim());
 					}
 					else {
 						if("-".equals(sort.substring(sort.length()-1))) {
-							wrapper.orderByDesc(sort.substring(0, sort.length()-2).trim());
+							wrapper.orderByDesc(sort.substring(0, sort.length()-1).trim());
 						}
 						else {
 							wrapper.orderByDesc(sort.trim());
@@ -239,9 +242,19 @@ public interface ExBaseMapper<T> extends BaseMapper<T> {
 		return query(Arrays.asList(params), page, Arrays.asList(),  getTranslator(clazz), clazz);
 	}
 	
+	default <E> PageModel<E> query(FilterCondition[] params, com.gzmpc.support.common.entity.Page page, String[] sorts,
+			Class<E> clazz) {
+		return query(Arrays.asList(params), page, Arrays.asList(sorts),  getTranslator(clazz), clazz);
+	}
+	
 	default <E> PageModel<E> query(FilterCondition[] params, com.gzmpc.support.common.entity.Page page,
 			Function<T,E> translator, Class<E> clazz) {
 		return query(Arrays.asList(params), page, Arrays.asList(), translator, clazz);
+	}
+	
+	default <E> PageModel<E> query(FilterCondition[] params, com.gzmpc.support.common.entity.Page page, String[] sorts,
+			Function<T,E> translator, Class<E> clazz) {
+		return query(Arrays.asList(params), page, Arrays.asList(sorts), translator, clazz);
 	}
 	
 	default <E> PageModel<E> query(Collection<FilterCondition> params, com.gzmpc.support.common.entity.Page page,

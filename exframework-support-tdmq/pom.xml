@@ -25,8 +25,8 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>com.tencent.tdmq</groupId>
-			<artifactId>tdmq-client</artifactId>
+			<groupId>org.apache.pulsar</groupId>
+			<artifactId>pulsar-client</artifactId>
 		</dependency>
 	</dependencies>
 

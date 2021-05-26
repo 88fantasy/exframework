@@ -1,14 +1,18 @@
-package com.gzmpc.spring.boot.autoconfigure.cos;
+package com.gzmpc.spring.boot.autoconfigure.developer.cos;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingClass;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.util.StringUtils;
+
+import com.gzmpc.spring.boot.autoconfigure.cos.CosClient;
+import com.gzmpc.spring.boot.autoconfigure.cos.CosProperties;
 
 /**
  *
@@ -27,8 +31,6 @@ public class CosAutoConfigure {
 	private CosProperties cosProperties;
 
 	@Bean
-	@Lazy
-	@ConditionalOnMissingBean
 	public CosClient exframeCosClient() {
 		String secretId = cosProperties.getSecret().getId(), secretKey = cosProperties.getSecret().getKey(), cosRegion = cosProperties.getCos().getRegion(),
 				bucketName = cosProperties.getCos().getBucket().getName(),
