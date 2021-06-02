@@ -1,5 +1,6 @@
 package com.gzmpc.portal.jdbc.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -25,7 +26,7 @@ public class RoleDO extends Role {
 	 * 角色编码
 	 */
 	@TableFieldDoc("角色编码")
-	@TableId
+	@TableId( type = IdType.INPUT)
 	private String code;
 	
 	/**

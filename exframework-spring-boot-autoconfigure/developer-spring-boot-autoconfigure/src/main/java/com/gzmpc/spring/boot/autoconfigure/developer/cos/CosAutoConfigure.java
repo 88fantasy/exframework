@@ -9,6 +9,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.context.annotation.Primary;
 import org.springframework.util.StringUtils;
 
 import com.gzmpc.spring.boot.autoconfigure.cos.CosClient;
@@ -30,6 +31,7 @@ public class CosAutoConfigure {
 	@Autowired
 	private CosProperties cosProperties;
 
+	@Primary
 	@Bean
 	public CosClient exframeCosClient() {
 		String secretId = cosProperties.getSecret().getId(), secretKey = cosProperties.getSecret().getKey(), cosRegion = cosProperties.getCos().getRegion(),
