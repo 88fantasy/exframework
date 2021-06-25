@@ -160,7 +160,7 @@ public class Account implements Serializable, DictionaryEnumClass {
 		return new Class[] {AccountStatusTypeEnum.class};
 	}
 
-	@Dictionary( value = "AccountStatus", name = "帐号状态")
+	@Dictionary( value = "accountStatus", name = "帐号状态")
 	public enum AccountStatusTypeEnum implements DictionaryEnum {
 
 		/**

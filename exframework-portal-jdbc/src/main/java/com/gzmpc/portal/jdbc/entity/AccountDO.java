@@ -52,6 +52,7 @@ public class AccountDO extends Account {
 	 */
 	@TableFieldDoc("最近登录日期")
 	@TableField
+	@ColumnType(value = MySqlTypeConstant.DATETIME)
 	private Date lastLoginDate;
 
 	/**

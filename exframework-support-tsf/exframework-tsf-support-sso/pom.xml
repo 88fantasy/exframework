@@ -4,9 +4,9 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>com.gzmpc.exframework</groupId>
+		<groupId>org.exframework</groupId>
 		<artifactId>exframework-support-tsf</artifactId>
-		<version>0.6.2</version>
+		<version>0.7</version>
 	</parent>
 	<artifactId>exframework-tsf-support-sso</artifactId>
 	<packaging>jar</packaging>
@@ -67,20 +67,6 @@
 			</properties>
 		</profile>
 	</profiles>
-
-	<repositories>
-		<repository>
-			<id>gzmpc-public</id>
-			<name>gzmpc public maven</name>
-			<url>http://maven.gzmpc.com/repository/maven-public/</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-		</repository>
-	</repositories>
 
 	<dependencies>
 

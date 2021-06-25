@@ -46,7 +46,7 @@ public class ExBaseService<M extends ExBaseMapper<T>, T> extends ServiceImpl<M, 
 		return entityClass;
 	}
 
-	protected Class<T> mapperClass = currentMapperClass();
+	protected Class<M> mapperClass = currentMapperClass();
 
 
 	/**

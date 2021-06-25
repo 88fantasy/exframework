@@ -17,7 +17,7 @@ import com.gzmpc.support.doc.annotation.TableFieldDoc;
  * 
  */
 @TableDoc("角色")
-@TableName( value = "sys_role", excludeProperty = "children")
+@TableName( value = "sys_role", excludeProperty = {"children", "permissionMap"})
 public class RoleDO extends Role {
 
 	private static final long serialVersionUID = 939184434239094313L;
@@ -48,5 +48,5 @@ public class RoleDO extends Role {
 	 */
 	@TableFieldDoc("父角色")
 	@TableField
-	private String  parentKey;
+	private String parentKey;
 }

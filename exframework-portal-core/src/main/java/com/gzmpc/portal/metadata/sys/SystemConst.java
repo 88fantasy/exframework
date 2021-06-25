@@ -11,7 +11,4 @@ public class SystemConst {
 	@Value("${system.admin.user:supervisor}")
 	public String ACCOUNT_ADMIN;
 	
-	@Autowired(required = false)
-	@Value("${system.systable.default:webapp}")
-	public String SYS_TABLE_CONFIG;
 }

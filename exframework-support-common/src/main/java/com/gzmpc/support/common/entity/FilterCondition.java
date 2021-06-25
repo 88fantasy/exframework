@@ -111,7 +111,7 @@ public class FilterCondition {
 	public static FilterConditionDataType defaultType(Object value) {
 		if (value != null) {
 			Class<?> c = value.getClass();
-			if (c.isArray()) {
+			if (c.isArray() || Collection.class.isAssignableFrom(c)) {
 				return FilterConditionDataType.LIST;
 			}
 			switch (c.getName()) {
@@ -121,9 +121,6 @@ public class FilterCondition {
 				return FilterConditionDataType.NUMBER;
 			case "java.lang.Boolean":
 				return FilterConditionDataType.BOOLEAN;
-			case "java.util.List":
-			case "java.util.Collection":
-				return FilterConditionDataType.LIST;
 			case "java.util.Date":
 				return FilterConditionDataType.DATETIME;
 			default:

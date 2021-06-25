@@ -4,9 +4,9 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.gzmpc.exframework</groupId>
+	<groupId>org.exframework</groupId>
 	<artifactId>exframework-root</artifactId>
-	<version>0.6.2</version>
+	<version>0.7</version>
 	<packaging>pom</packaging>
 	<name>exframework </name>
 	<modules>
@@ -16,7 +16,6 @@
 		<module>exframework-portal-web-jdbc</module>
 		<module>exframework-portal-admin</module>
 		<module>exframework-support-job</module>
-		<module>exframework-support-mail</module>
 		<module>exframework-support-utils</module>
 		<module>exframework-support-common</module>
 		<module>exframework-support-sso</module>
@@ -44,6 +43,7 @@
 		<module>exframework-support-doc</module>
 		<module>exframework-spring-boot-autoconfigure</module>
 		<module>exframework-spring-boot-starters</module>
+		<module>exframework-support-alibaba</module>
 	</modules>
 	<build>
 		<pluginManagement>
@@ -51,15 +51,9 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
-					<version>3.6.0</version>
+					<version>3.8.1</version>
 					<configuration>
-						<source>${jdk.version}</source>
-						<target>${jdk.version}</target>
-						<fork>true</fork>
-						<compilerArgs>
-							<arg>-bootclasspath</arg>
-							<arg>${java.home}/lib/rt.jar${path.separator}${java.home}/lib/jce.jar</arg>
-						</compilerArgs>
+						<release>11</release>
 					</configuration>
 				</plugin>
 				<plugin>
@@ -135,205 +129,205 @@
 	</build>
 
 	<repositories>
-		<repository>
-			<id>gzmpc</id>
-			<name>Gzmpc Repository</name>
-			<url>http://maven.gzmpc.com/repository/maven-public/</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-		</repository>
+		<repository>  
+            <id>alimaven</id>  
+            <name>aliyun maven</name>  
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>  
+            <releases>  
+                <enabled>true</enabled>  
+            </releases>  
+            <snapshots>  
+                <enabled>false</enabled>  
+            </snapshots>  
+        </repository>
 	</repositories>
 
 	<pluginRepositories>
 		<pluginRepository>
-			<id>gzmpc</id>
-			<name>Gzmpc Repository</name>
-			<url>http://maven.gzmpc.com/repository/maven-public/</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
+			 <id>alimaven</id>  
+            <name>aliyun maven</name>  
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>  
+            <releases>  
+                <enabled>true</enabled>  
+            </releases>  
+            <snapshots>  
+                <enabled>false</enabled>  
+            </snapshots>  
 		</pluginRepository>
 	</pluginRepositories>
 
 	<distributionManagement>
-		<repository>
+		<!-- <repository>
 			<id>tcloud-releases</id>
 			<url>http://maven.gzmpc.com/repository/maven-releases/</url>
-		</repository>
+		</repository> -->
 	</distributionManagement>
 
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
-				<groupId>com.gzmpc.exframework</groupId>
+				<groupId>org.exframework</groupId>
 				<artifactId>exframework-portal-core</artifactId>
-				<version>0.6.2</version>
+				<version>0.7</version>
 			</dependency>
 			<dependency>
-				<groupId>com.gzmpc.exframework</groupId>
+				<groupId>org.exframework</groupId>
 				<artifactId>exframework-portal-web</artifactId>
-				<version>0.6.2</version>
+				<version>0.7</version>
 			</dependency>
 			<dependency>
-				<groupId>com.gzmpc.exframework</groupId>
+				<groupId>org.exframework</groupId>
 				<artifactId>exframework-portal-admin</artifactId>
-				<version>0.6.2</version>
+				<version>0.7</version>
 			</dependency>
 			<dependency>
-				<groupId>com.gzmpc.exframework</groupId>
+				<groupId>org.exframework</groupId>
 				<artifactId>exframework-portal-jdbc</artifactId>
-				<version>0.6.2</version>
+				<version>0.7</version>
 			</dependency>
 			<dependency>
-				<groupId>com.gzmpc.exframework</groupId>
+				<groupId>org.exframework</groupId>
 				<artifactId>exframework-portal-web-jdbc</artifactId>
-				<version>0.6.2</version>
+				<version>0.7</version>
 			</dependency>
 			<dependency>
-				<groupId>com.gzmpc.exframework</groupId>
+				<groupId>org.exframework</groupId>
 				<artifactId>exframework-support-common</artifactId>
-				<version>0.6.2</version>
+				<version>0.7</version>
 			</dependency>
 			<dependency>
-				<groupId>com.gzmpc.exframework</groupId>
+				<groupId>org.exframework</groupId>
 				<artifactId>exframework-support-jdbc</artifactId>
-				<version>0.6.2</version>
+				<version>0.7</version>
 			</dependency>
 			<dependency>
-				<groupId>com.gzmpc.exframework</groupId>
+				<groupId>org.exframework</groupId>
 				<artifactId>exframework-support-utils</artifactId>
-				<version>0.6.2</version>
+				<version>0.7</version>
 			</dependency>
 			<dependency>
-				<groupId>com.gzmpc.exframework</groupId>
+				<groupId>org.exframework</groupId>
 				<artifactId>exframework-support-job</artifactId>
-				<version>0.6.2</version>
+				<version>0.7</version>
 			</dependency>
 
 			<dependency>
-				<groupId>com.gzmpc.exframework</groupId>
+				<groupId>org.exframework</groupId>
 				<artifactId>exframework-support-rest</artifactId>
-				<version>0.6.2</version>
+				<version>0.7</version>
 			</dependency>
 			<dependency>
-				<groupId>com.gzmpc.exframework</groupId>
+				<groupId>org.exframework</groupId>
 				<artifactId>exframework-support-jersey</artifactId>
-				<version>0.6.2</version>
+				<version>0.7</version>
 			</dependency>
 			<dependency>
-				<groupId>com.gzmpc.exframework</groupId>
+				<groupId>org.exframework</groupId>
 				<artifactId>exframework-support-soap</artifactId>
-				<version>0.6.2</version>
+				<version>0.7</version>
 			</dependency>
 
 
 			<dependency>
-				<groupId>com.gzmpc.exframework</groupId>
+				<groupId>org.exframework</groupId>
 				<artifactId>exframework-support-monitor</artifactId>
-				<version>0.6.2</version>
+				<version>0.7</version>
 			</dependency>
 			<dependency>
-				<groupId>com.gzmpc.exframework</groupId>
+				<groupId>org.exframework</groupId>
 				<artifactId>exframework-support-monitor-rest</artifactId>
-				<version>0.6.2</version>
+				<version>0.7</version>
 			</dependency>
 			<dependency>
-				<groupId>com.gzmpc.exframework</groupId>
+				<groupId>org.exframework</groupId>
 				<artifactId>exframework-support-monitor-job</artifactId>
-				<version>0.6.2</version>
+				<version>0.7</version>
 			</dependency>
 			<dependency>
-				<groupId>com.gzmpc.exframework</groupId>
+				<groupId>org.exframework</groupId>
 				<artifactId>exframework-support-druid-monitor</artifactId>
-				<version>0.6.2</version>
+				<version>0.7</version>
 			</dependency>
 			<dependency>
-				<groupId>com.gzmpc.exframework</groupId>
+				<groupId>org.exframework</groupId>
 				<artifactId>exframework-support-dubbo</artifactId>
-				<version>0.6.2</version>
+				<version>0.7</version>
 			</dependency>
 			<dependency>
-				<groupId>com.gzmpc.exframework</groupId>
+				<groupId>org.exframework</groupId>
 				<artifactId>exframework-support-jdbc-mysql</artifactId>
-				<version>0.6.2</version>
+				<version>0.7</version>
 			</dependency>
 			<dependency>
-				<groupId>com.gzmpc.exframework</groupId>
+				<groupId>org.exframework</groupId>
 				<artifactId>exframework-support-jdbc-oracle</artifactId>
-				<version>0.6.2</version>
+				<version>0.7</version>
 			</dependency>
 			<dependency>
-				<groupId>com.gzmpc.exframework</groupId>
+				<groupId>org.exframework</groupId>
 				<artifactId>exframework-support-redis</artifactId>
-				<version>0.6.2</version>
+				<version>0.7</version>
 			</dependency>
 			<dependency>
-				<groupId>com.gzmpc.exframework</groupId>
+				<groupId>org.exframework</groupId>
 				<artifactId>exframework-support-elasticsearch</artifactId>
-				<version>0.6.2</version>
+				<version>0.7</version>
 			</dependency>
 			<dependency>
-				<groupId>com.gzmpc.exframework</groupId>
+				<groupId>org.exframework</groupId>
 				<artifactId>exframework-support-print</artifactId>
-				<version>0.6.2</version>
+				<version>0.7</version>
 			</dependency>
 			<dependency>
-				<groupId>com.gzmpc.exframework</groupId>
+				<groupId>org.exframework</groupId>
 				<artifactId>exframework-support-mongo</artifactId>
-				<version>0.6.2</version>
+				<version>0.7</version>
 			</dependency>
 			<dependency>
-				<groupId>com.gzmpc.exframework</groupId>
+				<groupId>org.exframework</groupId>
 				<artifactId>exframework-support-tsf</artifactId>
-				<version>0.6.2</version>
+				<version>0.7</version>
 			</dependency>
 
 			<dependency>
-				<groupId>com.gzmpc.exframework</groupId>
+				<groupId>org.exframework</groupId>
 				<artifactId>exframework-support-wechat</artifactId>
-				<version>0.6.2</version>
+				<version>0.7</version>
 			</dependency>
 			<dependency>
-				<groupId>com.gzmpc.exframework</groupId>
+				<groupId>org.exframework</groupId>
 				<artifactId>exframework-support-cos</artifactId>
-				<version>0.6.2</version>
+				<version>0.7</version>
 			</dependency>
 			<dependency>
-				<groupId>com.gzmpc.exframework</groupId>
+				<groupId>org.exframework</groupId>
 				<artifactId>cos-spring-boot-autoconfigure</artifactId>
-				<version>0.6.2</version>
+				<version>0.7</version>
 			</dependency>
 			<dependency>
-				<groupId>com.gzmpc.exframework</groupId>
+				<groupId>org.exframework</groupId>
 				<artifactId>cos-spring-boot-starter</artifactId>
-				<version>0.6.2</version>
+				<version>0.7</version>
 			</dependency>
 			<dependency>
-				<groupId>com.gzmpc.exframework</groupId>
+				<groupId>org.exframework</groupId>
 				<artifactId>developer-spring-boot-autoconfigure</artifactId>
-				<version>0.6.2</version>
+				<version>0.7</version>
 			</dependency>
 			<dependency>
-				<groupId>com.gzmpc.exframework</groupId>
+				<groupId>org.exframework</groupId>
 				<artifactId>developer-spring-boot-starter</artifactId>
-				<version>0.6.2</version>
+				<version>0.7</version>
 			</dependency>
 			<dependency>
-				<groupId>com.gzmpc.exframework</groupId>
+				<groupId>org.exframework</groupId>
 				<artifactId>exframework-support-tdmq</artifactId>
-				<version>0.6.2</version>
+				<version>0.7</version>
 			</dependency>
 			<dependency>
-				<groupId>com.gzmpc.exframework</groupId>
+				<groupId>org.exframework</groupId>
 				<artifactId>exframework-support-doc</artifactId>
-				<version>0.6.2</version>
+				<version>0.7</version>
 			</dependency>
 
 			<dependency>
@@ -446,13 +440,10 @@
 	</dependencies>
 
 	<properties>
-		<jdk.version>1.8</jdk.version>
-		<exframework.version>0.6.2</exframework.version>
-		<springboot.version>2.4.3</springboot.version>
+		<springboot.version>2.4.8</springboot.version>
 		<!--指定Maven用什么编码来读取源码及文档 -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<aspect.version>1.9.6</aspect.version>
-		<druid.version>1.2.5</druid.version>
-		<slf4j.version>1.7.30</slf4j.version>
+		<slf4j.version>1.7.31</slf4j.version>
 	</properties>
 </project>

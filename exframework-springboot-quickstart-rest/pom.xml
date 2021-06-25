@@ -5,9 +5,9 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>com.gzmpc.exframework</groupId>
+		<groupId>org.exframework</groupId>
 		<artifactId>exframework-root</artifactId>
-		<version>0.6.2</version>
+		<version>0.7</version>
 	</parent>
 	<artifactId>exframework-springboot-quickstart-rest</artifactId>
 	<name>exframework-springboot-quickstart-rest</name>
@@ -89,7 +89,7 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>com.gzmpc.exframework</groupId>
+			<groupId>org.exframework</groupId>
 			<artifactId>exframework-support-jersey</artifactId>
 		</dependency>
 		

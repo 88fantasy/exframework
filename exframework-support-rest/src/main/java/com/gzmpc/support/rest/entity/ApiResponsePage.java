@@ -67,4 +67,9 @@ public class ApiResponsePage<T> extends ApiResponse {
 	public static final <E> ApiResponsePage<E> notFound(String message) {
 		return new ApiResponsePage<E>(ResultCode.NOT_FOUND, message, null);
 	}
+	
+	@SuppressWarnings("unchecked")
+	public static final <E> ApiResponsePage<E> empltyPage() {
+		return (ApiResponsePage<E>)EMPTY;
+	}
 }

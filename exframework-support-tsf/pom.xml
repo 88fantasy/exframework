@@ -4,9 +4,9 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>com.gzmpc.exframework</groupId>
+		<groupId>org.exframework</groupId>
 		<artifactId>exframework-root</artifactId>
-		<version>0.6.2</version>
+		<version>0.7</version>
 	</parent>
 	<artifactId>exframework-support-tsf</artifactId>
 	<packaging>pom</packaging>
@@ -26,6 +26,14 @@
 		<finalName>exframework-support-tsf</finalName>
 	</build>
 
+	<repositories>
+		<repository>
+			<id>nexus-tencentyun</id>
+			<name>Nexus tencentyun</name>
+			<url>http://mirrors.cloud.tencent.com/nexus/repository/maven-public/</url>
+		</repository>
+	</repositories>
+
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -36,34 +44,29 @@
 				<scope>import</scope>
 			</dependency>
 			<dependency>
-				<groupId>com.gzmpc.exframework</groupId>
+				<groupId>org.exframework</groupId>
 				<artifactId>exframework-tsf-support-sso</artifactId>
-				<version>0.6.2</version>
+				<version>0.7</version>
 			</dependency>
 			<dependency>
-				<groupId>com.gzmpc.exframework</groupId>
+				<groupId>org.exframework</groupId>
 				<artifactId>exframework-tsf-support-cos</artifactId>
-				<version>0.6.2</version>
+				<version>0.7</version>
 			</dependency>
 			<dependency>
-				<groupId>com.gzmpc.exframework</groupId>
+				<groupId>org.exframework</groupId>
 				<artifactId>exframework-tsf-support-tdmq</artifactId>
-				<version>0.6.2</version>
+				<version>0.7</version>
 			</dependency>
 			<dependency>
 				<groupId>com.tencent.cloud </groupId>
 				<artifactId>tct-spring-boot-starter </artifactId>
 				<version>1.2.0</version>
 			</dependency>
-			<dependency>
-				<groupId>com.gzmpc.microservice</groupId>
-				<artifactId>microservice-config-core</artifactId>
-				<version>1.4.1</version>
-			</dependency>
 
 			<!-- 根据 tsf 调整 -->
 			<dependency>
-				<groupId>com.gzmpc.exframework</groupId>
+				<groupId>org.exframework</groupId>
 				<artifactId>exframework-support-mongo</artifactId>
 				<version>0.5.2.1</version>
 			</dependency>
@@ -78,7 +81,7 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>com.gzmpc.exframework</groupId>
+			<groupId>org.exframework</groupId>
 			<artifactId>exframework-support-rest</artifactId>
 		</dependency>
 

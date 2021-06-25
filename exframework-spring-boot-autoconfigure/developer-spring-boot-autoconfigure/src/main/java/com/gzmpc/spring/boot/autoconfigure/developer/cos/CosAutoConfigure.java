@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Primary;
 import org.springframework.util.StringUtils;
 
-import com.gzmpc.spring.boot.autoconfigure.cos.CosClient;
+import com.gzmpc.spring.boot.autoconfigure.cos.DefaultCosClient;
 import com.gzmpc.spring.boot.autoconfigure.cos.CosProperties;
 
 /**
@@ -33,7 +33,7 @@ public class CosAutoConfigure {
 
 	@Primary
 	@Bean
-	public CosClient exframeCosClient() {
+	public DefaultCosClient exframeCosClient() {
 		String secretId = cosProperties.getSecret().getId(), secretKey = cosProperties.getSecret().getKey(), cosRegion = cosProperties.getCos().getRegion(),
 				bucketName = cosProperties.getCos().getBucket().getName(),
 				path = cosProperties.getCos().getBucket().getPath();
@@ -57,7 +57,7 @@ public class CosAutoConfigure {
 		}
 		if (StringUtils.hasLength(secretId) && StringUtils.hasLength(secretKey) && StringUtils.hasLength(cosRegion)
 				&& StringUtils.hasLength(bucketName) && StringUtils.hasLength(path)) {
-			return CosClient.init(secretId, secretKey, cosRegion, bucketName, path);
+			return DefaultCosClient.init(secretId, secretKey, cosRegion, bucketName, path);
 		} else {
 			log.error("cosClient 配置失败");
 			return null;

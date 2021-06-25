@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import org.springframework.lang.Nullable;
 
+import com.gzmpc.portal.metadata.sys.Account;
 import com.gzmpc.portal.metadata.sys.Role;
 import com.gzmpc.portal.metadata.sys.RoleBaseAccount;
 
@@ -24,5 +25,15 @@ public interface RoleDao extends MetaDao<Role> {
 	 */
 	@Nullable
 	Collection<Role> findByAccount(RoleBaseAccount account);
+	
+	/**
+	 * 获取角色关联的帐号
+	 * @param account
+	 * @return
+	 */
+	@Nullable
+	Collection<Account> findAccountByRole(Role role);
+	
+	
 	
 }

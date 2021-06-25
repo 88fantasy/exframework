@@ -4,9 +4,9 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>com.gzmpc.exframework</groupId>
+		<groupId>org.exframework</groupId>
 		<artifactId>exframework-support-tsf</artifactId>
-		<version>0.6.2</version>
+		<version>0.7</version>
 	</parent>
 	<artifactId>exframework-tsf-microservice-quickstart</artifactId>
 	<name>exframework-tsf-microservice-quickstart</name>
@@ -25,32 +25,8 @@
 		</plugins>
 	</build>
 
-	<repositories>
-		<repository>
-			<id>gzmpc-public</id>
-			<name>gzmpc public maven</name>
-			<url>http://maven.gzmpc.com/repository/maven-public/</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-			<releases>
-			</releases>
-		</repository>
-	</repositories>
-
 	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>com.gzmpc.microservice</groupId>
-				<artifactId>microservice-core</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.gzmpc.microservice</groupId>
-				<artifactId>microservice-provider</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-		</dependencies>
+	
 	</dependencyManagement>
 
 	<dependencies>

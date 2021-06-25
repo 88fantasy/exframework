@@ -2,10 +2,12 @@ package com.gzmpc.support.jdbc.mapper;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.ibatis.annotations.Param;
 
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
@@ -31,7 +33,7 @@ import com.gzmpc.support.common.util.StringUtils;
 public interface ExBaseMapper<T> extends BaseMapper<T> {
 
 	default QueryWrapper<T> wrapperFromCondition(Collection<FilterCondition> conditions) {
-		return wrapperFromConditionAndSort(conditions, Arrays.asList());
+		return wrapperFromConditionAndSort(conditions, Collections.emptyList());
 	}
 	
 	default QueryWrapper<T> wrapperFromConditionAndSort(Collection<FilterCondition> conditions, Collection<String> sorts) {
@@ -118,10 +120,21 @@ public interface ExBaseMapper<T> extends BaseMapper<T> {
 						Object fv = fc.getFilterValue();
 						if ( Collection.class.isAssignableFrom(fv.getClass())) {
 							Collection<?> value = (Collection<?>) fv;
-							wrapper.in(key, value);
+							if(value.size() > 0) {
+								wrapper.in(key, value);
+							}
+							else {
+								emptyWapper(wrapper);
+							}
 						}
-						else {
-							wrapper.in(key, Arrays.asList(fv));
+						else if(fv.getClass().isArray()){
+							Object[] value = (Object[]) fv;
+							if(value.length > 0) {
+								wrapper.in(key, Arrays.asList(value));
+							}
+							else {
+								emptyWapper(wrapper);
+							}
 						}
 						break;
 					default:
@@ -135,10 +148,21 @@ public interface ExBaseMapper<T> extends BaseMapper<T> {
 						Object fv = fc.getFilterValue();
 						if ( Collection.class.isAssignableFrom(fv.getClass())) {
 							Collection<?> value = (Collection<?>) fv;
-							wrapper.notIn(key, value);
+							if(value.size() > 0 ) {
+								wrapper.notIn(key, value);
+							}
+							else {
+								emptyWapper(wrapper);
+							}
 						}
-						else {
-							wrapper.notIn(key, Arrays.asList(fv));
+						else if(fv.getClass().isArray()){
+							Object[] value = (Object[]) fv;
+							if(value.length > 0) {
+								wrapper.notIn(key, Arrays.asList(value));
+							}
+							else {
+								emptyWapper(wrapper);
+							}
 						}
 						break;
 					default:
@@ -239,27 +263,27 @@ public interface ExBaseMapper<T> extends BaseMapper<T> {
 
 	default <E> PageModel<E> query(FilterCondition[] params, com.gzmpc.support.common.entity.Page page,
 			Class<E> clazz) {
-		return query(Arrays.asList(params), page, Arrays.asList(),  getTranslator(clazz), clazz);
+		return query(!ArrayUtils.isEmpty(params) ? Arrays.asList(params): Collections.emptyList(), page, Collections.emptyList(),  getTranslator(clazz), clazz);
 	}
 	
 	default <E> PageModel<E> query(FilterCondition[] params, com.gzmpc.support.common.entity.Page page, String[] sorts,
 			Class<E> clazz) {
-		return query(Arrays.asList(params), page, Arrays.asList(sorts),  getTranslator(clazz), clazz);
+		return query(!ArrayUtils.isEmpty(params) ? Arrays.asList(params): Collections.emptyList(), page, !ArrayUtils.isEmpty(sorts) ? Arrays.asList(sorts): Collections.emptyList(),  getTranslator(clazz), clazz);
 	}
 	
 	default <E> PageModel<E> query(FilterCondition[] params, com.gzmpc.support.common.entity.Page page,
 			Function<T,E> translator, Class<E> clazz) {
-		return query(Arrays.asList(params), page, Arrays.asList(), translator, clazz);
+		return query(!ArrayUtils.isEmpty(params) ? Arrays.asList(params): Collections.emptyList(), page, Collections.emptyList(), translator, clazz);
 	}
 	
 	default <E> PageModel<E> query(FilterCondition[] params, com.gzmpc.support.common.entity.Page page, String[] sorts,
 			Function<T,E> translator, Class<E> clazz) {
-		return query(Arrays.asList(params), page, Arrays.asList(sorts), translator, clazz);
+		return query(!ArrayUtils.isEmpty(params) ? Arrays.asList(params): Collections.emptyList(), page, !ArrayUtils.isEmpty(sorts) ? Arrays.asList(sorts): Collections.emptyList(), translator, clazz);
 	}
 	
 	default <E> PageModel<E> query(Collection<FilterCondition> params, com.gzmpc.support.common.entity.Page page,
 			Class<E> clazz) {
-		return query(params, page, Arrays.asList(), getTranslator(clazz), clazz);
+		return query(params, page, Collections.emptyList(), getTranslator(clazz), clazz);
 	}
 	
 	default <E> PageModel<E> query(Collection<FilterCondition> params, com.gzmpc.support.common.entity.Page page,
@@ -288,7 +312,7 @@ public interface ExBaseMapper<T> extends BaseMapper<T> {
 	}
 	
 	default <E> List<E> list(Collection<FilterCondition> params, Class<E> clazz) {
-		return list(params, Arrays.asList(), getTranslator(clazz), clazz);
+		return list(params, Collections.emptyList(), getTranslator(clazz), clazz);
 	}
 
 	default <E> List<E> list(Collection<FilterCondition> params, Collection<String> sorts, Class<E> clazz) {
@@ -306,5 +330,9 @@ public interface ExBaseMapper<T> extends BaseMapper<T> {
 	
 	default <E> Function<T,E> getTranslator(Class<E> clazz) {
 		return entity -> BeanUtils.copyTo(entity, clazz);
+	}
+	
+	default QueryWrapper<T> emptyWapper(QueryWrapper<T> wapper) {
+		return wapper.apply(" 1 = 2 ");
 	}
 }

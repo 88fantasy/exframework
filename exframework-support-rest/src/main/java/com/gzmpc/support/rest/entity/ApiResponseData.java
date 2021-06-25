@@ -50,7 +50,7 @@ public class ApiResponseData<T> extends ApiResponse {
 	}
 	
 	public T getDataOrElse(T d) {
-		return data == null ? d : data ;
+		return data == null || !isStatus() ? d : data ;
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -65,5 +65,10 @@ public class ApiResponseData<T> extends ApiResponse {
 	
 	public static final <E> ApiResponseData<E> notFound(String message) {
 		return new ApiResponseData<E>(ResultCode.NOT_FOUND, message, null);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public static final <E> ApiResponseData<E> empltyData() {
+		return (ApiResponseData<E>)EMPTY;
 	}
 }

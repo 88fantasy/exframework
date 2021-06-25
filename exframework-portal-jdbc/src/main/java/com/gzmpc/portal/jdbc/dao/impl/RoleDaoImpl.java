@@ -12,10 +12,13 @@ import org.springframework.stereotype.Repository;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.gzmpc.portal.dao.RoleDao;
+import com.gzmpc.portal.metadata.sys.Account;
 import com.gzmpc.portal.metadata.sys.Permission;
 import com.gzmpc.portal.metadata.sys.Role;
 import com.gzmpc.portal.metadata.sys.RoleBaseAccount;
+import com.gzmpc.portal.service.sys.AccountService;
 import com.gzmpc.portal.service.sys.PermissionService;
 import com.gzmpc.portal.jdbc.entity.AccountRoleDO;
 import com.gzmpc.portal.jdbc.entity.RoleDO;
@@ -48,6 +51,8 @@ public class RoleDaoImpl extends MetaDaoImpl<RoleDO,Role> implements RoleDao {
 	PermissionService permissionService;
 	
 
+	@Autowired
+	AccountService accountService;
 
 	@Override
 	public Collection<String> allKeys() {
@@ -81,13 +86,21 @@ public class RoleDaoImpl extends MetaDaoImpl<RoleDO,Role> implements RoleDao {
 	@Override
 	public Collection<Role> findByAccount(RoleBaseAccount account) {
 		List<Role> roles = new ArrayList<Role>();
-		List<AccountRoleDO> relates = accountRoleMapper.selectList(new QueryWrapper<AccountRoleDO>().eq("role", account.getAccount()));
+		List<AccountRoleDO> relates = accountRoleMapper.selectList(Wrappers.<AccountRoleDO>lambdaQuery().eq(AccountRoleDO::getAccount, account.getAccount()));
 		for(AccountRoleDO ar : relates) {
 			String roleKey = ar.getRole();
 			Role role = findByKey(roleKey);
 			roles.add(role);
 		}
 		return roles;
+	}
+	
+
+
+	@Override
+	public Collection<Account> findAccountByRole(Role role) {
+		List<AccountRoleDO> accounts = accountRoleMapper.selectList(Wrappers.<AccountRoleDO>lambdaQuery().eq(AccountRoleDO::getRole, role.getCode()));
+		return accounts.stream().map(account -> accountService.getAccount(account.getAccount())).collect(Collectors.toList());
 	}
 
 	/**
@@ -96,9 +109,9 @@ public class RoleDaoImpl extends MetaDaoImpl<RoleDO,Role> implements RoleDao {
 	 * @return
 	 */
 	private Role getByKey(String key){
-		RoleDO entity = roleMapper.selectOne(new QueryWrapper<RoleDO>().eq("key", key));
+		RoleDO entity = roleMapper.selectOne(Wrappers.<RoleDO>lambdaQuery().eq(RoleDO::getCode, key));
 		if(entity != null) {
-			List<String> permissionKeys = rolePermissionMapper.selectList(new QueryWrapper<RolePermissionDO>().eq("role", entity.getCode()))
+			List<String> permissionKeys = rolePermissionMapper.selectList(Wrappers.<RolePermissionDO>lambdaQuery().eq(RolePermissionDO::getRole, entity.getCode()))
 					.stream().map(RolePermissionDO::getPermission).collect(Collectors.toList());;
 			Map<String,Permission> permissionMap = new ConcurrentHashMap<String,Permission>();
 			for(String permission : permissionKeys) {

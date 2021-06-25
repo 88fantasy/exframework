@@ -27,9 +27,12 @@ public class RoleService {
 	@Autowired
 	PermissionService permissionService;
 
-	private Map<String, Role> allRoles = new ConcurrentHashMap<String, Role>();
-
 	public Map<String, Role> getAllRoles() {
+		Map<String, Role> allRoles = new ConcurrentHashMap<String, Role>();
+		Collection<Role> roles = roleDao.all();
+		for(Role role : roles) {
+			allRoles.put(role.getCode(), role);
+		}
 		return allRoles;
 	}
 	
