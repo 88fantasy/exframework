@@ -14,9 +14,6 @@
 
 	<modules>
 		<module>exframework-tsf-gateway-native-quickstart</module>
-		<module>exframework-tsf-consumer-quickstart</module>
-		<module>exframework-tsf-provider-quickstart</module>
-		<module>exframework-tsf-support-sso</module>
 		<module>exframework-tsf-microservice-quickstart</module>
 		<module>exframework-tsf-support-tdmq</module>
 		<module>exframework-tsf-gateway-quickstart</module>

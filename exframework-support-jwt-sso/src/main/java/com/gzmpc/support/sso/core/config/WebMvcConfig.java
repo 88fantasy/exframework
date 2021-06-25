@@ -1,4 +1,4 @@
-package com.gzmpc.support.sso.core.config;
+package org.exframework.support.sso.core.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;

@@ -1,4 +1,4 @@
-package com.gzmpc.support.sso.core.dto;
+package org.exframework.support.sso.core.dto;
 
 
 import java.io.Serializable;

@@ -1,10 +1,10 @@
-package com.gzmpc.support.sso.core.utils;
+package org.exframework.support.sso.core.utils;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 
-import com.gzmpc.support.sso.core.constant.SecurityConstants;
+import org.exframework.support.sso.core.constant.SecurityConstants;
 import org.apache.http.config.Registry;
 import org.apache.http.config.RegistryBuilder;
 import org.apache.http.conn.socket.ConnectionSocketFactory;

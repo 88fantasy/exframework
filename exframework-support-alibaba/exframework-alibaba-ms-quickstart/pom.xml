@@ -18,6 +18,20 @@
 			</plugin>
 		</plugins>
 	</build>
+	
+	<repositories>
+		<repository>
+			<id>ali-releases</id>
+			<url>https://packages.aliyun.com/maven/repository/2000957-release-5hAP6n/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+	
 
 	<dependencyManagement>
 		<dependencies>

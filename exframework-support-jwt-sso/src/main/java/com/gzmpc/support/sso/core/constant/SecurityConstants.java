@@ -1,4 +1,4 @@
-package com.gzmpc.support.sso.core.constant;
+package org.exframework.support.sso.core.constant;
 
 /**
  * Security 权限常量

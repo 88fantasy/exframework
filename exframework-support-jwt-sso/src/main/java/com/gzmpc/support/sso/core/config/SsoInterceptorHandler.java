@@ -1,7 +1,7 @@
-package com.gzmpc.support.sso.core.config;
+package org.exframework.support.sso.core.config;
 
-import com.gzmpc.support.sso.core.constant.SecurityConstants;
-import com.gzmpc.support.sso.core.service.LoginUserService;
+import org.exframework.support.sso.core.constant.SecurityConstants;
+import org.exframework.support.sso.core.service.LoginUserService;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.stereotype.Component;
 import org.springframework.util.AntPathMatcher;

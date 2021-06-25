@@ -1,7 +1,7 @@
-package com.gzmpc.support.sso.core.config;
+package org.exframework.support.sso.core.config;
 
 
-import com.gzmpc.support.sso.core.service.LoginUserService;
+import org.exframework.support.sso.core.service.LoginUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;

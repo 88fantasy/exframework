@@ -5,8 +5,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
 
-@SpringBootApplication(scanBasePackages = { "com.gzmpc.*" })
-@EnableFeignClients(basePackages = { "com.gzmpc.*" }) // 使用Feign微服务调用时请启用
+@SpringBootApplication(scanBasePackages = { "org.exframework.*" })
+@EnableFeignClients(basePackages = { "org.exframework.*" }) // 使用Feign微服务调用时请启用
 /**
  * 微服务 启动类
  * 

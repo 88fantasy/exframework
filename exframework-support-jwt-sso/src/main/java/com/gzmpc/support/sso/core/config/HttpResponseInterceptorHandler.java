@@ -1,6 +1,6 @@
-package com.gzmpc.support.sso.core.config;
+package org.exframework.support.sso.core.config;
 
-import com.gzmpc.support.sso.core.constant.SecurityConstants;
+import org.exframework.support.sso.core.constant.SecurityConstants;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;

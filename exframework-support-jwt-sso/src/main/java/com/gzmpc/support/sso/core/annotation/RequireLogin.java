@@ -1,4 +1,4 @@
-package com.gzmpc.support.sso.core.annotation;
+package org.exframework.support.sso.core.annotation;
 
 import java.lang.annotation.*;
 

@@ -16,13 +16,10 @@
 		<module>exframework-portal-web-jdbc</module>
 		<module>exframework-portal-admin</module>
 		<module>exframework-support-job</module>
-		<module>exframework-support-utils</module>
 		<module>exframework-support-common</module>
-		<module>exframework-support-sso</module>
 		<module>exframework-support-rest</module>
 		<module>exframework-support-jersey</module>
 		<module>exframework-support-soap</module>
-		<module>exframework-support-log</module>
 		<module>exframework-support-monitor</module>
 		<module>exframework-support-monitor-rest</module>
 		<module>exframework-support-monitor-web</module>
@@ -33,17 +30,16 @@
 		<module>exframework-support-jdbc-mysql</module>
 		<module>exframework-support-cos</module>
 		<module>exframework-support-tdmq</module>
-		<module>exframework-springboot-quickstart</module>
-		<module>exframework-springboot-quickstart-rest</module>
 		<module>exframework-support-mongo</module>
 		<module>exframework-support-tsf</module>
 		<module>exframework-support-wechat</module>
-		<module>exframework-backend-quickstart</module>
 		<module>exframework-support-elasticsearch</module>
 		<module>exframework-support-doc</module>
 		<module>exframework-spring-boot-autoconfigure</module>
 		<module>exframework-spring-boot-starters</module>
 		<module>exframework-support-alibaba</module>
+		<module>exframework-springboot-quickstart-rest</module>
+		<module>exframework-backend-quickstart</module>
 	</modules>
 	<build>
 		<pluginManagement>
@@ -129,38 +125,38 @@
 	</build>
 
 	<repositories>
-		<repository>  
-            <id>alimaven</id>  
-            <name>aliyun maven</name>  
-            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>  
-            <releases>  
-                <enabled>true</enabled>  
-            </releases>  
-            <snapshots>  
-                <enabled>false</enabled>  
-            </snapshots>  
-        </repository>
+		<repository>
+			<id>alimaven</id>
+			<name>aliyun maven</name>
+			<url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
 	</repositories>
 
 	<pluginRepositories>
 		<pluginRepository>
-			 <id>alimaven</id>  
-            <name>aliyun maven</name>  
-            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>  
-            <releases>  
-                <enabled>true</enabled>  
-            </releases>  
-            <snapshots>  
-                <enabled>false</enabled>  
-            </snapshots>  
+			<id>alimaven</id>
+			<name>aliyun maven</name>
+			<url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
 		</pluginRepository>
 	</pluginRepositories>
 
 	<distributionManagement>
-		<!-- <repository>
-			<id>tcloud-releases</id>
-			<url>http://maven.gzmpc.com/repository/maven-releases/</url>
-		</repository> -->
+		<repository>
+			<id>ali-releases</id>
+			<url>https://packages.aliyun.com/maven/repository/2000957-release-5hAP6n/</url>
+		</repository>
 	</distributionManagement>
 
 	<dependencyManagement>

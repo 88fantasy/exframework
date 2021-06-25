@@ -1,10 +1,10 @@
-package com.gzmpc.support.sso.core.service;
+package org.exframework.support.sso.core.service;
 
 
 import com.alibaba.fastjson.JSONObject;
 
-import com.gzmpc.support.sso.core.dto.LoginUserDto;
-import com.gzmpc.support.sso.core.utils.HttpClientUtils;
+import org.exframework.support.sso.core.dto.LoginUserDto;
+import org.exframework.support.sso.core.utils.HttpClientUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 

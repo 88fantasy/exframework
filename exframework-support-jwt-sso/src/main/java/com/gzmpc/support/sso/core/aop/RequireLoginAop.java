@@ -1,7 +1,7 @@
-package com.gzmpc.support.sso.core.aop;
+package org.exframework.support.sso.core.aop;
 
 
-import com.gzmpc.support.sso.core.service.LoginUserService;
+import org.exframework.support.sso.core.service.LoginUserService;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -37,7 +37,7 @@ public class RequireLoginAop {
     private String loginSuccessUrl;
 
 
-    @Pointcut("@annotation(com.gzmpc.support.sso.core.annotation.RequireLogin)")
+    @Pointcut("@annotation(org.exframework.support.sso.core.annotation.RequireLogin)")
     public void pointCut() {
     }
 
