@@ -33,10 +33,6 @@
 	
 	<dependencies>
 		<dependency>
-			<groupId>org.exframework</groupId>
-			<artifactId>exframework-support-rest</artifactId>
-		</dependency>
-		<dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>

@@ -36,11 +36,15 @@
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 		</dependency>
-		
-        <dependency>
+		<dependency>
 		    <groupId>com.gitee.sunchenbin.mybatis.actable</groupId>
 		    <artifactId>mybatis-enhance-actable</artifactId>
-		    <version>1.4.1.RELEASE</version>
+		    <exclusions>
+		    	<exclusion>
+		    		<groupId>com.baomidou</groupId>
+					<artifactId>mybatis-plus-annotation</artifactId>
+		    	</exclusion>
+		    </exclusions>
 		</dependency>
 	</dependencies>
 
