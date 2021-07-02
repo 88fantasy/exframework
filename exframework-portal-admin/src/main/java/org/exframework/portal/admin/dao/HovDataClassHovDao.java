@@ -19,7 +19,7 @@ import org.exframework.support.common.entity.Pager;
 
 /**
  *	参照实现类 Hov
- * Author: rwe Date: 2021年3月18日
+ * @author rwe Date: 2021年3月18日
  *
  * Copyright @ 2021
  * 

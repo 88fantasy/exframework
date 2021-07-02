@@ -10,8 +10,8 @@ import org.exframework.support.rest.enums.ResultCode;
 
 /**
  *
- * Author: rwe
- * Date: Nov 29, 2020
+ * @author rwe
+ * @since Nov 29, 2020
  *
  * Copyright @ 2020 
  * 接口错误处理

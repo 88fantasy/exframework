@@ -5,8 +5,8 @@ import org.exframework.portal.metadata.hov.IHovDao;
 
 /**
  *	数据项参照实现
- * Author: rwe
- * Date: Jan 13, 2021
+ * @author rwe
+ * @since Jan 13, 2021
  *
  * Copyright @ 2021 
  * 

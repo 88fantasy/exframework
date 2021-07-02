@@ -29,8 +29,8 @@ import org.exframework.portal.jdbc.mapper.RolePermissionMapper;
 
 /**
  * 角色数据类
- * Author: rwe
- * Date: Dec 29, 2020
+ * @author rwe
+ * @since Dec 29, 2020
  *
  * Copyright @ 2020 
  * 

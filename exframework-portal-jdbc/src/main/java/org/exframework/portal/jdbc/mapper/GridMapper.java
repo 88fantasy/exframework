@@ -5,8 +5,8 @@ import org.exframework.portal.jdbc.entity.GridDO;
 
 /**
  * 表格映射类
- * Author: rwe
- * Date: Dec 30, 2020
+ * @author rwe
+ * @since Dec 30, 2020
  *
  * Copyright @ 2020 
  * 

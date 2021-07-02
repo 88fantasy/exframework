@@ -9,8 +9,8 @@ import org.springframework.core.type.filter.AnnotationTypeFilter;
 
 /**
  *
- * Author: rwe
- * Date: Jan 9, 2021
+ * @author rwe
+ * @since Jan 9, 2021
  *
  * Copyright @ 2021 
  * 

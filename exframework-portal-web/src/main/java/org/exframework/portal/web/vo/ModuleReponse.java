@@ -5,8 +5,8 @@ import io.swagger.annotations.ApiModelProperty;
 
 /**
  * 模块信息 VO
- * Author: rwe
- * Date: Jan 13, 2021
+ * @author rwe
+ * @since Jan 13, 2021
  *
  * Copyright @ 2021 
  * 

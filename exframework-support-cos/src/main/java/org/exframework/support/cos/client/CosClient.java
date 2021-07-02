@@ -9,8 +9,8 @@ import com.qcloud.cos.transfer.TransferManager;
 
 /**
  * COS 客户端
- * Author: rwe
- * Date: Jan 1, 2021
+ * @author rwe
+ * @since Jan 1, 2021
  *
  * Copyright @ 2021 
  * 

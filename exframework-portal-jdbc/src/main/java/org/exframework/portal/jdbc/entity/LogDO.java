@@ -12,7 +12,7 @@ import org.exframework.support.doc.annotation.TableFieldDoc;
 
 /**
  * 日志表
- * Author: rwe Date: Jan 19, 2021
+ * @author rwe Date: Jan 19, 2021
  *
  * Copyright @ 2021
  * 

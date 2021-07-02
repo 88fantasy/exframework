@@ -2,7 +2,7 @@ package org.exframework.portal.web.vo;
 
 /**
  * 登录信息 
- * Author: rwe Date: Dec 27, 2020
+ * @author rwe Date: Dec 27, 2020
  *
  * Copyright @ 2020
  * 

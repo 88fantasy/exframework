@@ -12,8 +12,8 @@ import java.lang.annotation.Target;
 @Documented
 /**
  * 绑定字典
- * Author: rwe
- * Date: Jan 2, 2021
+ * @author rwe
+ * @since Jan 2, 2021
  *
  * Copyright @ 2021 
  * 

@@ -5,8 +5,8 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * 数据库配置
- * Author: rwe
- * Date: Dec 30, 2020
+ * @author rwe
+ * @since Dec 30, 2020
  *
  * Copyright @ 2020 
  * 

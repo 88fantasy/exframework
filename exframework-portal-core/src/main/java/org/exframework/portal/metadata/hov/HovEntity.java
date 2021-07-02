@@ -15,8 +15,8 @@ import org.exframework.portal.pub.PageRequest;
 @Target({ TYPE })
 /**
  *
- * Author: rwe
- * Date: Jan 12, 2021
+ * @author rwe
+ * @since Jan 12, 2021
  *
  * Copyright @ 2021 
  * 

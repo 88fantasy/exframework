@@ -5,8 +5,8 @@ import org.exframework.portal.jdbc.entity.QueryParamDO;
 
 /**
  *
- * Author: rwe
- * Date: Dec 31, 2020
+ * @author rwe
+ * @since Dec 31, 2020
  *
  * Copyright @ 2020 
  * 

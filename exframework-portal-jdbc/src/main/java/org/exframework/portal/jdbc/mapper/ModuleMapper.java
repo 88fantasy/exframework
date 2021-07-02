@@ -5,8 +5,8 @@ import org.exframework.support.jdbc.mapper.ExBaseMapper;
 
 /**
  * 功能映射类
- * Author: rwe
- * Date: Dec 29, 2020
+ * @author rwe
+ * @since Dec 29, 2020
  *
  * Copyright @ 2020 
  * 

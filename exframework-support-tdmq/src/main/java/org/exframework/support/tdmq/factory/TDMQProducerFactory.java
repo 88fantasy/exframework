@@ -1,8 +1,8 @@
 package org.exframework.support.tdmq.factory;
 /**
  *
- * Author: rwe
- * Date: Jan 22, 2021
+ * @author rwe
+ * @since Jan 22, 2021
  *
  * Copyright @ 2021 
  * 

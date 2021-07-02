@@ -4,8 +4,8 @@ import com.qcloud.cos.transfer.TransferManager;
 
 /**
  *
- * Author: rwe
- * Date: Jan 1, 2021
+ * @author rwe
+ * @since Jan 1, 2021
  *
  * Copyright @ 2021 
  * 

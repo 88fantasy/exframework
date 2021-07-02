@@ -18,8 +18,8 @@ import org.exframework.portal.jdbc.mapper.HovMapper;
 
 /**
  * 参照数据类
- * Author: rwe
- * Date: Dec 31, 2020
+ * @author rwe
+ * @since Dec 31, 2020
  *
  * Copyright @ 2020 
  * 

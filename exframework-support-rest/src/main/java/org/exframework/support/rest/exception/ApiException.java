@@ -7,7 +7,7 @@ import org.exframework.support.rest.enums.ResultCode;
  *
  * File: ApiException.java 
  *
- * Author: pro   Date: Nov 29, 2020
+ * @author pro   Date: Nov 29, 2020
  *
  * Copyright @ 2020 Corpration Name
  * 400-499 客户端错误

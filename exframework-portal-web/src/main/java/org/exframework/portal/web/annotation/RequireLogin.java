@@ -9,8 +9,8 @@ import java.lang.annotation.Target;
 
 /**
  *
- * Author: rwe
- * Date: Dec 27, 2020
+ * @author rwe
+ * @since Dec 27, 2020
  *
  * Copyright @ 2020 
  * 

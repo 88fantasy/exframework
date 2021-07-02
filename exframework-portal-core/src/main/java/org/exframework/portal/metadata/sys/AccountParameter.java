@@ -6,8 +6,8 @@ import org.exframework.portal.metadata.Meta;
 
 /**
  * 用户参数
- * Author: rwe
- * Date: Dec 28, 2020
+ * @author rwe
+ * @since Dec 28, 2020
  *
  * Copyright @ 2020 
  * 

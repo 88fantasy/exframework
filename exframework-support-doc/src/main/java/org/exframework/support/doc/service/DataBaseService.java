@@ -16,8 +16,8 @@ import org.exframework.support.doc.entity.DataBaseTableSource;
 
 /**
  * 数据库文档
- * Author: rwe
- * Date: 2021年3月10日
+ * @author rwe
+ * @since 2021年3月10日
  *
  * Copyright @ 2021 
  * 

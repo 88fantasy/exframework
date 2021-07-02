@@ -8,8 +8,8 @@ import org.exframework.support.doc.annotation.TableFieldDoc;
 
 /**
  * 数据库类型源
- * Author: rwe
- * Date: 2021年3月10日
+ * @author rwe
+ * @since 2021年3月10日
  *
  * Copyright @ 2021 
  * 

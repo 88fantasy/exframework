@@ -14,8 +14,8 @@ import org.exframework.support.doc.annotation.TableFieldDoc;
 
 /**
  * 参照
- * Author: rwe
- * Date: Dec 31, 2020
+ * @author rwe
+ * @since Dec 31, 2020
  *
  * Copyright @ 2020 
  * 

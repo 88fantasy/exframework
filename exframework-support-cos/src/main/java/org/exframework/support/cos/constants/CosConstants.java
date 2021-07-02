@@ -1,8 +1,8 @@
 package org.exframework.support.cos.constants;
 /**
  *
- * Author: rwe
- * Date: Jan 1, 2021
+ * @author rwe
+ * @since Jan 1, 2021
  *
  * Copyright @ 2021 
  * 

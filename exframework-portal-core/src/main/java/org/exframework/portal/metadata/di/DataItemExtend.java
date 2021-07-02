@@ -4,8 +4,8 @@ import org.exframework.portal.metadata.entity.EntityClass;
 
 /**
  * 扩展数据项
- * Author: rwe
- * Date: Jan 11, 2021
+ * @author rwe
+ * @since Jan 11, 2021
  *
  * Copyright @ 2021 
  * 

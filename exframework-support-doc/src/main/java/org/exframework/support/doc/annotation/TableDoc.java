@@ -14,8 +14,8 @@ import java.lang.annotation.Target;
 @Target({ TYPE, ANNOTATION_TYPE })
 /**
  * 表相关 文档注解
- * Author: rwe
- * Date: 2021年3月10日
+ * @author rwe
+ * @since 2021年3月10日
  *
  * Copyright @ 2021 
  * 

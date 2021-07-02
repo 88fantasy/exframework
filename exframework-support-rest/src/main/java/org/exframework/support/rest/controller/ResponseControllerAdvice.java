@@ -16,8 +16,8 @@ import org.exframework.support.rest.exception.ApiException;
 
 /**
  *
- * Author: rwe
- * Date: Nov 29, 2020
+ * @author rwe
+ * @since Nov 29, 2020
  *
  * Copyright @ 2020 
  * 全局封装返回值类

@@ -15,8 +15,8 @@ import org.exframework.support.doc.annotation.TableFieldDoc;
 
 /**
  * 字典实体类
- * Author: rwe
- * Date: Dec 29, 2020
+ * @author rwe
+ * @since Dec 29, 2020
  *
  * Copyright @ 2020 
  * 
@@ -53,7 +53,7 @@ public class DictionaryDO extends DictionaryItem {
 	 */
 	@TableFieldDoc("字典值")
 	@TableField(typeHandler = JacksonTypeHandler.class)
-	@ColumnType(value = MySqlTypeConstant.VARCHAR, length = 2000)
+	@ColumnType(value = MySqlTypeConstant.JSON)
 	private Map<String,String> value;
 	
 	@TableFieldDoc("代码字典")

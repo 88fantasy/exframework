@@ -2,8 +2,8 @@ package org.exframework.portal.metadata.dict;
 
 /**
  *
- * Author: rwe
- * Date: Dec 26, 2020
+ * @author rwe
+ * @since Dec 26, 2020
  *
  * Copyright @ 2020 
  * 字典枚举

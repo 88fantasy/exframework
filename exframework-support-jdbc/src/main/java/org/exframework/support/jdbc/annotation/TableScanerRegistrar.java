@@ -18,7 +18,7 @@ import org.exframework.support.common.annotation.AnnotationClassPathBeanDefiniti
 
 /**
  *
- * Author: rwe Date: Jan 9, 2021
+ * @author rwe Date: Jan 9, 2021
  *
  * Copyright @ 2021
  * 

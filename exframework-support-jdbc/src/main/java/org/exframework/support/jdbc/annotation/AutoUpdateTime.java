@@ -13,8 +13,8 @@ import java.lang.annotation.Target;
 @Target({ FIELD, ANNOTATION_TYPE })
 /**
  * 自动插入创建时间
- * Author: rwe
- * Date: 2021年5月21日
+ * @author rwe
+ * @since 2021年5月21日
  *
  * Copyright @ 2021 
  * 

@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.exframework.portal.exception.NotFoundException;
 import org.exframework.portal.metadata.attribute.Attribute;
 import org.exframework.portal.metadata.form.Form;
-import org.exframework.portal.permission.PermissionSupport;
 import org.exframework.portal.service.sys.FormService;
 import org.exframework.portal.web.annotation.RequireLogin;
 import org.exframework.portal.web.constants.WebApiConstants;
@@ -33,9 +32,6 @@ import io.swagger.annotations.ApiParam;
 @CrossOrigin(origins = "*", maxAge = 3600, methods = { RequestMethod.GET })
 @Api(tags = "表单")
 public class FormController {
-	
-	@Autowired
-	PermissionSupport permissions;
 	
 	@Autowired
 	LoginService loginService;

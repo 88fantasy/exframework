@@ -26,8 +26,8 @@ import io.swagger.annotations.ApiParam;
 
 /**
  *
- * Author: rwe
- * Date: Jan 28, 2021
+ * @author rwe
+ * @since Jan 28, 2021
  *
  * Copyright @ 2021 
  * 

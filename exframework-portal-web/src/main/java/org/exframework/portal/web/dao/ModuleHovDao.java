@@ -5,8 +5,8 @@ import org.exframework.portal.metadata.module.ModuleBase;
 
 /**
  *
- * Author: rwe
- * Date: Jan 13, 2021
+ * @author rwe
+ * @since Jan 13, 2021
  *
  * Copyright @ 2021 
  * 

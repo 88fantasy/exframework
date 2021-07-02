@@ -6,8 +6,8 @@ import io.swagger.annotations.ApiModel;
 
 /**
  * 查询数据项请求
- * Author: rwe
- * Date: Jan 5, 2021
+ * @author rwe
+ * @since Jan 5, 2021
  *
  * Copyright @ 2021 
  * 

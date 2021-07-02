@@ -5,8 +5,8 @@ import io.swagger.annotations.ApiModelProperty;
 
 /**
  *
- * Author: rwe
- * Date: 2021年4月5日
+ * @author rwe
+ * @since 2021年4月5日
  *
  * Copyright @ 2021 
  * 

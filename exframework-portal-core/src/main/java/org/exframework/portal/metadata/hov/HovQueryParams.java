@@ -1,8 +1,8 @@
 package org.exframework.portal.metadata.hov;
 /**
  * 查询条件
- * Author: rwe
- * Date: Jan 14, 2021
+ * @author rwe
+ * @since Jan 14, 2021
  *
  * Copyright @ 2021 
  * 

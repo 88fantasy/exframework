@@ -12,8 +12,8 @@ import java.lang.annotation.Target;
 @Documented
 /**
  * 扫描数据库表
- * Author: rwe
- * Date: Jan 2, 2021
+ * @author rwe
+ * @since Jan 2, 2021
  *
  * Copyright @ 2021 
  * 

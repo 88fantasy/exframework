@@ -2,7 +2,7 @@ package org.exframework.portal.admin.dto;
 
 /**
  *
- * Author: rwe Date: Jan 8, 2021
+ * @author rwe Date: Jan 8, 2021
  *
  * Copyright @ 2021
  * 

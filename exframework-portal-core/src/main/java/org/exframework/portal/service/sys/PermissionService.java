@@ -6,15 +6,13 @@ import java.util.concurrent.ConcurrentHashMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
 import org.exframework.portal.dao.PermissionDao;
+import org.exframework.portal.metadata.sys.Account;
 import org.exframework.portal.metadata.sys.Permission;
 import org.exframework.portal.metadata.sys.SystemConst;
-import org.exframework.portal.permission.PermissionSupport;
-import org.exframework.support.common.annotation.BuildComponent;
-import org.exframework.support.common.build.Buildable;
+import org.exframework.portal.permission.PermissionGroup;
 
 
 /**
@@ -23,8 +21,7 @@ import org.exframework.support.common.build.Buildable;
  *
  */
 @Service
-@BuildComponent
-public class PermissionService implements Buildable, PermissionSupport {
+public class PermissionService {
 	
 	private Logger log = LoggerFactory.getLogger(PermissionService.class.getName());
 	
@@ -35,6 +32,10 @@ public class PermissionService implements Buildable, PermissionSupport {
 
 	@Autowired
 	PermissionDao permissionDao;
+	
+	public Map<String, PermissionGroup> getPermissionGroups() {
+		return permissionDao.allGroups();
+	}
 	
 	public Map<String, Permission> getAllPermissions() {
 		return allPermissions;
@@ -73,8 +74,9 @@ public class PermissionService implements Buildable, PermissionSupport {
 		}
 	}
 
-	@Override
-	public void build(ApplicationContext ac) {
-		initAllPermissions();
+	
+	public boolean hasRight(Account account,String permissionCode) {
+		Map<String, Permission> modules = account.getPermissions();
+		return modules.containsKey(permissionCode);
 	}
 }

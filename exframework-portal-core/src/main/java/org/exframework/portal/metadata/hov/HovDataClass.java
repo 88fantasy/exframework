@@ -1,8 +1,8 @@
 package org.exframework.portal.metadata.hov;
 /**
  *	参照实现类
- * Author: rwe
- * Date: 2021年3月19日
+ * @author rwe
+ * @since 2021年3月19日
  *
  * Copyright @ 2021 
  * 

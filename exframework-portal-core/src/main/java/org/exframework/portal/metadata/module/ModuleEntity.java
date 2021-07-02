@@ -14,8 +14,8 @@ import org.exframework.portal.metadata.entity.EntityClass;
 @Target({ TYPE })
 /**
  * 模块实体
- * Author: rwe
- * Date: Jan 12, 2021
+ * @author rwe
+ * @since Jan 12, 2021
  *
  * Copyright @ 2021 
  * 

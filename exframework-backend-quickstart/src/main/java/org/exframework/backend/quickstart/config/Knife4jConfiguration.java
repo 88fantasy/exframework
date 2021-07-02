@@ -13,8 +13,8 @@ import springfox.documentation.spring.web.plugins.Docket;
 
 /**
  * Knife4j 配置
- * Author: rwe
- * Date: Dec 31, 2020
+ * @author rwe
+ * @since Dec 31, 2020
  *
  * Copyright @ 2020 
  * 

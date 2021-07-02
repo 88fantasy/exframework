@@ -5,8 +5,8 @@ import org.springframework.stereotype.Component;
 
 /**
  * sentinel 错误处理
- * Author: rwe
- * Date: 2021年6月25日
+ * @author rwe
+ * @since 2021年6月25日
  *
  * Copyright @ 2021 
  * 

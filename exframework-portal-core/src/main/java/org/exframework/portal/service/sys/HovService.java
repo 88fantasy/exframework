@@ -9,8 +9,8 @@ import org.exframework.portal.metadata.hov.Hov;
 
 /**
  * 参照业务类
- * Author: rwe
- * Date: Dec 29, 2020
+ * @author rwe
+ * @since Dec 29, 2020
  *
  * Copyright @ 2020 
  * 

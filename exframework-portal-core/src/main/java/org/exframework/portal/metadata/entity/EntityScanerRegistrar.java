@@ -17,8 +17,8 @@ import org.exframework.portal.pub.AnnotationClassPathBeanDefinitionScanner;
 
 /**
  *
- * Author: rwe
- * Date: Jan 9, 2021
+ * @author rwe
+ * @since Jan 9, 2021
  *
  * Copyright @ 2021 
  * 

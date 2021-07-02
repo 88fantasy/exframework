@@ -1,8 +1,8 @@
 package org.exframework.spring.boot.autoconfigure.cos;
 /**
  *
- * Author: rwe
- * Date: 2021年6月17日
+ * @author rwe
+ * @since 2021年6月17日
  *
  * Copyright @ 2021 
  * 

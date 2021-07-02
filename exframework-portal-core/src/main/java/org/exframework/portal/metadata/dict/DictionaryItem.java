@@ -5,16 +5,22 @@ import java.util.Map;
 import javax.validation.constraints.NotEmpty;
 
 import org.exframework.portal.metadata.Meta;
+import org.exframework.portal.permission.PermissionEntry;
+import org.exframework.support.common.constants.SpringConstants;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 /**
  * 字典项
- * Author: rwe
- * Date: Jan 7, 2021
+ * @author rwe
+ * @since Jan 7, 2021
  *
  * Copyright @ 2021 
  * 
  */
-public class DictionaryItem extends Meta {
+@Component
+@Scope(SpringConstants.SCOPE_PROTOTYPE)
+public class DictionaryItem extends Meta implements PermissionEntry {
 
 	private static final long serialVersionUID = 1734744807375718094L;
 	

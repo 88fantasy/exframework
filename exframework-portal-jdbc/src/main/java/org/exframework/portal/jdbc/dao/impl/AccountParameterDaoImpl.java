@@ -19,8 +19,8 @@ import org.exframework.support.common.entity.PageModel;
 
 /**
  * 权限数据类
- * Author: rwe
- * Date: Dec 28, 2020
+ * @author rwe
+ * @since Dec 28, 2020
  *
  * Copyright @ 2020 
  * 

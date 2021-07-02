@@ -13,8 +13,8 @@ import org.exframework.support.jdbc.annotation.AutoUpdateTime;
 
 /**
  *
- * Author: rwe
- * Date: 2021年5月21日
+ * @author rwe
+ * @since 2021年5月21日
  *
  * Copyright @ 2021 
  * 

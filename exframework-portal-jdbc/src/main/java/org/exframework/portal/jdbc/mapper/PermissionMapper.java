@@ -5,8 +5,8 @@ import org.exframework.portal.jdbc.entity.PermissionDO;
 
 /**
  * 权限映射类
- * Author: rwe
- * Date: Dec 28, 2020
+ * @author rwe
+ * @since Dec 28, 2020
  *
  * Copyright @ 2020 
  * 

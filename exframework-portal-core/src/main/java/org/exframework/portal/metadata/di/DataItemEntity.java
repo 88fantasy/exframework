@@ -16,8 +16,8 @@ import org.exframework.portal.metadata.di.DataItem.DataItemValueTypeEnum;
 @Target({FIELD, ANNOTATION_TYPE})
 /**
  *
- * Author: rwe
- * Date: Jan 11, 2021
+ * @author rwe
+ * @since Jan 11, 2021
  *
  * Copyright @ 2021 
  * 

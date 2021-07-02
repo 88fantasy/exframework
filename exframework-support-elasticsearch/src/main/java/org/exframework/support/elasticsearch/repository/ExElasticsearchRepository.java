@@ -25,8 +25,8 @@ package org.exframework.support.elasticsearch.repository;
 //
 ///**
 // *
-// * Author: rwe
-// * Date: 2021年3月3日
+// * @author rwe
+// * @since 2021年3月3日
 // *
 // * Copyright @ 2021 
 // * 

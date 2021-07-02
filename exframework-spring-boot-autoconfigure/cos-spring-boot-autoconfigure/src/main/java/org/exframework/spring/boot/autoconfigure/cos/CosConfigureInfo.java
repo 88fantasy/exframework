@@ -4,8 +4,8 @@ import java.io.Serializable;
 
 /**
  *
- * Author: rwe
- * Date: 2021年5月20日
+ * @author rwe
+ * @since 2021年5月20日
  *
  * Copyright @ 2021 
  * 

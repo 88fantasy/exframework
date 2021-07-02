@@ -15,8 +15,8 @@ import org.exframework.support.common.entity.PageModel;
 
 /**
  *
- * Author: rwe
- * Date: Jan 13, 2021
+ * @author rwe
+ * @since Jan 13, 2021
  *
  * Copyright @ 2021 
  * 

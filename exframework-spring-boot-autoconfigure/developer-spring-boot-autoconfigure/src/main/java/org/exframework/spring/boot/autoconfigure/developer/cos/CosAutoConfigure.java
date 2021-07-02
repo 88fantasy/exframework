@@ -14,7 +14,7 @@ import org.exframework.spring.boot.autoconfigure.cos.CosProperties;
 
 /**
  *
- * Author: rwe Date: 2021年5月20日
+ * @author rwe Date: 2021年5月20日
  *
  * Copyright @ 2021
  * 

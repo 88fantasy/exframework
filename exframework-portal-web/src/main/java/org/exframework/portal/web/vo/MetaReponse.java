@@ -5,8 +5,8 @@ import io.swagger.annotations.ApiModelProperty;
 
 /**
  * 元数据返回
- * Author: rwe
- * Date: Jan 13, 2021
+ * @author rwe
+ * @since Jan 13, 2021
  *
  * Copyright @ 2021 
  * 

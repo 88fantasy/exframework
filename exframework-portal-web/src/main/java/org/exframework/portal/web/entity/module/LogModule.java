@@ -5,8 +5,8 @@ import org.exframework.portal.metadata.module.ModuleEntity;
 
 /**
  * 日志模块
- * Author: rwe
- * Date: Jan 13, 2021
+ * @author rwe
+ * @since Jan 13, 2021
  *
  * Copyright @ 2021 
  * 

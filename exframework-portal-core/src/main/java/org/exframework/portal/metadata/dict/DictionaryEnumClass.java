@@ -2,8 +2,8 @@ package org.exframework.portal.metadata.dict;
 
 /**
  *
- * Author: rwe
- * Date: Jan 9, 2021
+ * @author rwe
+ * @since Jan 9, 2021
  *
  * Copyright @ 2021 
  * 

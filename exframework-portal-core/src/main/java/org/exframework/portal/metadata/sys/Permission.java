@@ -27,11 +27,7 @@ public class Permission extends Meta implements Serializable {
 	 * 排序
 	 */
 	private Long permissionOrder;
-	
-	/**
-	 * 权限类型
-	 */
-	private Long permissionType;
+
 	
 	/**
 	 * 生效
@@ -75,17 +71,6 @@ public class Permission extends Meta implements Serializable {
 	public void setPermissionOrder(Long permissionOrder) {
 		this.permissionOrder = permissionOrder;
 	}
-
-
-	public Long getPermissionType() {
-		return permissionType;
-	}
-
-
-	public void setPermissionType(Long permissionType) {
-		this.permissionType = permissionType;
-	}
-
 
 	public boolean isValid() {
 		return valid;

@@ -15,8 +15,8 @@ import org.exframework.portal.metadata.Meta;
 
 /**
  *
- * Author: rwe
- * Date: Jan 2, 2021
+ * @author rwe
+ * @since Jan 2, 2021
  *
  * Copyright @ 2021 
  * 

@@ -17,8 +17,8 @@ import org.exframework.support.common.entity.PageModel;
 
 /**
  * 日志数据类
- * Author: rwe
- * Date: Jan 19, 2021
+ * @author rwe
+ * @since Jan 19, 2021
  *
  * Copyright @ 2021 
  * 

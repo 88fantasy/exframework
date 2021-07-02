@@ -13,7 +13,7 @@ import feign.RequestTemplate;
 
 /**
  *
- * Author: rwe Date: 2021年6月25日
+ * @author rwe Date: 2021年6月25日
  *
  * Copyright @ 2021
  * 

@@ -4,8 +4,8 @@ import org.exframework.portal.metadata.grid.Grid;
 
 /**
  *
- * Author: rwe
- * Date: Dec 30, 2020
+ * @author rwe
+ * @since Dec 30, 2020
  *
  * Copyright @ 2020 
  * 

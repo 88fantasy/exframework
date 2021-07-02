@@ -6,8 +6,8 @@ import org.exframework.portal.web.exception.WebControllerExceptionControllerAdvi
 
 /**
  * 接口错误处理
- * Author: rwe
- * Date: Jan 8, 2021
+ * @author rwe
+ * @since Jan 8, 2021
  *
  * Copyright @ 2021 
  * 

@@ -6,8 +6,8 @@ import org.exframework.portal.metadata.hov.HovEntity;
 
 /**
  * 参照实现类Hov
- * Author: rwe
- * Date: Jan 12, 2021
+ * @author rwe
+ * @since Jan 12, 2021
  *
  * Copyright @ 2021 
  * 

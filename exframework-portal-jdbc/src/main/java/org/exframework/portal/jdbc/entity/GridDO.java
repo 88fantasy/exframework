@@ -7,8 +7,8 @@ import org.exframework.portal.metadata.grid.Grid;
 
 /**
  * 表格实体类
- * Author: rwe
- * Date: Dec 30, 2020
+ * @author rwe
+ * @since Dec 30, 2020
  *
  * Copyright @ 2020 
  * 

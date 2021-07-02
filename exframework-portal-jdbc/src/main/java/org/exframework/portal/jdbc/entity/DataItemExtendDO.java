@@ -7,8 +7,8 @@ import org.exframework.support.doc.annotation.TableFieldDoc;
 
 /**
  * 数据项扩展
- * Author: rwe
- * Date: Dec 29, 2020
+ * @author rwe
+ * @since Dec 29, 2020
  *
  * Copyright @ 2020 
  * 

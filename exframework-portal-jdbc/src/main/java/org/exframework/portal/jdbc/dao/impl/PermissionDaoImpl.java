@@ -2,6 +2,7 @@ package org.exframework.portal.jdbc.dao.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
@@ -10,15 +11,21 @@ import org.springframework.stereotype.Repository;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+
 import org.exframework.portal.dao.PermissionDao;
 import org.exframework.portal.metadata.sys.Permission;
+import org.exframework.portal.permission.PermissionGroup;
+import org.exframework.support.common.util.BeanUtils;
 import org.exframework.portal.jdbc.entity.PermissionDO;
+import org.exframework.portal.jdbc.entity.PermissionGroupDO;
+import org.exframework.portal.jdbc.mapper.PermissionGroupMapper;
 import org.exframework.portal.jdbc.mapper.PermissionMapper;
 
 /**
  * 权限数据类
- * Author: rwe
- * Date: Dec 28, 2020
+ * @author rwe
+ * @since Dec 28, 2020
  *
  * Copyright @ 2020 
  * 
@@ -30,6 +37,9 @@ public class PermissionDaoImpl extends MetaDaoImpl<PermissionDO,Permission> impl
 	
 	@Autowired
 	PermissionMapper permissionMapper;
+	
+	@Autowired
+	PermissionGroupMapper permissionGroupMapper;
 
 	@Override
 	public String[] findTopPermissionKeys() {
@@ -56,6 +66,17 @@ public class PermissionDaoImpl extends MetaDaoImpl<PermissionDO,Permission> impl
 	@Override
 	public PermissionDO genInstance() {
 		return new PermissionDO();
+	}
+
+	@Override
+	public Map<String, PermissionGroup> allGroups() {
+		List<PermissionGroupDO> groups = permissionGroupMapper.selectList(Wrappers.emptyWrapper());
+		return groups.stream().collect(Collectors.toMap(PermissionGroupDO::getCode, g -> {
+			PermissionGroup group = BeanUtils.copyTo(g, PermissionGroup.class);
+			List<Permission> permissions = g.getPermissionKeys().stream().map(key -> findByKey(key)).collect(Collectors.toList());
+			group.setPermissions(permissions);
+			return group;
+		}));
 	}
 
 	

@@ -11,8 +11,8 @@ import java.lang.annotation.Target;
 @Target({ElementType.TYPE})
 /**
  * 字典
- * Author: rwe
- * Date: Jan 2, 2021
+ * @author rwe
+ * @since Jan 2, 2021
  *
  * Copyright @ 2021 
  * 

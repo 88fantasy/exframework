@@ -16,8 +16,8 @@ import org.exframework.support.doc.entity.DataBaseTableSource;
 @Target({ FIELD, ANNOTATION_TYPE })
 /**
  * 表字段相关 文档注解
- * Author: rwe
- * Date: 2021年3月21日
+ * @author rwe
+ * @since 2021年3月21日
  *
  * Copyright @ 2021 
  * 

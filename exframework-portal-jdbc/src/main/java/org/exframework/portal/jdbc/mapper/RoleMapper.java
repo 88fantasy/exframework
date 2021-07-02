@@ -5,8 +5,8 @@ import org.exframework.portal.jdbc.entity.RoleDO;
 
 /**
  * 角色映射
- * Author: rwe
- * Date: Dec 29, 2020
+ * @author rwe
+ * @since Dec 29, 2020
  *
  * Copyright @ 2020 
  * 

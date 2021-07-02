@@ -1,8 +1,8 @@
 package org.exframework.support.jdbc.exception;
 /**
  * 数据库事务错误
- * Author: rwe
- * Date: Jan 6, 2021
+ * @author rwe
+ * @since Jan 6, 2021
  *
  * Copyright @ 2021 
  * 

@@ -5,8 +5,8 @@ import org.exframework.portal.metadata.sys.Account;
 
 /**
  *
- * Author: rwe
- * Date: Dec 28, 2020
+ * @author rwe
+ * @since Dec 28, 2020
  *
  * Copyright @ 2020 
  * 

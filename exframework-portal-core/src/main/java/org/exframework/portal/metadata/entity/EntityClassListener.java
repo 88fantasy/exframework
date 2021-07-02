@@ -38,8 +38,8 @@ import org.exframework.portal.service.sys.ModuleService;
 
 /**
  * 加载EntityClass注解
- * Author: rwe
- * Date: Jan 11, 2021
+ * @author rwe
+ * @since Jan 11, 2021
  *
  * Copyright @ 2021 
  * 

@@ -8,19 +8,18 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import org.exframework.portal.metadata.sys.Permission;
 import org.exframework.support.doc.annotation.TableDoc;
 import org.exframework.support.doc.annotation.TableFieldDoc;
-import org.exframework.portal.jdbc.mapper.AutoMapper;
 
 /**
  * 权限
- * Author: rwe
- * Date: Dec 28, 2020
+ * @author rwe
+ * @since Dec 28, 2020
  *
  * Copyright @ 2020 
  * 
  */
 @TableDoc("权限")
 @TableName( value = "sys_permission", excludeProperty = "children")
-public class PermissionDO extends Permission implements AutoMapper<Permission> {
+public class PermissionDO extends Permission  {
 
 	private static final long serialVersionUID = 5821041616688028717L;
 
@@ -65,13 +64,6 @@ public class PermissionDO extends Permission implements AutoMapper<Permission> {
 	@TableFieldDoc("排序")
 	@TableField
 	private Long permissionOrder;
-
-	/**
-	 * 权限类型
-	 */
-	@TableFieldDoc("权限类型")
-	@TableField
-	private Long permissionType;
 
 	/**
 	 * 是否可用

@@ -6,8 +6,8 @@ import org.exframework.portal.web.dto.ModuleHovRequest;
 
 /**
  * 数据项参照
- * Author: rwe
- * Date: Jan 12, 2021
+ * @author rwe
+ * @since Jan 12, 2021
  *
  * Copyright @ 2021 
  * 

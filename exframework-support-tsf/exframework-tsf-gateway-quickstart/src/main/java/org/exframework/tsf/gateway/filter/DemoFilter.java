@@ -13,7 +13,7 @@ import reactor.core.publisher.Mono;
 /**
  * 网关过滤器示例 
  * 
- * Author: rwe Date: 2021年3月25日
+ * @author rwe Date: 2021年3月25日
  *
  * Copyright @ 2021
  * 
