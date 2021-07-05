@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>org.exframework</groupId>
 		<artifactId>exframework-root</artifactId>
-		<version>0.7</version>
+		<version>0.7.1</version>
 	</parent>
 	<artifactId>exframework-spring-boot-autoconfigure</artifactId>
 	<name>exframework-spring-boot-autoconfigure</name>

@@ -15,6 +15,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import org.apache.commons.lang3.time.DateUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.exframework.portal.service.sys.PortalCoreSystemParameterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,10 +25,9 @@ import org.exframework.portal.metadata.di.DataItem.DataItemDisplayTypeEnum;
 import org.exframework.portal.metadata.di.DataItem.DataItemValueTypeEnum;
 import org.exframework.portal.metadata.grid.Grid;
 import org.exframework.portal.metadata.sys.Account;
-import org.exframework.portal.service.sys.DataItemService;
-import org.exframework.portal.service.sys.DdlService;
+import org.exframework.portal.service.sys.PortalCoreDataItemService;
+import org.exframework.portal.service.sys.PortalCoreDdlService;
 import org.exframework.portal.service.sys.GridService;
-import org.exframework.portal.service.sys.SystemParameterService;
 import org.exframework.portal.utils.DateUtil;
 
 @Service
@@ -36,13 +36,13 @@ public class GridServiceDefaultImpl implements GridService {
 	private Log log = LogFactory.getLog(GridServiceDefaultImpl.class.getName());
 	
 	@Autowired
-	DdlService ddlService;
+	PortalCoreDdlService portalCoreDdlService;
 	
 	@Autowired
-	DataItemService dataItemService;
+	PortalCoreDataItemService portalCoreDataItemService;
 
 	@Autowired
-	SystemParameterService systemParameterService;
+	PortalCoreSystemParameterService portalCoreSystemParameterService;
 
 	@Override
 	public List<Map<String, Object>> drawGridTitleInfo(ResultSetMetaData rsmd, String gridcode) throws SQLException {
@@ -61,7 +61,7 @@ public class GridServiceDefaultImpl implements GridService {
 			String fieldname = rsmd.getColumnLabel(i + 1).toLowerCase();
 			row.put(FIELDNAME, fieldname);
 
-			DataItem dt = dataItemService.findDataItem(gridcode, fieldname);
+			DataItem dt = portalCoreDataItemService.findDataItem(gridcode, fieldname);
 			if (dt == null) {
 				dt = new DataItem();
 				dt.setCode(fieldname.toUpperCase());
@@ -101,7 +101,7 @@ public class GridServiceDefaultImpl implements GridService {
 				DataItemDisplayTypeEnum disptype = dt.getType();
 				switch (disptype) {
 					case DICTIONARY:
-						Map<String, String> dict = ddlService.get(dt.getDisplayKey());
+						Map<String, String> dict = portalCoreDdlService.get(dt.getDisplayKey());
 						row.put(DATATYPE, DataItemDisplayTypeEnum.DICTIONARY.name());
 						row.put(DATA, dict);
 						break;
@@ -173,10 +173,12 @@ public class GridServiceDefaultImpl implements GridService {
 			} else if (oprea.equals(FilterConditionOper.MATCHING.name())) { // 匹配
 				condition.append(fieldname);
 				condition.append(" like ?");
-				if (!value1.endsWith(".")) // 如果以.号为结束的表示模糊查询时后面没有%号
+				if (!value1.endsWith(".")) { // 如果以.号为结束的表示模糊查询时后面没有%号
 					value1 = value1 + "%";
-				else
+				}
+				else {
 					value1 = value1.substring(0, value1.length() - 1);
+				}
 				conditions.add(value1);
 			} else if (oprea.equals(FilterConditionOper.GREATER_EQUAL.name())) { // 大于等于
 				condition.append(fieldname);
@@ -286,7 +288,7 @@ public class GridServiceDefaultImpl implements GridService {
 //		}
 //
 //		// 参数格式为(列名,)多个以逗号隔开
-//		String gridConfigInfo = systemParameterService.getAccoutParameter(account, gridcode + COLCONFIG);
+//		String gridConfigInfo = portalCoreSystemParameterService.getAccoutParameter(account, gridcode + COLCONFIG);
 //		if (gridConfigInfo != null && !"".equals(gridConfigInfo)) {
 //
 //			String[] existClos = gridConfigInfo.split(",");

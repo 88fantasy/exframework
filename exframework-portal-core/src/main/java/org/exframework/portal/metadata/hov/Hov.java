@@ -22,7 +22,7 @@ import org.exframework.portal.metadata.di.DataItem;
 import org.exframework.portal.metadata.di.DataItemRef;
 import org.exframework.portal.metadata.grid.Column;
 import org.exframework.portal.pub.PageRequest;
-import org.exframework.portal.service.sys.DataItemService;
+import org.exframework.portal.service.sys.PortalCoreDataItemService;
 import org.exframework.support.common.util.SpringContextUtils;
 
 public class Hov extends Meta {
@@ -103,7 +103,7 @@ public class Hov extends Meta {
 	}
 	
 
-	public static Hov instanceByClass(DataItemService dataItemService, String code, String name, String description, Class<? extends PageRequest> requestClass, Class<? extends IHovDao<?>> dataClass, String returnKey) {
+	public static Hov instanceByClass(PortalCoreDataItemService portalCoreDataItemService, String code, String name, String description, Class<? extends PageRequest> requestClass, Class<? extends IHovDao<?>> dataClass, String returnKey) {
 		Hov hov = new Hov();
 		hov.setCode(code);
 		hov.setName(name);
@@ -122,7 +122,7 @@ public class Hov extends Meta {
 					DataItemRef ref = field.getAnnotation(DataItemRef.class);
 					String dataItemCode = ref.value();
 					String objectCode = ref.objectCode();
-					DataItem item = dataItemService.findDataItem(objectCode, dataItemCode);
+					DataItem item = portalCoreDataItemService.findDataItem(objectCode, dataItemCode);
 					if(item != null) {
 						param.setDataIndex(item.getCode());
 					}
@@ -153,13 +153,13 @@ public class Hov extends Meta {
 					DataItemRef ref = field.getAnnotation(DataItemRef.class);
 					String dataItemCode = ref.value();
 					String objectCode = ref.objectCode();
-					DataItem item = dataItemService.findDataItem(objectCode, dataItemCode);
+					DataItem item = portalCoreDataItemService.findDataItem(objectCode, dataItemCode);
 					if(item != null) {
 						column.setDataIndex(item.getCode());
 					}
 				}
 				else {
-					DataItem item = dataItemService.findDataItem(code, fieldName);
+					DataItem item = portalCoreDataItemService.findDataItem(code, fieldName);
 					if(item != null) {
 						column.setKey(item.getCode());
 					}

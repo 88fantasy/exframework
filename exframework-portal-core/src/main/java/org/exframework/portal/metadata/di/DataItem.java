@@ -143,7 +143,7 @@ public class DataItem extends Meta implements DictionaryEnumClass {
 	public enum DataItemValueTypeEnum implements DictionaryEnum {
 		
 		/**
-		 * 默认 按 org.exframework.portal.dao.DataItemDao.defaultValueType
+		 * 默认 按 org.exframework.portal.dao.PortalCoreDataItemDao.defaultValueType
 		 */
 		DEFAULT("默认"),
 

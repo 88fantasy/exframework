@@ -9,14 +9,14 @@ import org.springframework.stereotype.Component;
 import org.exframework.support.common.entity.FilterCondition.FilterConditionOper;
 import org.exframework.portal.metadata.queryparam.QueryParamItem;
 import org.exframework.portal.metadata.sys.Account;
-import org.exframework.portal.service.sys.DdlService;
+import org.exframework.portal.service.sys.PortalCoreDdlService;
 
 @Component
 @Scope(value = org.springframework.beans.factory.config.ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class QPIDdl extends QueryParamBase {
 	
 	@Autowired
-	DdlService ddlService;
+    PortalCoreDdlService portalCoreDdlService;
 	
 	@Override
 	public void initBase(Account account, QueryParamItem qpi) {
@@ -29,6 +29,6 @@ public class QPIDdl extends QueryParamBase {
 	}
 
 	public Map<String, String> getDdl(QueryParamItem qpi) {
-		return ddlService.get(qpi.getQpiParam());
+		return portalCoreDdlService.get(qpi.getQpiParam());
 	}
 }

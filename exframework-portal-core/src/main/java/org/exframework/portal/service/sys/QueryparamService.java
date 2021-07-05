@@ -3,10 +3,10 @@ package org.exframework.portal.service.sys;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.exframework.portal.dao.PortalCoreQueryParamDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import org.exframework.portal.dao.QueryParamDao;
 import org.exframework.portal.exception.NotFoundException;
 import org.exframework.portal.metadata.queryparam.QueryParam;
 import org.exframework.portal.metadata.queryparam.QueryParamAdapter;
@@ -18,10 +18,10 @@ import org.exframework.support.common.util.SpringContextUtils;
 public class QueryparamService {
 
 	@Autowired
-	QueryParamDao queryParamDao;
+	PortalCoreQueryParamDao queryParamDao;
 	
 	@Autowired
-	AccountService accountService;
+	PortalCoreAccountService portalCoreAccountService;
 
 	public QueryParamBase[] get(String key) {
 
@@ -47,7 +47,7 @@ public class QueryparamService {
 		for (int i = 0; i < length; i++) {
 			QueryParamItem qpi = qpis[i];
 			QueryParamBase base = retBase(qpi);
-			base.initBase(accountService.getAccount(), qpi);
+			base.initBase(portalCoreAccountService.getAccount(), qpi);
 			list.add(base);
 		}
 		return list.toArray(new QueryParamBase[list.size()]);

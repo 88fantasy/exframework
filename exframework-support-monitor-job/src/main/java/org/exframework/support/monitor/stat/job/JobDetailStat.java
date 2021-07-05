@@ -102,7 +102,7 @@ public class JobDetailStat {
 		data.put("executeCount", executeCount.longValue());
 		data.put("errorTotal", errorTotal.longValue());
 		data.put("errorCount", errorCount);
-		data.put("executing", startDate != null? (new Date().getTime() - startDate.getTime()) : 0);
+		data.put("executing", startDate != null? (System.currentTimeMillis() - startDate.getTime()) : 0);
 		data.put("lastStartDate", lastStartDate != null? DATETIME_FORMAT.format(lastStartDate) : "");
 		data.put("lastEndDate", lastEndDate != null? DATETIME_FORMAT.format(lastEndDate) : "");
 		data.put("startDate", startDate != null ? DATETIME_FORMAT.format(startDate) : "");

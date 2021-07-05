@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.exframework.portal.metadata.di.DataItem;
 import org.exframework.portal.metadata.hov.Hov;
 import org.exframework.portal.metadata.sys.Permission;
-import org.exframework.portal.service.sys.HovService;
+import org.exframework.portal.service.sys.PortalCoreHovService;
 import org.exframework.support.common.util.SpringContextUtils;
 
 /**
@@ -24,8 +24,8 @@ public interface IModuleService {
 	
 	static Logger log = LoggerFactory.getLogger(IModuleService.class.getName());
 	
-	default HovService getHovService() {
-		return SpringContextUtils.getBeanByClass(HovService.class);
+	default PortalCoreHovService getHovService() {
+		return SpringContextUtils.getBeanByClass(PortalCoreHovService.class);
 	}
 
 	default Collection<DataItem> getDataItems() {

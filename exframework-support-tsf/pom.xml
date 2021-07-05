@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.exframework</groupId>
 		<artifactId>exframework-root</artifactId>
-		<version>0.7</version>
+		<version>0.7.1</version>
 	</parent>
 	<artifactId>exframework-support-tsf</artifactId>
 	<packaging>pom</packaging>
@@ -43,17 +43,17 @@
 			<dependency>
 				<groupId>org.exframework</groupId>
 				<artifactId>exframework-tsf-support-sso</artifactId>
-				<version>0.7</version>
+				<version>0.7.1</version>
 			</dependency>
 			<dependency>
 				<groupId>org.exframework</groupId>
 				<artifactId>exframework-tsf-support-cos</artifactId>
-				<version>0.7</version>
+				<version>0.7.1</version>
 			</dependency>
 			<dependency>
 				<groupId>org.exframework</groupId>
 				<artifactId>exframework-tsf-support-tdmq</artifactId>
-				<version>0.7</version>
+				<version>0.7.1</version>
 			</dependency>
 			<dependency>
 				<groupId>com.tencent.cloud </groupId>

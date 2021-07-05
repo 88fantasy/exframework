@@ -49,7 +49,7 @@ public class FileServceImpl implements FileService {
 	/**
      * 物理保存
      * @param inputStream
-     * @param fileName
+     * @param filePathAndName
      * @throws IOException
      */
     private void writeToFileServer(InputStream inputStream, String filePathAndName) throws IOException {

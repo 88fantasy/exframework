@@ -45,7 +45,7 @@ public class SaveEventIdGeneratorListener extends AbstractMongoEventListener<Obj
 					Object value = field.get(source);
 					// 如果字段添加了我们自定义注解
 					if (field.isAnnotationPresent(AutoIncLong.class) && field.getType() == Long.class) {
-						if( value == null || 0l == (Long)value) {
+						if( value == null || 0L == (Long)value) {
 							field.set(source, getNextId(source.getClass().getSimpleName()));
 						}
 					}

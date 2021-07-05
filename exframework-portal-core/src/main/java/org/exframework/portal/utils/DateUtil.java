@@ -177,8 +177,9 @@ public class DateUtil {
 				return new SimpleDateFormat(
 						org.apache.commons.lang3.time.DateFormatUtils.ISO_DATETIME_TIME_ZONE_FORMAT
 								.getPattern()).parse(newDate);
-			} else
+			} else {
 				return DateUtils.parseDate(stringDate, datePatterns);
+			}
 		} catch (ParseException e) {
 			throw new RuntimeException(e);
 		}

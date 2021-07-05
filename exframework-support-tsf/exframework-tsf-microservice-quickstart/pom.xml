@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.exframework</groupId>
 		<artifactId>exframework-support-tsf</artifactId>
-		<version>0.7</version>
+		<version>0.7.1</version>
 	</parent>
 	<artifactId>exframework-tsf-microservice-quickstart</artifactId>
 	<name>exframework-tsf-microservice-quickstart</name>
@@ -17,10 +17,12 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-archetype-plugin</artifactId>
+				<version>3.2.0</version>
 			</plugin>
 			<plugin>
 				<groupId>org.sonarsource.scanner.maven</groupId>
 				<artifactId>sonar-maven-plugin</artifactId>
+				<version>3.9.0.2155</version>
 			</plugin>
 		</plugins>
 	</build>

@@ -3,10 +3,10 @@ package org.exframework.portal.web.jdbc.dao;
 import java.util.Arrays;
 import java.util.Collection;
 
+import org.exframework.portal.dao.PortalCoreDataItemDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import org.exframework.portal.dao.DataItemDao;
 import org.exframework.support.common.entity.FilterCondition;
 import org.exframework.portal.metadata.di.DataItem;
 import org.exframework.portal.web.dao.DataItemHovDao;
@@ -25,7 +25,7 @@ import org.exframework.support.common.entity.PageModel;
 public class DataItemHovDaoImpl implements DataItemHovDao {
 	
 	@Autowired
-	DataItemDao dataItemDao;
+	PortalCoreDataItemDao portalCoreDataItemDao;
 
 	@Override
 	public PageModel<DataItem> query(Collection<FilterCondition> conditions, Page page) {
@@ -39,7 +39,7 @@ public class DataItemHovDaoImpl implements DataItemHovDao {
 
 	@Override
 	public PageModel<DataItem> query(Collection<FilterCondition> conditions, Page page, Collection<String> sorts) {
-		return dataItemDao.query(conditions, page, sorts);
+		return portalCoreDataItemDao.query(conditions, page, sorts);
 	}
 
 }

@@ -7,9 +7,6 @@ import javax.validation.constraints.NotEmpty;
 
 import org.exframework.portal.metadata.di.DataItem;
 import org.exframework.portal.metadata.hov.Hov;
-import org.exframework.portal.metadata.hov.IHovDao;
-import org.exframework.portal.pub.PageRequest;
-import org.exframework.portal.service.sys.DataItemService;
 
 /**
  * 功能模块

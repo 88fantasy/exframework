@@ -12,14 +12,14 @@ public class Security {
 
 		String l_name = as_name.toUpperCase();
 
-		if ("".equals(l_name) || l_name == null)
+		if ("".equals(l_name) || l_name == null) {
 			return "";
-
+		}
 		String ls_passwd = as_passwd.toUpperCase();
 
-		if ("".equals(ls_passwd) || ls_passwd == null)
+		if ("".equals(ls_passwd) || ls_passwd == null) {
 			return "";
-
+		}
 		int l_shift;
 
 		for (i = 1; i <= l_name.length(); i++) {

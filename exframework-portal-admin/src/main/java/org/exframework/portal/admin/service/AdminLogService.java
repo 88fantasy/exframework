@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import org.exframework.portal.admin.dto.PostLogQueryRequest;
-import org.exframework.portal.dao.LogDao;
+import org.exframework.portal.dao.PortalCoreLogDao;
 import org.exframework.support.common.entity.FilterCondition;
 import org.exframework.portal.metadata.sys.Logger;
 import org.exframework.support.common.entity.PageModel;
@@ -24,11 +24,11 @@ import org.exframework.support.rest.entity.ApiResponsePage;
 public class AdminLogService {
 
 	@Autowired
-	LogDao logDao;
+	PortalCoreLogDao portalCoreLogDao;
 	
 	public ApiResponsePage<Logger> query(PostLogQueryRequest request) {
 		Collection<FilterCondition> params = request.getConditions() == null? Collections.emptyList() : Arrays.asList(request.getConditions());
-		PageModel<Logger> model = logDao.query(params, request.getPage());
+		PageModel<Logger> model = portalCoreLogDao.query(params, request.getPage());
 		return new ApiResponsePage<Logger>(model);
 	}
 }

@@ -6,9 +6,9 @@
 
 	<groupId>org.exframework</groupId>
 	<artifactId>exframework-root</artifactId>
-	<version>0.7</version>
+	<version>0.7.1</version>
 	<packaging>pom</packaging>
-	<name>exframework </name>
+	<name>exframework</name>
 	<modules>
 		<module>exframework-portal-core</module>
 		<module>exframework-portal-jdbc</module>
@@ -164,166 +164,166 @@
 			<dependency>
 				<groupId>org.exframework</groupId>
 				<artifactId>exframework-portal-core</artifactId>
-				<version>0.7</version>
+				<version>0.7.1</version>
 			</dependency>
 			<dependency>
 				<groupId>org.exframework</groupId>
 				<artifactId>exframework-portal-web</artifactId>
-				<version>0.7</version>
+				<version>0.7.1</version>
 			</dependency>
 			<dependency>
 				<groupId>org.exframework</groupId>
 				<artifactId>exframework-portal-admin</artifactId>
-				<version>0.7</version>
+				<version>0.7.1</version>
 			</dependency>
 			<dependency>
 				<groupId>org.exframework</groupId>
 				<artifactId>exframework-portal-jdbc</artifactId>
-				<version>0.7</version>
+				<version>0.7.1</version>
 			</dependency>
 			<dependency>
 				<groupId>org.exframework</groupId>
 				<artifactId>exframework-portal-web-jdbc</artifactId>
-				<version>0.7</version>
+				<version>0.7.1</version>
 			</dependency>
 			<dependency>
 				<groupId>org.exframework</groupId>
 				<artifactId>exframework-support-common</artifactId>
-				<version>0.7</version>
+				<version>0.7.1</version>
 			</dependency>
 			<dependency>
 				<groupId>org.exframework</groupId>
 				<artifactId>exframework-support-jdbc</artifactId>
-				<version>0.7</version>
+				<version>0.7.1</version>
 			</dependency>
 			<dependency>
 				<groupId>org.exframework</groupId>
 				<artifactId>exframework-support-utils</artifactId>
-				<version>0.7</version>
+				<version>0.7.1</version>
 			</dependency>
 			<dependency>
 				<groupId>org.exframework</groupId>
 				<artifactId>exframework-support-job</artifactId>
-				<version>0.7</version>
+				<version>0.7.1</version>
 			</dependency>
 
 			<dependency>
 				<groupId>org.exframework</groupId>
 				<artifactId>exframework-support-rest</artifactId>
-				<version>0.7</version>
+				<version>0.7.1</version>
 			</dependency>
 			<dependency>
 				<groupId>org.exframework</groupId>
 				<artifactId>exframework-support-jersey</artifactId>
-				<version>0.7</version>
+				<version>0.7.1</version>
 			</dependency>
 			<dependency>
 				<groupId>org.exframework</groupId>
 				<artifactId>exframework-support-soap</artifactId>
-				<version>0.7</version>
+				<version>0.7.1</version>
 			</dependency>
 
 
 			<dependency>
 				<groupId>org.exframework</groupId>
 				<artifactId>exframework-support-monitor</artifactId>
-				<version>0.7</version>
+				<version>0.7.1</version>
 			</dependency>
 			<dependency>
 				<groupId>org.exframework</groupId>
 				<artifactId>exframework-support-monitor-rest</artifactId>
-				<version>0.7</version>
+				<version>0.7.1</version>
 			</dependency>
 			<dependency>
 				<groupId>org.exframework</groupId>
 				<artifactId>exframework-support-monitor-job</artifactId>
-				<version>0.7</version>
+				<version>0.7.1</version>
 			</dependency>
 			<dependency>
 				<groupId>org.exframework</groupId>
 				<artifactId>exframework-support-druid-monitor</artifactId>
-				<version>0.7</version>
+				<version>0.7.1</version>
 			</dependency>
 			<dependency>
 				<groupId>org.exframework</groupId>
 				<artifactId>exframework-support-dubbo</artifactId>
-				<version>0.7</version>
+				<version>0.7.1</version>
 			</dependency>
 			<dependency>
 				<groupId>org.exframework</groupId>
 				<artifactId>exframework-support-jdbc-mysql</artifactId>
-				<version>0.7</version>
+				<version>0.7.1</version>
 			</dependency>
 			<dependency>
 				<groupId>org.exframework</groupId>
 				<artifactId>exframework-support-jdbc-oracle</artifactId>
-				<version>0.7</version>
+				<version>0.7.1</version>
 			</dependency>
 			<dependency>
 				<groupId>org.exframework</groupId>
 				<artifactId>exframework-support-redis</artifactId>
-				<version>0.7</version>
+				<version>0.7.1</version>
 			</dependency>
 			<dependency>
 				<groupId>org.exframework</groupId>
 				<artifactId>exframework-support-elasticsearch</artifactId>
-				<version>0.7</version>
+				<version>0.7.1</version>
 			</dependency>
 			<dependency>
 				<groupId>org.exframework</groupId>
 				<artifactId>exframework-support-print</artifactId>
-				<version>0.7</version>
+				<version>0.7.1</version>
 			</dependency>
 			<dependency>
 				<groupId>org.exframework</groupId>
 				<artifactId>exframework-support-mongo</artifactId>
-				<version>0.7</version>
+				<version>0.7.1</version>
 			</dependency>
 			<dependency>
 				<groupId>org.exframework</groupId>
 				<artifactId>exframework-support-tsf</artifactId>
-				<version>0.7</version>
+				<version>0.7.1</version>
 			</dependency>
 
 			<dependency>
 				<groupId>org.exframework</groupId>
 				<artifactId>exframework-support-wechat</artifactId>
-				<version>0.7</version>
+				<version>0.7.1</version>
 			</dependency>
 			<dependency>
 				<groupId>org.exframework</groupId>
 				<artifactId>exframework-support-cos</artifactId>
-				<version>0.7</version>
+				<version>0.7.1</version>
 			</dependency>
 			<dependency>
 				<groupId>org.exframework</groupId>
 				<artifactId>cos-spring-boot-autoconfigure</artifactId>
-				<version>0.7</version>
+				<version>0.7.1</version>
 			</dependency>
 			<dependency>
 				<groupId>org.exframework</groupId>
 				<artifactId>cos-spring-boot-starter</artifactId>
-				<version>0.7</version>
+				<version>0.7.1</version>
 			</dependency>
 			<dependency>
 				<groupId>org.exframework</groupId>
 				<artifactId>developer-spring-boot-autoconfigure</artifactId>
-				<version>0.7</version>
+				<version>0.7.1</version>
 			</dependency>
 			<dependency>
 				<groupId>org.exframework</groupId>
 				<artifactId>developer-spring-boot-starter</artifactId>
-				<version>0.7</version>
+				<version>0.7.1</version>
 			</dependency>
 			<dependency>
 				<groupId>org.exframework</groupId>
 				<artifactId>exframework-support-tdmq</artifactId>
-				<version>0.7</version>
+				<version>0.7.1</version>
 			</dependency>
 			<dependency>
 				<groupId>org.exframework</groupId>
 				<artifactId>exframework-support-doc</artifactId>
-				<version>0.7</version>
+				<version>0.7.1</version>
 			</dependency>
 
 			<dependency>

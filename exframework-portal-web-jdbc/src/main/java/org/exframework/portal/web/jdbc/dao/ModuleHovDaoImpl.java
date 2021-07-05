@@ -3,10 +3,10 @@ package org.exframework.portal.web.jdbc.dao;
 import java.util.Arrays;
 import java.util.Collection;
 
+import org.exframework.portal.dao.PortalCoreModuleDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import org.exframework.portal.dao.ModuleDao;
 import org.exframework.support.common.entity.FilterCondition;
 import org.exframework.portal.metadata.module.ModuleBase;
 import org.exframework.portal.web.dao.ModuleHovDao;
@@ -25,7 +25,7 @@ import org.exframework.support.common.entity.PageModel;
 public class ModuleHovDaoImpl implements ModuleHovDao {
 	
 	@Autowired
-	ModuleDao moduleDao;
+	PortalCoreModuleDao moduleDao;
 
 	@Override
 	public PageModel<ModuleBase> query(Collection<FilterCondition> conditions, Page page) {

@@ -3,7 +3,7 @@
     <parent>
         <groupId>org.exframework</groupId>
         <artifactId>exframework-root</artifactId>
-        <version>0.7</version>
+        <version>0.7.1</version>
     </parent>
     <artifactId>exframework-support-soap</artifactId>
     <packaging>jar</packaging>
@@ -54,7 +54,4 @@
 	    </dependency>
     </dependencies>
 
-  <scm>
-    <tag>exframework-root-0.7</tag>
-  </scm>
 </project>

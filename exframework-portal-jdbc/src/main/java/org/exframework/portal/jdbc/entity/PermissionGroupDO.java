@@ -18,7 +18,7 @@ import java.util.List;
 
 /**
  * 权限组
- * Author: rwe
+ * @author rwe
  * @since Dec 28, 2020
  *
  * Copyright @ 2020 

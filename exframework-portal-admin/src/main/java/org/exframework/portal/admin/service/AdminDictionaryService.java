@@ -2,16 +2,15 @@ package org.exframework.portal.admin.service;
 
 import java.util.Collection;
 
+import org.exframework.portal.dao.PortalCoreDictionaryDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import org.exframework.portal.admin.dto.PostDictionaryPostRequest;
 import org.exframework.portal.admin.dto.PostDictionaryQueryRequest;
-import org.exframework.portal.dao.DictionaryDao;
-import org.exframework.portal.exception.NotFoundException;
 import org.exframework.support.common.entity.FilterCondition;
 import org.exframework.portal.metadata.dict.DictionaryItem;
-import org.exframework.portal.service.sys.AccountService;
+import org.exframework.portal.service.sys.PortalCoreAccountService;
 import org.exframework.support.common.entity.PageModel;
 import org.exframework.support.rest.entity.ApiResponseData;
 import org.exframework.support.rest.entity.ApiResponsePage;
@@ -27,10 +26,10 @@ import org.exframework.support.rest.enums.ResultCode;
 public class AdminDictionaryService {
 
 	@Autowired
-	DictionaryDao dictionaryDao;
+	PortalCoreDictionaryDao portalCoreDictionaryDao;
 
 	@Autowired
-	AccountService accountService;
+	PortalCoreAccountService portalCoreAccountService;
 
 //	public ApiResponseData<String> get(String code, String account) {
 //		return new ApiResponseData<String>(ddlSerice.g);
@@ -38,26 +37,26 @@ public class AdminDictionaryService {
 
 	public ApiResponsePage<DictionaryItem> query(PostDictionaryQueryRequest request) {
 		Collection<FilterCondition> params = FilterCondition.fromDTO(request);
-		PageModel<DictionaryItem> model = dictionaryDao.query(params, request.getPage());
+		PageModel<DictionaryItem> model = portalCoreDictionaryDao.query(params, request.getPage());
 		return new ApiResponsePage<DictionaryItem>(model);
 	}
 
 	public ApiResponseData<Boolean> post(PostDictionaryPostRequest request) {
 		DictionaryItem dictionary = request.getItem();
 		if (request.isCreate()) {
-			DictionaryItem dict = dictionaryDao.findByKey(dictionary.getCode());
+			DictionaryItem dict = portalCoreDictionaryDao.findByKey(dictionary.getCode());
 			if (dict != null) {
 				return new ApiResponseData<Boolean>(ResultCode.BAD_REQUEST, "字典已存在", false);
 			}
 		}
 		return new ApiResponseData<Boolean>(
-				dictionaryDao.saveDictionary(dictionary.getCode(), dictionary.getName(), dictionary.getValue()));
+				portalCoreDictionaryDao.saveDictionary(dictionary.getCode(), dictionary.getName(), dictionary.getValue()));
 	}
 
 //	public ApiResponseData<Long> delete(DeleteParamRequest request) {
 //		long count = 0l;
 //		for(ParamKey key : request.getKeys()) {
-//			boolean success = systemParameterService.removeAccountKey(key.getAccount(), key.getCode());
+//			boolean success = portalCoreSystemParameterService.removeAccountKey(key.getAccount(), key.getCode());
 //			if(success) {
 //				count ++;
 //			}

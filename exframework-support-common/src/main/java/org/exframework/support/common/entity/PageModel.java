@@ -15,7 +15,7 @@ import org.exframework.support.common.util.BeanUtils;
 public class PageModel<T> {
 	
 	@SuppressWarnings("unchecked")
-	public static final PageModel<?> EMPTY = new PageModel<>(new Pager(0l, Page.DEFAULT), Collections.EMPTY_LIST);
+	public static final PageModel<?> EMPTY = new PageModel<>(new Pager(0L, Page.DEFAULT), Collections.EMPTY_LIST);
 
 	/**
 	 * 分页信息

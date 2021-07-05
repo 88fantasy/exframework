@@ -4,7 +4,7 @@ import org.exframework.portal.exception.InitException;
 import org.exframework.portal.metadata.attribute.Attribute;
 import org.exframework.portal.metadata.di.DataItem;
 import org.exframework.portal.metadata.form.Form;
-import org.exframework.portal.service.sys.DdlService;
+import org.exframework.portal.service.sys.PortalCoreDdlService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -34,7 +34,7 @@ import java.util.Map;
 public class DTQueryList implements DispType {
 	
 	@Autowired
-	DdlService ddlService;
+    PortalCoreDdlService portalCoreDdlService;
 	
 	public Map<String,Object> retDisplay(Form form, Attribute formAttr) {
 		Map<String,Object> result = retDisplayCommon(form,formAttr);
@@ -43,7 +43,7 @@ public class DTQueryList implements DispType {
 		if (key == null || "".equals(key)) {
 			throw new InitException(di.getCode() + "没有配置disptypekey,请先配置");
 		}
-		Map<String,String> dict = ddlService.get(key);
+		Map<String,String> dict = portalCoreDdlService.get(key);
 		result.put("type", "list");
 		result.put("list", dict);
 		return result;

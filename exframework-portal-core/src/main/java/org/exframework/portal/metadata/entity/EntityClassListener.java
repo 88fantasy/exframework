@@ -5,6 +5,9 @@ import java.text.MessageFormat;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import org.exframework.portal.dao.PortalCoreModuleDao;
+import org.exframework.portal.dao.PortalCoreHovDao;
+import org.exframework.portal.service.sys.PortalCoreDataItemService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +18,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.util.ReflectionUtils;
 import org.springframework.util.StringUtils;
 
-import org.exframework.portal.dao.DataItemDao;
-import org.exframework.portal.dao.HovDao;
-import org.exframework.portal.dao.ModuleDao;
+import org.exframework.portal.dao.PortalCoreDataItemDao;
 import org.exframework.portal.metadata.di.DataItem;
 import org.exframework.portal.metadata.di.DataItemEntity;
 import org.exframework.portal.metadata.di.DataItem.DataItemDisplayTypeEnum;
@@ -32,8 +33,7 @@ import org.exframework.portal.metadata.module.Module;
 import org.exframework.portal.metadata.module.ModuleBase;
 import org.exframework.portal.metadata.module.ModuleEntity;
 import org.exframework.portal.pub.PageRequest;
-import org.exframework.portal.service.sys.DataItemService;
-import org.exframework.portal.service.sys.DdlService;
+import org.exframework.portal.service.sys.PortalCoreDdlService;
 import org.exframework.portal.service.sys.ModuleService;
 
 /**
@@ -50,19 +50,19 @@ public class EntityClassListener implements ApplicationListener<ApplicationReady
 	private Logger log = LoggerFactory.getLogger(EntityClassListener.class.getName());
 
 	@Autowired
-	DdlService ddlService;
+	PortalCoreDdlService portalCoreDdlService;
 	
 	@Autowired
-	DataItemDao dataItemDao;
+	PortalCoreDataItemDao portalCoreDataItemDao;
 
 	@Autowired
-	HovDao hovDao;
+	PortalCoreHovDao portalCoreHovDao;
 	
 	@Autowired
-	DataItemService dataItemService;
+	PortalCoreDataItemService portalCoreDataItemService;
 	
 	@Autowired
-	ModuleDao moduleDao;
+	PortalCoreModuleDao moduleDao;
 	
 	@Autowired
 	ModuleService moduleService;
@@ -98,21 +98,21 @@ public class EntityClassListener implements ApplicationListener<ApplicationReady
 							boolean forceUpdate = item.forceUpdate();
 							
 							if(valueType == DataItemValueTypeEnum.DEFAULT) {
-								valueType = dataItemDao.defaultValueType(value);
+								valueType = portalCoreDataItemDao.defaultValueType(value);
 							}
 							
 							if(StringUtils.hasText(objectCode)) {
 								
 							}
 							else {
-								DataItem dataitem = dataItemDao.findByKey(code);
+								DataItem dataitem = portalCoreDataItemDao.findByKey(code);
 								if(dataitem == null) {
 									dataitem = new DataItem(code, name, description, type, displayKey, valueType, length, precision);
-									dataItemDao.insert(dataitem);
+									portalCoreDataItemDao.insert(dataitem);
 								}
 								else if(forceUpdate) {
 									dataitem = new DataItem(code, name, description, type, displayKey, valueType, length, precision);
-									dataItemDao.update(dataitem);
+									portalCoreDataItemDao.update(dataitem);
 								}
 							}
 						}
@@ -146,7 +146,7 @@ public class EntityClassListener implements ApplicationListener<ApplicationReady
 									vv.put(v, enumName);
 								}
 							}
-							ddlService.saveDictionary(dictCode, dictName, vv, true);
+							portalCoreDdlService.saveDictionary(dictCode, dictName, vv, true);
 						}
 					}
 				}
@@ -161,14 +161,14 @@ public class EntityClassListener implements ApplicationListener<ApplicationReady
 				Class<? extends IHovDao<?>> daoClass = hov.hovDao();
 				String returnKey = hov.returnKey();
 				boolean force = hov.forceUpdate();
-				Hov entity = hovDao.findByKey(code);
+				Hov entity = portalCoreHovDao.findByKey(code);
 				if(entity == null ) {
-					entity = Hov.instanceByClass(dataItemService, code, name, description, request, daoClass, returnKey);
-					hovDao.insert(entity);
+					entity = Hov.instanceByClass(portalCoreDataItemService, code, name, description, request, daoClass, returnKey);
+					portalCoreHovDao.insert(entity);
 				}
 				else if(force) {
-					entity = Hov.instanceByClass(dataItemService, code, name, description, request, daoClass, returnKey);
-					hovDao.update(entity);
+					entity = Hov.instanceByClass(portalCoreDataItemService, code, name, description, request, daoClass, returnKey);
+					portalCoreHovDao.update(entity);
 				}
 			}
 			

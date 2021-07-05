@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.exframework.support.common.util.StrUtils;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
@@ -17,7 +18,6 @@ import org.exframework.support.common.entity.FilterCondition;
 import org.exframework.support.common.entity.PageModel;
 import org.exframework.support.common.entity.Pager;
 import org.exframework.support.common.util.BeanUtils;
-import org.exframework.support.common.util.StringUtils;
 
 /**
  *
@@ -43,7 +43,7 @@ public interface ExElasticsearchOperations extends ElasticsearchOperations {
 				fc.setFilterDataType(FilterCondition.defaultType(fc.getFilterValue()));
 			}
 			
-			String key = StringUtils.humpToUnderline(fc.getKey());
+			String key = StrUtils.humpToUnderline(fc.getKey());
 			switch (fc.getOper()) {
 			case BETWEEN:
 				switch (fc.getFilterDataType()) {

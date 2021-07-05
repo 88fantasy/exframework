@@ -7,11 +7,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.exframework.portal.dao.PortalCoreModuleDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
-import org.exframework.portal.dao.ModuleDao;
 import org.exframework.portal.metadata.di.DataItem;
 import org.exframework.portal.metadata.grid.Column;
 import org.exframework.portal.metadata.hov.Hov;
@@ -33,16 +33,16 @@ import org.exframework.support.common.util.SpringContextUtils;
 public class ModuleService {
 
 	@Autowired
-	ModuleDao moduleDao;
+	PortalCoreModuleDao moduleDao;
 
 	@Autowired
-	PermissionService permissionService;
+	PortalCorePermissionService portalCorePermissionService;
 
 	@Autowired
-	DataItemService dataItemService;
+	PortalCoreDataItemService portalCoreDataItemService;
 
 	@Autowired
-	HovService hovService;
+	PortalCoreHovService portalCoreHovService;
 
 	public Collection<String> getAllKeys() {
 		return moduleDao.allKeys();
@@ -56,9 +56,9 @@ public class ModuleService {
 //		Collection<String> dataItemKeys = getDataItems(entity);
 //		Collection<String> permissions = moduleDao.findPermissionKeyByEntity(entity);
 //		Collection<String> hovs = moduleDao.findHovKeyByEntity(entity);
-//		module.setDataItems(dataItemKeys.stream().map(itemKey -> dataItemService.findDataItem(entity.getCode(), itemKey)).collect(Collectors.toList()));
+//		module.setDataItems(dataItemKeys.stream().map(itemKey -> portalCoreDataItemService.findDataItem(entity.getCode(), itemKey)).collect(Collectors.toList()));
 //		module.setPermissions(permissions);
-//		module.setHovs(hovs.stream().map(hovKey -> hovService.findByKey(key)).collect(Collectors.toList()));
+//		module.setHovs(hovs.stream().map(hovKey -> portalCoreHovService.findByKey(key)).collect(Collectors.toList()));
 //		return module;
 //	}
 //	
@@ -67,8 +67,8 @@ public class ModuleService {
 //	}
 
 	public Module instanceByClass(ModuleBase entity, String[] dataItemCodes, String[] hovCodes, String[] permissions) {
-		List<DataItem> dataItems = Arrays.asList(dataItemCodes).stream().map(itemKey -> dataItemService.findDataItem(entity.getCode(), itemKey)).collect(Collectors.toList());
-		List<Hov> hovs = Arrays.asList(hovCodes).stream().map(code -> hovService.findByKey(code))
+		List<DataItem> dataItems = Arrays.stream(dataItemCodes).map(itemKey -> portalCoreDataItemService.findDataItem(entity.getCode(), itemKey)).collect(Collectors.toList());
+		List<Hov> hovs = Arrays.stream(dataItemCodes).map(code -> portalCoreHovService.findByKey(code))
 				.collect(Collectors.toList());
 		Module module = new Module(entity.getCode(), entity.getName(), entity.getDescription(), entity.isValid(),
 				entity.getStar(), dataItems, Arrays.asList(permissions), hovs);
@@ -92,18 +92,18 @@ public class ModuleService {
 					Collection<DataItem> serviceItems = moduleService.getDataItems();
 					Collection<Hov> serviceHovs = moduleService.getHovs();
 					Collection<Permission> servicePermissions = moduleService.getPermissions();
-					List<Hov> moduleHovs = new ArrayList<Hov>();
-					List<DataItem> moduleItems = new ArrayList<DataItem>();
+					List<Hov> moduleHovs = new ArrayList<>();
+					List<DataItem> moduleItems = new ArrayList<>();
 
 					if (serviceHovs.isEmpty()) {
-						moduleHovs.addAll(Arrays.asList(entity.hovRef()).stream()
-								.map(itemKey -> hovService.findByKey(itemKey)).collect(Collectors.toList()));
+						moduleHovs.addAll(Arrays.stream(entity.hovRef())
+								.map(itemKey -> portalCoreHovService.findByKey(itemKey)).collect(Collectors.toList()));
 					} else {
 						moduleHovs.addAll(serviceHovs);
 					}
 					if (serviceItems.isEmpty()) {
-						moduleItems.addAll(Arrays.asList(entity.dataItemRef()).stream()
-								.map(itemKey -> dataItemService.findDataItem(entity.value(), itemKey))
+						moduleItems.addAll(Arrays.stream(entity.dataItemRef())
+								.map(itemKey -> portalCoreDataItemService.findDataItem(entity.value(), itemKey))
 								.collect(Collectors.toList()));
 					} else {
 						moduleItems.addAll(serviceItems);
@@ -112,7 +112,7 @@ public class ModuleService {
 						HovQueryParams[] params = hov.getQueryParams();
 						if (params != null) {
 							for (HovQueryParams p : params) {
-								DataItem item = dataItemService.findDataItemWithSpliter(p.getKey());
+								DataItem item = portalCoreDataItemService.findDataItemWithSpliter(p.getKey());
 								if (item != null) {
 									if (!contains(moduleItems, item)) {
 										moduleItems.add(item);
@@ -123,7 +123,7 @@ public class ModuleService {
 						Column[] columns = hov.getColumns();
 						if (columns != null) {
 							for (Column c : columns) {
-								DataItem item = dataItemService.findDataItemWithSpliter(c.getKey());
+								DataItem item = portalCoreDataItemService.findDataItemWithSpliter(c.getKey());
 								if (item != null) {
 									if (!contains(moduleItems, item)) {
 										moduleItems.add(item);
