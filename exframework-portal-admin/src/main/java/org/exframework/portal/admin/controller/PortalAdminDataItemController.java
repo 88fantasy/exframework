@@ -1,16 +1,9 @@
 package org.exframework.portal.admin.controller;
 
 
-import javax.validation.Valid;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.exframework.portal.admin.constant.AdminApiConstants;
 import org.exframework.portal.admin.dto.PostDataItemPostRequest;
 import org.exframework.portal.admin.dto.PostDataItemQueryRequest;
@@ -19,13 +12,13 @@ import org.exframework.portal.exception.NotAuthorizedException;
 import org.exframework.portal.exception.NotFoundException;
 import org.exframework.portal.metadata.di.DataItem;
 import org.exframework.portal.web.constants.WebApiConstants;
-import org.exframework.portal.web.service.PortalWebBaseLoginService;
 import org.exframework.support.rest.entity.ApiResponseData;
 import org.exframework.support.rest.entity.ApiResponsePage;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
+import javax.validation.Valid;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600, methods = { RequestMethod.GET, RequestMethod.OPTIONS, RequestMethod.DELETE,
@@ -33,9 +26,6 @@ import io.swagger.annotations.ApiParam;
 @RequestMapping(AdminApiConstants.API_ADMIN_PREFIX)
 @Api(tags = "数据项")
 public class PortalAdminDataItemController {
-
-	@Autowired
-    PortalWebBaseLoginService portalWebBaseLoginService;
 
 	@Autowired
 	AdminDataItemService dataItemService;

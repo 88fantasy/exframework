@@ -17,7 +17,6 @@ import org.exframework.portal.exception.NotAuthorizedException;
 import org.exframework.portal.exception.NotFoundException;
 import org.exframework.portal.metadata.sys.Logger;
 import org.exframework.portal.web.constants.WebApiConstants;
-import org.exframework.portal.web.service.PortalWebBaseLoginService;
 import org.exframework.support.rest.entity.ApiResponsePage;
 
 import io.swagger.annotations.Api;
@@ -30,9 +29,6 @@ import io.swagger.annotations.ApiParam;
 @RequestMapping(AdminApiConstants.API_ADMIN_PREFIX)
 @Api(tags = "日志")
 public class PortalAdminLogController {
-
-	@Autowired
-    PortalWebBaseLoginService portalWebBaseLoginService;
 
 	@Autowired
 	AdminLogService adminLogService;

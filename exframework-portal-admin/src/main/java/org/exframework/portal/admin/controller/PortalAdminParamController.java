@@ -19,7 +19,6 @@ import org.exframework.portal.metadata.sys.AccountParameter;
 import org.exframework.portal.web.constants.WebApiConstants;
 import org.exframework.portal.web.controller.PortalWebParamController;
 import org.exframework.portal.web.dto.PostConditionQueryRequest;
-import org.exframework.portal.web.service.PortalWebBaseLoginService;
 import org.exframework.support.rest.entity.ApiResponseData;
 import org.exframework.support.rest.entity.ApiResponsePage;
 
@@ -33,9 +32,6 @@ import io.swagger.annotations.ApiParam;
 @RequestMapping(AdminApiConstants.API_ADMIN_PREFIX)
 @Api(tags = "参数")
 public class PortalAdminParamController extends PortalWebParamController {
-
-	@Autowired
-	PortalWebBaseLoginService portalWebBaseLoginService;
 
 	@Autowired
 	AdminParamService paramService;

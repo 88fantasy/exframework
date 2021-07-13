@@ -9,7 +9,6 @@ import com.baomidou.mybatisplus.extension.handlers.FastjsonTypeHandler;
 import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
 import com.gitee.sunchenbin.mybatis.actable.constants.MySqlTypeConstant;
 
-import org.exframework.portal.permission.PermissionGroup;
 import org.exframework.support.doc.annotation.TableDoc;
 import org.exframework.support.doc.annotation.TableFieldDoc;
 
@@ -26,7 +25,7 @@ import java.util.List;
  */
 @TableDoc("权限组")
 @TableName( value = "sys_permission_group", autoResultMap = true)
-public class PermissionGroupDO implements Serializable {
+public class PermissionResourceDO implements Serializable {
 
 	private static final long serialVersionUID = 5821041616688028717L;
 

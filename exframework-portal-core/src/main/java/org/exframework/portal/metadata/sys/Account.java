@@ -186,6 +186,7 @@ public class Account implements Serializable, DictionaryEnumClass {
 			this.label = label;
 		}
 
+		@Override
 		public String getLabel() {
 			return label;
 		}

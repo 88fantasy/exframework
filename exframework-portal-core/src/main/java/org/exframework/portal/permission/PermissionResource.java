@@ -13,7 +13,7 @@ import org.exframework.portal.metadata.sys.Permission;
  *
  * 
  */
-public class PermissionGroup extends Meta {
+public class PermissionResource extends Meta {
 
 	private static final long serialVersionUID = -8164030726669013838L;
 	

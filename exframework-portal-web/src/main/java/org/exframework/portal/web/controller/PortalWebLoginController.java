@@ -27,9 +27,9 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 
-@RestController
-@CrossOrigin(origins = "*", maxAge = 3600, methods = { RequestMethod.GET })
-@Api(tags = "登录")
+//@RestController
+//@CrossOrigin(origins = "*", maxAge = 3600, methods = { RequestMethod.GET })
+//@Api(tags = "登录")
 public class PortalWebLoginController {
 	
 	@Autowired

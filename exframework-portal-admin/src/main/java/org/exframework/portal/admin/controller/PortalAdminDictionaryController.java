@@ -20,7 +20,6 @@ import org.exframework.portal.exception.NotFoundException;
 import org.exframework.portal.metadata.dict.DictionaryItem;
 import org.exframework.portal.web.constants.WebApiConstants;
 import org.exframework.portal.web.controller.PortalWebDictionaryController;
-import org.exframework.portal.web.service.PortalWebBaseLoginService;
 import org.exframework.support.rest.entity.ApiResponseData;
 import org.exframework.support.rest.entity.ApiResponsePage;
 
@@ -34,9 +33,6 @@ import io.swagger.annotations.ApiParam;
 @RequestMapping(AdminApiConstants.API_ADMIN_PREFIX)
 @Api(tags = "字典")
 public class PortalAdminDictionaryController extends PortalWebDictionaryController {
-
-	@Autowired
-	PortalWebBaseLoginService portalWebBaseLoginService;
 
 	@Autowired
 	AdminDictionaryService dictionaryService;

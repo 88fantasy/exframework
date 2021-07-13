@@ -9,7 +9,7 @@
 		<version>0.7.1</version>
 	</parent>
 	<artifactId>exframework-portal-admin</artifactId>
-	<name>exframework-admin</name>
+	<name>exframework-portal-admin</name>
 
 	<build>
 		<resources>

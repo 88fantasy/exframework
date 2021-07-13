@@ -1,38 +1,26 @@
 package org.exframework.portal.web.controller;
 
-import java.util.Map;
-
-import javax.validation.Valid;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.exframework.portal.exception.NotAuthorizedException;
 import org.exframework.portal.exception.NotFoundException;
 import org.exframework.portal.service.sys.PortalCoreDdlService;
 import org.exframework.portal.web.constants.WebApiConstants;
 import org.exframework.portal.web.dto.OptionsResponse;
-import org.exframework.portal.web.service.PortalWebBaseLoginService;
 import org.exframework.portal.web.service.PortalWebDdlService;
 import org.exframework.support.rest.entity.ApiResponseData;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
+import javax.validation.Valid;
+import java.util.Map;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600, methods = { RequestMethod.GET, RequestMethod.OPTIONS, RequestMethod.POST })
 @Api(tags = "下拉列表")
 public class PortalWebDictionaryController {
-	
-	@Autowired
-	PortalWebBaseLoginService portalWebBaseLoginService;
 	
 	@Autowired
     PortalCoreDdlService portalCoreDdlService;

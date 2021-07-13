@@ -3,7 +3,7 @@ package org.exframework.portal.service.sys;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.exframework.portal.dao.PortalCorePermissionGroupDao;
+import org.exframework.portal.dao.PortalCorePermissionResourceDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,7 @@ import org.exframework.portal.dao.PortalCorePermissionDao;
 import org.exframework.portal.metadata.sys.Account;
 import org.exframework.portal.metadata.sys.Permission;
 import org.exframework.portal.metadata.sys.SystemConst;
-import org.exframework.portal.permission.PermissionGroup;
+import org.exframework.portal.permission.PermissionResource;
 
 
 /**
@@ -26,19 +26,16 @@ public class PortalCorePermissionService {
 	
 	private Logger log = LoggerFactory.getLogger(PortalCorePermissionService.class.getName());
 	
-	private Map<String,Permission> allPermissions = new ConcurrentHashMap<String,Permission>();
-	
-	@Autowired
-	public SystemConst systemConst;
+	private Map<String,Permission> allPermissions = new ConcurrentHashMap<>();
 
 	@Autowired
 	PortalCorePermissionDao permissionDao;
 
 	@Autowired
-	PortalCorePermissionGroupDao permissionGroupDao;
+	PortalCorePermissionResourceDao permissionResourceDao;
 	
-	public Map<String, PermissionGroup> getPermissionGroups() {
-		return permissionGroupDao.allGroups();
+	public Map<String, PermissionResource> getPermissionResources() {
+		return permissionResourceDao.allGroups();
 	}
 	
 	public Map<String, Permission> getAllPermissions() {
@@ -50,7 +47,7 @@ public class PortalCorePermissionService {
 	}
 	
 	public Map<String,Permission> sum(List<Map<String,Permission>> permissionMapList) {
-		Map<String, Permission> permissions = new ConcurrentHashMap<String, Permission>();
+		Map<String, Permission> permissions = new ConcurrentHashMap<String, Permission>(16);
 		for(Map<String,Permission> permissionMap : permissionMapList) {
 			permissions.putAll(permissionMap);
 		}
