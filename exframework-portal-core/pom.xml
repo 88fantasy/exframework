@@ -9,7 +9,7 @@
 	</parent>
 	<artifactId>exframework-portal-core</artifactId>
 	<packaging>jar</packaging>
-	<name>core service</name>
+	<name>exframework-portal-core</name>
 
 	<build>
 		<finalName>exframework-core</finalName>

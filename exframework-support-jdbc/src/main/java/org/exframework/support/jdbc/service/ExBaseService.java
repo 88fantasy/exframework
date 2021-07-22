@@ -126,7 +126,7 @@ public class ExBaseService<M extends ExBaseMapper<T>, T> extends ServiceImpl<M, 
 	
 	public <E> PageModel<E> query(Collection<FilterCondition> params, org.exframework.support.common.entity.Page page,
 			Class<E> clazz) {
-		return getBaseMapper().query(page, getBaseMapper().wrapperFromCondition(params), getTranslator(clazz), clazz);
+		return getBaseMapper().query(page, getBaseMapper().wrapperFromCondition(params), getTranslator(clazz));
 	}
 	
 	public <E> Function<T,E> getTranslator(Class<E> clazz) {
@@ -135,6 +135,6 @@ public class ExBaseService<M extends ExBaseMapper<T>, T> extends ServiceImpl<M, 
 	
 	public <E> PageModel<E> query(@Param(Constants.WRAPPER) Wrapper<T> queryWrapper, org.exframework.support.common.entity.Page page,
 			Class<E> clazz) {
-		return getBaseMapper().query(page, queryWrapper, getTranslator(clazz), clazz);
+		return getBaseMapper().query(page, queryWrapper, getTranslator(clazz));
 	}
 }

@@ -1,5 +1,7 @@
 package org.exframework.portal.metadata.dict;
 
+import org.exframework.support.common.enums.DictionaryEnum;
+
 /**
  *
  * @author rwe

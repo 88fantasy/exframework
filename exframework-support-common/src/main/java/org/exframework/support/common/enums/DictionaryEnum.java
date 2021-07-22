@@ -1,4 +1,4 @@
-package org.exframework.portal.metadata.dict;
+package org.exframework.support.common.enums;
 
 /**
  *
@@ -10,7 +10,15 @@ package org.exframework.portal.metadata.dict;
  */
 public interface DictionaryEnum {
 
+	/**
+	 * 获取代码
+	 * @return 字典代码
+	 */
 	String name();
-	
+
+	/**
+	 * 获取描述
+	 * @return 字典描述
+	 */
 	String getLabel();
 }

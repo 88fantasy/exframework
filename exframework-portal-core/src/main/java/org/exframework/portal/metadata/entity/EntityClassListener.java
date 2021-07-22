@@ -24,7 +24,7 @@ import org.exframework.portal.metadata.di.DataItemEntity;
 import org.exframework.portal.metadata.di.DataItem.DataItemDisplayTypeEnum;
 import org.exframework.portal.metadata.di.DataItem.DataItemValueTypeEnum;
 import org.exframework.portal.metadata.dict.Dictionary;
-import org.exframework.portal.metadata.dict.DictionaryEnum;
+import org.exframework.support.common.enums.DictionaryEnum;
 import org.exframework.portal.metadata.dict.DictionaryEnumClass;
 import org.exframework.portal.metadata.hov.Hov;
 import org.exframework.portal.metadata.hov.HovEntity;

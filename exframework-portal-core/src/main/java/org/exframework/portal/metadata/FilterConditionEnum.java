@@ -1,23 +1,9 @@
 package org.exframework.portal.metadata;
 
-import java.beans.PropertyDescriptor;
-import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.FatalBeanException;
-import org.springframework.core.ResolvableType;
-import org.springframework.lang.Nullable;
-
 import org.exframework.portal.metadata.dict.Dictionary;
-import org.exframework.portal.metadata.dict.DictionaryEnum;
+import org.exframework.support.common.enums.DictionaryEnum;
 import org.exframework.portal.metadata.dict.DictionaryEnumClass;
 import org.exframework.portal.metadata.entity.EntityClass;
-import org.exframework.support.common.entity.Page;
 
 @EntityClass
 public class FilterConditionEnum implements DictionaryEnumClass {

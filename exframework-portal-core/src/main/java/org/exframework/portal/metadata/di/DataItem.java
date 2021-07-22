@@ -2,7 +2,7 @@ package org.exframework.portal.metadata.di;
 
 import org.exframework.portal.metadata.Meta;
 import org.exframework.portal.metadata.dict.Dictionary;
-import org.exframework.portal.metadata.dict.DictionaryEnum;
+import org.exframework.support.common.enums.DictionaryEnum;
 import org.exframework.portal.metadata.dict.DictionaryEnumClass;
 import org.exframework.portal.metadata.entity.EntityClass;
 
