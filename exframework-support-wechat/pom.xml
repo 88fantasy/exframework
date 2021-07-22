@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.exframework</groupId>
 		<artifactId>exframework-root</artifactId>
-		<version>0.7.1</version>
+		<version>0.7.2</version>
 	</parent>
 	<artifactId>exframework-support-wechat</artifactId>
 	<packaging>jar</packaging>
@@ -27,7 +27,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.dtflys.forest</groupId>
-			<artifactId>spring-boot-starter-forest</artifactId>
+			<artifactId>forest-spring-boot-starter</artifactId>
 		</dependency>
 	</dependencies>
 

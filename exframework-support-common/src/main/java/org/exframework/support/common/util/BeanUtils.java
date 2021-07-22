@@ -1,6 +1,8 @@
 package org.exframework.support.common.util;
 
 
+import java.util.function.Function;
+
 /**
  * 实体工具类
  * @author rwe
@@ -15,5 +17,9 @@ public class BeanUtils extends org.springframework.beans.BeanUtils {
 		T t = BeanUtils.instantiateClass(clazz);
 		BeanUtils.copyProperties(o, t);
 		return t;
+	}
+
+	public static <T, R> R translateTo(T t, Function<T,R> function) {
+		return function.apply(t);
 	}
 }

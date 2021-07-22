@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.gzmpc.spring.boot.autoconfigure.cos.CosAutoConfigure
+org.exframework.spring.boot.autoconfigure.cos.CosAutoConfigure

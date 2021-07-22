@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>org.exframework</groupId>
 		<artifactId>exframework-alibaba-ms-quickstart</artifactId>
-		<version>0.7.1</version>
+		<version>0.7.2</version>
 	</parent>
 	<artifactId>ms-portal</artifactId>
 	<name>ms-portal</name>

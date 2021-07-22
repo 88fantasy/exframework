@@ -131,11 +131,20 @@ public class FilterCondition {
 		}
 	}
 
-	public static Collection<FilterCondition> fromDTO(@Nullable Object editable) {
+	public static Collection<FilterCondition> fromDTO(Object editable) {
 		return fromDTO(editable, Collections.emptyList());
 	}
 
-	public static Collection<FilterCondition> fromDTO(@Nullable Object editable, Collection<String> ignoreList) {
+	public static FilterCondition[] arrayFromDTO(Object editable) {
+		return arrayFromDTO(editable, Collections.emptyList());
+	}
+
+	public static FilterCondition[] arrayFromDTO(Object editable, Collection<String> ignoreList) {
+		Collection<FilterCondition> conditions = fromDTO(editable, ignoreList);
+		return conditions == null? new FilterCondition[0] : conditions.toArray(new FilterCondition[conditions.size()]);
+	}
+
+	public static Collection<FilterCondition> fromDTO(Object editable, Collection<String> ignoreList) {
 		List<FilterCondition> fcList = new ArrayList<FilterCondition>();
 		PropertyDescriptor[] targetPds = BeanUtils.getPropertyDescriptors(editable.getClass());
 		for (PropertyDescriptor targetPd : targetPds) {

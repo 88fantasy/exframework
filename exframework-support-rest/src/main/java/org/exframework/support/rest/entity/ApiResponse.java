@@ -38,13 +38,17 @@ public class ApiResponse {
 	}
 
 	public ApiResponse(ResultCode resultCode, String message) {
-		this(resultCode.getCode(), message, !(resultCode.getCode() >= 400 && resultCode.getCode() <= 599));
+		this(resultCode.getCode(), message, statusFromCode(resultCode.getCode()));
 	}
 	
 	public ApiResponse(int code, String message, boolean status) {
 		this.code = code;
 		this.message = message;
 		this.status = status;
+	}
+
+	public static boolean statusFromCode(int code) {
+		return !(code >= 400 && code <= 599);
 	}
 
 	public int getCode() {

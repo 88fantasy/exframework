@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.exframework</groupId>
 		<artifactId>exframework-root</artifactId>
-		<version>0.7.1</version>
+		<version>0.7.2</version>
 	</parent>
 	<artifactId>exframework-support-tsf</artifactId>
 	<packaging>pom</packaging>
@@ -42,18 +42,8 @@
 			</dependency>
 			<dependency>
 				<groupId>org.exframework</groupId>
-				<artifactId>exframework-tsf-support-sso</artifactId>
-				<version>0.7.1</version>
-			</dependency>
-			<dependency>
-				<groupId>org.exframework</groupId>
-				<artifactId>exframework-tsf-support-cos</artifactId>
-				<version>0.7.1</version>
-			</dependency>
-			<dependency>
-				<groupId>org.exframework</groupId>
 				<artifactId>exframework-tsf-support-tdmq</artifactId>
-				<version>0.7.1</version>
+				<version>0.7.2</version>
 			</dependency>
 			<dependency>
 				<groupId>com.tencent.cloud </groupId>
@@ -61,12 +51,12 @@
 				<version>1.2.0</version>
 			</dependency>
 
-			<!-- 根据 tsf 调整 -->
+			<!-- 根据 tsf 调整
 			<dependency>
 				<groupId>org.exframework</groupId>
 				<artifactId>exframework-support-mongo</artifactId>
 				<version>0.5.2.1</version>
-			</dependency>
+			</dependency>-->
 			<dependency>
 				<groupId>org.springframework.amqp</groupId>
 				<artifactId>spring-amqp</artifactId>

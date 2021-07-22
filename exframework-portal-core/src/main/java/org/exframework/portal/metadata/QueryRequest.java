@@ -15,18 +15,18 @@ public class QueryRequest {
 	/**
 	 * 查询条件
 	 */
-	private FilterCondition[] data;
+	private FilterConditionEnum[] data;
 	
 	/**
 	 * 分页信息
 	 */
 	private Page page;
 
-	public FilterCondition[] getData() {
+	public FilterConditionEnum[] getData() {
 		return data;
 	}
 
-	public void setData(FilterCondition[] data) {
+	public void setData(FilterConditionEnum[] data) {
 		this.data = data;
 	}
 

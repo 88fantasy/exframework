@@ -1,12 +1,11 @@
 package org.exframework.support.monitor.stat.job;
 
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-
-import org.quartz.JobKey;
-
 import org.exframework.support.monitor.job.annotation.Monitor;
 import org.exframework.support.monitor.stat.Stat;
+import org.quartz.JobKey;
+
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
 * @author rwe

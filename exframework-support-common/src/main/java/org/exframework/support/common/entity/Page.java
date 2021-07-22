@@ -27,7 +27,7 @@ public class Page {
 		this.pageSize = DEFAULT.pageSize;
 	}
 	
-	public Page(Long current, Long pageSize) {
+	public Page(@Nullable Long current, @Nullable Long pageSize) {
 		this.current = current;
 		this.pageSize = pageSize;
 	}
@@ -37,19 +37,21 @@ public class Page {
 		this.pageSize = pageSize.longValue();
 	}
 
+	@Nullable
 	public Long getCurrent() {
 		return current;
 	}
 
-	public void setCurrent(Long current) {
+	public void setCurrent(@Nullable Long current) {
 		this.current = current;
 	}
 
+	@Nullable
 	public Long getPageSize() {
 		return pageSize;
 	}
 
-	public void setPageSize(Long pageSize) {
+	public void setPageSize(@Nullable Long pageSize) {
 		this.pageSize = pageSize;
 	}
 
