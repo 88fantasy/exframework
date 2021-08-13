@@ -4,13 +4,16 @@ import cn.hutool.core.codec.Base64;
 import cn.hutool.core.date.DateTime;
 import cn.hutool.core.date.DateUtil;
 import com.dtflys.forest.exceptions.ForestRuntimeException;
+import com.dtflys.forest.http.ForestProxy;
 import com.dtflys.forest.http.ForestRequest;
 import com.dtflys.forest.http.ForestRequestBody;
 import com.dtflys.forest.http.ForestResponse;
 import com.dtflys.forest.http.body.NameValueRequestBody;
 import com.dtflys.forest.interceptor.Interceptor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.DigestUtils;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 import java.util.Map;
@@ -25,8 +28,25 @@ import java.util.concurrent.ConcurrentHashMap;
 @Component
 public class SmsHeaderInterceptor implements Interceptor<Object> {
 
+    @Autowired
+    SmsProperties smsProperties;
+
     @Override
     public boolean beforeExecute(ForestRequest request) {
+        if (smsProperties.getProxy() != null) {
+            Proxy proxy = smsProperties.getProxy();
+            if (StringUtils.hasText(proxy.getHost()) && proxy.getPort() != null) {
+                ForestProxy forestProxy = new ForestProxy(proxy.getHost(), proxy.getPort());
+                if (StringUtils.hasText(proxy.getUsername())) {
+                    forestProxy.setUsername(proxy.getUsername());
+                }
+                if (StringUtils.hasText(proxy.getPassword())) {
+                    forestProxy.setPassword(proxy.getPassword());
+                }
+                request.setProxy(forestProxy);
+            }
+        }
+
         Map<String, Object> data = new ConcurrentHashMap<>(16);
         List<ForestRequestBody> bodies = request.getBody();
         for (ForestRequestBody body : bodies) {

@@ -1,10 +1,10 @@
 package org.exframework.support.rest.annotation;
 
-import org.exframework.support.common.entity.CheckerResult;
 import org.exframework.support.rest.exception.ApiException;
-import org.exframework.support.rest.validator.FieldCheckerValidator;
+import org.exframework.support.rest.validator.RequestFieldCheckerValidator;
 
 import javax.validation.Constraint;
+import javax.validation.ConstraintDeclarationException;
 import javax.validation.Payload;
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
@@ -17,7 +17,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Documented
 @Retention(RUNTIME)
 @Target({PARAMETER, FIELD, ANNOTATION_TYPE})
-@Constraint(validatedBy = {FieldCheckerValidator.class})
+@Constraint(validatedBy = {RequestFieldCheckerValidator.class})
 /**
  * @author rwe
  * @version 创建时间：2021年5月21日 下午4:42:56
@@ -31,7 +31,7 @@ public @interface RequestFieldChecker {
      *
      * @return
      */
-    Class<? extends Function<Object, CheckerResult>> value();
+    Class<? extends Function<Object, String>> value();
 
     /**
      * 抛出错误类型
@@ -39,7 +39,7 @@ public @interface RequestFieldChecker {
      *
      * @return
      */
-    Class<? extends RuntimeException> exception() default ApiException.class;
+    Class<? extends RuntimeException> exception() default ConstraintDeclarationException.class;
 
     String message() default "校验不通过";
 

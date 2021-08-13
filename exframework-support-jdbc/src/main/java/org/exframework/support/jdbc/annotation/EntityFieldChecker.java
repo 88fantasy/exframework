@@ -28,7 +28,7 @@ public @interface EntityFieldChecker {
      * 断言判断实现类
      * @return
      */
-    Class<? extends Function<Object, CheckerResult>> value();
+    Class<? extends Function<Object, String>> value();
 
     /**
      * 抛出错误类型

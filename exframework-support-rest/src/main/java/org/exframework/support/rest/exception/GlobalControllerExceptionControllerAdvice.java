@@ -1,8 +1,13 @@
 package org.exframework.support.rest.exception;
 
+import java.io.IOException;
+import java.text.MessageFormat;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -21,27 +26,57 @@ import org.exframework.support.rest.enums.ResultCode;
  */
 @RestControllerAdvice
 public class GlobalControllerExceptionControllerAdvice {
+
+	private static Logger logger = LoggerFactory.getLogger(GlobalControllerExceptionControllerAdvice.class.getName());
 	
 	public static final String PARAMS_ERROR = "参数校验错误";
 
 	/**
 	 * 参数范围校验错误
-	 * @param e
-	 * @return
 	 */
 	@ExceptionHandler(MethodArgumentNotValidException.class)
-    public ApiResponseData<List<String>> MethodArgumentNotValidExceptionHandler(MethodArgumentNotValidException e) {
-		// 从异常对象中拿到ObjectError对象
-        return new ApiResponseData<List<String>>(ResultCode.BAD_REQUEST, PARAMS_ERROR, e.getBindingResult().getAllErrors().stream().map(ObjectError::getDefaultMessage).collect(Collectors.toList()));
+    public ApiResponseData<List<String>> methodArgumentNotValidExceptionHandler(MethodArgumentNotValidException e) {
+		logger.error(e.getMessage(), e);
+        return new ApiResponseData<>(ResultCode.BAD_REQUEST, PARAMS_ERROR, e.getBindingResult().getAllErrors().stream().map(ObjectError::getDefaultMessage).collect(Collectors.toList()));
     }
 	
 	@ExceptionHandler(ApiException.class)
-	public ApiResponseData<String> ApiExceptionHandler(ApiException e) {
-	    return new ApiResponseData<String>(e.getCode(), e.getMessage(), false, "客户端请求错误");
+	public ApiResponseData<Object> apiExceptionHandler(ApiException e) {
+		errorHandle(e);
+		return new ApiResponseData<>(e.getCode(), e.getMessage(), false, e.getData());
 	}
 	
 	@ExceptionHandler(ServerException.class)
-	public ApiResponseData<String> ServerExceptionHandler(ServerException e) {
-	    return new ApiResponseData<String>(e.getCode(), e.getMessage(), false, "响应失败");
+	public ApiResponseData<Object> serverExceptionHandler(ServerException e) {
+		errorHandle(e);
+		return new ApiResponseData<>(ResultCode.INTERNAL_SERVER_ERROR, e.getMessage());
+	}
+
+	@ExceptionHandler(HttpMessageNotReadableException.class)
+	public ApiResponseData<Object> httpMessageNotReadableExceptionHandler(HttpMessageNotReadableException e) {
+		errorHandle(e);
+		return new ApiResponseData<>(ResultCode.BAD_REQUEST, "请求参数错误,请检查", e.getMessage());
+	}
+
+	@ExceptionHandler(NullPointerException.class)
+	public ApiResponseData<Object> nullPointerExceptionHandler(NullPointerException e) {
+		errorHandle(e);
+		return new ApiResponseData<>(ResultCode.SERVICE_UNAVAILABLE, "空指针错误,请联系管理员", e.getMessage());
+	}
+
+	@ExceptionHandler(IOException.class)
+	public ApiResponseData<Object> nullPointerExceptionHandler(IOException e) {
+		errorHandle(e);
+		return new ApiResponseData<>(ResultCode.SERVICE_UNAVAILABLE, "文件错误,请联系管理员",  e.getMessage());
+	}
+
+	@ExceptionHandler(Exception.class)
+	public ApiResponseData<Object> exceptionHandler(Exception e) {
+		errorHandle(e);
+		return new ApiResponseData<>(ResultCode.INTERNAL_SERVER_ERROR, e.getMessage());
+	}
+
+	private void errorHandle(Exception e) {
+		logger.error(MessageFormat.format("全局错误处理:{0}", e.getMessage()), e);
 	}
 }

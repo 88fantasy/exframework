@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.exframework</groupId>
+		<artifactId>exframework-spring-cloud-alibaba</artifactId>
+		<version>0.7.5</version>
+	</parent>
+	<artifactId>exframework-alibaba-ms-quickstart</artifactId>
+	<name>exframework-alibaba-ms-quickstart</name>
+	<packaging>pom</packaging>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-archetype-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+	
+	<repositories>
+		<repository>
+			<id>ali-releases</id>
+			<url>https://packages.aliyun.com/maven/repository/2000957-release-5hAP6n/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+	
+
+	<dependencyManagement>
+		<dependencies>
+
+		</dependencies>
+	</dependencyManagement>
+  <modules>
+    <module>ms-core</module>
+    <module>ms-portal</module>
+  </modules>
+</project>

@@ -22,10 +22,10 @@ public class SmsAutoConfigure {
     private Logger log = LoggerFactory.getLogger(SmsAutoConfigure.class);
 
     @Autowired
-    private SmsProperties smsProperties;
+    SmsProperties smsProperties;
 
     @Autowired
-    private SmsHttpClient smsHttpClient;
+    SmsHttpClient smsHttpClient;
 
 
     @Bean

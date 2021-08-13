@@ -38,6 +38,11 @@ public class SmsProperties {
      */
     private String appId;
 
+    /**
+     * 代理设置
+     */
+    private Proxy proxy;
+
     public String getUrl() {
         return url;
     }
@@ -80,6 +85,15 @@ public class SmsProperties {
 
     public SmsProperties setAppId(String appId) {
         this.appId = appId;
+        return this;
+    }
+
+    public Proxy getProxy() {
+        return proxy;
+    }
+
+    public SmsProperties setProxy(Proxy proxy) {
+        this.proxy = proxy;
         return this;
     }
 }

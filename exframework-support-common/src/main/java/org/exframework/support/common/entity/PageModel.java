@@ -61,4 +61,8 @@ public class PageModel<T> {
 		List<E> elist = tlist.stream().map(translator).collect(Collectors.toList());
 		return new PageModel<E>(this.getPager(), elist);
 	}
+
+	public static final <E> PageModel<E> empltyPage() {
+		return (PageModel<E>)EMPTY;
+	}
 }

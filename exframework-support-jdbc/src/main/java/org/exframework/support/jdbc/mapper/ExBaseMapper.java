@@ -1,12 +1,12 @@
 package org.exframework.support.jdbc.mapper;
 
+import cn.hutool.core.collection.CollUtil;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.toolkit.Constants;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.github.xiaoymin.knife4j.core.util.CollectionUtils;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.ibatis.annotations.Param;
 import org.exframework.support.common.entity.FilterCondition;
@@ -35,11 +35,11 @@ public interface ExBaseMapper<T> extends BaseMapper<T> {
     }
 
     default QueryWrapper<T> wrapperFromConditionAndSort(Collection<FilterCondition> conditions, Collection<String> sorts) {
-        if (CollectionUtils.isEmpty(conditions) && CollectionUtils.isEmpty(sorts)) {
+        if (CollUtil.isEmpty(conditions) && CollUtil.isEmpty(sorts)) {
             return Wrappers.emptyWrapper();
         }
         QueryWrapper<T> wrapper = new QueryWrapper<>();
-        if (!CollectionUtils.isEmpty(conditions)) {
+        if (!CollUtil.isEmpty(conditions)) {
             for (FilterCondition fc : conditions) {
                 if (fc.getFilterValue() == null) {
                     continue;
@@ -219,18 +219,19 @@ public interface ExBaseMapper<T> extends BaseMapper<T> {
                 }
             }
         }
-        if (!CollectionUtils.isEmpty(sorts)) {
+        if (!CollUtil.isEmpty(sorts)) {
             for (String sort : sorts) {
                 if (StringUtils.hasLength(sort)) {
-                    String trim = sort.substring(0, sort.length() - 1).trim();
-                    if ("+".equals(sort.substring(sort.length() - 1))) {
-                        wrapper.orderByAsc(trim);
+                    String trim = StrUtils.humpToUnderline(sort.trim());
+                    String key = trim.substring(0, sort.length());
+                    String opera = trim.substring(sort.length());
+
+                    if ("+".equals(opera)) {
+                        wrapper.orderByAsc(key);
+                    } else if ("-".equals(opera)) {
+                        wrapper.orderByDesc(key);
                     } else {
-                        if ("-".equals(sort.substring(sort.length() - 1))) {
-                            wrapper.orderByDesc(trim);
-                        } else {
-                            wrapper.orderByDesc(sort.trim());
-                        }
+                        wrapper.orderByDesc(trim);
                     }
                 }
             }

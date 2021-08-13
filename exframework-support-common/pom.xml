@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>org.exframework</groupId>
 		<artifactId>exframework-root</artifactId>
-		<version>0.7.2</version>
+		<version>0.7.5</version>
 	</parent>
 	<artifactId>exframework-support-common</artifactId>
 	<packaging>jar</packaging>
@@ -22,10 +22,6 @@
 
 
 	<dependencies>
-		<dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-        </dependency>
 		<dependency>
 			<groupId>cn.hutool</groupId>
 			<artifactId>hutool-all</artifactId>

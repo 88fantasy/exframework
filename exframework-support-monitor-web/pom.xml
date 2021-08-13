@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.exframework</groupId>
 		<artifactId>exframework-root</artifactId>
-		<version>0.7.2</version>
+		<version>0.7.5</version>
 	</parent>
 	<artifactId>exframework-support-monitor-web</artifactId>
 	<packaging>jar</packaging>
@@ -32,10 +32,6 @@
 		<dependency>
 			<groupId>org.exframework</groupId>
 			<artifactId>exframework-support-monitor</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>fastjson</artifactId>
 		</dependency>
 	</dependencies>
 

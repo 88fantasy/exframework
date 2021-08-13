@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>org.exframework</groupId>
 		<artifactId>exframework-root</artifactId>
-		<version>0.7.2</version>
+		<version>0.7.5</version>
 	</parent>
 	<artifactId>exframework-portal-web-jdbc</artifactId>
 	<packaging>jar</packaging>

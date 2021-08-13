@@ -91,15 +91,12 @@ public class FilterCondition {
 	public static FilterConditionOper defaultOper(Object value) {
 		if (value != null) {
 			Class<?> c = value.getClass();
-			if (c.isArray()) {
+			if (c.isArray() || Collection.class.isAssignableFrom(c)) {
 				return FilterConditionOper.IN;
 			}
 			switch (c.getName()) {
 			case "java.lang.String":
 				return FilterConditionOper.MATCHING;
-			case "java.util.List":
-			case "java.util.Collection":
-				return FilterConditionOper.IN;
 			default:
 				return FilterConditionOper.EQUAL;
 			}
@@ -189,7 +186,7 @@ public class FilterCondition {
 
 		private String name;
 
-		private FilterConditionDataType(String key, String name) {
+		FilterConditionDataType(String key, String name) {
 			this.key = key;
 			this.name = name;
 		}
@@ -215,7 +212,7 @@ public class FilterCondition {
 
 		private String name;
 
-		private FilterConditionOper(String key, String name) {
+		FilterConditionOper(String key, String name) {
 			this.key = key;
 			this.name = name;
 		}

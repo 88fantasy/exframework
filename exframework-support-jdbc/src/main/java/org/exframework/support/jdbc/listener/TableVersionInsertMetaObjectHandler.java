@@ -25,7 +25,7 @@ public class TableVersionInsertMetaObjectHandler implements MetaObjectHandler {
             if (Integer.class.isAssignableFrom(clazz) || int.class.isAssignableFrom(clazz)) {
                 setFieldValByName(field.getName(), 0, metaObject);
             } else if (Long.class.isAssignableFrom(clazz) || long.class.isAssignableFrom(clazz)) {
-                setFieldValByName(field.getName(), false, metaObject);
+                setFieldValByName(field.getName(), 0L, metaObject);
             } else if (LocalDateTime.class.isAssignableFrom(clazz)) {
                 setFieldValByName(field.getName(), LocalDateTime.now(), metaObject);
             } else if (Date.class.isAssignableFrom(clazz)) {
