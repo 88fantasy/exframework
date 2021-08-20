@@ -31,7 +31,7 @@ public class PortalWebDdlService {
     public OptionsResponse[] options(String ddlKey) {
         List<OptionsResponse> result = new ArrayList<>();
         List<DictionaryItemValue> dicts = portalCoreDdlService.getSorted(ddlKey);
-        return dicts.stream().map(d -> new OptionsResponse(d.getKey(), d.getValue())).collect(Collectors.toList()).toArray(new OptionsResponse[0]);
+        return dicts.stream().map(d -> new OptionsResponse(d.getValue(), d.getKey())).collect(Collectors.toList()).toArray(new OptionsResponse[0]);
     }
 
     public Map<String, OptionsResponse[]> manyOptions(String[] ddlKeys) {
