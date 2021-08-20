@@ -1,6 +1,6 @@
 package org.exframework.portal.jdbc.mapper;
 
-import org.exframework.portal.jdbc.entity.LogDO;
+import org.exframework.portal.jdbc.entity.system.LogDO;
 import org.exframework.support.jdbc.mapper.ExBaseMapper;
 
 /**

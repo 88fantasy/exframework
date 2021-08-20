@@ -10,7 +10,7 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import org.exframework.portal.dao.PortalCoreAccountDao;
 import org.exframework.portal.exception.NotFoundException;
 import org.exframework.portal.metadata.sys.Account;
-import org.exframework.portal.jdbc.entity.AccountDO;
+import org.exframework.portal.jdbc.entity.security.AccountDO;
 import org.exframework.portal.jdbc.mapper.AccountMapper;
 
 /**

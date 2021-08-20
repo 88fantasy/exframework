@@ -13,7 +13,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.exframework.backend.quickstart.springboot.application.Application;
-import org.exframework.portal.jdbc.entity.AccountDO;
+import org.exframework.portal.jdbc.entity.security.AccountDO;
 import org.exframework.portal.jdbc.mapper.AccountMapper;
 import org.exframework.portal.metadata.sys.Account.AccountStatusTypeEnum;
 

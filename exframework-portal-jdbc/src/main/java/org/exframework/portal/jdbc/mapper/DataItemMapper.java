@@ -1,6 +1,6 @@
 package org.exframework.portal.jdbc.mapper;
 
-import org.exframework.portal.jdbc.entity.DataItemDO;
+import org.exframework.portal.jdbc.entity.base.DataItemDO;
 import org.exframework.support.jdbc.mapper.ExBaseMapper;
 
 /**

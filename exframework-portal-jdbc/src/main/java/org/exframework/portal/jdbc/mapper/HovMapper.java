@@ -1,6 +1,6 @@
 package org.exframework.portal.jdbc.mapper;
 
-import org.exframework.portal.jdbc.entity.HovDO;
+import org.exframework.portal.jdbc.entity.system.HovDO;
 import org.exframework.support.jdbc.mapper.ExBaseMapper;
 
 /**

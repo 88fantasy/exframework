@@ -1,5 +1,6 @@
 package org.exframework.portal.metadata.dict;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.validation.constraints.NotEmpty;
@@ -25,16 +26,17 @@ public class DictionaryItem extends Meta implements PermissionEntry {
 	private static final long serialVersionUID = 1734744807375718094L;
 	
 	@NotEmpty
-	private Map<String,String> value;
+	private List<DictionaryItemValue> value;
 	
 	private Boolean local;
 
-	public Map<String, String> getValue() {
+	public List<DictionaryItemValue> getValue() {
 		return value;
 	}
 
-	public void setValue(Map<String, String> value) {
+	public DictionaryItem setValue(List<DictionaryItemValue> value) {
 		this.value = value;
+		return this;
 	}
 
 	public Boolean getLocal() {

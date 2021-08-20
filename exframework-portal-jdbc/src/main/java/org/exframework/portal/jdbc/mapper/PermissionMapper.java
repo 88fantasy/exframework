@@ -1,7 +1,7 @@
 package org.exframework.portal.jdbc.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import org.exframework.portal.jdbc.entity.PermissionDO;
+import org.exframework.portal.jdbc.entity.security.PermissionDO;
 
 /**
  * 权限映射类

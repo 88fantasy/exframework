@@ -13,7 +13,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 import org.exframework.portal.dao.PortalCorePermissionDao;
 import org.exframework.portal.metadata.sys.Permission;
-import org.exframework.portal.jdbc.entity.PermissionDO;
+import org.exframework.portal.jdbc.entity.security.PermissionDO;
 import org.exframework.portal.jdbc.mapper.PermissionResourceMapper;
 import org.exframework.portal.jdbc.mapper.PermissionMapper;
 

@@ -1,7 +1,7 @@
 package org.exframework.portal.jdbc.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import org.exframework.portal.jdbc.entity.GridDO;
+import org.exframework.portal.jdbc.entity.system.GridDO;
 
 /**
  * 表格映射类

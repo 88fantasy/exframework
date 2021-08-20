@@ -20,9 +20,9 @@ import org.exframework.portal.metadata.sys.Role;
 import org.exframework.portal.metadata.sys.RoleBaseAccount;
 import org.exframework.portal.service.sys.PortalCoreAccountService;
 import org.exframework.portal.service.sys.PortalCorePermissionService;
-import org.exframework.portal.jdbc.entity.AccountRoleDO;
-import org.exframework.portal.jdbc.entity.RoleDO;
-import org.exframework.portal.jdbc.entity.RolePermissionDO;
+import org.exframework.portal.jdbc.entity.security.AccountRoleDO;
+import org.exframework.portal.jdbc.entity.security.RoleDO;
+import org.exframework.portal.jdbc.entity.security.RolePermissionDO;
 import org.exframework.portal.jdbc.mapper.AccountRoleMapper;
 import org.exframework.portal.jdbc.mapper.RoleMapper;
 import org.exframework.portal.jdbc.mapper.RolePermissionMapper;
@@ -70,7 +70,7 @@ public class PortalCoreRoleDaoImpl extends PortalCoreMetaDaoImpl<RoleDO,Role> im
 		Role role = getByKey(key);
 		if(role != null) {
 			List<RoleDO> childrens = roleMapper.selectList(new QueryWrapper<RoleDO>().eq("parentKey", key));
-			List<Role> roles = new ArrayList<Role>();
+			List<Role> roles = new ArrayList<>();
 			for(RoleDO child : childrens) {
 				Role childRole = findByKey(child.getCode());
 				roles.add(childRole);
@@ -85,7 +85,7 @@ public class PortalCoreRoleDaoImpl extends PortalCoreMetaDaoImpl<RoleDO,Role> im
 
 	@Override
 	public Collection<Role> findByAccount(RoleBaseAccount account) {
-		List<Role> roles = new ArrayList<Role>();
+		List<Role> roles = new ArrayList<>();
 		List<AccountRoleDO> relates = accountRoleMapper.selectList(Wrappers.<AccountRoleDO>lambdaQuery().eq(AccountRoleDO::getAccount, account.getAccount()));
 		for(AccountRoleDO ar : relates) {
 			String roleKey = ar.getRole();
@@ -112,8 +112,8 @@ public class PortalCoreRoleDaoImpl extends PortalCoreMetaDaoImpl<RoleDO,Role> im
 		RoleDO entity = roleMapper.selectOne(Wrappers.<RoleDO>lambdaQuery().eq(RoleDO::getCode, key));
 		if(entity != null) {
 			List<String> permissionKeys = rolePermissionMapper.selectList(Wrappers.<RolePermissionDO>lambdaQuery().eq(RolePermissionDO::getRole, entity.getCode()))
-					.stream().map(RolePermissionDO::getPermission).collect(Collectors.toList());;
-			Map<String,Permission> permissionMap = new ConcurrentHashMap<String,Permission>();
+					.stream().map(RolePermissionDO::getPermission).collect(Collectors.toList());
+			Map<String,Permission> permissionMap = new ConcurrentHashMap<>();
 			for(String permission : permissionKeys) {
 				permissionMap.put(permission, portalCorePermissionService.getPermission(permission));
 			}

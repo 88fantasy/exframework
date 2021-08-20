@@ -19,7 +19,7 @@ public enum ResultCode {
 	FORBIDDEN(HttpServletResponse.SC_FORBIDDEN, "已登录，但是没有权限,访问被禁止了"),
 	NOT_FOUND(HttpServletResponse.SC_NOT_FOUND, "所请求的资源不存在，或不可用"),
 	METHOD_NOT_ALLOWED(HttpServletResponse.SC_METHOD_NOT_ALLOWED, "HTTP方法错误"),
-	NOT_ACCEPTABLE(HttpServletResponse.SC_NOT_ACCEPTABLE, "用户的请求的格式错误(content-type)"),
+	NOT_ACCEPTABLE(HttpServletResponse.SC_NOT_ACCEPTABLE, "用户的请求的格式错误"),
 	TOO_MANY_REQUESTS(429, "客户端的请求次数超过限额"),
 	
 	

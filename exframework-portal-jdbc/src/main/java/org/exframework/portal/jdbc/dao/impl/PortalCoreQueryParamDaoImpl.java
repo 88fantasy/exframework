@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.exframework.portal.metadata.queryparam.QueryParam;
-import org.exframework.portal.jdbc.entity.QueryParamDO;
+import org.exframework.portal.jdbc.entity.module.QueryParamDO;
 import org.exframework.portal.jdbc.mapper.QueryParamMapper;
 
 /**

@@ -30,6 +30,7 @@ public class DataItemExtend extends DataItem {
 		this.objectCode = objectCode;
 	}
 	
+	@Override
 	boolean isExtend() {
 		return true;
 	}

@@ -1,11 +1,10 @@
 package org.exframework.support.rest.annotation;
 
-import org.exframework.support.rest.exception.ApiException;
-import org.exframework.support.rest.validator.RequestFieldCheckerValidator;
+import org.exframework.support.common.util.SpringContextUtils;
+import org.exframework.support.common.util.StrUtils;
+import org.exframework.support.rest.exception.ServerException;
 
-import javax.validation.Constraint;
-import javax.validation.ConstraintDeclarationException;
-import javax.validation.Payload;
+import javax.validation.*;
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
@@ -17,7 +16,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Documented
 @Retention(RUNTIME)
 @Target({PARAMETER, FIELD, ANNOTATION_TYPE})
-@Constraint(validatedBy = {RequestFieldCheckerValidator.class})
+@Constraint(validatedBy = {RequestFieldChecker.RequestFieldCheckerValidator.class})
 /**
  * @author rwe
  * @version 创建时间：2021年5月21日 下午4:42:56
@@ -46,4 +45,36 @@ public @interface RequestFieldChecker {
     Class<?>[] groups() default { };
 
     Class<? extends Payload>[] payload() default { };
+
+
+    class RequestFieldCheckerValidator implements ConstraintValidator<RequestFieldChecker, Object> {
+
+        private Class<? extends Function<Object, String>> function;
+
+        private Class<? extends RuntimeException> exception;
+
+        @Override
+        public void initialize(RequestFieldChecker constraintAnnotation) {
+            function = constraintAnnotation.value();
+            exception = constraintAnnotation.exception();
+        }
+
+        @Override
+        public boolean isValid(Object value, ConstraintValidatorContext context) {
+            if (value != null) {
+                Function<Object, String> f = SpringContextUtils.getBeanByClass(function);
+                String message = f.apply(value);
+                if (StrUtils.hasLength(message)) {
+                    RuntimeException runtimeException;
+                    try {
+                        runtimeException = exception.getDeclaredConstructor(String.class).newInstance(message);
+                    } catch (Exception e) {
+                        throw new ServerException(message);
+                    }
+                    throw runtimeException;
+                }
+            }
+            return true;
+        }
+    }
 }

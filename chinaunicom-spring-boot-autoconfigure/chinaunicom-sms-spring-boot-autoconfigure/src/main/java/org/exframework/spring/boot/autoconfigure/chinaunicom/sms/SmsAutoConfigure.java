@@ -1,5 +1,6 @@
 package org.exframework.spring.boot.autoconfigure.chinaunicom.sms;
 
+import com.dtflys.forest.config.ForestConfiguration;
 import org.exframework.support.common.util.StrUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -47,5 +48,12 @@ public class SmsAutoConfigure {
         } else {
             return new EmptySmsClient();
         }
+    }
+
+    @Bean
+    @Lazy
+    @ConditionalOnMissingBean
+    public SmsHttpClient smsHttpClient() {
+        return ForestConfiguration.configuration().createInstance(SmsHttpClient.class);
     }
 }

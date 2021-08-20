@@ -16,8 +16,8 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.exframework.portal.metadata.di.DataItem;
 import org.exframework.portal.metadata.di.DataItemExtend;
-import org.exframework.portal.jdbc.entity.DataItemDO;
-import org.exframework.portal.jdbc.entity.DataItemExtendDO;
+import org.exframework.portal.jdbc.entity.base.DataItemDO;
+import org.exframework.portal.jdbc.entity.base.DataItemExtendDO;
 import org.exframework.portal.jdbc.mapper.DataItemExtendMapper;
 import org.exframework.portal.jdbc.mapper.DataItemMapper;
 import org.exframework.support.common.entity.FilterCondition;
@@ -49,10 +49,10 @@ public class PortalCoreDataItemDaoImpl extends PortalCoreMetaDaoImpl<DataItemDO,
 		List<DataItemExtendDO> extendList = dataItemExtendMapper.selectList(null);
 		ConcurrentMap<String, List<DataItemExtendDO>> extendMap = extendList.parallelStream()
 				.collect(Collectors.groupingByConcurrent(DataItemExtendDO::getObjectCode));
-		Map<String, List<DataItem>> result = new ConcurrentHashMap<String, List<DataItem>>();
+		Map<String, List<DataItem>> result = new ConcurrentHashMap<>();
 		for (String objectCode : extendMap.keySet()) {
 			List<DataItemExtendDO> extend = extendMap.get(objectCode);
-			List<DataItem> list = new ArrayList<DataItem>(extend);
+			List<DataItem> list = new ArrayList<>(extend);
 			result.put(objectCode, list);
 		}
 		return result;
@@ -61,7 +61,7 @@ public class PortalCoreDataItemDaoImpl extends PortalCoreMetaDaoImpl<DataItemDO,
 	@Override
 	public Collection<DataItem> findExtendByObjectCode(String objectCode) {
 		List<DataItemExtendDO> extendList = dataItemExtendMapper.selectList(new LambdaQueryWrapper<DataItemExtendDO>().eq(DataItemExtendDO::getObjectCode, objectCode));
-		return new ArrayList<DataItem>(extendList);
+		return new ArrayList<>(extendList);
 	}
 
 	@Override

@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>org.exframework</groupId>
 		<artifactId>exframework-spring-boot-autoconfigure</artifactId>
-		<version>0.7.5</version>
+		<version>0.7.6-SNAPSHOT</version>
 	</parent>
 	<artifactId>mail-spring-boot-autoconfigure</artifactId>
 	<packaging>jar</packaging>

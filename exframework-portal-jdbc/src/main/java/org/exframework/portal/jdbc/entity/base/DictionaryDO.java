@@ -1,5 +1,6 @@
-package org.exframework.portal.jdbc.entity;
+package org.exframework.portal.jdbc.entity.base;
 
+import java.util.List;
 import java.util.Map;
 
 import com.baomidou.mybatisplus.annotation.IdType;
@@ -10,6 +11,7 @@ import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
 import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
 import com.gitee.sunchenbin.mybatis.actable.constants.MySqlTypeConstant;
 import org.exframework.portal.metadata.dict.DictionaryItem;
+import org.exframework.portal.metadata.dict.DictionaryItemValue;
 import org.exframework.support.doc.annotation.TableDoc;
 import org.exframework.support.doc.annotation.TableFieldDoc;
 
@@ -54,9 +56,12 @@ public class DictionaryDO extends DictionaryItem {
 	@TableFieldDoc("字典值")
 	@TableField(typeHandler = JacksonTypeHandler.class)
 	@ColumnType(value = MySqlTypeConstant.JSON)
-	private Map<String,String> value;
+	private List<DictionaryItemValue> value;
 	
 	@TableFieldDoc("代码字典")
 	@TableField
 	private Boolean local;
+
+	public DictionaryDO() {
+	}
 }

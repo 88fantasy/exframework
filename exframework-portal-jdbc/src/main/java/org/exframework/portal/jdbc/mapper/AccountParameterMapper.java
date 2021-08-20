@@ -1,6 +1,6 @@
 package org.exframework.portal.jdbc.mapper;
 
-import org.exframework.portal.jdbc.entity.AccountParameterDO;
+import org.exframework.portal.jdbc.entity.system.AccountParameterDO;
 import org.exframework.support.jdbc.mapper.ExBaseMapper;
 
 /**

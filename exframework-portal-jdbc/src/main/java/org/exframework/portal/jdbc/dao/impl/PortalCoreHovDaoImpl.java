@@ -13,7 +13,7 @@ import org.exframework.portal.metadata.hov.Hov;
 import org.exframework.support.common.entity.FilterCondition;
 import org.exframework.support.common.entity.Page;
 import org.exframework.support.common.entity.PageModel;
-import org.exframework.portal.jdbc.entity.HovDO;
+import org.exframework.portal.jdbc.entity.system.HovDO;
 import org.exframework.portal.jdbc.mapper.HovMapper;
 
 /**

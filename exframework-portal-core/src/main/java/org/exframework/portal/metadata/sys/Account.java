@@ -8,7 +8,6 @@ import java.util.Map;
 import org.exframework.portal.metadata.di.DataItemEntity;
 import org.exframework.portal.metadata.di.DataItem.DataItemDisplayTypeEnum;
 import org.exframework.portal.metadata.di.DataItem.DataItemValueTypeEnum;
-import org.exframework.portal.metadata.dict.Dictionary;
 import org.exframework.support.common.enums.DictionaryEnum;
 import org.exframework.portal.metadata.dict.DictionaryEnumClass;
 import org.exframework.portal.metadata.entity.EntityClass;
@@ -160,7 +159,6 @@ public class Account implements Serializable, DictionaryEnumClass {
 		return new Class[] {AccountStatusTypeEnum.class};
 	}
 
-	@Dictionary( value = "accountStatus", name = "帐号状态")
 	public enum AccountStatusTypeEnum implements DictionaryEnum {
 
 		/**

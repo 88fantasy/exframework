@@ -35,16 +35,17 @@ public class OptionsResponse {
 		return label;
 	}
 
-	public void setLabel(String label) {
+	public OptionsResponse setLabel(String label) {
 		this.label = label;
+		return this;
 	}
 
 	public String getValue() {
 		return value;
 	}
 
-	public void setValue(String value) {
+	public OptionsResponse setValue(String value) {
 		this.value = value;
+		return this;
 	}
-	
 }

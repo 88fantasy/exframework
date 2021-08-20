@@ -1,4 +1,4 @@
-package org.exframework.portal.jdbc.entity;
+package org.exframework.portal.jdbc.entity.security;
 
 import java.util.Date;
 

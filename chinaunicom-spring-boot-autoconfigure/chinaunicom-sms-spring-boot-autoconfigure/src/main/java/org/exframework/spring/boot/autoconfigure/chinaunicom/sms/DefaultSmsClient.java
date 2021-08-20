@@ -4,6 +4,10 @@ import com.dtflys.forest.config.ForestConfiguration;
 import org.exframework.support.common.build.IBuilder;
 import org.exframework.support.common.util.StrUtils;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 /**
  * 短信客户端
  *
@@ -28,6 +32,25 @@ public class DefaultSmsClient implements SmsClient {
             request.setAppId(smsProperties.getAppId());
         }
         return smsHttpClient.send(smsProperties.getUrl(), smsProperties.getAccountSid(), smsProperties.getApi(), smsProperties.getAuthToken(), request);
+    }
+
+    @Override
+    public SmsResponse send(String to, String templateId, String message) {
+        return send(to, templateId, Stream.of(message).collect(Collectors.toList()));
+    }
+
+    @Override
+    public SmsResponse send(String to, String templateId, List<String> messages) {
+        return send(to, templateId, smsProperties.getAppId(), messages);
+    }
+
+    @Override
+    public SmsResponse send(String to, String templateId, String appId, List<String> messages) {
+        return send(new SmsRequest()
+                .setDatas(messages)
+                .setAppId(appId)
+                .setTemplateId(templateId)
+                .setTo(to));
     }
 
     public DefaultSmsClient(SmsProperties smsProperties, SmsHttpClient smsHttpClient) {

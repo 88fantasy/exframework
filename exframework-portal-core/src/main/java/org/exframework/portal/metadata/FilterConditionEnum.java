@@ -1,6 +1,5 @@
 package org.exframework.portal.metadata;
 
-import org.exframework.portal.metadata.dict.Dictionary;
 import org.exframework.support.common.enums.DictionaryEnum;
 import org.exframework.portal.metadata.dict.DictionaryEnumClass;
 import org.exframework.portal.metadata.entity.EntityClass;
@@ -8,7 +7,6 @@ import org.exframework.portal.metadata.entity.EntityClass;
 @EntityClass
 public class FilterConditionEnum implements DictionaryEnumClass {
 
-	@Dictionary( value = "FilterConditionDataType", name = "条件数据类型")
 	public enum FilterConditionDataType implements DictionaryEnum {
 
 		STRING("字符串"), 
@@ -32,7 +30,6 @@ public class FilterConditionEnum implements DictionaryEnumClass {
 		}
 	}
 
-	@Dictionary(value = "FilterConditionOper", name = "条件操作符")
 	public enum FilterConditionOper implements DictionaryEnum {
 
 		EQUAL("等于"), GREATER("大于"), LESS("小于"), BETWEEN("介于"),
@@ -47,7 +44,8 @@ public class FilterConditionEnum implements DictionaryEnumClass {
 			this.label = label;
 		}
 
-		public String getLabel() {
+		@Override
+        public String getLabel() {
 			return label;
 		}
 	}

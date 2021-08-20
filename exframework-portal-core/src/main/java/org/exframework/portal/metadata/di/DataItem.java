@@ -1,7 +1,6 @@
 package org.exframework.portal.metadata.di;
 
 import org.exframework.portal.metadata.Meta;
-import org.exframework.portal.metadata.dict.Dictionary;
 import org.exframework.support.common.enums.DictionaryEnum;
 import org.exframework.portal.metadata.dict.DictionaryEnumClass;
 import org.exframework.portal.metadata.entity.EntityClass;
@@ -99,7 +98,6 @@ public class DataItem extends Meta implements DictionaryEnumClass {
 		this.digits = digits;
 	}
 	
-	@Dictionary( value = "DataItemDisplayType", name = "数据项显示风格")
 	public enum DataItemDisplayTypeEnum implements DictionaryEnum {
 		/**
 		 * 输入
@@ -128,18 +126,18 @@ public class DataItem extends Meta implements DictionaryEnumClass {
 
 		private String label;
 		
-		private DataItemDisplayTypeEnum(String label) {
+		DataItemDisplayTypeEnum(String label) {
 			this.label = label;
 		}
 		
 
-		public String getLabel() {
+		@Override
+        public String getLabel() {
 			return label;
 		}
 
 	}
 
-	@Dictionary( value = "DataItemValueType", name = "验证数据类型")
 	public enum DataItemValueTypeEnum implements DictionaryEnum {
 		
 		/**
@@ -192,12 +190,13 @@ public class DataItem extends Meta implements DictionaryEnumClass {
 
 		private String label;
 
-		private DataItemValueTypeEnum(String label) {
+		DataItemValueTypeEnum(String label) {
 			this.label = label;
 		}
 
 
-		public String getLabel() {
+		@Override
+        public String getLabel() {
 			return label;
 		}
 

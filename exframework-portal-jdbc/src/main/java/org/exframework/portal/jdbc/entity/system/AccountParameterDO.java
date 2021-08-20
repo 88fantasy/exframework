@@ -1,4 +1,4 @@
-package org.exframework.portal.jdbc.entity;
+package org.exframework.portal.jdbc.entity.system;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;

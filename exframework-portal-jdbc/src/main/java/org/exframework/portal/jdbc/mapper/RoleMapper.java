@@ -1,7 +1,7 @@
 package org.exframework.portal.jdbc.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import org.exframework.portal.jdbc.entity.RoleDO;
+import org.exframework.portal.jdbc.entity.security.RoleDO;
 
 /**
  * 角色映射

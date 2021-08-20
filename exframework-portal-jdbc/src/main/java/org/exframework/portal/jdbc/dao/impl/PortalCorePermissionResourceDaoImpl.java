@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import org.exframework.portal.dao.PortalCorePermissionDao;
 import org.exframework.portal.dao.PortalCorePermissionResourceDao;
-import org.exframework.portal.jdbc.entity.PermissionResourceDO;
+import org.exframework.portal.jdbc.entity.security.PermissionResourceDO;
 import org.exframework.portal.jdbc.mapper.PermissionResourceMapper;
 import org.exframework.portal.permission.PermissionResource;
 import org.exframework.support.common.util.BeanUtils;

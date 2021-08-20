@@ -20,8 +20,8 @@ import org.exframework.portal.metadata.module.Module;
 import org.exframework.portal.metadata.module.ModuleBase;
 import org.exframework.support.common.entity.Page;
 import org.exframework.support.common.entity.PageModel;
-import org.exframework.portal.jdbc.entity.ModuleDO;
-import org.exframework.portal.jdbc.entity.ModuleHovDO;
+import org.exframework.portal.jdbc.entity.module.ModuleDO;
+import org.exframework.portal.jdbc.entity.module.ModuleHovDO;
 import org.exframework.portal.jdbc.mapper.ModuleHovMapper;
 import org.exframework.portal.jdbc.mapper.ModuleMapper;
 

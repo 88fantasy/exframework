@@ -13,7 +13,7 @@ import org.exframework.portal.dao.PortalCoreAccountParameterDao;
 import org.exframework.support.common.entity.FilterCondition;
 import org.exframework.portal.metadata.sys.Account;
 import org.exframework.portal.metadata.sys.AccountParameter;
-import org.exframework.portal.jdbc.entity.AccountParameterDO;
+import org.exframework.portal.jdbc.entity.system.AccountParameterDO;
 import org.exframework.portal.jdbc.mapper.AccountParameterMapper;
 import org.exframework.support.common.entity.PageModel;
 

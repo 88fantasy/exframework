@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import org.exframework.portal.dao.PortalCoreLogDao;
 import org.exframework.portal.exception.NotFoundException;
-import org.exframework.portal.jdbc.entity.LogDO;
+import org.exframework.portal.jdbc.entity.system.LogDO;
 import org.exframework.portal.jdbc.mapper.LogMapper;
 import org.exframework.support.common.entity.FilterCondition;
 import org.exframework.portal.metadata.sys.Logger;

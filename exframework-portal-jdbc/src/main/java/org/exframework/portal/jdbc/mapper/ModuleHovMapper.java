@@ -1,7 +1,7 @@
 package org.exframework.portal.jdbc.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import org.exframework.portal.jdbc.entity.ModuleHovDO;
+import org.exframework.portal.jdbc.entity.module.ModuleHovDO;
 
 /**
  * 模块参考映射

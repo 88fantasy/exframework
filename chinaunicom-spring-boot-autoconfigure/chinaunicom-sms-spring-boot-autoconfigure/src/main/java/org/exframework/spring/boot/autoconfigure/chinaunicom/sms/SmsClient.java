@@ -1,6 +1,8 @@
 package org.exframework.spring.boot.autoconfigure.chinaunicom.sms;
 
 
+import java.util.List;
+
 /**
  * 短信客户端
  *
@@ -15,4 +17,10 @@ public interface SmsClient {
      * @return 返回信息
      */
     SmsResponse send(SmsRequest request);
+
+    SmsResponse send(String to, String templateId, String message);
+
+    SmsResponse send(String to, String templateId, List<String> messages);
+
+    SmsResponse send(String to, String templateId, String appId, List<String> messages);
 }

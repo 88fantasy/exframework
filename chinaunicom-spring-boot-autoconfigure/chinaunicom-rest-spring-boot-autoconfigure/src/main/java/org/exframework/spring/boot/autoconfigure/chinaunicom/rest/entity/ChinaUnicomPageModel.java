@@ -19,7 +19,7 @@ public class ChinaUnicomPageModel<T> extends ChinaUnicomPager {
     private List<T> records;
 
     public ChinaUnicomPageModel(Pager pager, List<T> list) {
-       this(new ChinaUnicomPager(Long.valueOf(list.size()), pager), list);
+       this(new ChinaUnicomPager(pager.getTotal(), pager), list);
     }
 
     public ChinaUnicomPageModel(ChinaUnicomPager pager, List<T> list) {

@@ -5,6 +5,7 @@ import java.text.MessageFormat;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -69,6 +70,13 @@ public class GlobalControllerExceptionControllerAdvice {
 		errorHandle(e);
 		return new ApiResponseData<>(ResultCode.SERVICE_UNAVAILABLE, "文件错误,请联系管理员",  e.getMessage());
 	}
+
+	@ExceptionHandler(InvalidFormatException.class)
+	public ApiResponseData<Object> exceptionHandler(InvalidFormatException e) {
+		errorHandle(e);
+		return new ApiResponseData<>(ResultCode.NOT_ACCEPTABLE, "格式错误:"+e.getMessage());
+	}
+
 
 	@ExceptionHandler(Exception.class)
 	public ApiResponseData<Object> exceptionHandler(Exception e) {
