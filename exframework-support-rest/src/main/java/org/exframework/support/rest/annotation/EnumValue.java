@@ -3,7 +3,6 @@ package org.exframework.support.rest.annotation;
 import cn.hutool.core.util.ArrayUtil;
 import com.fasterxml.jackson.annotation.JacksonAnnotationsInside;
 import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.BeanProperty;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
@@ -23,6 +22,7 @@ import javax.validation.Payload;
 import java.io.IOException;
 import java.lang.annotation.*;
 import java.text.MessageFormat;
+import java.util.Arrays;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -66,25 +66,27 @@ public @interface EnumValue {
         @Override
         public boolean isValid(Enum<?> value, ConstraintValidatorContext context) {
             if (value != null) {
-                if (!ArrayUtil.isEmpty(anyOf)) {
-                    if (Stream.of(anyOf).noneMatch(any -> value.name().equals(any))) {
-                        String anyMessage = String.join("或", anyOf);
-                        context.disableDefaultConstraintViolation();
-                        Class<?> clazz = value.getClass();
-                        if (StrUtils.hasText(message)) {
-                            context.buildConstraintViolationWithTemplate(message).addConstraintViolation();
-                        } else if (clazz.isAnnotationPresent(Dictionary.class)) {
-                            Dictionary dictionary = clazz.getAnnotation(Dictionary.class);
-                            String dictCode = dictionary.value();
-                            if (!StringUtils.hasText(dictCode)) {
-                                String simpleName = clazz.getSimpleName();
-                                dictCode = Character.toLowerCase(simpleName.charAt(0)) + simpleName.substring(1);
-                            }
-                            context.buildConstraintViolationWithTemplate(MessageFormat.format("字典项[{0}]不满足{1}", dictCode, anyMessage)).addConstraintViolation();
-                        } else {
-                            context.buildConstraintViolationWithTemplate(MessageFormat.format("字典项[{0}]不满足{1}", clazz.getName(), anyMessage)).addConstraintViolation();
+                if (ArrayUtil.isEmpty(anyOf)) {
+                    anyOf = Arrays.stream(value.getClass().getEnumConstants()).map(e -> e.name()).collect(Collectors.toList()).toArray(new String[0]);
+                }
+                if (Stream.of(anyOf).noneMatch(any -> value.name().equals(any))) {
+                    String anyMessage = String.join("或", anyOf);
+                    context.disableDefaultConstraintViolation();
+                    Class<?> clazz = value.getClass();
+                    if (StrUtils.hasText(message)) {
+                        context.buildConstraintViolationWithTemplate(message).addConstraintViolation();
+                    } else if (clazz.isAnnotationPresent(Dictionary.class)) {
+                        Dictionary dictionary = clazz.getAnnotation(Dictionary.class);
+                        String dictCode = dictionary.value();
+                        if (!StringUtils.hasText(dictCode)) {
+                            String simpleName = clazz.getSimpleName();
+                            dictCode = Character.toLowerCase(simpleName.charAt(0)) + simpleName.substring(1);
                         }
+                        context.buildConstraintViolationWithTemplate(MessageFormat.format("字典项[{0}]不满足{1}", dictCode, anyMessage)).addConstraintViolation();
+                    } else {
+                        context.buildConstraintViolationWithTemplate(MessageFormat.format("字典项[{0}]不满足{1}", clazz.getName(), anyMessage)).addConstraintViolation();
                     }
+                    return false;
                 }
             }
             return true;
@@ -101,7 +103,7 @@ public @interface EnumValue {
         }
 
         @Override
-        public Enum<?> deserialize(JsonParser p, DeserializationContext ctxt) throws IOException, JsonProcessingException {
+        public Enum<?> deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
             if (Objects.isNull(enumType) || !enumType.isEnum()) {
                 return null;
             }

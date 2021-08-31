@@ -13,7 +13,6 @@ import org.exframework.support.common.entity.FilterCondition;
 import org.exframework.support.common.entity.PageModel;
 import org.exframework.support.common.entity.Pager;
 import org.exframework.support.common.util.BeanUtils;
-import org.exframework.support.common.util.StrUtils;
 import org.springframework.util.StringUtils;
 
 import java.util.Arrays;
@@ -47,7 +46,7 @@ public interface ExBaseMapper<T> extends BaseMapper<T> {
                     fc.setFilterDataType(FilterCondition.defaultType(fc.getFilterValue()));
                 }
 
-                String key = StrUtils.humpToUnderline(fc.getKey());
+                String key = com.baomidou.mybatisplus.core.toolkit.StringUtils.camelToUnderline(fc.getKey());
                 switch (fc.getOper()) {
                     case BETWEEN:
                         switch (fc.getFilterDataType()) {
@@ -222,7 +221,7 @@ public interface ExBaseMapper<T> extends BaseMapper<T> {
         if (!CollUtil.isEmpty(sorts)) {
             for (String sort : sorts) {
                 if (StringUtils.hasLength(sort)) {
-                    String trim = StrUtils.humpToUnderline(sort.trim());
+                    String trim = com.baomidou.mybatisplus.core.toolkit.StringUtils.isCamel(sort.trim()) ? com.baomidou.mybatisplus.core.toolkit.StringUtils.camelToUnderline(sort.trim()) : sort.trim();
                     String key = trim.substring(0, sort.length());
                     String opera = trim.substring(sort.length());
 
