@@ -329,6 +329,11 @@
             </dependency>
             <dependency>
                 <groupId>org.exframework</groupId>
+                <artifactId>minio-spring-boot-autoconfigure</artifactId>
+                <version>0.7.6-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>org.exframework</groupId>
                 <artifactId>mail-spring-boot-autoconfigure</artifactId>
                 <version>0.7.6-SNAPSHOT</version>
             </dependency>
@@ -350,6 +355,11 @@
             <dependency>
                 <groupId>org.exframework</groupId>
                 <artifactId>cos-spring-boot-starter</artifactId>
+                <version>0.7.6-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>org.exframework</groupId>
+                <artifactId>minio-spring-boot-starter</artifactId>
                 <version>0.7.6-SNAPSHOT</version>
             </dependency>
             <dependency>
@@ -457,11 +467,15 @@
                 <artifactId>mybatis-enhance-actable</artifactId>
                 <version>1.5.0.RELEASE</version>
             </dependency>
-
             <dependency>
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-all</artifactId>
                 <version>5.7.7</version>
+            </dependency>
+            <dependency>
+                <groupId>com.squareup.okhttp3</groupId>
+                <artifactId>okhttp</artifactId>
+                <version>4.9.1</version>
             </dependency>
 
         </dependencies>

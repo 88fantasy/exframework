@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.lang.annotation.*;
 import java.text.MessageFormat;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -109,11 +110,12 @@ public @interface EnumValue {
                 return null;
             }
             Enum<?>[] enumConstants = (Enum<?>[]) enumType.getEnumConstants();
-            if (Stream.of(enumConstants).noneMatch(e -> text.equals(e.name()))) {
+            Optional<Enum<?>> enumItem = Stream.of(enumConstants).filter(e -> text.equals(e.name())).findFirst();
+            if (!enumItem.isPresent()) {
                 String names = String.join("或", Stream.of(enumConstants).map(e -> e.name()).collect(Collectors.toList()));
                 throw new ApiException(ResultCode.NOT_ACCEPTABLE.getCode(), MessageFormat.format("枚举项[{0}]不满足{1}", p.getCurrentName(), names), text);
             }
-            return null;
+            return enumItem.get();
         }
 
         @Override

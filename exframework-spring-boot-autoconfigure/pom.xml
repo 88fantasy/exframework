@@ -13,6 +13,7 @@
 
     <modules>
         <module>cos-spring-boot-autoconfigure</module>
+        <module>minio-spring-boot-autoconfigure</module>
         <module>mail-spring-boot-autoconfigure</module>
         <module>developer-spring-boot-autoconfigure</module>
     </modules>

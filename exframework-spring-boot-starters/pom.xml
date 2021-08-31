@@ -13,6 +13,7 @@
 
     <modules>
         <module>cos-spring-boot-starter</module>
+        <module>minio-spring-boot-starter</module>
         <module>mail-spring-boot-starter</module>
         <module>developer-spring-boot-starter</module>
     </modules>

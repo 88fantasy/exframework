@@ -5,10 +5,12 @@ import com.qcloud.cos.exception.CosServiceException;
 
 
 public interface TencentCosDeleteClient extends TencentCosClient {
-	
+
 	/**
-	 * @param String 桶的名称
-	 * @param String 存储桶中文件的路径 
+	 * 删除文件
+	 * @param targetUrl 文件路径
+	 * @throws CosServiceException
+	 * @throws CosClientException
 	 */
 	default void delFile(String targetUrl) throws CosServiceException, CosClientException {
 		getCosTransferManager().getCOSClient().deleteObject(getBucketName(), getKey(targetUrl));
