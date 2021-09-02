@@ -4,13 +4,21 @@ import io.minio.BucketExistsArgs;
 import io.minio.MakeBucketArgs;
 import io.minio.MinioClient;
 import io.minio.errors.MinioException;
+import okhttp3.OkHttpClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
 
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSocketFactory;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.security.cert.X509Certificate;
+import java.util.concurrent.TimeUnit;
 
 /**
  * COS 客户端
@@ -113,7 +121,9 @@ public class DefaultMinioTemplate implements MinioTemplate {
             DefaultMinioTemplate template = new DefaultMinioTemplate();
             MinioClient.Builder builder = MinioClient.builder()
                     .endpoint(endpoint)
-                    .credentials(access, secret);
+                    .credentials(access, secret)
+                    //忽略 https证书
+                    .httpClient(getDefaultClinet());
             if (StringUtils.hasText(region)) {
                 builder.region(region);
             }
@@ -132,5 +142,42 @@ public class DefaultMinioTemplate implements MinioTemplate {
             template.setMinioClient(minioClient);
             return template;
         }
+    }
+
+    public static OkHttpClient getDefaultClinet() {
+        return new OkHttpClient().newBuilder()
+                .connectTimeout(15, TimeUnit.SECONDS)
+                .readTimeout(15, TimeUnit.SECONDS)
+                .writeTimeout(15, TimeUnit.SECONDS)
+                .sslSocketFactory(getSSLSocketFactory(), getTrustManager())//配置
+                .hostnameVerifier((s, sslSession) -> true)//配置
+                .build();
+    }
+
+    public static SSLSocketFactory getSSLSocketFactory() {
+        try {
+            SSLContext sslContext = SSLContext.getInstance("SSL");
+            sslContext.init(null, new TrustManager[]{getTrustManager()}, new SecureRandom());
+            return sslContext.getSocketFactory();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static X509TrustManager getTrustManager() {
+        return new X509TrustManager() {
+            @Override
+            public void checkClientTrusted(X509Certificate[] chain, String authType) {
+            }
+
+            @Override
+            public void checkServerTrusted(X509Certificate[] chain, String authType) {
+            }
+
+            @Override
+            public X509Certificate[] getAcceptedIssuers() {
+                return new X509Certificate[]{};
+            }
+        };
     }
 }

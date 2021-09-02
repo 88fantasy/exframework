@@ -6,6 +6,7 @@ import io.minio.StatObjectResponse;
 import io.minio.errors.MinioException;
 import org.exframework.spring.boot.autoconfigure.minio.errors.MinioClientException;
 import org.exframework.spring.boot.autoconfigure.minio.model.DownloadResult;
+import org.springframework.util.StringUtils;
 
 import java.io.IOException;
 import java.security.InvalidKeyException;
@@ -29,7 +30,8 @@ public interface CommonClient {
 	String getPath();
 
 	default String getKey(String target) {
-		return getPath() == null? target :  getPath() + "/" + target ;
+		String path = getPath();
+		return !StringUtils.hasText(path)? target :  path + "/" + target ;
 	}
 
 	default DownloadResult statObject(String key) throws MinioException, MinioClientException {

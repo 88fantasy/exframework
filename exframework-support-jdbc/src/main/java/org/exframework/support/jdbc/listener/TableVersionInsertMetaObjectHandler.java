@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
+ * 逻辑版本增强, 自动插入值
  * @author rwe
  * @since 2021年5月21日
  * <p>

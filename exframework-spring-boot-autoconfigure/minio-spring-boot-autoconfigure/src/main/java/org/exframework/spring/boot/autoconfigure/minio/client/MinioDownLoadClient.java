@@ -7,6 +7,7 @@ import io.minio.StatObjectResponse;
 import io.minio.errors.MinioException;
 import org.exframework.spring.boot.autoconfigure.minio.errors.MinioClientException;
 import org.exframework.spring.boot.autoconfigure.minio.model.DownloadResult;
+import org.springframework.util.FileSystemUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -42,10 +43,16 @@ public interface MinioDownLoadClient extends CommonClient {
     default DownloadResult downFileToLocal(String key, String target) throws MinioException, MinioClientException {
 
         try {
-            DownloadResult downloadResult = statObject(key);
+            DownloadResult downloadResult = statObject(getKey(key));
+            File targetFile = new File(target);
+            //判断目标文件所在的目录是否存在
+            if(!targetFile.getParentFile().exists()) {
+                //如果目标文件所在的目录不存在，则创建父目录
+                targetFile.getParentFile().mkdirs();
+            }
             getMinioClient().downloadObject(DownloadObjectArgs.builder()
                     .bucket(getBucketName())
-                    .object(getKey(key))
+                    .object(downloadResult.object())
                     .filename(target)
                     .build());
             return downloadResult;
