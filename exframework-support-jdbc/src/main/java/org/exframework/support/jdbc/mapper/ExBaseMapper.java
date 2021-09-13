@@ -218,6 +218,11 @@ public interface ExBaseMapper<T> extends BaseMapper<T> {
                 }
             }
         }
+        sort(wrapper, sorts);
+        return wrapper;
+    }
+
+    default void sort(QueryWrapper<T> wrapper, Collection<String> sorts) {
         if (!CollUtil.isEmpty(sorts)) {
             for (String sort : sorts) {
                 if (StringUtils.hasLength(sort)) {
@@ -235,7 +240,6 @@ public interface ExBaseMapper<T> extends BaseMapper<T> {
                 }
             }
         }
-        return wrapper;
     }
 
     default <E> PageModel<E> modelFromPage(Page<T> page, Class<E> clazz) {

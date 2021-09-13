@@ -5,6 +5,7 @@ import io.minio.GetPresignedObjectUrlArgs;
 import io.minio.StatObjectArgs;
 import io.minio.StatObjectResponse;
 import io.minio.errors.MinioException;
+import io.minio.http.Method;
 import org.exframework.spring.boot.autoconfigure.minio.errors.MinioClientException;
 import org.exframework.spring.boot.autoconfigure.minio.model.DownloadResult;
 import org.springframework.util.FileSystemUtils;
@@ -46,7 +47,7 @@ public interface MinioDownLoadClient extends CommonClient {
             DownloadResult downloadResult = statObject(getKey(key));
             File targetFile = new File(target);
             //判断目标文件所在的目录是否存在
-            if(!targetFile.getParentFile().exists()) {
+            if (!targetFile.getParentFile().exists()) {
                 //如果目标文件所在的目录不存在，则创建父目录
                 targetFile.getParentFile().mkdirs();
             }
@@ -74,6 +75,7 @@ public interface MinioDownLoadClient extends CommonClient {
     default String downFileWithUrl(String key, int duration, TimeUnit unit) throws MinioException, MinioClientException {
         try {
             return getMinioClient().getPresignedObjectUrl(GetPresignedObjectUrlArgs.builder()
+                    .method(Method.GET)
                     .bucket(getBucketName())
                     .object(getKey(key))
                     .expiry(duration, unit)

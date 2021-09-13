@@ -1,6 +1,7 @@
 package org.exframework.support.common.entity;
 
 import java.beans.PropertyDescriptor;
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
@@ -8,10 +9,12 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+import org.exframework.support.common.annotation.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.FatalBeanException;
 import org.springframework.core.ResolvableType;
 import org.springframework.lang.Nullable;
+import org.springframework.util.ReflectionUtils;
 
 public class FilterCondition {
 
@@ -143,7 +146,8 @@ public class FilterCondition {
 
 	public static Collection<FilterCondition> fromDTO(Object editable, Collection<String> ignoreList) {
 		List<FilterCondition> fcList = new ArrayList<FilterCondition>();
-		PropertyDescriptor[] targetPds = BeanUtils.getPropertyDescriptors(editable.getClass());
+		final Class editableClass = editable.getClass();
+		PropertyDescriptor[] targetPds = BeanUtils.getPropertyDescriptors(editableClass);
 		for (PropertyDescriptor targetPd : targetPds) {
 			Method writeMethod = targetPd.getWriteMethod();
 			if (writeMethod != null && (ignoreList == null || !ignoreList.contains(targetPd.getName()))) {
@@ -163,6 +167,24 @@ public class FilterCondition {
 									continue;
 								}
 								FilterCondition fc = new FilterCondition(targetPd.getName(), value);
+								Field field = ReflectionUtils.findField(editableClass, targetPd.getName());
+								if(field != null) {
+									if(field.isAnnotationPresent(ConditionBetween.class)) {
+										fc = new FilterCondition(targetPd.getName(), FilterConditionOper.BETWEEN, value);
+									}
+									else if(field.isAnnotationPresent(ConditionGreater.class)) {
+										fc = new FilterCondition(targetPd.getName(), FilterConditionOper.GREATER, value);
+									}
+									else if(field.isAnnotationPresent(ConditionGreaterEqual.class)) {
+										fc = new FilterCondition(targetPd.getName(), FilterConditionOper.GREATER_EQUAL, value);
+									}
+									else if(field.isAnnotationPresent(ConditionLess.class)) {
+										fc = new FilterCondition(targetPd.getName(), FilterConditionOper.LESS, value);
+									}
+									else if(field.isAnnotationPresent(ConditionLessEqual.class)) {
+										fc = new FilterCondition(targetPd.getName(), FilterConditionOper.LESS_EQUAL, value);
+									}
+								}
 								fcList.add(fc);
 							} catch (Throwable ex) {
 								throw new FatalBeanException(

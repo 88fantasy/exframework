@@ -11,7 +11,7 @@ import java.util.List;
  * @author rwe
  * @date 2021/7/15 18:53
  **/
-public class ChinaUnicomApiResponseList<T> extends ApiResponse {
+public class ChinaUnicomApiResponseList<T> extends ChinaUnicomApiResponse {
 
     /**
      * 列表数据
@@ -27,11 +27,11 @@ public class ChinaUnicomApiResponseList<T> extends ApiResponse {
     }
 
     public ChinaUnicomApiResponseList(ResultCode resultCode, String message, List<T> records) {
-        this(resultCode.getCode(), message, ApiResponse.statusFromCode(resultCode.getCode()), records);
+        this(String.valueOf(resultCode.getCode()), message, records);
     }
 
-    public ChinaUnicomApiResponseList(int code, String message, boolean status, List<T> records) {
-        super(code, message, status);
+    public ChinaUnicomApiResponseList(String code, String message, List<T> records) {
+        super(code, message);
         this.data = new ChinaUnicomApiResponseListData<>(records);
     }
 

@@ -2,17 +2,17 @@ package org.exframework.support.rest.annotation;
 
 import cn.hutool.core.util.ArrayUtil;
 import com.fasterxml.jackson.annotation.JacksonAnnotationsInside;
+import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.databind.BeanProperty;
-import com.fasterxml.jackson.databind.DeserializationContext;
-import com.fasterxml.jackson.databind.JsonDeserializer;
-import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.*;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.deser.ContextualDeserializer;
 import org.exframework.support.common.annotation.Dictionary;
 import org.exframework.support.common.util.StrUtils;
 import org.exframework.support.rest.enums.ResultCode;
 import org.exframework.support.rest.exception.ApiException;
+import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 import javax.validation.Constraint;
@@ -22,9 +22,7 @@ import javax.validation.Payload;
 import java.io.IOException;
 import java.lang.annotation.*;
 import java.text.MessageFormat;
-import java.util.Arrays;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -37,11 +35,11 @@ import java.util.stream.Stream;
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.FIELD, ElementType.ANNOTATION_TYPE})
-@Constraint(validatedBy = EnumValue.EnumValueValidator.class)
+@Constraint(validatedBy = EnumValueList.EnumValueListValidator.class)
 @JacksonAnnotationsInside
-@JsonDeserialize(using = EnumValue.EnumValueDeserializer.class)
-//@JsonSerialize(using = EnumValue.EnumSerializer.class)
-public @interface EnumValue {
+@JsonDeserialize(using = EnumValueList.EnumValueListDeserializer.class)
+@JsonSerialize(using = EnumValueList.EnumValueListSerializer.class)
+public @interface EnumValueList {
 
     String message() default "";
 
@@ -53,7 +51,7 @@ public @interface EnumValue {
 
     Class<? extends Payload>[] payload() default {};
 
-    class EnumValueValidator implements ConstraintValidator<EnumValue, Enum<?>> {
+    class EnumValueListValidator implements ConstraintValidator<EnumValueList, List<?>> {
 
         private String message;
 
@@ -62,21 +60,27 @@ public @interface EnumValue {
         private String[] anyOf;
 
         @Override
-        public void initialize(EnumValue constraintAnnotation) {
+        public void initialize(EnumValueList constraintAnnotation) {
             message = constraintAnnotation.message();
             anyOf = constraintAnnotation.anyOf();
             notNull = constraintAnnotation.notNull();
         }
 
         @Override
-        public boolean isValid(Enum<?> value, ConstraintValidatorContext context) {
-            if (value != null) {
-                if (ArrayUtil.isEmpty(anyOf)) {
-                    anyOf = Arrays.stream(value.getClass().getEnumConstants()).map(e -> e.name()).collect(Collectors.toList()).toArray(new String[0]);
+        public boolean isValid(List<?> value, ConstraintValidatorContext context) {
+            if (value != null && value.size() > 0) {
+                context.disableDefaultConstraintViolation();
+                Object first = value.get(0);
+                if(!first.getClass().isEnum()) {
+                    context.buildConstraintViolationWithTemplate("不是枚举类").addConstraintViolation();
+                    return false;
                 }
-                if (Stream.of(anyOf).noneMatch(any -> value.name().equals(any))) {
+                Enum<?> eValue = (Enum<?>) value.get(0);
+                if (ArrayUtil.isEmpty(anyOf)) {
+                    anyOf = Arrays.stream(eValue.getClass().getEnumConstants()).map(e -> e.name()).collect(Collectors.toList()).toArray(new String[0]);
+                }
+                if (Stream.of(anyOf).noneMatch(any -> eValue.name().equals(any))) {
                     String anyMessage = String.join("或", anyOf);
-                    context.disableDefaultConstraintViolation();
                     Class<?> clazz = value.getClass();
                     if (StrUtils.hasText(message)) {
                         context.buildConstraintViolationWithTemplate(message).addConstraintViolation();
@@ -100,17 +104,17 @@ public @interface EnumValue {
         }
     }
 
-    class EnumValueDeserializer extends JsonDeserializer<Enum<?>> implements ContextualDeserializer {
+    class EnumValueListDeserializer extends JsonDeserializer<List<?>> implements ContextualDeserializer {
 
         private Class<?> enumType;
 
-        public EnumValueDeserializer setEnumType(Class<?> enumType) {
+        public EnumValueListDeserializer setEnumType(Class<?> enumType) {
             this.enumType = enumType;
             return this;
         }
 
         @Override
-        public Enum<?> deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+        public List<?> deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
             if (Objects.isNull(enumType) || !enumType.isEnum()) {
                 return null;
             }
@@ -119,20 +123,39 @@ public @interface EnumValue {
                 return null;
             }
             Enum<?>[] enumConstants = (Enum<?>[]) enumType.getEnumConstants();
-            Optional<Enum<?>> enumItem = Stream.of(enumConstants).filter(e -> text.equals(e.name())).findFirst();
-            if (!enumItem.isPresent()) {
-                String names = String.join("或", Stream.of(enumConstants).map(e -> e.name()).collect(Collectors.toList()));
-                throw new ApiException(ResultCode.NOT_ACCEPTABLE.getCode(), MessageFormat.format("枚举项[{0}]不满足{1}", p.getCurrentName(), names), text);
+            List<Enum<?>> list = new ArrayList<>();
+            String[] strings = new ObjectMapper().readValue(text, String[].class);
+            for(String s : strings) {
+                Optional<Enum<?>> enumItem = Stream.of(enumConstants).filter(e -> s.equals(e.name())).findFirst();
+                if (!enumItem.isPresent()) {
+                    String names = String.join("或", Stream.of(enumConstants).map(e -> e.name()).collect(Collectors.toList()));
+                    throw new ApiException(ResultCode.NOT_ACCEPTABLE.getCode(), MessageFormat.format("枚举项[{0}]不满足{1}", p.getCurrentName(), names), text);
+                }
+                Enum<?> enumValue = enumItem.get();
+                list.add(enumValue);
             }
-            return enumItem.get();
+            return list;
         }
 
         @Override
-        public JsonDeserializer<Enum<?>> createContextual(DeserializationContext ctxt, BeanProperty property) throws JsonMappingException {
+        public JsonDeserializer<List<?>> createContextual(DeserializationContext ctxt, BeanProperty property) throws JsonMappingException {
             Class<?> rawCls = ctxt.getContextualType().getRawClass();
-            EnumValueDeserializer converter = new EnumValueDeserializer();
+            EnumValueListDeserializer converter = new EnumValueListDeserializer();
             converter.setEnumType(rawCls);
             return converter;
+        }
+    }
+
+    class EnumValueListSerializer extends JsonSerializer<List<?>> {
+
+        @Override
+        public void serialize(List<?> value, JsonGenerator gen, SerializerProvider serializers) throws IOException {
+            if(!ObjectUtils.isEmpty(value)) {
+                gen.writeObject(value);
+            }
+            else {
+                gen.writeObject(Collections.emptyList());
+            }
         }
     }
 }

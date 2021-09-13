@@ -1,7 +1,6 @@
 package org.exframework.spring.boot.autoconfigure.chinaunicom.rest.entity;
 
 import org.exframework.support.common.entity.PageModel;
-import org.exframework.support.rest.entity.ApiResponse;
 import org.exframework.support.rest.entity.ApiResponsePage;
 import org.exframework.support.rest.enums.ResultCode;
 import org.exframework.support.rest.exception.GlobalControllerExceptionControllerAdvice;
@@ -12,7 +11,7 @@ import org.exframework.support.rest.exception.GlobalControllerExceptionControlle
  * @author rwe
  * @date 2021/7/15 16:42
  **/
-public class ChinaUnicomApiResponsePage<T> extends ApiResponse {
+public class ChinaUnicomApiResponsePage<T> extends ChinaUnicomApiResponse {
 
     @SuppressWarnings("rawtypes")
     public static final ChinaUnicomApiResponsePage NOT_ENOUGH = new ChinaUnicomApiResponsePage<>(ResultCode.BAD_REQUEST, PARAM_NOT_ENOUGH, null);
@@ -30,7 +29,7 @@ public class ChinaUnicomApiResponsePage<T> extends ApiResponse {
 
 
     public ChinaUnicomApiResponsePage(ApiResponsePage<T> page) {
-        this(page.getCode(), page.getMessage(), page.isStatus(), new ChinaUnicomPageModel<T>(page.getData()));
+        this(String.valueOf(page.getCode()), page.getMessage(), new ChinaUnicomPageModel<T>(page.getData()));
     }
 
     public ChinaUnicomApiResponsePage(ChinaUnicomPageModel<T> data) {
@@ -42,11 +41,11 @@ public class ChinaUnicomApiResponsePage<T> extends ApiResponse {
     }
 
     public ChinaUnicomApiResponsePage(ResultCode resultCode, String message, ChinaUnicomPageModel<T> data) {
-        this(resultCode.getCode(), message, !(resultCode.getCode() >= 400 && resultCode.getCode() <= 599), data);
+        this(String.valueOf(resultCode.getCode()), message, data);
     }
 
-    public ChinaUnicomApiResponsePage(int code, String message, boolean status, ChinaUnicomPageModel<T> data) {
-        super(code, message, status);
+    public ChinaUnicomApiResponsePage(String code, String message, ChinaUnicomPageModel<T> data) {
+        super(code, message);
         this.data = data;
     }
 
@@ -61,12 +60,12 @@ public class ChinaUnicomApiResponsePage<T> extends ApiResponse {
 
     @SuppressWarnings("unchecked")
     public static <E> ChinaUnicomApiResponsePage<E> notEnough() {
-        return (ChinaUnicomApiResponsePage<E>)NOT_ENOUGH;
+        return (ChinaUnicomApiResponsePage<E>) NOT_ENOUGH;
     }
 
     @SuppressWarnings("unchecked")
     public static final <E> ChinaUnicomApiResponsePage<E> paramError() {
-        return (ChinaUnicomApiResponsePage<E>)PARAM_ERROR;
+        return (ChinaUnicomApiResponsePage<E>) PARAM_ERROR;
     }
 
     public static final <E> ChinaUnicomApiResponsePage<E> notFound(String message) {
@@ -74,6 +73,6 @@ public class ChinaUnicomApiResponsePage<T> extends ApiResponse {
     }
 
     public static final <E> ChinaUnicomApiResponsePage<E> empltyPage() {
-        return (ChinaUnicomApiResponsePage<E>)EMPTY;
+        return (ChinaUnicomApiResponsePage<E>) EMPTY;
     }
 }
