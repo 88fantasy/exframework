@@ -1,9 +1,7 @@
-package org.exframework.spring.boot.autoconfigure.cos;
+package org.exframework.spring.boot.autoconfigure.minio;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.lang.Nullable;
-
-import static org.exframework.spring.boot.autoconfigure.cos.MinioProperties.DEFAULT_PREFIX;
 
 /**
  * minio配置类
@@ -13,7 +11,7 @@ import static org.exframework.spring.boot.autoconfigure.cos.MinioProperties.DEFA
  * Copyright @ 2021 
  * 
  */
-@ConfigurationProperties(value = DEFAULT_PREFIX)
+@ConfigurationProperties(value = MinioProperties.DEFAULT_PREFIX)
 public class MinioProperties {
 
 	/**

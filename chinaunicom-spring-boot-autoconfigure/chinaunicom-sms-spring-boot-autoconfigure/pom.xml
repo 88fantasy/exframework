@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>org.exframework</groupId>
 		<artifactId>chinaunicom-spring-boot-autoconfigure</artifactId>
-		<version>0.7.6-SNAPSHOT</version>
+		<version>0.8-SNAPSHOT</version>
 	</parent>
 	<artifactId>chinaunicom-sms-spring-boot-autoconfigure</artifactId>
 	<packaging>jar</packaging>

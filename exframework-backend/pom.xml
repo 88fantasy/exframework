@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>exframework-root</artifactId>
+        <groupId>org.exframework</groupId>
+        <version>0.8-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>exframework-backend</artifactId>
+    <packaging>pom</packaging>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.exframework</groupId>
+                <artifactId>exframework-portal-core</artifactId>
+                <version>0.8-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>org.exframework</groupId>
+                <artifactId>exframework-portal-web</artifactId>
+                <version>0.8-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>org.exframework</groupId>
+                <artifactId>exframework-portal-admin</artifactId>
+                <version>0.8-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>org.exframework</groupId>
+                <artifactId>exframework-portal-jdbc</artifactId>
+                <version>0.8-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>org.exframework</groupId>
+                <artifactId>exframework-portal-web-jdbc</artifactId>
+                <version>0.8-SNAPSHOT</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <modules>
+        <module>exframework-portal-core</module>
+        <module>exframework-portal-jdbc</module>
+        <module>exframework-portal-web</module>
+        <module>exframework-portal-web-jdbc</module>
+        <module>exframework-portal-admin</module>
+        <module>exframework-backend-quickstart</module>
+    </modules>
+
+</project>

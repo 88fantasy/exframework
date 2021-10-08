@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.exframework</groupId>
+		<artifactId>exframework-backend</artifactId>
+		<version>0.8-SNAPSHOT</version>
+	</parent>
+	<artifactId>exframework-portal-web-jdbc</artifactId>
+	<packaging>jar</packaging>
+	<name>exframework portal web with jdbc</name>
+	
+	<build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+        </plugins>
+
+    </build>
+
+
+	<dependencies>
+		<dependency>
+            <groupId>org.exframework</groupId>
+            <artifactId>exframework-portal-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.exframework</groupId>
+            <artifactId>exframework-portal-jdbc</artifactId>
+        </dependency>
+	</dependencies>
+
+</project>

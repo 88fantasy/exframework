@@ -35,7 +35,7 @@ public interface ExBaseMapper<T> extends BaseMapper<T> {
 
     default QueryWrapper<T> wrapperFromConditionAndSort(Collection<FilterCondition> conditions, Collection<String> sorts) {
         if (CollUtil.isEmpty(conditions) && CollUtil.isEmpty(sorts)) {
-            return Wrappers.emptyWrapper();
+            return Wrappers.query();
         }
         QueryWrapper<T> wrapper = new QueryWrapper<>();
         if (!CollUtil.isEmpty(conditions)) {
