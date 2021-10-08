@@ -1,21 +1,19 @@
 package org.exframework.portal.jdbc.dao.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.commons.lang3.StringUtils;
+import org.exframework.portal.dao.PortalCorePermissionDao;
+import org.exframework.portal.jdbc.entity.security.PermissionDO;
+import org.exframework.portal.jdbc.mapper.PermissionMapper;
+import org.exframework.portal.jdbc.mapper.PermissionResourceMapper;
+import org.exframework.portal.metadata.sys.Permission;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-
-import org.exframework.portal.dao.PortalCorePermissionDao;
-import org.exframework.portal.metadata.sys.Permission;
-import org.exframework.portal.jdbc.entity.security.PermissionDO;
-import org.exframework.portal.jdbc.mapper.PermissionResourceMapper;
-import org.exframework.portal.jdbc.mapper.PermissionMapper;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 权限数据类

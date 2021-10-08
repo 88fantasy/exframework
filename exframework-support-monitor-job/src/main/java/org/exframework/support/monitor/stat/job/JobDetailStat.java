@@ -1,12 +1,12 @@
 package org.exframework.support.monitor.stat.job;
 
+import org.apache.commons.lang3.time.FastDateFormat;
+import org.quartz.JobDetail;
+
 import java.util.Date;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
-
-import org.apache.commons.lang3.time.FastDateFormat;
-import org.quartz.JobDetail;
 
 /**
 * @author rwe

@@ -1,18 +1,17 @@
 package org.exframework.portal.metadata.queryparamitem;
 
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
-
 import org.exframework.portal.metadata.grid.Grid;
 import org.exframework.portal.metadata.queryparam.QueryParamItem;
 import org.exframework.portal.metadata.sys.Account;
 import org.exframework.portal.service.sys.GridService;
 import org.exframework.portal.utils.Const;
 import org.exframework.support.common.util.MapUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Component
 @Scope(value = org.springframework.beans.factory.config.ConfigurableBeanFactory.SCOPE_PROTOTYPE)

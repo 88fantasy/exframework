@@ -1,14 +1,13 @@
 package org.exframework.config;
 
 
-import javax.ws.rs.ApplicationPath;
-
+import org.exframework.support.rest.filter.DefaultContextResponseFilter;
+import org.exframework.support.rest.server.SrpingBootResourceConfig;
 import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.logging.LoggingFeature;
 import org.springframework.stereotype.Component;
 
-import org.exframework.support.rest.filter.DefaultContextResponseFilter;
-import org.exframework.support.rest.server.SrpingBootResourceConfig;
+import javax.ws.rs.ApplicationPath;
 
 
 /**

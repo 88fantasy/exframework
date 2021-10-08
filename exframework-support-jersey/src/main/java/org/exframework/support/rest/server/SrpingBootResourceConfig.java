@@ -1,15 +1,14 @@
 package org.exframework.support.rest.server;
 
-import java.util.Arrays;
-import java.util.stream.Collectors;
-
-import javax.ws.rs.Path;
-import javax.ws.rs.ext.Provider;
-
 import org.glassfish.jersey.server.ResourceConfig;
 import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
 import org.springframework.core.type.filter.AnnotationTypeFilter;
 import org.springframework.util.ClassUtils;
+
+import javax.ws.rs.Path;
+import javax.ws.rs.ext.Provider;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 /**
 * @author rwe

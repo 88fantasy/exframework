@@ -3,7 +3,6 @@ package org.exframework.spring.boot.autoconfigure.chinaunicom.rest.exception;
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import io.swagger.annotations.ApiModelProperty;
 import org.exframework.spring.boot.autoconfigure.chinaunicom.rest.entity.ChinaUnicomApiResponseData;
-import org.exframework.support.rest.entity.ApiResponseData;
 import org.exframework.support.rest.enums.ResultCode;
 import org.exframework.support.rest.exception.ApiException;
 import org.exframework.support.rest.exception.ServerException;

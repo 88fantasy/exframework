@@ -1,11 +1,10 @@
 package org.exframework.support.jdbc.dao;
 
-import java.sql.Connection;
-import java.sql.SQLException;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
-
-import org.springframework.jdbc.core.JdbcTemplate;
+import java.sql.Connection;
+import java.sql.SQLException;
 
 public interface DbDao {
 	

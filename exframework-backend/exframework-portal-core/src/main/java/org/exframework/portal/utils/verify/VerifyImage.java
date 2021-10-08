@@ -1,8 +1,8 @@
 package org.exframework.portal.utils.verify;
 
 import java.awt.*;
-import java.awt.image.*;
-import java.util.*;
+import java.awt.image.BufferedImage;
+import java.util.Random;
 
 public class VerifyImage {
     static Random r = new Random();

@@ -1,14 +1,10 @@
 package org.exframework.support.mongo.service;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-
+import org.exframework.support.doc.annotation.DataBaseGen;
+import org.exframework.support.doc.annotation.TableFieldDoc;
+import org.exframework.support.doc.entity.DataBaseTable;
+import org.exframework.support.doc.entity.DataBaseTableField;
+import org.exframework.support.doc.entity.DataBaseTableSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.data.annotation.Id;
@@ -16,11 +12,13 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.util.ReflectionUtils;
 
-import org.exframework.support.doc.annotation.DataBaseGen;
-import org.exframework.support.doc.annotation.TableFieldDoc;
-import org.exframework.support.doc.entity.DataBaseTable;
-import org.exframework.support.doc.entity.DataBaseTableField;
-import org.exframework.support.doc.entity.DataBaseTableSource;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 /**
  *

@@ -1,6 +1,7 @@
 package org.exframework.spring.boot.autoconfigure.cos;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+
 import static org.exframework.spring.boot.autoconfigure.cos.CosProperties.DEFAULT_PREFIX;
 
 /**

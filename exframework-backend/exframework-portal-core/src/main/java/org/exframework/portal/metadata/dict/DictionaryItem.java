@@ -1,14 +1,13 @@
 package org.exframework.portal.metadata.dict;
 
-import java.util.List;
-
-import javax.validation.constraints.NotEmpty;
-
 import org.exframework.portal.metadata.Meta;
 import org.exframework.portal.permission.PermissionEntry;
 import org.exframework.support.common.constants.SpringConstants;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+
+import javax.validation.constraints.NotEmpty;
+import java.util.List;
 
 /**
  * 字典项

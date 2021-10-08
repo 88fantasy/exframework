@@ -1,16 +1,15 @@
 package org.exframework.portal.service.sys;
 
-import java.util.Collection;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-
+import org.exframework.portal.dao.PortalCoreRoleDao;
+import org.exframework.portal.metadata.sys.Role;
+import org.exframework.portal.metadata.sys.RoleBaseAccount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 
-import org.exframework.portal.dao.PortalCoreRoleDao;
-import org.exframework.portal.metadata.sys.Role;
-import org.exframework.portal.metadata.sys.RoleBaseAccount;
+import java.util.Collection;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * 角色业务类 Author: rwe Date: Dec 28, 2020

@@ -1,8 +1,8 @@
 package org.exframework.support.wechat.dto.com.message;
 
-import java.util.List;
-
 import org.springframework.lang.NonNull;
+
+import java.util.List;
 
 
 /**

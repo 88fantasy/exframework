@@ -1,16 +1,15 @@
 package org.exframework.support.monitor.aspect.rest;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
+import org.exframework.support.monitor.stat.rest.RestStat;
+import org.exframework.support.monitor.stat.rest.RestUriStat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import org.exframework.support.monitor.stat.rest.RestStat;
-import org.exframework.support.monitor.stat.rest.RestUriStat;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author rwe

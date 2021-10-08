@@ -1,8 +1,7 @@
 package org.exframework.portal.admin.dto;
 
-import org.exframework.portal.web.dto.GlobalPostQueryRequest;
-
 import io.swagger.annotations.ApiModel;
+import org.exframework.portal.web.dto.GlobalPostQueryRequest;
 
 /**
  * 查询数据项请求

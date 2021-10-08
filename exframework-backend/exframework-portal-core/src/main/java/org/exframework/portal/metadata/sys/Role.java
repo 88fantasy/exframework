@@ -1,10 +1,10 @@
 package org.exframework.portal.metadata.sys;
 
 
+import org.exframework.portal.metadata.Meta;
+
 import java.util.List;
 import java.util.Map;
-
-import org.exframework.portal.metadata.Meta;
 
 /**
  * 角色

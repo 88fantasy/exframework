@@ -1,13 +1,13 @@
 package org.exframework.support.job;
 
-import java.util.Date;
-
 import org.apache.commons.lang3.time.FastDateFormat;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import org.springframework.scheduling.quartz.QuartzJobBean;
+
+import java.util.Date;
 
 public abstract class BaseJob extends QuartzJobBean {
 

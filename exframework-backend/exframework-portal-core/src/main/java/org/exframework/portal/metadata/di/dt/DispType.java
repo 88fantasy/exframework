@@ -1,12 +1,12 @@
 package org.exframework.portal.metadata.di.dt;
 
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-
 import org.exframework.portal.metadata.attribute.Attribute;
 import org.exframework.portal.metadata.di.DataItem;
 import org.exframework.portal.metadata.form.Form;
 import org.exframework.support.common.util.MapUtil;
+
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 
 public interface DispType {

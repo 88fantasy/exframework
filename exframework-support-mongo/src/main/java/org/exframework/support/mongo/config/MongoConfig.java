@@ -1,5 +1,7 @@
 package org.exframework.support.mongo.config;
 
+import org.exframework.support.mongo.convert.BigDecimalToDecimal128Converter;
+import org.exframework.support.mongo.convert.Decimal128ToBigDecimalConverter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -7,9 +9,6 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.data.mongodb.MongoDatabaseFactory;
 import org.springframework.data.mongodb.MongoTransactionManager;
 import org.springframework.data.mongodb.core.convert.MongoCustomConversions;
-
-import org.exframework.support.mongo.convert.BigDecimalToDecimal128Converter;
-import org.exframework.support.mongo.convert.Decimal128ToBigDecimalConverter;
 
 import java.util.ArrayList;
 import java.util.List;

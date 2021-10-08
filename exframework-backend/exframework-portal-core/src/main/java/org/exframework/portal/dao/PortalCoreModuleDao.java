@@ -1,14 +1,13 @@
 package org.exframework.portal.dao;
 
-import java.util.Collection;
-import java.util.List;
-
-import org.exframework.support.common.entity.FilterCondition;
 import org.exframework.portal.metadata.di.DataItem;
-import org.exframework.portal.metadata.module.Module;
 import org.exframework.portal.metadata.module.ModuleBase;
+import org.exframework.support.common.entity.FilterCondition;
 import org.exframework.support.common.entity.Page;
 import org.exframework.support.common.entity.PageModel;
+
+import java.util.Collection;
+import java.util.List;
 
 /**
  *
@@ -32,7 +31,7 @@ public interface PortalCoreModuleDao extends PortalCoreMetaDao<ModuleBase> {
 	
 	List<ModuleBase> list(Collection<FilterCondition> params);
 	
-	boolean insertModule(Module module); 
+	boolean insertModule(ModuleBase module);
 	
-	boolean updateModule(Module module);
+	boolean updateModule(ModuleBase module);
 }

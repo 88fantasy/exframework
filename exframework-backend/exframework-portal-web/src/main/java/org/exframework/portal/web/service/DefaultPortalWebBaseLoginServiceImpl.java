@@ -1,9 +1,5 @@
 package org.exframework.portal.web.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingClass;
-import org.springframework.stereotype.Service;
-
 import org.exframework.portal.exception.NotAuthorizedException;
 import org.exframework.portal.metadata.sys.Account;
 import org.exframework.portal.service.sys.PortalCoreAccountService;
@@ -11,6 +7,7 @@ import org.exframework.portal.web.entity.LoginDTO;
 import org.exframework.portal.web.vo.LoginResponse;
 import org.exframework.support.rest.entity.ApiResponseData;
 import org.exframework.support.rest.enums.ResultCode;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;

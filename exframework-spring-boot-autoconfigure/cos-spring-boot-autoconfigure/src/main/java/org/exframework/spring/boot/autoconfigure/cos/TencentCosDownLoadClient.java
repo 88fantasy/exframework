@@ -1,10 +1,11 @@
 package org.exframework.spring.boot.autoconfigure.cos;
 
-import java.io.File;
 import com.qcloud.cos.exception.CosClientException;
 import com.qcloud.cos.exception.CosServiceException;
 import com.qcloud.cos.model.GetObjectRequest;
 import com.qcloud.cos.transfer.Download;
+
+import java.io.File;
 
 public interface TencentCosDownLoadClient extends TencentCosClient {
 

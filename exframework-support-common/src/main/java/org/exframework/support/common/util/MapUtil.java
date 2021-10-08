@@ -1,8 +1,8 @@
 package org.exframework.support.common.util;
 
-import java.util.Map;
-
 import org.springframework.stereotype.Component;
+
+import java.util.Map;
 
 /**
 * @author rwe

@@ -1,8 +1,8 @@
 package org.exframework.portal.metadata.sys;
 
-import javax.validation.constraints.NotEmpty;
-
 import org.exframework.portal.metadata.Meta;
+
+import javax.validation.constraints.NotEmpty;
 
 /**
  * 用户参数

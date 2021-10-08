@@ -1,11 +1,10 @@
 package org.exframework.portal.metadata;
 
-import java.io.Serializable;
-
-import javax.validation.constraints.NotEmpty;
-
 import org.exframework.portal.metadata.di.DataItemEntity;
 import org.exframework.portal.metadata.entity.EntityClass;
+
+import javax.validation.constraints.NotEmpty;
+import java.io.Serializable;
 
 /**
  * 元数据元素的基类，包含名称信息、版本信息、与显示信息，form,attribute,dataItem等继承这个基类

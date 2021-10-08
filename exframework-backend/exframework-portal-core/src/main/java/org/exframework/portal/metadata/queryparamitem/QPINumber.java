@@ -1,12 +1,11 @@
 package org.exframework.portal.metadata.queryparamitem;
 
 
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
-
-import org.exframework.support.common.entity.FilterCondition.FilterConditionOper;
 import org.exframework.portal.metadata.queryparam.QueryParamItem;
 import org.exframework.portal.metadata.sys.Account;
+import org.exframework.support.common.entity.FilterCondition.FilterConditionOper;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 /**
  * 数字类型

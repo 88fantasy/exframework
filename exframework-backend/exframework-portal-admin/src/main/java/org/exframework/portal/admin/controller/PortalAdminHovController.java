@@ -1,15 +1,8 @@
 package org.exframework.portal.admin.controller;
 
-import javax.validation.Valid;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.exframework.portal.admin.constant.AdminApiConstants;
 import org.exframework.portal.admin.dto.PostHovQueryRequest;
 import org.exframework.portal.admin.service.AdminHovService;
@@ -19,10 +12,11 @@ import org.exframework.portal.metadata.hov.Hov;
 import org.exframework.portal.web.constants.WebApiConstants;
 import org.exframework.portal.web.controller.PortalWebHovController;
 import org.exframework.support.rest.entity.ApiResponsePage;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
+import javax.validation.Valid;
 
 /**
  *

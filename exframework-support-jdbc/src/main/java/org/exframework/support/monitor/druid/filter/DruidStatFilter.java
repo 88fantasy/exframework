@@ -1,9 +1,9 @@
 package org.exframework.support.monitor.druid.filter;
 
+import com.alibaba.druid.support.http.WebStatFilter;
+
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.annotation.WebInitParam;
-
-import com.alibaba.druid.support.http.WebStatFilter;
 
 /**
  * @author rwe

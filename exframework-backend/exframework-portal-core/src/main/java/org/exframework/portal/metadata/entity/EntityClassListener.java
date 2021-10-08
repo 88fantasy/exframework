@@ -3,24 +3,16 @@ package org.exframework.portal.metadata.entity;
 import org.exframework.portal.dao.PortalCoreDataItemDao;
 import org.exframework.portal.dao.PortalCoreHovDao;
 import org.exframework.portal.dao.PortalCoreModuleDao;
+import org.exframework.portal.enums.DataItemDisplayType;
+import org.exframework.portal.enums.DataItemValueType;
 import org.exframework.portal.metadata.di.DataItem;
-import org.exframework.portal.metadata.di.DataItem.DataItemDisplayTypeEnum;
-import org.exframework.portal.metadata.di.DataItem.DataItemValueTypeEnum;
 import org.exframework.portal.metadata.di.DataItemEntity;
-import org.exframework.portal.metadata.dict.DictionaryEnumClass;
-import org.exframework.portal.metadata.dict.DictionaryItemValue;
 import org.exframework.portal.metadata.hov.Hov;
 import org.exframework.portal.metadata.hov.HovEntity;
 import org.exframework.portal.metadata.hov.IHovDao;
-import org.exframework.portal.metadata.module.Module;
-import org.exframework.portal.metadata.module.ModuleBase;
-import org.exframework.portal.metadata.module.ModuleEntity;
 import org.exframework.portal.pub.PageRequest;
-import org.exframework.portal.service.sys.ModuleService;
 import org.exframework.portal.service.sys.PortalCoreDataItemService;
 import org.exframework.portal.service.sys.PortalCoreDdlService;
-import org.exframework.support.common.annotation.Dictionary;
-import org.exframework.support.common.enums.DictionaryEnum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,11 +25,7 @@ import org.springframework.util.StringUtils;
 
 import java.lang.reflect.Field;
 import java.text.MessageFormat;
-import java.util.Comparator;
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * 加载EntityClass注解
@@ -67,9 +55,6 @@ public class EntityClassListener implements ApplicationListener<ApplicationReady
     @Autowired
     PortalCoreModuleDao moduleDao;
 
-    @Autowired
-    ModuleService moduleService;
-
     @Override
     public void onApplicationEvent(ApplicationReadyEvent event) {
         ApplicationContext ac = event.getApplicationContext();
@@ -92,15 +77,15 @@ public class EntityClassListener implements ApplicationListener<ApplicationReady
                             String code = item.value();
                             String name = item.name();
                             String description = item.description();
-                            DataItemDisplayTypeEnum type = item.type();
-                            DataItemValueTypeEnum valueType = item.valueType();
+                            DataItemDisplayType type = item.type();
+                            DataItemValueType valueType = item.valueType();
                             String displayKey = item.displayKey();
                             int length = item.maxlength();
                             int precision = item.precision();
                             String objectCode = item.objectCode();
                             boolean forceUpdate = item.forceUpdate();
 
-                            if (valueType == DataItemValueTypeEnum.DEFAULT) {
+                            if (valueType == DataItemValueType.DEFAULT) {
                                 valueType = portalCoreDataItemDao.defaultValueType(value);
                             }
 
@@ -121,40 +106,6 @@ public class EntityClassListener implements ApplicationListener<ApplicationReady
                 }
             });
 
-            if (DictionaryEnumClass.class.isAssignableFrom(clazz)) {
-                DictionaryEnumClass dec = (DictionaryEnumClass) entityClass;
-                Class<?>[] enumclasses = dec.enums();
-                if (enumclasses != null) {
-                    for (Class<?> enumclass : enumclasses) {
-                        if (enumclass.isAnnotationPresent(Dictionary.class)) {
-                            Dictionary d = enumclass.getAnnotation(Dictionary.class);
-                            String dictName = d.name();
-                            String dictCode = d.value();
-                            if (!StringUtils.hasText(dictCode)) {
-                                String simpleName = enumclass.getSimpleName();
-                                dictCode = Character.toLowerCase(simpleName.charAt(0)) + simpleName.substring(1);
-                            }
-                            if (enumclass.isEnum()) {
-                                log.info(MessageFormat.format("加载字典{0}", dictCode));
-                                Enum<?>[] enums = (Enum<?>[]) enumclass.getEnumConstants();
-                                List<DictionaryItemValue> values = Stream.of(enums).sorted(Comparator.comparingInt(Enum::ordinal)).map(ee -> {
-                                    DictionaryItemValue value = new DictionaryItemValue()
-                                            .setKey(ee.name())
-                                            .setValue(ee.name());
-                                    if (DictionaryEnum.class.isAssignableFrom(ee.getClass())) {
-                                        DictionaryEnum e = (DictionaryEnum) ee;
-                                        value.setValue(e.getLabel());
-                                    }
-                                    return value;
-                                }).collect(Collectors.toList());
-
-                                portalCoreDdlService.saveDictionary(dictCode, dictName, values, true);
-                            }
-                        }
-                    }
-                }
-            }
-
             HovEntity hov = entityClass.getClass().getAnnotation(HovEntity.class);
             if (hov != null) {
                 String code = hov.value();
@@ -174,25 +125,25 @@ public class EntityClassListener implements ApplicationListener<ApplicationReady
                 }
             }
 
-            ModuleEntity module = entityClass.getClass().getAnnotation(ModuleEntity.class);
-            if (module != null) {
-                String code = module.value();
-                String name = module.name();
-                String description = module.description();
-                String[] items = module.dataItemRef();
-                String[] hovs = module.hovRef();
-                String[] permissions = module.permissionRef();
-                boolean force = module.forceUpdate();
-                ModuleBase base = moduleDao.findByKey(code);
-                if (base == null) {
-                    base = new ModuleBase(code, name, description);
-                    Module entity = moduleService.instanceByClass(base, items, hovs, permissions);
-                    moduleDao.insert(entity);
-                } else if (force) {
-                    Module entity = moduleService.instanceByClass(base, items, hovs, permissions);
-                    moduleDao.update(entity);
-                }
-            }
+//            ModuleEntity module = entityClass.getClass().getAnnotation(ModuleEntity.class);
+//            if (module != null) {
+//                String code = module.value();
+//                String name = module.name();
+//                String description = module.description();
+//                String[] items = module.dataItemRef();
+//                String[] hovs = module.hovRef();
+//                String[] permissions = module.permissionRef();
+//                boolean force = module.forceUpdate();
+//                ModuleBase base = moduleDao.findByKey(code);
+//                if (base == null) {
+//                    base = new ModuleBase(code, name, description);
+//                    Module entity = moduleService.instanceByClass(base, items, hovs, permissions);
+//                    moduleDao.insert(entity);
+//                } else if (force) {
+//                    Module entity = moduleService.instanceByClass(base, items, hovs, permissions);
+//                    moduleDao.update(entity);
+//                }
+//            }
 
         }
     }

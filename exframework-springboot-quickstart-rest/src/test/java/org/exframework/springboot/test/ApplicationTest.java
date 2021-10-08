@@ -1,7 +1,6 @@
 package org.exframework.springboot.test;
 
-import java.net.URL;
-
+import org.exframework.springboot.application.Application;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -9,10 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
-import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import org.exframework.springboot.application.Application;
+import java.net.URL;
 
 /**
  * @author rwe

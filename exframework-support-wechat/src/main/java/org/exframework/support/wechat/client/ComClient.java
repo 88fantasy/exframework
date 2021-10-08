@@ -4,11 +4,7 @@ import com.dtflys.forest.annotation.BaseRequest;
 import com.dtflys.forest.annotation.Body;
 import com.dtflys.forest.annotation.Post;
 import org.exframework.support.wechat.constant.WeChatComApiConstants;
-import org.exframework.support.wechat.dto.com.message.SendImageMessageRequest;
-import org.exframework.support.wechat.dto.com.message.SendMessageResponse;
-import org.exframework.support.wechat.dto.com.message.SendNewsMessageRequest;
-import org.exframework.support.wechat.dto.com.message.SendTextMessageRequest;
-import org.exframework.support.wechat.dto.com.message.SendTextcardMessageRequest;
+import org.exframework.support.wechat.dto.com.message.*;
 import org.exframework.support.wechat.exception.ApiException;
 
 /**

@@ -1,16 +1,15 @@
 package org.exframework.portal.metadata.module;
 
-import java.util.Collection;
-import java.util.Collections;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import org.exframework.portal.metadata.di.DataItem;
 import org.exframework.portal.metadata.hov.Hov;
 import org.exframework.portal.metadata.sys.Permission;
 import org.exframework.portal.service.sys.PortalCoreHovService;
 import org.exframework.support.common.util.SpringContextUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.Collection;
+import java.util.Collections;
 
 /**
  *

@@ -1,7 +1,5 @@
 package org.exframework.support.tdmq.config;
 
-import java.text.MessageFormat;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.pulsar.client.api.AuthenticationFactory;
@@ -13,6 +11,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.util.StringUtils;
+
+import java.text.MessageFormat;
 
 
 @Configuration

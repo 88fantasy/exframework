@@ -1,7 +1,6 @@
 package org.exframework.alibaba.ms.quickstart.springboot.test;
 
-import java.net.URL;
-
+import org.exframework.alibaba.ms.quickstart.springboot.application.ProviderApplication;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -11,7 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import org.exframework.alibaba.ms.quickstart.springboot.application.ProviderApplication;
+import java.net.URL;
 
 
 /**

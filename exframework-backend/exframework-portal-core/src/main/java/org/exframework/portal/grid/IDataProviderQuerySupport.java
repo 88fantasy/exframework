@@ -1,8 +1,8 @@
 package org.exframework.portal.grid;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.exframework.support.common.entity.FilterCondition;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * 表格查询时辅助类，表格每次查询或者下载时会判断是否需要调用此接口方法，

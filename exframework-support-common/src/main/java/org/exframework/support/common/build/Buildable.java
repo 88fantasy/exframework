@@ -1,8 +1,7 @@
 package org.exframework.support.common.build;
 
-import org.springframework.context.ApplicationContext;
-
 import org.exframework.support.common.exception.BuildException;
+import org.springframework.context.ApplicationContext;
 
 public interface Buildable {
 	

@@ -1,10 +1,9 @@
 package org.exframework.portal.web.dto;
 
-import org.exframework.portal.pub.PageRequest;
-import org.exframework.support.common.entity.Page;
-
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import org.exframework.portal.pub.PageRequest;
+import org.exframework.support.common.entity.Page;
 
 /**
  * 通用请求

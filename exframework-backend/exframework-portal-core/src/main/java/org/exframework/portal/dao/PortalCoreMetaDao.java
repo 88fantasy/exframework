@@ -1,9 +1,9 @@
 package org.exframework.portal.dao;
 
-import java.util.Collection;
-
 import org.exframework.portal.exception.NotFoundException;
 import org.exframework.portal.metadata.Meta;
+
+import java.util.Collection;
 
 /**
  *

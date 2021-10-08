@@ -1,22 +1,5 @@
 package org.exframework.portal.metadata.hov;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
-import java.util.ArrayList;
-import java.util.List;
-
-import org.springframework.util.ReflectionUtils;
-
-/**
- * 参照实体
- * @author rwe
- * @since Dec 29, 2020
- *
- * Copyright @ 2020 
- * 
- */
-
-
 import org.exframework.portal.metadata.Meta;
 import org.exframework.portal.metadata.di.DataItem;
 import org.exframework.portal.metadata.di.DataItemRef;
@@ -24,6 +7,12 @@ import org.exframework.portal.metadata.grid.Column;
 import org.exframework.portal.pub.PageRequest;
 import org.exframework.portal.service.sys.PortalCoreDataItemService;
 import org.exframework.support.common.util.SpringContextUtils;
+import org.springframework.util.ReflectionUtils;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Hov extends Meta {
 

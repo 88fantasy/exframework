@@ -1,18 +1,7 @@
 package org.exframework.support.tdmq.listener;
 
-import java.text.MessageFormat;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-import javax.annotation.Resource;
-
-import org.apache.pulsar.client.api.Consumer;
-import org.apache.pulsar.client.api.MessageListener;
-import org.apache.pulsar.client.api.PulsarClient;
-import org.apache.pulsar.client.api.PulsarClientException;
-import org.apache.pulsar.client.api.Schema;
-import org.apache.pulsar.client.api.SubscriptionType;
+import org.apache.pulsar.client.api.*;
+import org.exframework.support.tdmq.annotation.TDMQConsumer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.DisposableBean;
@@ -24,7 +13,11 @@ import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
-import org.exframework.support.tdmq.annotation.TDMQConsumer;
+import javax.annotation.Resource;
+import java.text.MessageFormat;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 
 /**

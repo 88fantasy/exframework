@@ -1,29 +1,26 @@
 package org.exframework.portal.jdbc.dao.impl;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
-
-import org.exframework.portal.dao.PortalCoreDataItemDao;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.exframework.portal.dao.PortalCoreDataItemDao;
 import org.exframework.portal.dao.PortalCoreModuleDao;
-import org.exframework.support.common.entity.FilterCondition;
-import org.exframework.portal.metadata.di.DataItem;
-import org.exframework.portal.metadata.hov.Hov;
-import org.exframework.portal.metadata.module.Module;
-import org.exframework.portal.metadata.module.ModuleBase;
-import org.exframework.support.common.entity.Page;
-import org.exframework.support.common.entity.PageModel;
 import org.exframework.portal.jdbc.entity.module.ModuleDO;
 import org.exframework.portal.jdbc.entity.module.ModuleHovDO;
 import org.exframework.portal.jdbc.mapper.ModuleHovMapper;
 import org.exframework.portal.jdbc.mapper.ModuleMapper;
+import org.exframework.portal.metadata.di.DataItem;
+import org.exframework.portal.metadata.module.ModuleBase;
+import org.exframework.support.common.entity.FilterCondition;
+import org.exframework.support.common.entity.Page;
+import org.exframework.support.common.entity.PageModel;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 模块数据类 Author: rwe Date: Dec 29, 2020
@@ -97,7 +94,7 @@ public class PortalCoreModuleDaoImpl extends PortalCoreMetaDaoImpl<ModuleDO, Mod
 
 	@Override
 	@Transactional(rollbackFor = Exception.class)
-	public boolean insertModule(Module module) {
+	public boolean insertModule(ModuleBase module) {
 		String code = module.getCode();
 		ModuleBase base = findByKey(code);
 		if(base != null) {
@@ -107,12 +104,12 @@ public class PortalCoreModuleDaoImpl extends PortalCoreMetaDaoImpl<ModuleDO, Mod
 			base = module;
 			int in = insert(base);
 			if(in > 0) {
-				Collection<Hov> hovs = module.getHovs();
-				for(Hov hov : hovs) {
-					ModuleHovDO mh = new ModuleHovDO();
-					mh.setModuleKey(module.getCode());
-					mh.setHovKey(hov.getCode());
-				}
+//				Collection<Hov> hovs = module.getHovs();
+//				for(Hov hov : hovs) {
+//					ModuleHovDO mh = new ModuleHovDO();
+//					mh.setModuleKey(module.getCode());
+//					mh.setHovKey(hov.getCode());
+//				}
 //				module.getDataItems();
 			}
 		}
@@ -120,7 +117,7 @@ public class PortalCoreModuleDaoImpl extends PortalCoreMetaDaoImpl<ModuleDO, Mod
 	}
 
 	@Override
-	public boolean updateModule(Module module) {
+	public boolean updateModule(ModuleBase module) {
 
 		return false;
 	}

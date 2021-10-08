@@ -1,15 +1,13 @@
 package org.exframework.alibaba.ms.quickstart.config;
 
-import java.util.Enumeration;
-
-import javax.servlet.http.HttpServletRequest;
-
+import feign.RequestInterceptor;
+import feign.RequestTemplate;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import feign.RequestInterceptor;
-import feign.RequestTemplate;
+import javax.servlet.http.HttpServletRequest;
+import java.util.Enumeration;
 
 /**
  *

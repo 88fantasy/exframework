@@ -1,12 +1,12 @@
 package org.exframework.support.common.util;
 
-import java.util.Map;
-
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
+
+import java.util.Map;
 
 @Component
 public class SpringContextUtils implements ApplicationContextAware {

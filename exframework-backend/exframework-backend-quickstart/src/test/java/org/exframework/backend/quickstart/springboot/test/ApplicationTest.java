@@ -1,9 +1,10 @@
 package org.exframework.backend.quickstart.springboot.test;
 
-import java.net.URL;
-
-import javax.annotation.Resource;
-
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import org.exframework.backend.quickstart.springboot.application.Application;
+import org.exframework.portal.enums.AccountStatusType;
+import org.exframework.portal.jdbc.entity.security.AccountDO;
+import org.exframework.portal.jdbc.mapper.AccountMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -11,11 +12,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import org.exframework.backend.quickstart.springboot.application.Application;
-import org.exframework.portal.jdbc.entity.security.AccountDO;
-import org.exframework.portal.jdbc.mapper.AccountMapper;
-import org.exframework.portal.metadata.sys.Account.AccountStatusTypeEnum;
+import javax.annotation.Resource;
+import java.net.URL;
 
 import static org.assertj.core.api.Assertions.assertThat;
 /**
@@ -50,7 +48,7 @@ public class ApplicationTest {
 	public void  user() throws Exception {
 		AccountDO account = new AccountDO();
 		account.setAccount("testaccount");
-		account.setAccountStatus(AccountStatusTypeEnum.VALID);
+		account.setAccountStatus(AccountStatusType.VALID);
 		assertThat(mapper.insert(account)).isGreaterThan(0);
         // 成功直接拿回写的 ID
         assertThat(account.getAccount()).isNotNull();

@@ -1,21 +1,20 @@
 package org.exframework.portal.jdbc.dao.impl;
 
-import java.util.Collection;
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
-
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.exframework.portal.dao.PortalCoreAccountParameterDao;
-import org.exframework.support.common.entity.FilterCondition;
-import org.exframework.portal.metadata.sys.Account;
-import org.exframework.portal.metadata.sys.AccountParameter;
 import org.exframework.portal.jdbc.entity.system.AccountParameterDO;
 import org.exframework.portal.jdbc.mapper.AccountParameterMapper;
+import org.exframework.portal.metadata.sys.Account;
+import org.exframework.portal.metadata.sys.AccountParameter;
+import org.exframework.support.common.entity.FilterCondition;
 import org.exframework.support.common.entity.PageModel;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import java.util.Collection;
+import java.util.List;
 
 /**
  * 权限数据类

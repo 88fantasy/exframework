@@ -1,16 +1,15 @@
 package org.exframework.support.common.build;
 
 
-import java.util.Map;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.context.ApplicationContext;
-import org.springframework.stereotype.Service;
-
 import org.exframework.support.common.annotation.BuildComponent;
 import org.exframework.support.common.exception.BuildException;
 import org.exframework.support.common.util.SpringContextUtils;
+import org.springframework.context.ApplicationContext;
+import org.springframework.stereotype.Service;
+
+import java.util.Map;
 
 /**
 * @author rwe

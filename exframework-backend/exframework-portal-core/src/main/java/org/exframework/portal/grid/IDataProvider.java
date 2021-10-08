@@ -1,11 +1,11 @@
 package org.exframework.portal.grid;
 
-import java.util.List;
-import java.util.Map;
-
 import org.exframework.portal.exception.InitException;
 import org.exframework.portal.metadata.sys.Account;
 import org.exframework.support.common.exception.BuildException;
+
+import java.util.List;
+import java.util.Map;
 
 public interface IDataProvider {
 	public Map<String, Object> getJsonData(String gridcode, Map<String, Object> params, Account account) throws InitException,BuildException;

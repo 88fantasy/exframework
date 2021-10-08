@@ -1,11 +1,10 @@
 package org.exframework.portal.admin.dto;
 
-import javax.validation.constraints.NotNull;
-
-import org.exframework.portal.metadata.di.DataItem;
-
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import org.exframework.portal.metadata.di.DataItem;
+
+import javax.validation.constraints.NotNull;
 
 /**
  * 新增修改字典请求 Author: rwe Date: Jan 9, 2021

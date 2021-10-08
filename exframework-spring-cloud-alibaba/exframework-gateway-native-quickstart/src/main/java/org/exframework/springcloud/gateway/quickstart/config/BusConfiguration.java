@@ -1,11 +1,10 @@
 package org.exframework.springcloud.gateway.quickstart.config;
 
+import org.exframework.springcloud.gateway.quickstart.service.GatewayServiceHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
-
-import org.exframework.springcloud.gateway.quickstart.service.GatewayServiceHandler;
 
 
 /**

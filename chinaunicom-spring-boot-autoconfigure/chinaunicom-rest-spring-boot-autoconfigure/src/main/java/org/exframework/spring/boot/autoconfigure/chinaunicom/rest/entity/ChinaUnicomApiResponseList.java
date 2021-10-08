@@ -1,6 +1,5 @@
 package org.exframework.spring.boot.autoconfigure.chinaunicom.rest.entity;
 
-import org.exframework.support.rest.entity.ApiResponse;
 import org.exframework.support.rest.enums.ResultCode;
 
 import java.util.List;

@@ -1,9 +1,9 @@
 package org.exframework.portal.utils;
 
-import java.security.NoSuchAlgorithmException;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
+import java.security.NoSuchAlgorithmException;
 
 public class EncryptUtil {
 	static private Log log = LogFactory.getLog(EncryptUtil.class.getName());

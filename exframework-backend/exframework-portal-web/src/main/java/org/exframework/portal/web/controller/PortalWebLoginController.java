@@ -1,31 +1,25 @@
 package org.exframework.portal.web.controller;
 
 
-import java.io.IOException;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.exframework.portal.exception.NotAuthorizedException;
 import org.exframework.portal.web.constants.WebApiConstants;
 import org.exframework.portal.web.entity.LoginDTO;
 import org.exframework.portal.web.service.PortalWebBaseLoginService;
 import org.exframework.portal.web.vo.LoginResponse;
 import org.exframework.support.rest.entity.ApiResponseData;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
+import java.io.IOException;
 
 //@RestController
 //@CrossOrigin(origins = "*", maxAge = 3600, methods = { RequestMethod.GET })

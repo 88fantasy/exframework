@@ -1,5 +1,11 @@
 package org.exframework.support.common.entity;
 
+import org.exframework.support.common.annotation.*;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.FatalBeanException;
+import org.springframework.core.ResolvableType;
+import org.springframework.util.ReflectionUtils;
+
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -8,13 +14,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-
-import org.exframework.support.common.annotation.*;
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.FatalBeanException;
-import org.springframework.core.ResolvableType;
-import org.springframework.lang.Nullable;
-import org.springframework.util.ReflectionUtils;
 
 public class FilterCondition {
 

@@ -2,13 +2,10 @@ package org.exframework.spring.boot.autoconfigure.minio.client;
 
 import io.minio.DownloadObjectArgs;
 import io.minio.GetPresignedObjectUrlArgs;
-import io.minio.StatObjectArgs;
-import io.minio.StatObjectResponse;
 import io.minio.errors.MinioException;
 import io.minio.http.Method;
 import org.exframework.spring.boot.autoconfigure.minio.errors.MinioClientException;
 import org.exframework.spring.boot.autoconfigure.minio.model.DownloadResult;
-import org.springframework.util.FileSystemUtils;
 
 import java.io.File;
 import java.io.IOException;

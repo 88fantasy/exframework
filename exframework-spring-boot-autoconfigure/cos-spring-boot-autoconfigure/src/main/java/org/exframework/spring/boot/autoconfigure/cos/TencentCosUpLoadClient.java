@@ -1,22 +1,16 @@
 package org.exframework.spring.boot.autoconfigure.cos;
 
+import com.qcloud.cos.exception.CosClientException;
+import com.qcloud.cos.exception.CosServiceException;
+import com.qcloud.cos.model.*;
+import com.qcloud.cos.transfer.TransferManager;
+import com.qcloud.cos.transfer.Upload;
+import org.springframework.util.StringUtils;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.Date;
 import java.util.List;
-
-import org.springframework.util.StringUtils;
-
-import com.qcloud.cos.exception.CosClientException;
-import com.qcloud.cos.exception.CosServiceException;
-import com.qcloud.cos.model.COSObjectSummary;
-import com.qcloud.cos.model.ListObjectsRequest;
-import com.qcloud.cos.model.ObjectListing;
-import com.qcloud.cos.model.ObjectMetadata;
-import com.qcloud.cos.model.PutObjectRequest;
-import com.qcloud.cos.model.UploadResult;
-import com.qcloud.cos.transfer.TransferManager;
-import com.qcloud.cos.transfer.Upload;
 
 public interface TencentCosUpLoadClient  extends TencentCosClient {
 	

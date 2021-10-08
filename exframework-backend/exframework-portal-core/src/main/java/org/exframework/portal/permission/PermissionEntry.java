@@ -1,9 +1,9 @@
 package org.exframework.portal.permission;
 
-import java.util.Map;
-
 import org.exframework.portal.metadata.sys.Account;
 import org.exframework.portal.metadata.sys.Permission;
+
+import java.util.Map;
 
 /**
  * 权限实体接口

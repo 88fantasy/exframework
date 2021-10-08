@@ -1,12 +1,11 @@
 package org.exframework.support.monitor.util;
 
-import java.lang.reflect.Method;
-import java.util.Map;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
 import org.exframework.support.monitor.stat.Stat;
+
+import java.lang.reflect.Method;
+import java.util.Map;
 
 /**
 * @author rwe

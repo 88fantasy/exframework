@@ -2,10 +2,9 @@ package org.exframework.portal.service.sys;
 
 
 import org.exframework.portal.dao.PortalCoreHovDao;
+import org.exframework.portal.metadata.hov.Hov;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import org.exframework.portal.metadata.hov.Hov;
 
 /**
  * 参照业务类

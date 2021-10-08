@@ -1,10 +1,9 @@
 package org.exframework.portal.admin.dto;
 
-import org.exframework.support.common.entity.FilterCondition;
-import org.exframework.support.common.entity.Page;
-
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import org.exframework.support.common.entity.FilterCondition;
+import org.exframework.support.common.entity.Page;
 
 /**
  * 查询字典请求

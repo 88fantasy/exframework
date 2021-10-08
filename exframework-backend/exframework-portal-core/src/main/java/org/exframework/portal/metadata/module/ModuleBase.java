@@ -1,12 +1,12 @@
 package org.exframework.portal.metadata.module;
 
-import javax.validation.constraints.NotEmpty;
-
+import org.exframework.portal.enums.DataItemDisplayType;
+import org.exframework.portal.enums.DataItemValueType;
 import org.exframework.portal.metadata.Meta;
 import org.exframework.portal.metadata.di.DataItemEntity;
 import org.exframework.portal.metadata.entity.EntityClass;
-import org.exframework.portal.metadata.di.DataItem.DataItemDisplayTypeEnum;
-import org.exframework.portal.metadata.di.DataItem.DataItemValueTypeEnum;
+
+import javax.validation.constraints.NotEmpty;
 
 /**
  * 模块基础
@@ -21,7 +21,7 @@ public class ModuleBase extends Meta {
 
 	private static final long serialVersionUID = 6481735743500461616L;
 
-	@DataItemEntity(value = "valid", name = "可用", type = DataItemDisplayTypeEnum.CHECKBOX, valueType = DataItemValueTypeEnum.BOOLEAN )
+	@DataItemEntity(value = "valid", name = "可用", type = DataItemDisplayType.CHECKBOX, valueType = DataItemValueType.BOOLEAN )
 	private boolean valid;
 	
 	private long star;

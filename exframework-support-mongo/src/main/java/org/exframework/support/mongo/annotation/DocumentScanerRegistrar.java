@@ -1,10 +1,6 @@
 package org.exframework.support.mongo.annotation;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
+import org.exframework.support.common.annotation.AnnotationClassPathBeanDefinitionScanner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
@@ -14,7 +10,10 @@ import org.springframework.core.type.AnnotationMetadata;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.util.StringUtils;
 
-import org.exframework.support.common.annotation.AnnotationClassPathBeanDefinitionScanner;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  *

@@ -5,7 +5,6 @@ import org.exframework.portal.metadata.attribute.Attribute;
 import org.exframework.portal.metadata.di.DataItem;
 import org.exframework.portal.metadata.form.Form;
 import org.exframework.portal.service.sys.PortalCoreDdlService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

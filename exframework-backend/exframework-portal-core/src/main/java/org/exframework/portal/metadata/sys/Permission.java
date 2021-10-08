@@ -1,9 +1,9 @@
 package org.exframework.portal.metadata.sys;
 
+import org.exframework.portal.metadata.Meta;
+
 import java.io.Serializable;
 import java.util.List;
-
-import org.exframework.portal.metadata.Meta;
 
 /**
  * 权限实体

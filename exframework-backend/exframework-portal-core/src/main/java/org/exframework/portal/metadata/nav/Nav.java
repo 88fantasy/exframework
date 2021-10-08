@@ -1,7 +1,6 @@
 package org.exframework.portal.metadata.nav;
 
 import org.exframework.portal.metadata.Meta;
-import org.exframework.portal.metadata.module.Module;
 
 public class Nav extends Meta {
 
@@ -12,7 +11,6 @@ public class Nav extends Meta {
 
 	private String icon;
 
-	private Module[] list;
 
 	public String getIcon() {
 		return icon;
@@ -22,12 +20,5 @@ public class Nav extends Meta {
 		this.icon = icon;
 	}
 
-	public Module[] getList() {
-		return list;
-	}
-
-	public void setList(Module[] list) {
-		this.list = list;
-	}
 
 }

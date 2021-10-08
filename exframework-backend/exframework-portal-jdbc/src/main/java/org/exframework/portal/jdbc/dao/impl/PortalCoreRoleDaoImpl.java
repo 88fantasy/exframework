@@ -1,31 +1,30 @@
 package org.exframework.portal.jdbc.dao.impl;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.stream.Collectors;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
-
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import org.exframework.portal.dao.PortalCoreRoleDao;
-import org.exframework.portal.metadata.sys.Account;
-import org.exframework.portal.metadata.sys.Permission;
-import org.exframework.portal.metadata.sys.Role;
-import org.exframework.portal.metadata.sys.RoleBaseAccount;
-import org.exframework.portal.service.sys.PortalCoreAccountService;
-import org.exframework.portal.service.sys.PortalCorePermissionService;
 import org.exframework.portal.jdbc.entity.security.AccountRoleDO;
 import org.exframework.portal.jdbc.entity.security.RoleDO;
 import org.exframework.portal.jdbc.entity.security.RolePermissionDO;
 import org.exframework.portal.jdbc.mapper.AccountRoleMapper;
 import org.exframework.portal.jdbc.mapper.RoleMapper;
 import org.exframework.portal.jdbc.mapper.RolePermissionMapper;
+import org.exframework.portal.metadata.sys.Account;
+import org.exframework.portal.metadata.sys.Permission;
+import org.exframework.portal.metadata.sys.Role;
+import org.exframework.portal.metadata.sys.RoleBaseAccount;
+import org.exframework.portal.service.sys.PortalCoreAccountService;
+import org.exframework.portal.service.sys.PortalCorePermissionService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
 
 /**
  * 角色数据类

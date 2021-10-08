@@ -1,14 +1,12 @@
 package org.exframework.portal.jdbc.entity.security;
 
 
-
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.handlers.FastjsonTypeHandler;
 import com.gitee.sunchenbin.mybatis.actable.annotation.ColumnType;
 import com.gitee.sunchenbin.mybatis.actable.constants.MySqlTypeConstant;
-
 import org.exframework.support.doc.annotation.TableDoc;
 import org.exframework.support.doc.annotation.TableFieldDoc;
 

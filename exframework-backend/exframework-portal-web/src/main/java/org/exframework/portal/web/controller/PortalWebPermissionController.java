@@ -1,10 +1,12 @@
 package org.exframework.portal.web.controller;
 
 
-
-import java.util.Collection;
-
-
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import org.exframework.portal.metadata.sys.Role;
+import org.exframework.portal.service.sys.PortalCorePermissionService;
+import org.exframework.portal.service.sys.PortalCoreRoleService;
+import org.exframework.support.rest.entity.ApiResponseData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -12,13 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import org.exframework.portal.metadata.sys.Role;
-import org.exframework.portal.service.sys.PortalCorePermissionService;
-import org.exframework.portal.service.sys.PortalCoreRoleService;
-import org.exframework.support.rest.entity.ApiResponseData;
-
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import java.util.Collection;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600, methods = { RequestMethod.GET })

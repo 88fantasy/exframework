@@ -1,12 +1,11 @@
 package org.exframework.portal.metadata.form;
 
-import java.util.*;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Component;
 
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * 使用在initvalue的表达式中

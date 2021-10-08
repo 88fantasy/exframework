@@ -1,13 +1,11 @@
 package org.exframework.support.jdbc.annotation;
 
-import org.exframework.support.common.entity.CheckerResult;
 import org.exframework.support.rest.exception.ApiException;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 import java.util.function.Function;
-import java.util.function.Predicate;
 
 import static java.lang.annotation.ElementType.ANNOTATION_TYPE;
 import static java.lang.annotation.ElementType.FIELD;

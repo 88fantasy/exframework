@@ -1,13 +1,13 @@
 package org.exframework.portal.service.sys;
 
+import org.exframework.portal.metadata.grid.Grid;
+import org.exframework.portal.metadata.sys.Account;
+
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
-
-import org.exframework.portal.metadata.grid.Grid;
-import org.exframework.portal.metadata.sys.Account;
 
 
 public interface GridService {

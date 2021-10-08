@@ -1,19 +1,14 @@
 package org.exframework.portal.service.impl;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import java.util.regex.PatternSyntaxException;
-
+import org.exframework.portal.service.FileService;
+import org.exframework.portal.utils.Const;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import org.exframework.portal.service.FileService;
-import org.exframework.portal.utils.Const;
+import java.io.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
 
 @Service
 public class FileServceImpl implements FileService {

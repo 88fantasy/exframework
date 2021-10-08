@@ -1,12 +1,11 @@
 package org.exframework.portal.metadata.sys;
 
-import java.util.Date;
-
-import javax.validation.constraints.NotEmpty;
-
 import org.exframework.portal.metadata.di.DataItemEntity;
 import org.exframework.portal.metadata.di.DataItemRef;
 import org.exframework.portal.metadata.entity.EntityClass;
+
+import javax.validation.constraints.NotEmpty;
+import java.util.Date;
 
 @EntityClass
 public class Logger {

@@ -1,8 +1,7 @@
 package org.exframework.portal.admin.exception;
 
-import org.springframework.web.bind.annotation.RestControllerAdvice;
-
 import org.exframework.portal.web.exception.WebControllerExceptionControllerAdvice;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**
  * 接口错误处理

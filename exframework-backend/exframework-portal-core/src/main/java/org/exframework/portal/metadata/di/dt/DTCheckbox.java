@@ -2,7 +2,6 @@ package org.exframework.portal.metadata.di.dt;
 
 import org.exframework.portal.metadata.attribute.Attribute;
 import org.exframework.portal.metadata.form.Form;
-
 import org.springframework.stereotype.Component;
 
 import java.util.Map;

@@ -1,9 +1,9 @@
 package org.exframework.portal.permission;
 
-import java.util.List;
-
 import org.exframework.portal.metadata.Meta;
 import org.exframework.portal.metadata.sys.Permission;
+
+import java.util.List;
 
 /**
  * 权限组

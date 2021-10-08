@@ -1,12 +1,11 @@
 package org.exframework.portal.dao;
 
-import java.util.Collection;
-
-import org.springframework.lang.Nullable;
-
 import org.exframework.portal.metadata.sys.Account;
 import org.exframework.portal.metadata.sys.Role;
 import org.exframework.portal.metadata.sys.RoleBaseAccount;
+import org.springframework.lang.Nullable;
+
+import java.util.Collection;
 
 /**
  * 角色数据类

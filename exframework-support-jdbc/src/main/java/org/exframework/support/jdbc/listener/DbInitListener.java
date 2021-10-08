@@ -1,18 +1,17 @@
 package org.exframework.support.jdbc.listener;
 
-import java.sql.Connection;
-import java.util.Map;
-
 import org.apache.commons.dbutils.DbUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.exframework.support.jdbc.annotation.DbInit;
+import org.exframework.support.jdbc.dao.DbDao;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Repository;
 
-import org.exframework.support.jdbc.annotation.DbInit;
-import org.exframework.support.jdbc.dao.DbDao;
+import java.sql.Connection;
+import java.util.Map;
 
 
 @Repository

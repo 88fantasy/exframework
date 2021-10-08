@@ -1,16 +1,15 @@
 package org.exframework.portal.dao;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-
-import org.springframework.lang.Nullable;
-
+import org.exframework.portal.enums.DataItemValueType;
 import org.exframework.portal.metadata.di.DataItem;
-import org.exframework.portal.metadata.di.DataItem.DataItemValueTypeEnum;
 import org.exframework.support.common.entity.FilterCondition;
 import org.exframework.support.common.entity.Page;
 import org.exframework.support.common.entity.PageModel;
+import org.springframework.lang.Nullable;
+
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -36,31 +35,31 @@ public interface PortalCoreDataItemDao extends PortalCoreMetaDao<DataItem> {
 	
 	List<DataItem> list(Collection<FilterCondition> params);
 	
-	default DataItemValueTypeEnum defaultValueType(Object value) {
+	default DataItemValueType defaultValueType(Object value) {
 		if( value != null) {
 			Class<?> c = value.getClass();
 			if(c.isArray()) {
-				return DataItemValueTypeEnum.STRING;
+				return DataItemValueType.STRING;
 			}
 			switch (c.getName()) {
 				case "java.lang.Integer":
 				case "java.lang.Long":
-					return DataItemValueTypeEnum.LONG;
+					return DataItemValueType.LONG;
 				case "java.lang.Double":
-					return DataItemValueTypeEnum.BIGDECIMAL;
+					return DataItemValueType.BIGDECIMAL;
 				case "java.lang.Boolean":
-					return DataItemValueTypeEnum.BOOLEAN;
+					return DataItemValueType.BOOLEAN;
 				case "java.util.List":
 				case "java.util.Collection":
-					return DataItemValueTypeEnum.STRING;
+					return DataItemValueType.STRING;
 				case "java.util.Date":
-					return DataItemValueTypeEnum.DATETIME;
+					return DataItemValueType.DATETIME;
 				default:
-					return DataItemValueTypeEnum.STRING;
+					return DataItemValueType.STRING;
 			}
 		}
 		else {
-			return DataItemValueTypeEnum.STRING;
+			return DataItemValueType.STRING;
 		}
 	}
 }

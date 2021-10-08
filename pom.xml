@@ -27,13 +27,13 @@
         <module>exframework-support-wechat</module>
         <module>exframework-support-elasticsearch</module>
         <module>exframework-support-doc</module>
+        <module>exframework-backend</module>
         <module>exframework-spring-boot-autoconfigure</module>
         <module>exframework-spring-boot-starters</module>
         <module>chinaunicom-spring-boot-autoconfigure</module>
         <module>chinaunicom-spring-boot-starters</module>
         <module>exframework-spring-cloud-alibaba</module>
         <module>exframework-springboot-quickstart-rest</module>
-        <module>exframework-backend</module>
         <!--<module>exframework-spring-cloud-tsf</module>-->
     </modules>
     <build>
@@ -226,6 +226,31 @@
             <dependency>
                 <groupId>org.exframework</groupId>
                 <artifactId>exframework-support-soap</artifactId>
+                <version>0.8-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>org.exframework</groupId>
+                <artifactId>exframework-portal-core</artifactId>
+                <version>0.8-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>org.exframework</groupId>
+                <artifactId>exframework-portal-web</artifactId>
+                <version>0.8-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>org.exframework</groupId>
+                <artifactId>exframework-portal-admin</artifactId>
+                <version>0.8-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>org.exframework</groupId>
+                <artifactId>exframework-portal-jdbc</artifactId>
+                <version>0.8-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>org.exframework</groupId>
+                <artifactId>exframework-portal-web-jdbc</artifactId>
                 <version>0.8-SNAPSHOT</version>
             </dependency>
 
@@ -452,6 +477,12 @@
                 <artifactId>okhttp</artifactId>
                 <version>4.9.1</version>
             </dependency>
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct</artifactId>
+                <version>${mapstruct.version}</version>
+                <scope>compile</scope>
+            </dependency>
 
         </dependencies>
     </dependencyManagement>
@@ -485,6 +516,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <aspect.version>1.9.6</aspect.version>
         <slf4j.version>1.7.31</slf4j.version>
+        <mapstruct.version>1.4.2.Final</mapstruct.version>
         <!--<maven.compiler.release>8</maven.compiler.release>-->
     </properties>
 </project>

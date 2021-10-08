@@ -1,12 +1,11 @@
 package org.exframework.support.rest.filter;
 
-import java.io.IOException;
+import org.springframework.http.HttpStatus;
 
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerResponseContext;
 import javax.ws.rs.container.ContainerResponseFilter;
-
-import org.springframework.http.HttpStatus;
+import java.io.IOException;
 
 
 /**

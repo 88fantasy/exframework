@@ -1,7 +1,5 @@
 package org.exframework.portal.jdbc.entity.base;
 
-import java.util.List;
-
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -13,6 +11,8 @@ import org.exframework.portal.metadata.dict.DictionaryItem;
 import org.exframework.portal.metadata.dict.DictionaryItemValue;
 import org.exframework.support.doc.annotation.TableDoc;
 import org.exframework.support.doc.annotation.TableFieldDoc;
+
+import java.util.List;
 
 /**
  * 字典实体类

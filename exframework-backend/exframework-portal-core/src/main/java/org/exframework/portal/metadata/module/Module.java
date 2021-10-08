@@ -1,12 +1,11 @@
 package org.exframework.portal.metadata.module;
 
 
-import java.util.Collection;
-
-import javax.validation.constraints.NotEmpty;
-
 import org.exframework.portal.metadata.di.DataItem;
 import org.exframework.portal.metadata.hov.Hov;
+
+import javax.validation.constraints.NotEmpty;
+import java.util.Collection;
 
 /**
  * 功能模块

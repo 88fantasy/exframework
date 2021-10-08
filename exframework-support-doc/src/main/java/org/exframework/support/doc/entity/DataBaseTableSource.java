@@ -1,10 +1,10 @@
 package org.exframework.support.doc.entity;
 
-import java.lang.annotation.Annotation;
-import java.util.Collection;
-
 import org.exframework.support.doc.annotation.TableDoc;
 import org.exframework.support.doc.annotation.TableFieldDoc;
+
+import java.lang.annotation.Annotation;
+import java.util.Collection;
 
 /**
  * 数据库类型源

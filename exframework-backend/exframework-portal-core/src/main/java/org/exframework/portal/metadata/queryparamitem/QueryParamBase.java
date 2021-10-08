@@ -1,8 +1,8 @@
 package org.exframework.portal.metadata.queryparamitem;
 
-import org.exframework.support.common.entity.FilterCondition.FilterConditionOper;
 import org.exframework.portal.metadata.queryparam.QueryParamItem;
 import org.exframework.portal.metadata.sys.Account;
+import org.exframework.support.common.entity.FilterCondition.FilterConditionOper;
 
 /**
  * 查询类型基类

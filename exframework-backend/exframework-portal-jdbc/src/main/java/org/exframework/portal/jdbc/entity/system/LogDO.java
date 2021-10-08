@@ -1,7 +1,5 @@
 package org.exframework.portal.jdbc.entity.system;
 
-import java.util.Date;
-
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -9,6 +7,8 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import org.exframework.portal.metadata.sys.Logger;
 import org.exframework.support.doc.annotation.TableDoc;
 import org.exframework.support.doc.annotation.TableFieldDoc;
+
+import java.util.Date;
 
 /**
  * 日志表

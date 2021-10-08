@@ -1,5 +1,8 @@
 package org.exframework.portal.jdbc.jdbc.mapper;
 
+import org.apache.commons.lang3.time.FastDateFormat;
+import org.springframework.jdbc.core.ColumnMapRowMapper;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.sql.ResultSet;
@@ -8,9 +11,6 @@ import java.sql.SQLException;
 import java.sql.Types;
 import java.util.LinkedHashMap;
 import java.util.Map;
-
-import org.apache.commons.lang3.time.FastDateFormat;
-import org.springframework.jdbc.core.ColumnMapRowMapper;
 
 public class UsedColumnMapRowMapper extends ColumnMapRowMapper {
 

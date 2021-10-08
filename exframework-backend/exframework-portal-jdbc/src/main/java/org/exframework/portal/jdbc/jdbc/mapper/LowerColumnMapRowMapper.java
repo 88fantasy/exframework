@@ -1,11 +1,11 @@
 package org.exframework.portal.jdbc.jdbc.mapper;
 
+import org.springframework.jdbc.core.ColumnMapRowMapper;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedHashMap;
 import java.util.Map;
-
-import org.springframework.jdbc.core.ColumnMapRowMapper;
 
 public class LowerColumnMapRowMapper extends ColumnMapRowMapper {
 

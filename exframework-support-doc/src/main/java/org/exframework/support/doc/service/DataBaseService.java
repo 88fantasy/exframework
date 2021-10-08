@@ -1,18 +1,17 @@
 package org.exframework.support.doc.service;
 
+import org.exframework.support.doc.annotation.DataBaseGen;
+import org.exframework.support.doc.entity.DataBaseTable;
+import org.exframework.support.doc.entity.DataBaseTableSource;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.stereotype.Service;
+
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.stereotype.Service;
-
-import org.exframework.support.doc.annotation.DataBaseGen;
-import org.exframework.support.doc.entity.DataBaseTable;
-import org.exframework.support.doc.entity.DataBaseTableSource;
 
 /**
  * 数据库文档

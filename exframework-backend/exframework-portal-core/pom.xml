@@ -12,14 +12,11 @@
 	<name>exframework-portal-core</name>
 
 	<build>
-		<finalName>exframework-core</finalName>
+		<finalName>exframework-portal-core</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<proc>none</proc>
-				</configuration>
 			</plugin>
 		</plugins>
 	</build>

@@ -1,10 +1,9 @@
 package org.exframework.support.mongo.init;
 
 
-import java.lang.reflect.Field;
-import java.util.UUID;
-import java.util.concurrent.ThreadLocalRandom;
-
+import org.exframework.support.mongo.annotation.AutoIncLong;
+import org.exframework.support.mongo.annotation.AutoIncUUID;
+import org.exframework.support.mongo.entity.Seq;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.FindAndModifyOptions;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -16,9 +15,9 @@ import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ReflectionUtils;
 
-import org.exframework.support.mongo.annotation.AutoIncLong;
-import org.exframework.support.mongo.annotation.AutoIncUUID;
-import org.exframework.support.mongo.entity.Seq;
+import java.lang.reflect.Field;
+import java.util.UUID;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
 * @author rwe

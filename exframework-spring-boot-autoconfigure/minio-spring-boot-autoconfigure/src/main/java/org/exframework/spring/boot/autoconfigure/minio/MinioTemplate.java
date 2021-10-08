@@ -2,18 +2,16 @@ package org.exframework.spring.boot.autoconfigure.minio;
 
 import io.minio.ListObjectsArgs;
 import io.minio.Result;
-import io.minio.errors.*;
+import io.minio.errors.MinioException;
 import io.minio.messages.Item;
 import org.exframework.spring.boot.autoconfigure.minio.client.MinioDeleteClient;
 import org.exframework.spring.boot.autoconfigure.minio.client.MinioDownLoadClient;
 import org.exframework.spring.boot.autoconfigure.minio.client.MinioUpLoadClient;
 import org.exframework.spring.boot.autoconfigure.minio.errors.MinioClientException;
-import org.exframework.spring.boot.autoconfigure.minio.model.DownloadResult;
 
 import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
-import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 

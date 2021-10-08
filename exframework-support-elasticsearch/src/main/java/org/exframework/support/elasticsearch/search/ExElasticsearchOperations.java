@@ -1,9 +1,9 @@
 package org.exframework.support.elasticsearch.search;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.stream.Collectors;
-
+import org.exframework.support.common.entity.FilterCondition;
+import org.exframework.support.common.entity.PageModel;
+import org.exframework.support.common.entity.Pager;
+import org.exframework.support.common.util.BeanUtils;
 import org.exframework.support.common.util.StrUtils;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -14,10 +14,9 @@ import org.springframework.data.elasticsearch.core.SearchPage;
 import org.springframework.data.elasticsearch.core.query.Criteria;
 import org.springframework.data.elasticsearch.core.query.CriteriaQuery;
 
-import org.exframework.support.common.entity.FilterCondition;
-import org.exframework.support.common.entity.PageModel;
-import org.exframework.support.common.entity.Pager;
-import org.exframework.support.common.util.BeanUtils;
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  *

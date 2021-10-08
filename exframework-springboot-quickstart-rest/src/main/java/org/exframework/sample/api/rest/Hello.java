@@ -1,12 +1,11 @@
 package org.exframework.sample.api.rest;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-
-import org.springframework.stereotype.Controller;
-
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import org.springframework.stereotype.Controller;
+
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
 
 /**
 * @author rwe

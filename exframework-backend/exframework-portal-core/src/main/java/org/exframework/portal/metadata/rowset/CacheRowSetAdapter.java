@@ -1,13 +1,11 @@
 package org.exframework.portal.metadata.rowset;
 
-import java.sql.SQLException;
-
-import javax.sql.rowset.CachedRowSet;
-
+import org.exframework.support.common.util.SpringContextUtils;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.stereotype.Component;
 
-import org.exframework.support.common.util.SpringContextUtils;
+import javax.sql.rowset.CachedRowSet;
+import java.sql.SQLException;
 
 /**
 * @author rwe

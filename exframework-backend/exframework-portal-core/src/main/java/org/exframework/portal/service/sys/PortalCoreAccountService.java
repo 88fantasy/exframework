@@ -1,15 +1,15 @@
 package org.exframework.portal.service.sys;
 
-import java.util.Date;
-import java.util.Map;
-
 import org.exframework.portal.dao.PortalCoreAccountDao;
+import org.exframework.portal.enums.AccountStatusType;
 import org.exframework.portal.exception.NotAuthorizedException;
 import org.exframework.portal.exception.NotFoundException;
 import org.exframework.portal.metadata.sys.Account;
 import org.exframework.portal.metadata.sys.Permission;
-import org.exframework.portal.metadata.sys.Account.AccountStatusTypeEnum;
 import org.exframework.portal.pub.Security;
+
+import java.util.Date;
+import java.util.Map;
 
 /**
  * @author rwe
@@ -70,7 +70,7 @@ public interface PortalCoreAccountService {
         }
 
         // 账号失效
-        return account.getAccountStatus() == AccountStatusTypeEnum.VALID;
+        return account.getAccountStatus() == AccountStatusType.VALID;
     }
 
     /**

@@ -1,15 +1,15 @@
 package org.exframework.portal.metadata.di;
 
-import static java.lang.annotation.ElementType.FIELD;
-import static java.lang.annotation.ElementType.ANNOTATION_TYPE;
-import static java.lang.annotation.RetentionPolicy.RUNTIME;
+import org.exframework.portal.enums.DataItemDisplayType;
+import org.exframework.portal.enums.DataItemValueType;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
-import org.exframework.portal.metadata.di.DataItem.DataItemDisplayTypeEnum;
-import org.exframework.portal.metadata.di.DataItem.DataItemValueTypeEnum;
+import static java.lang.annotation.ElementType.ANNOTATION_TYPE;
+import static java.lang.annotation.ElementType.FIELD;
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 @Documented
 @Retention(RUNTIME)
@@ -46,7 +46,7 @@ public @interface DataItemEntity {
 	 * 显示风格
 	 * @return
 	 */
-	DataItemDisplayTypeEnum type() default DataItemDisplayTypeEnum.INPUT;
+	DataItemDisplayType type() default DataItemDisplayType.INPUT;
 	
 	/**
 	 * 风格的关键值
@@ -57,7 +57,7 @@ public @interface DataItemEntity {
 	 * 校证输入值类型
 	 * @return
 	 */
-	DataItemValueTypeEnum valueType() default DataItemValueTypeEnum.DEFAULT;
+	DataItemValueType valueType() default DataItemValueType.DEFAULT;
 	
 	/**
 	 * 长度

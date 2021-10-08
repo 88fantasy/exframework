@@ -1,14 +1,12 @@
 package org.exframework.support.jdbc.oracle.config;
 
-import java.sql.SQLException;
-
-import javax.sql.rowset.CachedRowSet;
-
+import oracle.jdbc.rowset.OracleCachedRowSet;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import oracle.jdbc.rowset.OracleCachedRowSet;
+import javax.sql.rowset.CachedRowSet;
+import java.sql.SQLException;
 
 /**
 * @author rwe

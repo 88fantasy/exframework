@@ -1,10 +1,10 @@
 package org.exframework.portal.metadata.hov;
 
-import java.util.Collection;
-
 import org.exframework.support.common.entity.FilterCondition;
 import org.exframework.support.common.entity.Page;
 import org.exframework.support.common.entity.PageModel;
+
+import java.util.Collection;
 
 /**
  *
