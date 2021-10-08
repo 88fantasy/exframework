@@ -13,7 +13,7 @@ import io.swagger.annotations.ApiModelProperty;
  */
 
 @ApiModel(value = "模块信息 VO")
-public class ModuleReponse extends MetaReponse {
+public class ModuleReponse extends MetaResponse {
 	
 	@ApiModelProperty(value="点赞")
 	private long star;

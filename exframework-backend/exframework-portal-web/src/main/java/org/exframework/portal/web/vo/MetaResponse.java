@@ -12,7 +12,7 @@ import io.swagger.annotations.ApiModelProperty;
  * 
  */
 @ApiModel(value = "元数据返回")
-public class MetaReponse {
+public class MetaResponse {
 
 	@ApiModelProperty(value="编码")
 	private String code;
