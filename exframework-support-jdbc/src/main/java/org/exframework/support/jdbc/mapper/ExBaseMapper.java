@@ -33,6 +33,10 @@ public interface ExBaseMapper<T> extends BaseMapper<T> {
         return wrapperFromConditionAndSort(conditions, Collections.emptyList());
     }
 
+    default QueryWrapper<T> wrapperFromConditionAndSort(FilterCondition[] conditions, String[] sorts) {
+        return wrapperFromConditionAndSort(Arrays.asList(conditions), Arrays.asList(sorts));
+    }
+
     default QueryWrapper<T> wrapperFromConditionAndSort(Collection<FilterCondition> conditions, Collection<String> sorts) {
         if (CollUtil.isEmpty(conditions) && CollUtil.isEmpty(sorts)) {
             return Wrappers.query();

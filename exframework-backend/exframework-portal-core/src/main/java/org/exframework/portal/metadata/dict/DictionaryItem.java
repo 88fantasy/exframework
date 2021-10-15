@@ -2,7 +2,7 @@ package org.exframework.portal.metadata.dict;
 
 import org.exframework.portal.metadata.Meta;
 import org.exframework.portal.permission.PermissionEntry;
-import org.exframework.support.common.constants.SpringConstants;
+import org.exframework.support.common.constants.CommonConstants;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -18,7 +18,7 @@ import java.util.List;
  * 
  */
 @Component
-@Scope(SpringConstants.SCOPE_PROTOTYPE)
+@Scope(CommonConstants.SCOPE_PROTOTYPE)
 public class DictionaryItem extends Meta implements PermissionEntry {
 
 	private static final long serialVersionUID = 1734744807375718094L;

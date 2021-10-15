@@ -1,7 +1,7 @@
 package org.exframework.portal.permission;
 
 import org.exframework.portal.metadata.Meta;
-import org.exframework.support.common.constants.SpringConstants;
+import org.exframework.support.common.constants.CommonConstants;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
  * 
  */
 @Component
-@Scope(SpringConstants.SCOPE_PROTOTYPE)
+@Scope(CommonConstants.SCOPE_PROTOTYPE)
 public class Element extends Meta implements PermissionEntry {
 
 	private static final long serialVersionUID = 6584508633608203952L;

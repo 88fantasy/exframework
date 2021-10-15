@@ -6,7 +6,9 @@ package org.exframework.support.common.constants;
  *
  * 
  */
-public interface SpringConstants {
+public interface CommonConstants {
 
 	String SCOPE_PROTOTYPE = "prototype";
+
+	String MAPSTRUCT_SPRING = "spring";
 }

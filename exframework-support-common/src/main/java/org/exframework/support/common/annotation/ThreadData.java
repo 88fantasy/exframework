@@ -1,6 +1,7 @@
 package org.exframework.support.common.annotation;
 
 import java.lang.annotation.Documented;
+import java.lang.annotation.Inherited;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 import java.util.Map;
@@ -10,9 +11,11 @@ import static java.lang.annotation.ElementType.ANNOTATION_TYPE;
 import static java.lang.annotation.ElementType.METHOD;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
-@Documented
+
 @Retention(RUNTIME)
 @Target({METHOD, ANNOTATION_TYPE})
+@Documented
+@Inherited
 /**
  * @author rwe
  * @version 创建时间：2021年5月21日 下午4:42:56
@@ -22,7 +25,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 public @interface ThreadData {
 
 
-    public static class ThreadDataClass {
+    class ThreadDataClass {
 
         private static final ThreadLocal<Map<String, Object>> data = InheritableThreadLocal
                 .withInitial(() -> new ConcurrentHashMap<>(8));

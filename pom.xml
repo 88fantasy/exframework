@@ -399,17 +399,6 @@
                 <scope>import</scope>
             </dependency>
 
-
-            <dependency>
-                <groupId>org.aspectj</groupId>
-                <artifactId>aspectjrt</artifactId>
-                <version>${aspect.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.aspectj</groupId>
-                <artifactId>aspectjweaver</artifactId>
-                <version>${aspect.version}</version>
-            </dependency>
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
@@ -493,6 +482,10 @@
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
         </dependency>
@@ -514,7 +507,6 @@
         <springboot.version>2.4.8</springboot.version>
         <!--指定Maven用什么编码来读取源码及文档 -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <aspect.version>1.9.6</aspect.version>
         <slf4j.version>1.7.31</slf4j.version>
         <mapstruct.version>1.4.2.Final</mapstruct.version>
         <!--<maven.compiler.release>8</maven.compiler.release>-->

@@ -56,6 +56,7 @@
         <module>exframework-portal-web</module>
         <module>exframework-portal-web-jdbc</module>
         <module>exframework-portal-admin</module>
+        <module>exframework-backend-auth</module>
         <module>exframework-backend-quickstart</module>
     </modules>
 
