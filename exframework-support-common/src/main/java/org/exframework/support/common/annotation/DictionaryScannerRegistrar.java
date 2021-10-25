@@ -42,6 +42,7 @@ public class DictionaryScannerRegistrar implements ImportBeanDefinitionRegistrar
                 .collect(Collectors.toList()));
 
         if (basePackages.size() == 0) {
+            basePackages.add(((StandardAnnotationMetadata) importingClassMetadata).getIntrospectedClass().getPackage().getName());
             //java 11
 //            List<String> packages = Stream.of(((StandardAnnotationMetadata) importingClassMetadata).getIntrospectedClass().getClassLoader().getDefinedPackages()).map(Package::getName).collect(Collectors.toList());
 //            basePackages.addAll(packages);
@@ -55,9 +56,6 @@ public class DictionaryScannerRegistrar implements ImportBeanDefinitionRegistrar
                 ComponentScan componentScan = (ComponentScan) application.getAnnotation(ComponentScan.class);
                 if(componentScan != null) {
                     basePackages.addAll(Arrays.asList(componentScan.basePackages()));
-                }
-                else {
-                    basePackages.add(((StandardAnnotationMetadata) importingClassMetadata).getIntrospectedClass().getPackage().getName());
                 }
             }
         }
