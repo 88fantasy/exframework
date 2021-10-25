@@ -69,6 +69,7 @@ public class Meta implements Serializable {
 		this.code = code;
 	}
 
+	@Override
 	public String toString() {
 		String shortName = getClass().getName();
 		shortName = shortName.substring(shortName.lastIndexOf(".") + 1);

@@ -27,6 +27,7 @@ import java.util.Map;
 @Component("DTCheckbox")
 public class DTCheckbox implements DispType {
 
+	@Override
 	public Map<String,Object> retDisplay(Form form, Attribute formAttr) {
 		return retDisplayCommon(form,formAttr);
 	}

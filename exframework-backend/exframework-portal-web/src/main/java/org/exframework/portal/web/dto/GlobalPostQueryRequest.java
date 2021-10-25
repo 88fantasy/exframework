@@ -45,6 +45,7 @@ public class GlobalPostQueryRequest implements PageRequest {
 		this.name = name;
 	}
 
+	@Override
 	public Page getPage() {
 		return page;
 	}

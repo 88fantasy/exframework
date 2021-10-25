@@ -28,6 +28,7 @@ import java.util.Map;
 @Component("DTPassword")
 public class DTPassword implements DispType {
 	
+	@Override
 	public Map<String,Object> retDisplay(Form form, Attribute formAttr) {
 		return retDisplayCommon(form,formAttr);
 	}

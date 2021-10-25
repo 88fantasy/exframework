@@ -21,7 +21,7 @@ public class CurrentTimeMetaObjectHandler implements MetaObjectHandler {
 
     @Override
     public void insertFill(MetaObject metaObject) {
-        setDate(metaObject, Arrays.asList(FieldFill.INSERT));
+        setDate(metaObject, Arrays.asList(FieldFill.INSERT, FieldFill.INSERT_UPDATE));
     }
 
     @Override

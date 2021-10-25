@@ -57,6 +57,7 @@ public interface ExBaseMapper<T> extends BaseMapper<T> {
                             case DATE:
                             case DATETIME:
                             case NUMBER:
+                            case LIST:
                                 List<?> values = (List<?>) fc.getFilterValue();
                                 if (values != null && values.size() == 2) {
                                     wrapper.between(key, values.get(0), values.get(1));
