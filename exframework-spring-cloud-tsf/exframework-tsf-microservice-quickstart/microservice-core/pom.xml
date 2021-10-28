@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>org.exframework</groupId>
 		<artifactId>exframework-tsf-microservice-quickstart</artifactId>
-		<version>0.8-SNAPSHOT</version>
+		<version>0.8.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>microservice-core</artifactId>
 	<packaging>jar</packaging>

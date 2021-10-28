@@ -5,14 +5,16 @@
 	<parent>
 		<groupId>org.exframework</groupId>
 		<artifactId>exframework-spring-boot-starters</artifactId>
-		<version>0.8-SNAPSHOT</version>
+		<version>0.8.1-SNAPSHOT</version>
 	</parent>
+	<packaging>jar</packaging>
 	<artifactId>cos-spring-boot-starter</artifactId>
 
 	<dependencies>
 		<dependency>
-			<groupId>org.exframework</groupId>
-			<artifactId>cos-spring-boot-autoconfigure</artifactId>
+			<groupId>com.qcloud</groupId>
+			<artifactId>cos_api</artifactId>
+			<version>5.6.37</version>
 		</dependency>
 	</dependencies>
 </project>

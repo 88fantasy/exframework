@@ -5,14 +5,14 @@
 	<parent>
 		<groupId>org.exframework</groupId>
 		<artifactId>chinaunicom-spring-boot-starters</artifactId>
-		<version>0.8-SNAPSHOT</version>
+		<version>0.8.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>chinaunicom-rest-spring-boot-starter</artifactId>
 
 	<dependencies>
 		<dependency>
 			<groupId>org.exframework</groupId>
-			<artifactId>chinaunicom-rest-spring-boot-autoconfigure</artifactId>
+			<artifactId>exframework-support-rest</artifactId>
 		</dependency>
 	</dependencies>
 </project>

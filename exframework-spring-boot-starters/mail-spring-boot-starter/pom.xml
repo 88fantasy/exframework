@@ -5,14 +5,25 @@
 	<parent>
 		<groupId>org.exframework</groupId>
 		<artifactId>exframework-spring-boot-starters</artifactId>
-		<version>0.8-SNAPSHOT</version>
+		<version>0.8.1-SNAPSHOT</version>
 	</parent>
+	<packaging>jar</packaging>
 	<artifactId>mail-spring-boot-starter</artifactId>
 
 	<dependencies>
 		<dependency>
-			<groupId>org.exframework</groupId>
-			<artifactId>mail-spring-boot-autoconfigure</artifactId>
+			<groupId>org.simplejavamail</groupId>
+			<artifactId>simple-java-mail</artifactId>
+			<version>${simplejavamail.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.simplejavamail</groupId>
+			<artifactId>authenticated-socks-module</artifactId>
+			<version>${simplejavamail.version}</version>
 		</dependency>
 	</dependencies>
+
+	<properties>
+		<simplejavamail.version>6.6.1</simplejavamail.version>
+	</properties>
 </project>

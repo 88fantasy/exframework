@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.exframework</groupId>
         <artifactId>exframework-root</artifactId>
-        <version>0.8-SNAPSHOT</version>
+        <version>0.8.1-SNAPSHOT</version>
     </parent>
     <artifactId>exframework-spring-boot-starters</artifactId>
     <name>exframework-spring-boot-starters</name>
@@ -15,7 +15,6 @@
         <module>cos-spring-boot-starter</module>
         <module>minio-spring-boot-starter</module>
         <module>mail-spring-boot-starter</module>
-        <module>developer-spring-boot-starter</module>
         <module>docker-spring-boot-starter</module>
     </modules>
 </project>

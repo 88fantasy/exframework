@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-org.exframework.spring.boot.autoconfigure.docker.DockerAutoConfigure
+org.exframework.spring.boot.docker.DockerAutoConfigure

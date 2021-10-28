@@ -5,14 +5,16 @@
 	<parent>
 		<groupId>org.exframework</groupId>
 		<artifactId>exframework-spring-boot-starters</artifactId>
-		<version>0.8-SNAPSHOT</version>
+		<version>0.8.1-SNAPSHOT</version>
 	</parent>
+	<packaging>jar</packaging>
 	<artifactId>minio-spring-boot-starter</artifactId>
 
 	<dependencies>
 		<dependency>
-			<groupId>org.exframework</groupId>
-			<artifactId>minio-spring-boot-autoconfigure</artifactId>
+			<groupId>io.minio</groupId>
+			<artifactId>minio</artifactId>
+			<version>8.3.0</version>
 		</dependency>
 	</dependencies>
 </project>
