@@ -5,12 +5,13 @@
 
     <groupId>org.exframework</groupId>
     <artifactId>exframework-root</artifactId>
-    <version>0.8.1-SNAPSHOT</version>
+    <version>0.8.2-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>exframework</name>
     <modules>
         <module>exframework-support-common</module>
         <module>exframework-support-job</module>
+        <module>exframework-support-rest-base</module>
         <module>exframework-support-rest</module>
         <module>exframework-support-jersey</module>
         <module>exframework-support-soap</module>
@@ -204,156 +205,160 @@
             <dependency>
                 <groupId>org.exframework</groupId>
                 <artifactId>exframework-support-common</artifactId>
-                <version>0.8.1-SNAPSHOT</version>
+                <version>0.8.2-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.exframework</groupId>
                 <artifactId>exframework-support-jdbc</artifactId>
-                <version>0.8.1-SNAPSHOT</version>
+                <version>0.8.2-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.exframework</groupId>
                 <artifactId>exframework-support-job</artifactId>
-                <version>0.8.1-SNAPSHOT</version>
+                <version>0.8.2-SNAPSHOT</version>
             </dependency>
-
+            <dependency>
+                <groupId>org.exframework</groupId>
+                <artifactId>exframework-support-rest-base</artifactId>
+                <version>0.8.2-SNAPSHOT</version>
+            </dependency>
             <dependency>
                 <groupId>org.exframework</groupId>
                 <artifactId>exframework-support-rest</artifactId>
-                <version>0.8.1-SNAPSHOT</version>
+                <version>0.8.2-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.exframework</groupId>
                 <artifactId>exframework-support-jersey</artifactId>
-                <version>0.8.1-SNAPSHOT</version>
+                <version>0.8.2-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.exframework</groupId>
                 <artifactId>exframework-support-soap</artifactId>
-                <version>0.8.1-SNAPSHOT</version>
+                <version>0.8.2-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.exframework</groupId>
                 <artifactId>exframework-portal-core</artifactId>
-                <version>0.8.1-SNAPSHOT</version>
+                <version>0.8.2-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.exframework</groupId>
                 <artifactId>exframework-portal-web</artifactId>
-                <version>0.8.1-SNAPSHOT</version>
+                <version>0.8.2-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.exframework</groupId>
                 <artifactId>exframework-portal-admin</artifactId>
-                <version>0.8.1-SNAPSHOT</version>
+                <version>0.8.2-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.exframework</groupId>
                 <artifactId>exframework-portal-jdbc</artifactId>
-                <version>0.8.1-SNAPSHOT</version>
+                <version>0.8.2-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.exframework</groupId>
                 <artifactId>exframework-portal-web-jdbc</artifactId>
-                <version>0.8.1-SNAPSHOT</version>
+                <version>0.8.2-SNAPSHOT</version>
             </dependency>
 
 
             <dependency>
                 <groupId>org.exframework</groupId>
                 <artifactId>exframework-support-monitor</artifactId>
-                <version>0.8.1-SNAPSHOT</version>
+                <version>0.8.2-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.exframework</groupId>
                 <artifactId>exframework-support-monitor-rest</artifactId>
-                <version>0.8.1-SNAPSHOT</version>
+                <version>0.8.2-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.exframework</groupId>
                 <artifactId>exframework-support-monitor-job</artifactId>
-                <version>0.8.1-SNAPSHOT</version>
+                <version>0.8.2-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.exframework</groupId>
                 <artifactId>exframework-support-jdbc-mysql</artifactId>
-                <version>0.8.1-SNAPSHOT</version>
+                <version>0.8.2-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.exframework</groupId>
                 <artifactId>exframework-support-jdbc-oracle</artifactId>
-                <version>0.8.1-SNAPSHOT</version>
+                <version>0.8.2-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.exframework</groupId>
                 <artifactId>exframework-support-redis</artifactId>
-                <version>0.8.1-SNAPSHOT</version>
+                <version>0.8.2-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.exframework</groupId>
                 <artifactId>exframework-support-elasticsearch</artifactId>
-                <version>0.8.1-SNAPSHOT</version>
+                <version>0.8.2-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.exframework</groupId>
                 <artifactId>exframework-support-mongo</artifactId>
-                <version>0.8.1-SNAPSHOT</version>
+                <version>0.8.2-SNAPSHOT</version>
             </dependency>
             <!--<dependency>
                 <groupId>org.exframework</groupId>
                 <artifactId>exframework-spring-cloud-tsf</artifactId>
-                <version>0.8.1-SNAPSHOT</version>
+                <version>0.8.2-SNAPSHOT</version>
             </dependency>-->
 
             <dependency>
                 <groupId>org.exframework</groupId>
                 <artifactId>exframework-support-wechat</artifactId>
-                <version>0.8.1-SNAPSHOT</version>
+                <version>0.8.2-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.exframework</groupId>
                 <artifactId>exframework-support-tdmq</artifactId>
-                <version>0.8.1-SNAPSHOT</version>
+                <version>0.8.2-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.exframework</groupId>
                 <artifactId>exframework-support-doc</artifactId>
-                <version>0.8.1-SNAPSHOT</version>
+                <version>0.8.2-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.exframework</groupId>
                 <artifactId>cos-spring-boot-starter</artifactId>
-                <version>0.8.1-SNAPSHOT</version>
+                <version>0.8.2-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.exframework</groupId>
                 <artifactId>minio-spring-boot-starter</artifactId>
-                <version>0.8.1-SNAPSHOT</version>
+                <version>0.8.2-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.exframework</groupId>
                 <artifactId>mail-spring-boot-starter</artifactId>
-                <version>0.8.1-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>org.exframework</groupId>
-                <artifactId>developer-spring-boot-starter</artifactId>
-                <version>0.8.1-SNAPSHOT</version>
+                <version>0.8.2-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.exframework</groupId>
                 <artifactId>docker-spring-boot-starter</artifactId>
-                <version>0.8.1-SNAPSHOT</version>
+                <version>0.8.2-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>org.exframework</groupId>
+                <artifactId>chinaunicom-base-spring-boot-starter</artifactId>
+                <version>0.8.2-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.exframework</groupId>
                 <artifactId>chinaunicom-rest-spring-boot-starter</artifactId>
-                <version>0.8.1-SNAPSHOT</version>
+                <version>0.8.2-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.exframework</groupId>
                 <artifactId>chinaunicom-sms-spring-boot-starter</artifactId>
-                <version>0.8.1-SNAPSHOT</version>
+                <version>0.8.2-SNAPSHOT</version>
             </dependency>
 
 
@@ -365,7 +370,7 @@
             <dependency>
                 <groupId>com.dtflys.forest</groupId>
                 <artifactId>forest-spring-boot-starter</artifactId>
-                <version>1.5.11</version>
+                <version>1.5.12</version>
             </dependency>
 
             <dependency>
@@ -426,7 +431,7 @@
             <dependency>
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-all</artifactId>
-                <version>5.7.13</version>
+                <version>5.7.16</version>
             </dependency>
             <dependency>
                 <groupId>com.squareup.okhttp3</groupId>

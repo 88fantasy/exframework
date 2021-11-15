@@ -5,13 +5,14 @@
     <parent>
         <groupId>org.exframework</groupId>
         <artifactId>exframework-root</artifactId>
-        <version>0.8.1-SNAPSHOT</version>
+        <version>0.8.2-SNAPSHOT</version>
     </parent>
     <artifactId>chinaunicom-spring-boot-starters</artifactId>
     <name>chinaunicom-spring-boot-starters</name>
     <packaging>pom</packaging>
 
     <modules>
+        <module>chinaunicom-base-spring-boot-starter</module>
         <module>chinaunicom-rest-spring-boot-starter</module>
         <module>chinaunicom-sms-spring-boot-starter</module>
     </modules>

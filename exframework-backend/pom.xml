@@ -5,7 +5,7 @@
     <parent>
         <artifactId>exframework-root</artifactId>
         <groupId>org.exframework</groupId>
-        <version>0.8.1-SNAPSHOT</version>
+        <version>0.8.2-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -17,27 +17,27 @@
             <dependency>
                 <groupId>org.exframework</groupId>
                 <artifactId>exframework-portal-core</artifactId>
-                <version>0.8.1-SNAPSHOT</version>
+                <version>0.8.2-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.exframework</groupId>
                 <artifactId>exframework-portal-web</artifactId>
-                <version>0.8.1-SNAPSHOT</version>
+                <version>0.8.2-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.exframework</groupId>
                 <artifactId>exframework-portal-admin</artifactId>
-                <version>0.8.1-SNAPSHOT</version>
+                <version>0.8.2-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.exframework</groupId>
                 <artifactId>exframework-portal-jdbc</artifactId>
-                <version>0.8.1-SNAPSHOT</version>
+                <version>0.8.2-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>org.exframework</groupId>
                 <artifactId>exframework-portal-web-jdbc</artifactId>
-                <version>0.8.1-SNAPSHOT</version>
+                <version>0.8.2-SNAPSHOT</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
