@@ -73,7 +73,7 @@ public class ChinaUnicomApiResponsePage<T> extends ChinaUnicomApiResponse {
         return new ChinaUnicomApiResponsePage<E>(ResultCode.NOT_FOUND, message, null);
     }
 
-    public static final <E> ChinaUnicomApiResponsePage<E> empltyPage() {
+    public static final <E> ChinaUnicomApiResponsePage<E> emptyPage() {
         return (ChinaUnicomApiResponsePage<E>) EMPTY;
     }
 
