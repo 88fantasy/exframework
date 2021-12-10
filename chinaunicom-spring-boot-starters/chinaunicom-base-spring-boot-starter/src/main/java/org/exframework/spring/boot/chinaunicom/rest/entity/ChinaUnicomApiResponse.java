@@ -21,7 +21,7 @@ public class ChinaUnicomApiResponse {
 	/**
 	 * http 状态码
 	 */
-	private String code;
+		private String code;
 
 	/**
 	 * 错误信息
