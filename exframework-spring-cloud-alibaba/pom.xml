@@ -17,14 +17,14 @@
 			<dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${springcloud.version}</version>
+                <version>2020.0.3</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
 			<dependency>
 				<groupId>com.alibaba.cloud</groupId>
 				<artifactId>spring-cloud-alibaba-dependencies</artifactId>
-				<version>2.2.7.RELEASE</version>
+				<version>2021.1</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
@@ -76,7 +76,7 @@
 	
 	
 	<properties>
-		<springcloud.version>2020.0.3</springcloud.version>
+
 	</properties>
 	
 </project>
