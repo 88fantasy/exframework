@@ -304,11 +304,11 @@
                 <artifactId>exframework-support-mongo</artifactId>
                 <version>0.8.2-SNAPSHOT</version>
             </dependency>
-            <!--<dependency>
+            <dependency>
                 <groupId>org.exframework</groupId>
                 <artifactId>exframework-spring-cloud-tsf</artifactId>
                 <version>0.8.2-SNAPSHOT</version>
-            </dependency>-->
+            </dependency>
 
             <dependency>
                 <groupId>org.exframework</groupId>
@@ -493,6 +493,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <slf4j.version>1.7.31</slf4j.version>
         <mapstruct.version>1.4.2.Final</mapstruct.version>
-        <maven.compiler.release>11</maven.compiler.release>
+        <!--<maven.compiler.release>11</maven.compiler.release>-->
     </properties>
 </project>
