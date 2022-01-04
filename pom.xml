@@ -186,18 +186,18 @@
     </pluginRepositories>
 
     <distributionManagement>
-        <repository>
+        <!--<repository>
             <id>ali-releases</id>
             <url>https://packages.aliyun.com/maven/repository/2000957-release-5hAP6n/</url>
-        </repository>
-        <!--<repository>
+        </repository>-->
+        <repository>
             <id>maven-releases</id>
             <url>http://10.91.22.7:8081/repository/maven-releases/</url>
         </repository>
         <snapshotRepository>
             <id>maven-snapshots</id>
             <url>http://10.91.22.7:8081/repository/maven-snapshots/</url>
-        </snapshotRepository>-->
+        </snapshotRepository>
     </distributionManagement>
 
     <dependencyManagement>
@@ -449,12 +449,12 @@
             <dependency>
                 <groupId>org.apache.logging.log4j</groupId>
                 <artifactId>log4j-to-slf4j</artifactId>
-                <version>2.17.0</version>
+                <version>2.17.1</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.logging.log4j</groupId>
                 <artifactId>log4j-api</artifactId>
-                <version>2.17.0</version>
+                <version>2.17.1</version>
             </dependency>
 
         </dependencies>
@@ -493,6 +493,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <slf4j.version>1.7.31</slf4j.version>
         <mapstruct.version>1.4.2.Final</mapstruct.version>
-        <!--<maven.compiler.release>11</maven.compiler.release>-->
+        <!--<maven.compiler.release>8</maven.compiler.release>-->
     </properties>
 </project>
