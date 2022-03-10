@@ -1,4 +1,4 @@
-package org.exframework.spring.boot.autoconfigure.mail;
+package org.exframework.spring.boot.mail;
 
 
 /**

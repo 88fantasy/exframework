@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>org.exframework</groupId>
 		<artifactId>exframework-spring-boot-starters</artifactId>
-		<version>0.8.2-SNAPSHOT</version>
+		<version>0.8.3-SNAPSHOT</version>
 	</parent>
 	<artifactId>docker-spring-boot-starter</artifactId>
 	<packaging>jar</packaging>

@@ -1,4 +1,4 @@
-package org.exframework.spring.boot.autoconfigure.mail;
+package org.exframework.spring.boot.mail;
 
 import org.simplejavamail.api.email.AttachmentResource;
 import org.simplejavamail.api.email.Email;

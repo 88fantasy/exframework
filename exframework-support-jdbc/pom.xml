@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.exframework</groupId>
 		<artifactId>exframework-root</artifactId>
-		<version>0.8.2-SNAPSHOT</version>
+		<version>0.8.3-SNAPSHOT</version>
 	</parent>
 	<artifactId>exframework-support-jdbc</artifactId>
 	<packaging>jar</packaging>
@@ -94,7 +94,7 @@
 	</dependencies>
 
 	<properties>
-		<mybatis-plus.version>3.4.3.4</mybatis-plus.version>
+		<mybatis-plus.version>3.5.1</mybatis-plus.version>
 		<druid.version>1.2.8</druid.version>
 	</properties>
 </project>

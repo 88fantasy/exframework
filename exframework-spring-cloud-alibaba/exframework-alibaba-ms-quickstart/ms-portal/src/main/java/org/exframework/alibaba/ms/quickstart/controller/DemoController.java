@@ -24,7 +24,7 @@ public class DemoController {
 	 * @return
 	 */
 	@ApiOperation(value = "获取系统参数配置")
-	@RequestMapping(value = "/hello", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/hello/{name}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public String hello(
 			@ApiParam(value = "name", required = true) @PathVariable String name) {
 		return "Hello "+name;

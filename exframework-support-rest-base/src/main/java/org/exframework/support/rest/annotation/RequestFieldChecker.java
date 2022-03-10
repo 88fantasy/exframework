@@ -42,9 +42,18 @@ public @interface RequestFieldChecker {
 
     String message() default "校验不通过";
 
-    Class<?>[] groups() default { };
+    /**
+     * 当字段值为空时抛出错误信息
+     * 不设置时忽略 null
+     *
+     * @return
+     * @since 0.8.3
+     */
+    String notNullMessage() default "";
 
-    Class<? extends Payload>[] payload() default { };
+    Class<?>[] groups() default {};
+
+    Class<? extends Payload>[] payload() default {};
 
 
     class RequestFieldCheckerValidator implements ConstraintValidator<RequestFieldChecker, Object> {
@@ -53,10 +62,13 @@ public @interface RequestFieldChecker {
 
         private Class<? extends RuntimeException> exception;
 
+        private String notNullMessage;
+
         @Override
         public void initialize(RequestFieldChecker constraintAnnotation) {
             function = constraintAnnotation.value();
             exception = constraintAnnotation.exception();
+            notNullMessage = constraintAnnotation.notNullMessage();
         }
 
         @Override
@@ -73,6 +85,9 @@ public @interface RequestFieldChecker {
                     }
                     throw runtimeException;
                 }
+            } else if(StrUtils.hasLength(notNullMessage)) {
+                context.disableDefaultConstraintViolation();
+                context.buildConstraintViolationWithTemplate(notNullMessage).addConstraintViolation();
             }
             return true;
         }

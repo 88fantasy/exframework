@@ -6,6 +6,8 @@ logging:
     level:
         root: INFO
 spring:
+    main:
+        allow-circular-references: true
     application:
         name: "@artifactId@"
     profiles:
@@ -13,8 +15,7 @@ spring:
     jackson:
         date-format: yyyy-MM-dd HH:mm:ss
         time-zone: GMT+8
-
-        
-feign: 
-  sentinel: 
-    enabled: true
+    mvc:
+        date-format: yyyy-MM-dd HH:mm:ss.SSS
+        pathmatch:
+            matching-strategy: ant-path-matcher

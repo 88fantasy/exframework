@@ -1,8 +1,8 @@
-package org.exframework.spring.boot.autoconfigure.mail;
+package org.exframework.spring.boot.mail;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-import static org.exframework.spring.boot.autoconfigure.mail.MailProperties.DEFAULT_PREFIX;
+import static org.exframework.spring.boot.mail.MailProperties.DEFAULT_PREFIX;
 
 /**
  *

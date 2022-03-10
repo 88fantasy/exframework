@@ -1,37 +1,32 @@
 package org.exframework.ms.demo.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 控制类
- * @author pro
  *
+ * @author pro
  */
 @RestController
-@CrossOrigin(origins = "*", maxAge = 3600, methods = { RequestMethod.GET, RequestMethod.OPTIONS, RequestMethod.PATCH,
-		RequestMethod.PUT, RequestMethod.POST, RequestMethod.DELETE })
-@Api(tags = "Demo")
+@CrossOrigin(origins = "*", maxAge = 3600, methods = {RequestMethod.GET, RequestMethod.OPTIONS, RequestMethod.PATCH,
+        RequestMethod.PUT, RequestMethod.POST, RequestMethod.DELETE})
+@Tag(name = "Demo")
 public class DemoController {
 
-	/**
-	 * hello
-	 *
-	 * @param name
-	 * @return
-	 */
-	@ApiOperation(value = "hello")
-	@RequestMapping(value = "/hello", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public String hello(
-			@ApiParam(value = "name", required = true) @PathVariable String name) {
-		return "Hello "+name;
-	}
+    /**
+     * 获取预售货品目录列表
+     *
+     * @param name
+     * @return
+     */
+    @Operation(summary = "hello")
+    @RequestMapping(value = "/hello", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public String hello(
+            @Parameter(name = "name", required = true) @PathVariable String name) {
+        return "Hello " + name;
+    }
 }

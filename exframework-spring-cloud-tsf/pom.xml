@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.exframework</groupId>
 		<artifactId>exframework-root</artifactId>
-		<version>0.8.2-SNAPSHOT</version>
+		<version>0.8.3-SNAPSHOT</version>
 	</parent>
 	<artifactId>exframework-spring-cloud-tsf</artifactId>
 	<packaging>pom</packaging>
@@ -102,6 +102,6 @@
 	</dependencies>
 
 	<properties>
-		<springboot.version>2.3.1.RELEASE</springboot.version>
+
 	</properties>
 </project>

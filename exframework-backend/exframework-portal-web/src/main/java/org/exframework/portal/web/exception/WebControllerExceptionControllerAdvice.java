@@ -20,11 +20,11 @@ public class WebControllerExceptionControllerAdvice {
 	
 	@ExceptionHandler(NotFoundException.class)
 	public ApiResponseData<String> ApiExceptionHandler(NotFoundException e) {
-	    return new ApiResponseData<String>(ResultCode.NOT_FOUND, e.getMessage(), null);
+	    return new ApiResponseData<>(ResultCode.NOT_FOUND, e.getMessage(), null);
 	}
 	
 	@ExceptionHandler(NotAuthorizedException.class)
 	public ApiResponseData<String> ServerExceptionHandler(NotAuthorizedException e) {
-	    return new ApiResponseData<String>(ResultCode.UNAUTHORIZED, e.getMessage(), null);
+	    return new ApiResponseData<>(ResultCode.UNAUTHORIZED, e.getMessage(), null);
 	}
 }

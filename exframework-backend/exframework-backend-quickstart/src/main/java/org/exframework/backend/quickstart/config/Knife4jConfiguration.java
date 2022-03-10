@@ -29,15 +29,13 @@ public class Knife4jConfiguration {
                         .title("APIs")
                         .description("# Web RESTful APIs")
                         .termsOfServiceUrl("http://www.xx.com/")
-                        .contact(new Contact("XXX","","xxx@gzmpc.com"))
+                        .contact(new Contact("XXX","","xxx@xxx.com"))
                         .version("1.0")
                         .build())
                 .groupName("Web API")
                 .select()
                 //这里指定Controller扫描包路径
                 .apis(RequestHandlerSelectors.basePackage("org.exframework.backend.quickstart.controller"))
-                .apis(RequestHandlerSelectors.basePackage("org.exframework.support.doc.controller"))
-                .paths(PathSelectors.any())
                 .build();
         return docket;
     }

@@ -1,13 +1,10 @@
 server:
-  port: 443
+  port: 80
   error:
     include-exception: true
-  ssl:
-    enabled: true
-    key-store: classpath:gzmpc.jks
-    key-store-password: gzmpcGZMPC123
-    key-store-type: JKS
 spring:
+  main:
+    allow-circular-references: true
   application:
     name: "@artifactId@"
   profiles:

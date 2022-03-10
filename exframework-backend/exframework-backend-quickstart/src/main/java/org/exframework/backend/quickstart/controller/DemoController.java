@@ -18,15 +18,17 @@ import org.springframework.web.bind.annotation.*;
 public class DemoController {
 
 	/**
-	 * 获取预售货品目录列表
+	 * hello world
 	 * 
 	 * @param name
 	 * @return
 	 */
-	@ApiOperation(value = "获取系统参数配置")
-	@RequestMapping(value = "/hello", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ApiOperation(value = "hello")
+	@RequestMapping(value = "/hello/{name}", method = RequestMethod.GET, produces = MediaType.TEXT_PLAIN_VALUE)
 	public String hello(
 			@ApiParam(value = "name", required = true) @PathVariable String name) {
 		return "Hello "+name;
 	}
+
+
 }

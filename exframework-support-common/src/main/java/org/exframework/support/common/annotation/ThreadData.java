@@ -20,40 +20,47 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
  * @author rwe
  * @version 创建时间：2021年5月21日 下午4:42:56
  * 访问变量
+ *
+ * Note: org.exframework.support.common.annotation.ThreadData.ThreadDataClass 的链路中必须声明 @ThreadData
+ *
  */
 
 public @interface ThreadData {
 
 
+    /**
+     * ThreadData 专用变量
+     * 使用 ThreadDataClass的链路前必须使用 @ThreadData 注解
+     */
     class ThreadDataClass {
 
-        private static final ThreadLocal<Map<String, Object>> data = InheritableThreadLocal
-                .withInitial(() -> new ConcurrentHashMap<>(8));
+        private static final ThreadLocal<Map<String, Object>> DATA = InheritableThreadLocal
+                .withInitial(() -> new ConcurrentHashMap<>(32));
 
 
         public static void clear() {
-            if (data.get() != null) {
-                data.get().clear();
+            if (DATA.get() != null) {
+                DATA.get().clear();
             }
-            data.remove();
+            DATA.remove();
         }
 
         public static void bind(String key, Object value) {
             if (key == null) {
                 throw new NullPointerException("key cannot be null");
             } else if (value == null) {
-                data.get().remove(key);
+                DATA.get().remove(key);
             } else {
-                data.get().put(key, value);
+                DATA.get().put(key, value);
             }
         }
 
         public static Object getBind(String key) {
-            return data.get().get(key);
+            return DATA.get().get(key);
         }
 
         public static Map<String, Object> get() {
-            return data.get();
+            return DATA.get();
         }
     }
 }

@@ -1,12 +1,11 @@
 package org.exframework.support.rest.exception;
 
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import org.exframework.support.rest.entity.ApiResponseData;
 import org.exframework.support.rest.enums.ResultCode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.util.ReflectionUtils;
@@ -21,6 +20,7 @@ import java.lang.reflect.Field;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -34,7 +34,7 @@ import java.util.stream.Collectors;
 @Order()
 public class GlobalControllerExceptionControllerAdvice {
 
-    private static Logger logger = LoggerFactory.getLogger(GlobalControllerExceptionControllerAdvice.class.getName());
+    private static final Logger logger = LoggerFactory.getLogger(GlobalControllerExceptionControllerAdvice.class.getName());
 
     public static final String PARAMS_ERROR = "参数校验错误";
 
@@ -50,10 +50,10 @@ public class GlobalControllerExceptionControllerAdvice {
         }
         if (e.hasFieldErrors()) {
             errors.addAll(e.getFieldErrors().stream().map(fieldError -> {
-                Field field = ReflectionUtils.findField(e.getBindingResult().getTarget().getClass(), fieldError.getField());
-                if (field.isAnnotationPresent(ApiModelProperty.class)) {
-                    ApiModelProperty property = field.getAnnotation(ApiModelProperty.class);
-                    return MessageFormat.format("{0}[{1}]{2}", StringUtils.hasText(property.name()) ? property.name() : property.value(), fieldError.getField(), fieldError.getDefaultMessage());
+                Field field = ReflectionUtils.findField(Objects.requireNonNull(e.getBindingResult().getTarget()).getClass(), fieldError.getField());
+                if (Objects.requireNonNull(field).isAnnotationPresent(Schema.class)) {
+                    Schema property = field.getAnnotation(Schema.class);
+                    return MessageFormat.format("{0}[{1}]{2}", StringUtils.hasText(property.name()) ? property.name() : property.title(), fieldError.getField(), fieldError.getDefaultMessage());
                 } else {
                     return MessageFormat.format("{0}{1}", fieldError.getField(), fieldError.getDefaultMessage());
                 }
