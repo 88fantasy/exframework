@@ -20,13 +20,9 @@
         <module>exframework-support-monitor-web</module>
         <module>exframework-support-monitor-job</module>
         <module>exframework-support-jdbc</module>
-        <module>exframework-support-redis</module>
         <module>exframework-support-jdbc-oracle</module>
         <module>exframework-support-jdbc-mysql</module>
-        <module>exframework-support-tdmq</module>
-        <module>exframework-support-mongo</module>
         <module>exframework-support-wechat</module>
-        <module>exframework-support-elasticsearch</module>
         <module>exframework-support-doc</module>
         <module>exframework-backend</module>
         <module>exframework-spring-boot-starters</module>
@@ -317,7 +313,7 @@
             </dependency>
             <dependency>
                 <groupId>org.exframework</groupId>
-                <artifactId>exframework-support-tdmq</artifactId>
+                <artifactId>exframework-support-Pulsar</artifactId>
                 <version>0.8.3-SNAPSHOT</version>
             </dependency>
             <dependency>
@@ -347,6 +343,11 @@
             </dependency>
             <dependency>
                 <groupId>org.exframework</groupId>
+                <artifactId>canal-spring-boot-starter</artifactId>
+                <version>0.8.3-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>org.exframework</groupId>
                 <artifactId>chinaunicom-base-spring-boot-starter</artifactId>
                 <version>0.8.3-SNAPSHOT</version>
             </dependency>
@@ -370,7 +371,7 @@
             <dependency>
                 <groupId>com.dtflys.forest</groupId>
                 <artifactId>forest-spring-boot-starter</artifactId>
-                <version>1.5.16</version>
+                <version>1.5.19</version>
             </dependency>
 
             <dependency>
@@ -417,21 +418,11 @@
                 <artifactId>validation-api</artifactId>
                 <version>2.0.1.Final</version>
             </dependency>
-            <dependency>
-                <groupId>org.apache.pulsar</groupId>
-                <artifactId>pulsar-client</artifactId>
-                <version>2.8.0</version>
-            </dependency>
 
             <dependency>
                 <groupId>com.gitee.sunchenbin.mybatis.actable</groupId>
                 <artifactId>mybatis-enhance-actable</artifactId>
                 <version>1.5.0.RELEASE</version>
-            </dependency>
-            <dependency>
-                <groupId>cn.hutool</groupId>
-                <artifactId>hutool-all</artifactId>
-                <version>5.7.16</version>
             </dependency>
             <dependency>
                 <groupId>com.squareup.okhttp3</groupId>
@@ -479,16 +470,12 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
     </dependencies>
 
     <properties>
-        <springboot.version>2.6.4</springboot.version>
+        <springboot.version>2.6.6</springboot.version>
         <!--指定Maven用什么编码来读取源码及文档 -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <slf4j.version>1.7.31</slf4j.version>

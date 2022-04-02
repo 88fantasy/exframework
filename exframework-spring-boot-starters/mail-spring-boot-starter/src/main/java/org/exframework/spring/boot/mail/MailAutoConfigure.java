@@ -36,14 +36,18 @@ public class MailAutoConfigure {
             Proxy proxy = mailProperties.getProxy();
             log.info("邮件采用代理发送  host: {}, port: {}, user: {}, password: {}", proxy.getHost(), proxy.getPort(), proxy.getUsername(), proxy.getPassword());
             if (StringUtils.hasText(proxy.getHost())) {
-                builder.withProxyHost(proxy.getHost());
+//                builder.withProperty("mail.smtp.socks.host", proxy.getHost());
+//                builder.withProxyHost(proxy.getHost());
             }
             if (proxy.getPort() != null) {
+//                builder.withProperty("mail.smtp.socks.port", proxy.getPort());
                 builder.withProxyPort(proxy.getPort());
             } else {
                 builder.withProxyPort(1080);
             }
             if (StringUtils.hasText(proxy.getUsername()) && StringUtils.hasText(proxy.getPassword())) {
+//                builder.withProperty("mail.smtp.proxy.user", proxy.getUsername())
+//                        .withProperty("mail.smtp.proxy.password", proxy.getPassword());
                 builder.withProxyUsername(proxy.getUsername()).withProxyPassword(proxy.getPassword());
             }
             builder.withProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory")

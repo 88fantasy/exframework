@@ -19,3 +19,15 @@ spring:
         date-format: yyyy-MM-dd HH:mm:ss.SSS
         pathmatch:
             matching-strategy: ant-path-matcher
+
+canal:
+    enable: true
+    client:
+        instances:
+            example:
+                cluster-enabled: false
+                host: 127.0.0.1
+                port: 11111
+                batch-size: 1000
+                retry-count: 20
+                acquire-interval: 1000

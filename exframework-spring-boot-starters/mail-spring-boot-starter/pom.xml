@@ -24,6 +24,6 @@
 	</dependencies>
 
 	<properties>
-		<simplejavamail.version>6.6.1</simplejavamail.version>
+		<simplejavamail.version>6.7.6</simplejavamail.version>
 	</properties>
 </project>

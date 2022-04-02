@@ -5,7 +5,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import static org.exframework.spring.boot.mail.MailProperties.DEFAULT_PREFIX;
 
 /**
- *
+ * 邮件配置
  * @author rwe
  * @since 2021年5月20日
  *

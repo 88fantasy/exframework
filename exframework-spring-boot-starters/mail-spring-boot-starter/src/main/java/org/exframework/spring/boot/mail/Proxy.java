@@ -2,7 +2,7 @@ package org.exframework.spring.boot.mail;
 
 
 /**
- *
+ * 邮件socks5 代理
  * @author rwe
  * @since 2021年5月25日
  *

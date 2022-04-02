@@ -16,5 +16,10 @@
         <module>minio-spring-boot-starter</module>
         <module>mail-spring-boot-starter</module>
         <module>docker-spring-boot-starter</module>
+        <module>canal-spring-boot-starter</module>
+        <module>pulsar-spring-boot-starter</module>
+        <module>redis-spring-boot-starter</module>
+        <module>mongodb-spring-boot-starter</module>
+        <module>elasticsearch-spring-boot-starter</module>
     </modules>
 </project>

@@ -70,7 +70,10 @@
 			<groupId>org.exframework</groupId>
 			<artifactId>exframework-support-rest</artifactId>
 		</dependency>
-
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
 		<!-- TSF 启动器 -->
 		<dependency>
 			<groupId>com.tencent.tsf</groupId>

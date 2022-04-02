@@ -1,5 +1,6 @@
 package org.exframework.spring.boot.mail;
 
+
 import org.simplejavamail.api.email.AttachmentResource;
 import org.simplejavamail.api.email.Email;
 import org.simplejavamail.api.mailer.Mailer;
