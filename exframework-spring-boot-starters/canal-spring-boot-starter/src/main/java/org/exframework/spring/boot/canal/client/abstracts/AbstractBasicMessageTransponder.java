@@ -36,7 +36,6 @@ public abstract class AbstractBasicMessageTransponder extends AbstractMessageTra
 	 * @param config        canal 连接配置
 	 * @param listeners     实现接口层的 canal 监听器
 	 * @param annoListeners 通过注解方式的 canal 监听器
-	 * @return
 	 * 
 	 */
 	public AbstractBasicMessageTransponder(CanalConnector connector, Map.Entry<String, CanalProperties.Instance> config, List<CanalEventListener> listeners, List<ListenerPoint> annoListeners) {
@@ -46,9 +45,6 @@ public abstract class AbstractBasicMessageTransponder extends AbstractMessageTra
 	/**
 	 * 处理消息
 	 *
-	 * @param message
-	 * @return
-	 * 
 	 */
 	@Override
 	protected void distributeEvent(Message message) {
@@ -79,7 +75,6 @@ public abstract class AbstractBasicMessageTransponder extends AbstractMessageTra
 			distributeByImpl(destination,
 					entry.getHeader().getSchemaName(),
 					entry.getHeader().getTableName(), rowChange);
-			
 		}
 	}
 	
@@ -90,7 +85,6 @@ public abstract class AbstractBasicMessageTransponder extends AbstractMessageTra
 	 * @param schemaName  实例名称
 	 * @param tableName   表名称
 	 * @param rowChange   数据
-	 * @return
 	 * 
 	 */
 	protected void distributeByAnnotation(String destination,
@@ -109,10 +103,10 @@ public abstract class AbstractBasicMessageTransponder extends AbstractMessageTra
 						Method method = entry.getKey();
 						method.setAccessible(true);
 						try {
-							CanalMsg canalMsg = new CanalMsg();
-							canalMsg.setDestination(destination);
-							canalMsg.setSchemaName(schemaName);
-							canalMsg.setTableName(tableName);
+							CanalMsg canalMsg = new CanalMsg()
+									.setDestination(destination)
+									.setSchemaName(schemaName)
+									.setTableName(tableName);
 							
 							Object[] args = getInvokeArgs(method, canalMsg, rowChange);
 							method.invoke(point.getTarget(), args);
@@ -133,7 +127,6 @@ public abstract class AbstractBasicMessageTransponder extends AbstractMessageTra
 	 * @param schemaName  库实例
 	 * @param tableName   表名
 	 * @param rowChange   參數
-	 * @return
 	 * 
 	 */
 	protected void distributeByImpl(String destination,
@@ -155,8 +148,7 @@ public abstract class AbstractBasicMessageTransponder extends AbstractMessageTra
 	 * @param schemaName  数据库实例
 	 * @param tableName   表名称
 	 * @param eventType   事件类型
-	 * @return
-	 * 
+	 * @return 断言
 	 */
 	protected abstract Predicate<Map.Entry<Method, ListenPoint>> getAnnotationFilter(String destination, String schemaName, String tableName, CanalEntry.EventType eventType);
 	
@@ -167,8 +159,7 @@ public abstract class AbstractBasicMessageTransponder extends AbstractMessageTra
 	 * @param method    委托处理的方法
 	 * @param canalMsg  其他信息
 	 * @param rowChange 处理的数据
-	 * @return
-	 * 
+	 * @return 参数
 	 */
 	protected abstract Object[] getInvokeArgs(Method method, CanalMsg canalMsg, CanalEntry.RowChange rowChange);
 	
@@ -176,9 +167,6 @@ public abstract class AbstractBasicMessageTransponder extends AbstractMessageTra
 	/**
 	 * 返回一个空集合
 	 *
-	 * @param
-	 * @return
-	 * 
 	 */
 	protected List<CanalEntry.EntryType> getIgnoreEntryTypes() {
 		return Collections.emptyList();

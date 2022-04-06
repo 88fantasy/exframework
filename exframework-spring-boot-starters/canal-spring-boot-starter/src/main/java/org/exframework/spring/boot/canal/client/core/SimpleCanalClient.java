@@ -4,7 +4,6 @@ import com.alibaba.otter.canal.client.CanalConnector;
 import org.exframework.spring.boot.canal.annotation.ListenPoint;
 import org.exframework.spring.boot.canal.client.abstracts.AbstractCanalClient;
 import org.exframework.spring.boot.canal.client.interfaces.CanalEventListener;
-import org.exframework.spring.boot.canal.client.interfaces.MessageTransponder;
 import org.exframework.spring.boot.canal.config.CanalProperties;
 import org.exframework.support.common.util.SpringContextUtils;
 import org.slf4j.Logger;
@@ -15,7 +14,8 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.*;
+import java.util.concurrent.Future;
+import java.util.concurrent.ThreadPoolExecutor;
 
 /**
  * 通过线程池处理
@@ -28,7 +28,7 @@ public class SimpleCanalClient extends AbstractCanalClient {
     /**
      * 声明一个线程池
      */
-    private ThreadPoolExecutor executor;
+    private final ThreadPoolExecutor executor;
 
     /**
      * 通过实现接口的监听器
@@ -54,7 +54,7 @@ public class SimpleCanalClient extends AbstractCanalClient {
      * 构造方法，进行一些基本信息初始化
      *
      * @param canalProperties
-     * @return
+     * @param executor
      */
     public SimpleCanalClient(CanalProperties canalProperties, ThreadPoolExecutor executor) {
         super(canalProperties);
@@ -66,7 +66,6 @@ public class SimpleCanalClient extends AbstractCanalClient {
     /**
      * @param connector
      * @param config
-     * @return
      */
     @Override
     protected void process(CanalConnector connector, Map.Entry<String, CanalProperties.Instance> config) {
@@ -77,7 +76,6 @@ public class SimpleCanalClient extends AbstractCanalClient {
      * 关闭 canal 客户端
      *
      * @param
-     * @return
      */
     @Override
     public void stop() {
@@ -92,8 +90,6 @@ public class SimpleCanalClient extends AbstractCanalClient {
     /**
      * 初始化监听器
      *
-     * @param
-     * @return
      */
     private void initListeners() {
         logger.info("canal 监听器正在初始化....");
@@ -111,7 +107,7 @@ public class SimpleCanalClient extends AbstractCanalClient {
             for (Object target : listenerMap.values()) {
                 //方法获取
                 Method[] methods = target.getClass().getDeclaredMethods();
-                if (methods != null && methods.length > 0) {
+                if (methods.length > 0) {
                     for (Method method : methods) {
                         //获取监听的节点
                         ListenPoint l = AnnotatedElementUtils.findMergedAnnotation(method, ListenPoint.class);

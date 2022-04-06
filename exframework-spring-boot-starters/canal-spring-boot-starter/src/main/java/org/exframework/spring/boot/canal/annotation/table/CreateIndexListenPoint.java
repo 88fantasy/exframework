@@ -7,7 +7,7 @@ import org.springframework.core.annotation.AliasFor;
 import java.lang.annotation.*;
 
 /**
- * 創建索引操作
+ * 创建索引操作
  *
  * @author rwe
  * @date 2022/3/14 19:35

@@ -20,28 +20,31 @@ public class CanalMsg{
 	 * 数据库表名称
 	 */
 	private String tableName;
-	
+
 	public String getDestination() {
 		return destination;
 	}
-	
-	public void setDestination(String destination) {
+
+	public CanalMsg setDestination(String destination) {
 		this.destination = destination;
+		return this;
 	}
-	
+
 	public String getSchemaName() {
 		return schemaName;
 	}
-	
-	public void setSchemaName(String schemaName) {
+
+	public CanalMsg setSchemaName(String schemaName) {
 		this.schemaName = schemaName;
+		return this;
 	}
-	
+
 	public String getTableName() {
 		return tableName;
 	}
-	
-	public void setTableName(String tableName) {
+
+	public CanalMsg setTableName(String tableName) {
 		this.tableName = tableName;
+		return this;
 	}
 }
