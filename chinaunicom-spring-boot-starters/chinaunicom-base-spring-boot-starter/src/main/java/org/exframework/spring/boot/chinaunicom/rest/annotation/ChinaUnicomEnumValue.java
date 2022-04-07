@@ -22,17 +22,16 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.FIELD, ElementType.ANNOTATION_TYPE})
 @JacksonAnnotationsInside
-@JsonSerialize(using = ChinaUnicomEnumValue.EnumSerializer.class)
+@JsonSerialize(using = ChinaUnicomEnumValue.ChinaUnicomEnumSerializer.class)
 public @interface ChinaUnicomEnumValue {
 
 
-
-    class EnumSerializer extends JsonSerializer<Object> {
+    class ChinaUnicomEnumSerializer extends JsonSerializer<Object> {
         @Override
         public void serialize(Object value, JsonGenerator gen, SerializerProvider serializers) throws IOException {
-            if(value != null) {
-                Class clazz = value.getClass();
-                if(clazz.isEnum() && DictionaryEnum.class.isAssignableFrom(clazz)) {
+            if (value != null) {
+                Class<?> clazz = value.getClass();
+                if (clazz.isEnum() && DictionaryEnum.class.isAssignableFrom(clazz)) {
                     DictionaryEnum dictionaryEnum = (DictionaryEnum) value;
                     gen.writeObject(value);
                     gen.writeObjectField(gen.getOutputContext().getCurrentName() + "Name", dictionaryEnum.getLabel());

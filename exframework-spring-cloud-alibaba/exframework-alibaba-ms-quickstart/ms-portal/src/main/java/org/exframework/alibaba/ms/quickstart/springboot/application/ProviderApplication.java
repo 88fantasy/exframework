@@ -1,6 +1,5 @@
 package org.exframework.alibaba.ms.quickstart.springboot.application;
 
-import org.exframework.spring.boot.canal.annotation.EnableCanalClient;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
@@ -8,7 +7,6 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication(scanBasePackages = {"org.exframework.*"})
 @EnableFeignClients(basePackages = {"org.exframework.*"})
-@EnableCanalClient
 /**
  * 微服务 启动类
  *

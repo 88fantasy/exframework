@@ -40,7 +40,7 @@ Exframework 旨在为项目快速开发提供一系列的基础能力，方便�
 
 ### 后端
 
-- 基础框架：Spring Boot 2.4.8.RELEASE
+- 基础框架：Spring Boot 2.6.6
 
 - 微服务框架： Spring Cloud Alibaba 2021.1
 
@@ -92,20 +92,23 @@ Exframework 旨在为项目快速开发提供一系列的基础能力，方便�
 |-- exframework-support-extends   -- 扩展模块，大多是对于一些第三方组件的扩展增强
 |   |-- exframework-support-common   --  基础依赖, 最通用的扩展
 |   |-- exframework-support-doc   -- 基于  swagger 相关的一些扩展,主要用于生成开发文档
-|   |-- exframework-support-elasticsearch   -- 基于 elasticsearch 相关的一些扩展
 |   |-- exframework-support-jdbc   -- 基于 jdbc 模式相关的一些扩展,主要扩展 mybatis-plus
 |   |-- exframework-support-jersey   -- 早期对于 rest(jersey)实现方式的扩展
 |   |-- exframework-support-job  --  定时任务一些操作扩展,主要基于 quartz
-|   |-- exframework-support-mongo  -- 基于 mongo 数据库的一些扩展
 |   |-- exframework-support-monitor   --  针对监控接口的处理, 用于统一提供对外监控接口
-|   |-- exframework-support-rest  -- 针对restful 接口的增强封装
-|   |-- exframework-support-resis   -- 基于 spring redis 和 redission 的扩展功能
-|   |-- exframework-support-soap  -- 针对微信支付的一些操作封装
-|   |-- exframework-support-pulsar  --  基于 分布式消息 pulsar 的一些扩展增强
+|   |-- exframework-support-rest  -- 针对restful 接口的增强封装(仅兼容spring mvc)
+|   |-- exframework-support-rest-base  -- 针对restful 接口的增强封装(兼容 mvc和webflux)
+|   |-- exframework-support-soap  -- 针对 SOAP (Xml) 的支持
 |   `-- exframework-support-wechat  -- 针对微信相关的一些支持
 |
 |-- exframework-spring-boot-starters        -- 对于各种能力的增强 starter
+|   |-- canal-spring-boot-starter -- canal 同步工具 集成工具
 |   |-- cos-spring-boot-starter -- 腾讯云对象存储 Cos 集成工具
+|   |-- docker-spring-boot-starter --  docker registry 集成工具
+|   |-- pulsar-spring-boot-starter -- Pulsar 消息队列 集成工具
+|   |-- elasticsearch-spring-boot-starter -- Es 集成工具
+|   |-- redis-spring-boot-starter -- Redis 集成工具
+|   |-- mongodb-spring-boot-starter -- MongoDB 集成工具
 |   |-- minio-spring-boot-starter -- 对象存储 MinIO 集成工具, 同时支持S3
 |   |-- developer-spring-boot-starter  -- 开发者中心集成工具
 |   `-- mail-spring-boot-starter -- 邮件发送
