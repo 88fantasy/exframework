@@ -18,7 +18,7 @@ public class Proxy {
     /**
      * 端口
      */
-    private Integer port;
+    private String port;
 
     /**
      * 用户名
@@ -41,11 +41,11 @@ public class Proxy {
         return this;
     }
 
-    public Integer getPort() {
+    public String getPort() {
         return port;
     }
 
-    public Proxy setPort(Integer port) {
+    public Proxy setPort(String port) {
         this.port = port;
         return this;
     }

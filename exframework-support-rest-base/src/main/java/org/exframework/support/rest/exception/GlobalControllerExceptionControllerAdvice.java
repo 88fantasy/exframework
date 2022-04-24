@@ -1,19 +1,23 @@
 package org.exframework.support.rest.exception;
 
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
+import io.swagger.annotations.ApiModelProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 import org.exframework.support.rest.entity.ApiResponseData;
 import org.exframework.support.rest.enums.ResultCode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.util.ReflectionUtils;
 import org.springframework.util.StringUtils;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.bind.support.WebExchangeBindException;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -31,7 +35,7 @@ import java.util.stream.Collectors;
  * 接口全局处理
  */
 @RestControllerAdvice
-@Order()
+@Order(Ordered.LOWEST_PRECEDENCE - 10)
 public class GlobalControllerExceptionControllerAdvice {
 
     private static final Logger logger = LoggerFactory.getLogger(GlobalControllerExceptionControllerAdvice.class.getName());
@@ -42,18 +46,28 @@ public class GlobalControllerExceptionControllerAdvice {
      * 参数范围校验错误
      */
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ApiResponseData<List<String>> methodArgumentNotValidExceptionHandler(MethodArgumentNotValidException e) {
-        logger.error(e.getMessage(), e);
+    public ApiResponseData<List<String>> methodArgumentNotValidExceptionHandler(MethodArgumentNotValidException ex) {
+        errorHandle(ex);
+        return bindingResultHandler(ex.getBindingResult());
+    }
+
+    @ExceptionHandler(WebExchangeBindException.class)
+    public ApiResponseData<List<String>> webExchangeBindExceptionHandler(WebExchangeBindException ex) {
+        errorHandle(ex);
+        return bindingResultHandler(ex.getBindingResult());
+    }
+
+    private ApiResponseData<List<String>> bindingResultHandler(BindingResult bindingResult) {
         List<String> errors = new ArrayList<>();
-        if (e.hasGlobalErrors()) {
-            errors.addAll(e.getGlobalErrors().stream().map(ObjectError::getDefaultMessage).collect(Collectors.toList()));
+        if (bindingResult.hasGlobalErrors()) {
+            errors.addAll(bindingResult.getGlobalErrors().stream().map(ObjectError::getDefaultMessage).collect(Collectors.toList()));
         }
-        if (e.hasFieldErrors()) {
-            errors.addAll(e.getFieldErrors().stream().map(fieldError -> {
-                Field field = ReflectionUtils.findField(Objects.requireNonNull(e.getBindingResult().getTarget()).getClass(), fieldError.getField());
-                if (Objects.requireNonNull(field).isAnnotationPresent(Schema.class)) {
-                    Schema property = field.getAnnotation(Schema.class);
-                    return MessageFormat.format("{0}[{1}]{2}", StringUtils.hasText(property.name()) ? property.name() : property.title(), fieldError.getField(), fieldError.getDefaultMessage());
+        if (bindingResult.hasFieldErrors()) {
+            errors.addAll(bindingResult.getFieldErrors().stream().map(fieldError -> {
+                Field field = ReflectionUtils.findField(Objects.requireNonNull(bindingResult.getTarget()).getClass(), fieldError.getField());
+                if (Objects.requireNonNull(field).isAnnotationPresent(ApiModelProperty.class)) {
+                    ApiModelProperty property = field.getAnnotation(ApiModelProperty.class);
+                    return MessageFormat.format("{0}[{1}]{2}", StringUtils.hasText(property.name()) ? property.name() : property.value(), fieldError.getField(), fieldError.getDefaultMessage());
                 } else {
                     return MessageFormat.format("{0}{1}", fieldError.getField(), fieldError.getDefaultMessage());
                 }

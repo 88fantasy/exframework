@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.exframework</groupId>
 		<artifactId>exframework-root</artifactId>
-		<version>0.8.3-SNAPSHOT</version>
+		<version>0.9.0-SNAPSHOT</version>
 	</parent>
 	<artifactId>exframework-spring-cloud-alibaba</artifactId>
 	<name>exframework-spring-cloud-alibaba</name>
@@ -52,14 +52,6 @@
 			<groupId>com.alibaba.cloud</groupId>
 			<artifactId>spring-cloud-circuitbreaker-sentinel</artifactId>
 		</dependency>
-        <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-dubbo</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba.csp</groupId>
-            <artifactId>sentinel-apache-dubbo-adapter</artifactId>
-        </dependency>
 
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
@@ -77,11 +69,13 @@
 	</dependencies>
 	
 	<modules>
+		<module>exframework-scg-base</module>
+		<module>exframework-scg-sso</module>
 		<module>exframework-alibaba-ms-quickstart</module>
 		<module>exframework-gateway-native-quickstart</module>
 	</modules>
-	
-	
+
+
 	<properties>
 
 	</properties>

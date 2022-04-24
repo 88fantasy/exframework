@@ -35,7 +35,7 @@ public class SmsHeaderInterceptor implements Interceptor<Object> {
         if (smsProperties.getProxy() != null) {
             Proxy proxy = smsProperties.getProxy();
             if (StringUtils.hasText(proxy.getHost()) && proxy.getPort() != null) {
-                ForestProxy forestProxy = new ForestProxy(proxy.getHost(), proxy.getPort());
+                ForestProxy forestProxy = new ForestProxy(proxy.getHost(), new Integer(proxy.getPort()));
                 if (StringUtils.hasText(proxy.getUsername())) {
                     forestProxy.setUsername(proxy.getUsername());
                 }

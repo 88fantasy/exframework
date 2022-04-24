@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>org.exframework</groupId>
 		<artifactId>exframework-spring-boot-starters</artifactId>
-		<version>0.8.3-SNAPSHOT</version>
+		<version>0.9.0-SNAPSHOT</version>
 	</parent>
 	<artifactId>docker-spring-boot-starter</artifactId>
 	<packaging>jar</packaging>
@@ -24,13 +24,16 @@
 		<dependency>
 			<groupId>com.github.docker-java</groupId>
 			<artifactId>docker-java</artifactId>
-			<version>3.2.11</version>
+			<version>${docker.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.github.docker-java</groupId>
 			<artifactId>docker-java-transport-httpclient5</artifactId>
-			<version>3.2.11</version>
+			<version>${docker.version}</version>
 		</dependency>
 	</dependencies>
 
+	<properties>
+		<docker.version>3.2.13</docker.version>
+	</properties>
 </project>

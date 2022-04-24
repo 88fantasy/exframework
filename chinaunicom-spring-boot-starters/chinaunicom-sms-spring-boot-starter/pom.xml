@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.exframework</groupId>
 		<artifactId>chinaunicom-spring-boot-starters</artifactId>
-		<version>0.8.3-SNAPSHOT</version>
+		<version>0.9.0-SNAPSHOT</version>
 	</parent>
 	<artifactId>chinaunicom-sms-spring-boot-starter</artifactId>
 

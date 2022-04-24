@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.exframework</groupId>
 		<artifactId>exframework-spring-cloud-tsf</artifactId>
-		<version>0.8.3-SNAPSHOT</version>
+		<version>0.9.0-SNAPSHOT</version>
 	</parent>
 	<artifactId>exframework-tsf-gateway-quickstart</artifactId>
 	<name>exframework-tsf-gateway-quickstart</name>
@@ -14,7 +14,7 @@
 	<build>
 		<finalName>exframework-tsf-gateway-quickstart</finalName>
 		<plugins>
-			<plugin>
+			<!--<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<executions>
@@ -24,7 +24,7 @@
 						</goals>
 					</execution>
 				</executions>
-			</plugin>
+			</plugin>-->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>

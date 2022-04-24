@@ -2,6 +2,8 @@ package org.exframework.support.rest.entity;
 
 import org.exframework.support.rest.enums.ResultCode;
 
+import static org.exframework.support.rest.enums.ResultCode.OK;
+
 /**
  * Api 通用返回类
  * @author rwe
@@ -32,7 +34,7 @@ public class ApiResponse {
 	
 
 	public ApiResponse() {
-		this(ResultCode.OK);
+		this(OK);
 	}
 	
 	public ApiResponse(ResultCode resultCode) {
@@ -63,5 +65,9 @@ public class ApiResponse {
 
 	public boolean isStatus() {
 		return status;
+	}
+
+	public boolean isOk() {
+		return OK.equals(code);
 	}
 }
