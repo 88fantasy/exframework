@@ -67,7 +67,4 @@ public class ApiResponse {
 		return status;
 	}
 
-	public boolean isOk() {
-		return OK.equals(code);
-	}
 }

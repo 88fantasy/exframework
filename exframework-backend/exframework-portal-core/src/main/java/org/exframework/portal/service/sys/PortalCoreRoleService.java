@@ -22,13 +22,10 @@ public class PortalCoreRoleService {
 
 	@Autowired
 	PortalCoreRoleDao roleDao;
-	
-	@Autowired
-	PortalCorePermissionService portalCorePermissionService;
 
 	public Map<String, Role> getAllRoles() {
-		Map<String, Role> allRoles = new ConcurrentHashMap<String, Role>();
 		Collection<Role> roles = roleDao.all();
+		Map<String, Role> allRoles = new ConcurrentHashMap<String, Role>(roles.size());
 		for(Role role : roles) {
 			allRoles.put(role.getCode(), role);
 		}

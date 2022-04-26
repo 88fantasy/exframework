@@ -48,10 +48,8 @@ public class PortalCoreRoleDaoImpl extends PortalCoreMetaDaoImpl<RoleDO,Role> im
 
 	@Autowired
 	PortalCorePermissionService portalCorePermissionService;
-	
 
-	@Autowired
-	PortalCoreAccountService portalCoreAccountService;
+
 
 	@Override
 	public Collection<String> allKeys() {
@@ -96,11 +94,6 @@ public class PortalCoreRoleDaoImpl extends PortalCoreMetaDaoImpl<RoleDO,Role> im
 	
 
 
-	@Override
-	public Collection<Account> findAccountByRole(Role role) {
-		List<AccountRoleDO> accounts = accountRoleMapper.selectList(Wrappers.<AccountRoleDO>lambdaQuery().eq(AccountRoleDO::getRole, role.getCode()));
-		return accounts.stream().map(account -> portalCoreAccountService.getAccount(account.getAccount())).collect(Collectors.toList());
-	}
 
 	/**
 	 * 查询单个角色(不包含子角色)
