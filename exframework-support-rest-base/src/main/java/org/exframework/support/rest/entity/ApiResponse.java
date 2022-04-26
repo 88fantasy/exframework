@@ -1,5 +1,7 @@
 package org.exframework.support.rest.entity;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.exframework.support.rest.enums.ResultCode;
 
 import static org.exframework.support.rest.enums.ResultCode.OK;
@@ -8,7 +10,6 @@ import static org.exframework.support.rest.enums.ResultCode.OK;
  * Api 通用返回类
  * @author rwe
  *
- * @param
  */
 public class ApiResponse {
 	
@@ -19,18 +20,18 @@ public class ApiResponse {
 	/**
 	 * http 状态码
 	 */
-	private int code;
+	private final int code;
 	
 	/**
 	 * 错误信息 if status is false
 	 */
-	private String message;
+	private final String message;
 	
 	/**
 	 * 快速进行判断
 	 * HTTP状态响应码在400-499或500-599之间为 false
 	 */
-	private boolean status;
+	private final boolean status;
 	
 
 	public ApiResponse() {
@@ -67,4 +68,15 @@ public class ApiResponse {
 		return status;
 	}
 
+	public String toString() {
+		try {
+			return new ObjectMapper().writeValueAsString(this);
+		} catch (JsonProcessingException e) {
+			return "ApiResponse{" +
+					"code='" + code + '\'' +
+					", message='" + message + '\'' +
+					'}';
+		}
+
+	}
 }

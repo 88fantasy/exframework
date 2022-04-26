@@ -1,5 +1,7 @@
 package org.exframework.support.rest.entity;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.exframework.support.common.entity.PageModel;
 import org.exframework.support.rest.enums.ResultCode;
 
@@ -59,16 +61,27 @@ public class ApiResponsePage<T> extends ApiResponse {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public static final <E> ApiResponsePage<E> paramError() {
+	public static  <E> ApiResponsePage<E> paramError() {
 		return (ApiResponsePage<E>)PARAM_ERROR;
 	}
 	
-	public static final <E> ApiResponsePage<E> notFound(String message) {
+	public static <E> ApiResponsePage<E> notFound(String message) {
 		return new ApiResponsePage<E>(ResultCode.NOT_FOUND, message, null);
 	}
 	
 	@SuppressWarnings("unchecked")
-	public static final <E> ApiResponsePage<E> empltyPage() {
+	public static <E> ApiResponsePage<E> empltyPage() {
 		return (ApiResponsePage<E>)EMPTY;
+	}
+
+	public String toString() {
+		try {
+			return new ObjectMapper().writeValueAsString(this);
+		} catch (JsonProcessingException e) {
+			return "ApiResponse{" +
+					"data='" + data +
+					'}';
+		}
+
 	}
 }

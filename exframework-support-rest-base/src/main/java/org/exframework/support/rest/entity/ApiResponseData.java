@@ -1,6 +1,8 @@
 package org.exframework.support.rest.entity;
 
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.exframework.support.rest.enums.ResultCode;
 
 public class ApiResponseData<T> extends ApiResponse {
@@ -69,5 +71,16 @@ public class ApiResponseData<T> extends ApiResponse {
 	@SuppressWarnings("unchecked")
 	public static final <E> ApiResponseData<E> empltyData() {
 		return (ApiResponseData<E>)EMPTY;
+	}
+
+	public String toString() {
+		try {
+			return new ObjectMapper().writeValueAsString(this);
+		} catch (JsonProcessingException e) {
+			return "ApiResponseData{" +
+					"data='" + data +
+					'}';
+		}
+
 	}
 }
