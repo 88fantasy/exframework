@@ -22,9 +22,9 @@ import java.util.stream.Collectors;
  * Copyright @ 2021 
  * 
  */
-public class EntityScanerRegistrar implements ImportBeanDefinitionRegistrar {
+public class EntityScannerRegistrar implements ImportBeanDefinitionRegistrar {
 
-	private static Logger log = LoggerFactory.getLogger(EntityScanerRegistrar.class.getName());
+	private static Logger log = LoggerFactory.getLogger(EntityScannerRegistrar.class.getName());
 
 
 	@Override

@@ -1,4 +1,4 @@
-package org.exframework.portal.web.dto;
+package org.exframework.support.rest.entity;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -13,20 +13,15 @@ import org.exframework.support.common.entity.Page;
  * Copyright @ 2021 
  * 
  */
-@ApiModel(value="通用查询请求")
-public class PostConditionQueryRequest {
+@ApiModel(value="通用分页查询请求")
+public class ConditionQueryPageRequest extends QueryPageRequest {
 
 	@ApiModelProperty(value = "查询条件")
 	FilterCondition[] conditions;
+
 	
-	@ApiModelProperty(value = "分页信息")
-	Page page;
-	
-	@ApiModelProperty(value = "排序信息")
-	String[] sorts;
-	
-	public PostConditionQueryRequest() {
-		this.page = Page.DEFAULT;
+	public ConditionQueryPageRequest() {
+		setPage(Page.DEFAULT);
 		this.conditions = new FilterCondition[]{};
 	}
 
@@ -38,21 +33,6 @@ public class PostConditionQueryRequest {
 		this.conditions = conditions;
 	}
 
-	public Page getPage() {
-		return page;
-	}
 
-	public void setPage(Page page) {
-		this.page = page;
-	}
-
-	public String[] getSorts() {
-		return sorts;
-	}
-
-	public void setSorts(String[] sorts) {
-		this.sorts = sorts;
-	}
-	
 	
 }

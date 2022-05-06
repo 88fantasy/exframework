@@ -8,7 +8,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 @Documented
-@Import(EntityScanerRegistrar.class)
+@Import(EntityScannerRegistrar.class)
 @Repeatable(EntityScans.class)
 /**
  * 绑定字典

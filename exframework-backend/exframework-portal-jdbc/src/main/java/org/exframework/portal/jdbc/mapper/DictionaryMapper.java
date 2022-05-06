@@ -1,5 +1,6 @@
 package org.exframework.portal.jdbc.mapper;
 
+import com.baomidou.mybatisplus.annotation.InterceptorIgnore;
 import org.exframework.portal.jdbc.entity.base.DictionaryDO;
 import org.exframework.support.jdbc.mapper.ExBaseMapper;
 
@@ -11,6 +12,7 @@ import org.exframework.support.jdbc.mapper.ExBaseMapper;
  * Copyright @ 2020 
  * 
  */
+@InterceptorIgnore(tenantLine = "off", dynamicTableName = "off")
 public interface DictionaryMapper extends ExBaseMapper<DictionaryDO> {
 
 }

@@ -10,6 +10,7 @@ import org.springframework.util.ReflectionUtils;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
+import java.util.function.Function;
 
 /**
  * @author rwe
@@ -17,26 +18,11 @@ import java.util.Date;
  * <p>
  * Copyright @ 2021
  */
-public class CurrentTimeMetaObjectHandler implements MetaObjectHandler {
+public class CurrentTimeMetaObjectHandler implements AnnotationSetterMetaObjectHandler<AutoCurrentTime> {
+
 
     @Override
-    public void insertFill(MetaObject metaObject) {
-        setDate(metaObject, Arrays.asList(FieldFill.INSERT, FieldFill.INSERT_UPDATE));
+    public Object getObject(Object row) {
+        return new Date();
     }
-
-    @Override
-    public void updateFill(MetaObject metaObject) {
-        setDate(metaObject, Arrays.asList(FieldFill.UPDATE, FieldFill.INSERT_UPDATE));
-    }
-
-    private void setDate(MetaObject metaObject, Collection<FieldFill> fieldFills) {
-        Object o = metaObject.getOriginalObject();
-        ReflectionUtils.doWithFields(o.getClass(), field -> {
-            TableField tableField = field.getAnnotation(TableField.class);
-            if (fieldFills.contains(tableField.fill())) {
-                setFieldValByName(field.getName(), new Date(), metaObject);
-            }
-        }, field -> field.isAnnotationPresent(TableField.class) && field.isAnnotationPresent(AutoCurrentTime.class));
-    }
-
 }

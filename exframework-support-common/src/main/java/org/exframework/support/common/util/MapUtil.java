@@ -11,7 +11,7 @@ import java.util.Map;
 */
 
 @Component
-public class MapUtil {
+public class MapUtil extends cn.hutool.core.map.MapUtil {
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public static void putIfNotNull(Map map,Object key, Object value) {

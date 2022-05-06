@@ -1,5 +1,6 @@
 package org.exframework.portal.jdbc.mapper;
 
+import com.baomidou.mybatisplus.annotation.InterceptorIgnore;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.exframework.portal.jdbc.entity.base.DataItemExtendDO;
 
@@ -11,6 +12,7 @@ import org.exframework.portal.jdbc.entity.base.DataItemExtendDO;
  * Copyright @ 2020 
  * 
  */
+@InterceptorIgnore(tenantLine = "off", dynamicTableName = "off")
 public interface DataItemExtendMapper extends BaseMapper<DataItemExtendDO> {
 
 }

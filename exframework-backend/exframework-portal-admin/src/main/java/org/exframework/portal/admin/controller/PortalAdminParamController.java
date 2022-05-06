@@ -11,7 +11,7 @@ import org.exframework.portal.exception.NotFoundException;
 import org.exframework.portal.metadata.sys.AccountParameter;
 import org.exframework.portal.web.constants.WebApiConstants;
 import org.exframework.portal.web.controller.PortalWebParamController;
-import org.exframework.portal.web.dto.PostConditionQueryRequest;
+import org.exframework.support.rest.entity.ConditionQueryPageRequest;
 import org.exframework.support.rest.entity.ApiResponseData;
 import org.exframework.support.rest.entity.ApiResponsePage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +33,7 @@ public class PortalAdminParamController extends PortalWebParamController {
 	@ApiOperation(value = "查询参数列表")
 	@RequestMapping(value = WebApiConstants.API_PARAM_QUERY, method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ApiResponsePage<AccountParameter> queryList(
-			@ApiParam(value = "dto", required = true) @Valid @RequestBody PostConditionQueryRequest request)
+			@ApiParam(value = "dto", required = true) @Valid @RequestBody ConditionQueryPageRequest request)
 			throws NotAuthorizedException, NotFoundException {
 		return paramService.query(request);
 	}

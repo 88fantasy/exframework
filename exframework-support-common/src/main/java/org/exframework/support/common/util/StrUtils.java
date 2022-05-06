@@ -25,4 +25,13 @@ public class StrUtils extends org.springframework.util.StringUtils {
         matcher.appendTail(sb);
         return sb.toString();
     }
+
+    public static String toCamelCase(String underLineCase){
+        Matcher m = Pattern.compile("[_|-](\\w)").matcher(underLineCase);
+        StringBuffer sb = new StringBuffer();
+        while (m.find()) {
+            m.appendReplacement(sb, m.group(1).toUpperCase());
+        }
+        return m.appendTail(sb).toString();
+    }
 }

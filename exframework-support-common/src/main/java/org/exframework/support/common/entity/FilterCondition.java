@@ -129,11 +129,21 @@ public class FilterCondition {
     }
 
     public static Collection<FilterCondition> fromDTO(Object editable) {
-        return fromDTO(editable, Collections.emptyList());
+        if(RequestIgnoreList.class.isAssignableFrom(editable.getClass())) {
+            RequestIgnoreList ignoreObj = (RequestIgnoreList) editable;
+            return fromDTO(editable, ignoreObj.ignoreList());
+        } else {
+            return fromDTO(editable, Collections.emptyList());
+        }
     }
 
     public static FilterCondition[] arrayFromDTO(Object editable) {
-        return arrayFromDTO(editable, Collections.emptyList());
+        if(RequestIgnoreList.class.isAssignableFrom(editable.getClass())) {
+            RequestIgnoreList ignoreObj = (RequestIgnoreList) editable;
+            return arrayFromDTO(editable, ignoreObj.ignoreList());
+        } else {
+            return arrayFromDTO(editable, Collections.emptyList());
+        }
     }
 
     public static FilterCondition[] arrayFromDTO(Object editable, Collection<String> ignoreList) {

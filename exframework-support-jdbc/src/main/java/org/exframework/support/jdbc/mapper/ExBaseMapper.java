@@ -12,6 +12,7 @@ import org.apache.ibatis.annotations.Param;
 import org.exframework.support.common.entity.FilterCondition;
 import org.exframework.support.common.entity.PageModel;
 import org.exframework.support.common.entity.Pager;
+import org.exframework.support.common.entity.RequestIgnoreList;
 import org.exframework.support.common.util.BeanUtils;
 import org.springframework.util.StringUtils;
 
@@ -258,6 +259,20 @@ public interface ExBaseMapper<T> extends BaseMapper<T> {
         List<T> tlist = model.getList();
         List<E> elist = tlist.stream().map(translator).collect(Collectors.toList());
         return new PageModel<>(model.getPager(), elist);
+    }
+
+    default <E> PageModel<E> query(Object request, org.exframework.support.common.entity.Page page,
+                                   Class<E> clazz) {
+        return query(request, page, new String[]{}, clazz);
+    }
+    default <E> PageModel<E> query(Object request, org.exframework.support.common.entity.Page page, String[] sorts,
+                                   Class<E> clazz) {
+        return query(FilterCondition.arrayFromDTO(request), page, sorts, clazz);
+    }
+
+    default <E> PageModel<E> query(Object request, Collection<String> ignoreList, org.exframework.support.common.entity.Page page, String[] sorts,
+                                   Class<E> clazz) {
+        return query(FilterCondition.arrayFromDTO(request, ignoreList), page, sorts, clazz);
     }
 
     default <E> PageModel<E> query(FilterCondition[] params, org.exframework.support.common.entity.Page page,

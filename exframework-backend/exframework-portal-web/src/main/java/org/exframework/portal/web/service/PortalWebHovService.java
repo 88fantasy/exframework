@@ -8,7 +8,7 @@ import org.exframework.portal.metadata.hov.Hov;
 import org.exframework.portal.metadata.hov.HovQueryParams;
 import org.exframework.portal.metadata.hov.IHovDao;
 import org.exframework.portal.service.sys.PortalCoreHovService;
-import org.exframework.portal.web.dto.PostConditionQueryRequest;
+import org.exframework.support.rest.entity.ConditionQueryPageRequest;
 import org.exframework.support.common.entity.FilterCondition;
 import org.exframework.support.common.entity.Page;
 import org.exframework.support.common.entity.PageModel;
@@ -43,7 +43,7 @@ public class PortalWebHovService {
     @Autowired
     PortalCoreHovService portalCoreHovService;
 
-    public ApiResponsePage<?> query(String code, PostConditionQueryRequest request) {
+    public ApiResponsePage<?> query(String code, ConditionQueryPageRequest request) {
         Hov hov = portalCoreHovService.findByKey(code);
         if (hov != null) {
             HovQueryParams[] params = hov.getQueryParams();

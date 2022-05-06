@@ -7,7 +7,7 @@ import org.exframework.portal.dao.PortalCoreAccountParameterDao;
 import org.exframework.portal.metadata.sys.AccountParameter;
 import org.exframework.portal.service.sys.PortalCoreAccountService;
 import org.exframework.portal.service.sys.PortalCoreSystemParameterService;
-import org.exframework.portal.web.dto.PostConditionQueryRequest;
+import org.exframework.support.rest.entity.ConditionQueryPageRequest;
 import org.exframework.support.common.entity.FilterCondition;
 import org.exframework.support.common.entity.PageModel;
 import org.exframework.support.rest.entity.ApiResponseData;
@@ -46,7 +46,7 @@ public class AdminParamService {
 		return new ApiResponsePage<AccountParameter>(model);
 	}
 	
-	public ApiResponsePage<AccountParameter> query(PostConditionQueryRequest request) {
+	public ApiResponsePage<AccountParameter> query(ConditionQueryPageRequest request) {
 		PageModel<AccountParameter> model = portalCoreAccountParameterDao.query(Arrays.asList(request.getConditions()), request.getPage());
 		return new ApiResponsePage<AccountParameter>(model);
 	}

@@ -8,7 +8,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 @Documented
-@Import(TableScanerRegistrar.class)
+@Import(TableScannerRegistrar.class)
 @Repeatable(TableEntityScans.class)
 /**
  * 扫描数据库表
