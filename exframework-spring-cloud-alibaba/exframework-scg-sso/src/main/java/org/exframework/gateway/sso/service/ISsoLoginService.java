@@ -32,7 +32,7 @@ public interface ISsoLoginService<T> {
     String REDIS_KEY_USER_INFO = "/sso/user/%s";
 
     /**
-     * @return
+     * @return redisTemplate
      */
     RedisTemplate<String, Object> getRedisTemplate();
 
@@ -78,22 +78,11 @@ public interface ISsoLoginService<T> {
 
         String password = request.getPassword();
 
-        String captcha = request.getCaptcha();
-
-        String sign = request.getSign();
-
-        String redisCaptcha = (String) redisTemplate.opsForValue().get(SsoConstants.KEY_CAPTCHA_PREFIX.concat(sign));
-        if (!StrUtils.hasText(redisCaptcha)) {
-            throw new NotAuthException("验证码已失效");
-        }
-        if (!redisCaptcha.equalsIgnoreCase(captcha)) {
-            throw new NotAuthException("验证码错误");
-        }
-
         String keyPairString = (String) redisTemplate.opsForValue().get(SsoConstants.KEY_SALT_PREFIX.concat(username));
         if (!StrUtils.hasText(keyPairString)) {
             throw new NotAuthException("盐值已失效");
         }
+
         KeyPairString keyPair;
         try {
             keyPair = new ObjectMapper().readValue(keyPairString, KeyPairString.class);
@@ -146,23 +135,16 @@ public interface ISsoLoginService<T> {
 
         String username = request.getPhone();
 
-        String captcha = request.getCaptcha();
-
         UserDetail<T> userDetail = getUserDetail(username);
 
-        RedisTemplate<String, Object> redisTemplate = getRedisTemplate();
-
-        String redisCaptcha = (String) redisTemplate.opsForValue().get(SsoConstants.KEY_CAPTCHA_PREFIX.concat(username));
-        if (!StrUtils.hasText(redisCaptcha)) {
-            throw new NotAuthException("验证码已失效,请重新获取");
-        }
-
-        if (!redisCaptcha.equalsIgnoreCase(captcha)) {
-            throw new NotAuthException("验证码错误,请重新输入");
+        if (!checkSms(request.getPhone(), request.getSms())) {
+            throw new NotAuthException("短信验证码错误");
         }
 
         return login(userDetail, request.getDevice());
     }
+
+    boolean checkSms(String mobile, String sms);
 
     default LoginResponse login(UserDetail<T> userDetail, String device) {
         device = StrUtils.hasText(device) ? device : SsoConstants.DEFAULT_DEVICE;

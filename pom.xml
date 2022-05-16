@@ -13,7 +13,6 @@
         <module>exframework-support-job</module>
         <module>exframework-support-rest-base</module>
         <module>exframework-support-rest</module>
-        <module>exframework-support-jersey</module>
         <module>exframework-support-soap</module>
         <module>exframework-support-monitor</module>
         <module>exframework-support-monitor-rest</module>
@@ -24,11 +23,10 @@
         <module>exframework-support-jdbc-mysql</module>
         <module>exframework-support-wechat</module>
         <module>exframework-support-doc</module>
-        <module>exframework-backend</module>
         <module>exframework-spring-boot-starters</module>
+        <module>exframework-backend</module>
         <module>chinaunicom-spring-boot-starters</module>
         <module>exframework-spring-cloud-alibaba</module>
-        <module>exframework-springboot-quickstart-rest</module>
         <module>exframework-spring-cloud-tsf</module>
     </modules>
     <build>
@@ -112,6 +110,7 @@
                     <include>**/*.xml</include>
                     <include>**/*.properties</include>
                     <include>**/*.yml</include>
+                    <include>META-INF/services/**</include>
                 </includes>
             </resource>
         </resources>
@@ -383,7 +382,7 @@
             <dependency>
                 <groupId>com.dtflys.forest</groupId>
                 <artifactId>forest-spring-boot-starter</artifactId>
-                <version>1.5.19</version>
+                <version>1.5.20</version>
             </dependency>
 
             <dependency>

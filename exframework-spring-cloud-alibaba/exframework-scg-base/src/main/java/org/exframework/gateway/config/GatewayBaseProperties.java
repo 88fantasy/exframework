@@ -18,7 +18,7 @@ public class GatewayBaseProperties {
     /**
      * 网关白名单
      */
-    public List<String> gatewayExcludes;
+    private List<String> gatewayExcludes;
 
     /**
      * 获取接口验证白名单

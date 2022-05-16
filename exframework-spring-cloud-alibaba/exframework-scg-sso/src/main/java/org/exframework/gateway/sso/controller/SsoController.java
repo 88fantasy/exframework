@@ -6,6 +6,7 @@ import org.exframework.gateway.sso.dto.LoginRequest;
 import org.exframework.gateway.sso.dto.LoginResponse;
 import org.exframework.gateway.sso.dto.SmsLoginRequest;
 import org.exframework.gateway.sso.service.ISsoLoginService;
+import org.exframework.spring.boot.captcha.annotation.CaptchaRequired;
 import org.exframework.support.rest.entity.ApiResponseData;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
@@ -29,12 +30,14 @@ public abstract class SsoController<T> {
      */
     public abstract ISsoLoginService<T> getSsoService();
 
+    @CaptchaRequired
     @ApiOperation(value = "登录")
     @PostMapping("/login")
     public ApiResponseData<LoginResponse> login(@ApiParam(value = "登录信息", required = true) @RequestBody @Validated LoginRequest request) {
         return new ApiResponseData(getSsoService().login(request));
     }
 
+    @CaptchaRequired
     @ApiOperation(value = "短信登录")
     @PostMapping("/smsLogin")
     public ApiResponseData<LoginResponse> smsLogin(@ApiParam(value = "短信登录信息", required = true) @RequestBody @Validated SmsLoginRequest request) {

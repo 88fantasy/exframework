@@ -21,8 +21,11 @@ import java.util.concurrent.TimeUnit;
  **/
 public class DefaultSaReactorFilter extends SaReactorFilter {
 
-    /** redis中缓存ip鉴权失败次数 */
-    private final String IP_FAILCOUNT_PREFIX =  "requestIp:forbidCount:%s";
+    /**
+     * redis中缓存ip鉴权失败次数
+     */
+    private final String IP_FAIL_COUNT_PREFIX = "requestIp:forbidCount:%s";
+
 
     public DefaultSaReactorFilter(GatewayBaseProperties properties, RedisTemplate<String, Object> redisTemplate) {
         // 指定 [拦截路由]
@@ -38,7 +41,7 @@ public class DefaultSaReactorFilter extends SaReactorFilter {
                     exchange.getResponse().getHeaders().set("Content-Type", "application/json; charset=utf-8");
                     // 同一个ip鉴权超过一定次数进行封禁
                     String requestIp = NetworkIpUtils.getIpAddress(exchange.getRequest());
-                    String key = String.format(IP_FAILCOUNT_PREFIX, requestIp);
+                    String key = String.format(IP_FAIL_COUNT_PREFIX, requestIp);
                     Integer forbidCount = (Integer) redisTemplate.boundValueOps(key).get();
                     if (Objects.nonNull(forbidCount) && forbidCount >= properties.getBlockLimit()) {
                         return new ApiResponseData<>(ResultCode.UNAUTHORIZED, "您的帐号已被锁定，请联系管理员", null);

@@ -36,10 +36,10 @@ public class DefaultRedisConfig extends CachingConfigurerSupport {
         om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
         om.activateDefaultTyping( LaissezFaireSubTypeValidator.instance, ObjectMapper.DefaultTyping.NON_FINAL, JsonTypeInfo.As.WRAPPER_ARRAY);
         jacksonSeial.setObjectMapper(om);
-        template.setValueSerializer((RedisSerializer<Object>) jacksonSeial);
-        template.setKeySerializer((RedisSerializer<?>) new StringRedisSerializer());
-        template.setHashKeySerializer((RedisSerializer<?>) new StringRedisSerializer());
-        template.setHashValueSerializer((RedisSerializer<?>) jacksonSeial);
+        template.setValueSerializer(jacksonSeial);
+        template.setKeySerializer(new StringRedisSerializer());
+        template.setHashKeySerializer(new StringRedisSerializer());
+        template.setHashValueSerializer(jacksonSeial);
         template.afterPropertiesSet();
         return template;
     }

@@ -31,13 +31,13 @@ import java.security.KeyPair;
 import java.util.concurrent.TimeUnit;
 
 /**
- * 验证码
+ * 工具
  *
- * @author: lls
+ * @author: rwe
  * @version: 1.0
- * @date: 2021-2-11
+ * @date: 2022-5-15
  */
-@Api(tags = {"验证码、随机盐值"})
+@Api(tags = "工具")
 @RestController
 @RequestMapping(value = "/tool")
 public class ToolController {
@@ -46,42 +46,6 @@ public class ToolController {
 
     @Autowired
     private RedisTemplate<String, Object> redisTemplate;
-
-    @Autowired
-    ThreadPoolTaskExecutor threadPoolTaskExecutor;
-
-
-    @ApiOperation(value = "生成验证码")
-    @GetMapping("/captcha")
-    public ResponseEntity<byte[]> getCaptcha(@RequestParam("sign") String sign) {
-
-        if (StrUtil.isBlank(sign)) {
-            throw new ApiException(ApiResponse.PARAM_NOT_ENOUGH);
-        }
-        // 设置相应类型,告诉浏览器输出的内容为图片
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.asMediaType(MediaType.IMAGE_JPEG));
-        // 不缓存此内容
-        headers.setPragma("No-cache");
-        headers.setCacheControl(CacheControl.noCache());
-        headers.setDate("Expire", 0);
-        try {
-            CaptchaUtil tool = new CaptchaUtil();
-            StringBuffer code = new StringBuffer();
-            BufferedImage image = tool.genRandomCodeImage(code);
-
-            redisTemplate.opsForValue().set(SsoConstants.KEY_CAPTCHA_PREFIX.concat(sign), code.toString(), 60, TimeUnit.SECONDS);
-
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            // 将内存中的图片通过流动形式输出到客户端
-            ImageIO.write(image, "JPEG", baos);
-            return new ResponseEntity<>(baos.toByteArray(), headers, HttpStatus.OK);
-        } catch (Exception e) {
-            log.error("生成验证码失败----->{}", e);
-            throw new ServerException("生成验证码失败");
-        }
-
-    }
 
     @ApiOperation(value = "随机盐值")
     @GetMapping("/random")

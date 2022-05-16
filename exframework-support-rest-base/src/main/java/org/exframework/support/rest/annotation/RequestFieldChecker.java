@@ -2,12 +2,16 @@ package org.exframework.support.rest.annotation;
 
 import org.exframework.support.common.util.SpringContextUtils;
 import org.exframework.support.common.util.StrUtils;
-import org.exframework.support.rest.exception.ServerException;
+import org.springframework.beans.BeansException;
 
-import javax.validation.*;
+import javax.validation.Constraint;
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
+import javax.validation.Payload;
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
+import java.lang.reflect.InvocationTargetException;
 import java.util.function.Function;
 
 import static java.lang.annotation.ElementType.*;
@@ -22,7 +26,6 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
  * @version 创建时间：2021年5月21日 下午4:42:56
  *  请求字段检查器
  */
-
 public @interface RequestFieldChecker {
 
     /**
@@ -30,17 +33,7 @@ public @interface RequestFieldChecker {
      *
      * @return
      */
-    Class<? extends Function<Object, String>> value();
-
-    /**
-     * 抛出错误类型
-     * (用于全局错误拦截)
-     *
-     * @return
-     */
-    Class<? extends RuntimeException> exception() default ConstraintDeclarationException.class;
-
-    String message() default "校验不通过";
+    Class<? extends Function<Object, RuntimeException>> value();
 
     /**
      * 当字段值为空时抛出错误信息
@@ -58,36 +51,43 @@ public @interface RequestFieldChecker {
 
     class RequestFieldCheckerValidator implements ConstraintValidator<RequestFieldChecker, Object> {
 
-        private Class<? extends Function<Object, String>> function;
-
-        private Class<? extends RuntimeException> exception;
+        private Class<? extends Function<Object, RuntimeException>> function;
 
         private String notNullMessage;
 
         @Override
         public void initialize(RequestFieldChecker constraintAnnotation) {
             function = constraintAnnotation.value();
-            exception = constraintAnnotation.exception();
             notNullMessage = constraintAnnotation.notNullMessage();
         }
 
         @Override
         public boolean isValid(Object value, ConstraintValidatorContext context) {
+            String message = null;
             if (value != null) {
-                Function<Object, String> f = SpringContextUtils.getBeanByClass(function);
-                String message = f.apply(value);
-                if (StrUtils.hasLength(message)) {
-                    RuntimeException runtimeException;
+                Function<Object, RuntimeException> f = null;
+                try {
+                    f = SpringContextUtils.getBeanByClass(function);
+                } catch (BeansException e) {
                     try {
-                        runtimeException = exception.getDeclaredConstructor(String.class).newInstance(message);
-                    } catch (Exception e) {
-                        throw new ServerException(message);
+                        f = function.getDeclaredConstructor().newInstance();
+                    } catch (InstantiationException | IllegalAccessException | InvocationTargetException |
+                             NoSuchMethodException e2) {
+                        message = e2.getMessage();
                     }
-                    throw runtimeException;
                 }
-            } else if(StrUtils.hasLength(notNullMessage)) {
+                RuntimeException exception = f.apply(value);
+                if (exception != null) {
+                    throw exception;
+                }
+            } else if (StrUtils.hasLength(notNullMessage)) {
+                message = notNullMessage;
+            }
+
+            if (StrUtils.hasText(message)) {
                 context.disableDefaultConstraintViolation();
-                context.buildConstraintViolationWithTemplate(notNullMessage).addConstraintViolation();
+                context.buildConstraintViolationWithTemplate(message).addConstraintViolation();
+                return false;
             }
             return true;
         }

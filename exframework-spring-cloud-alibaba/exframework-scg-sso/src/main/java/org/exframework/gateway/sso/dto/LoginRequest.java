@@ -26,14 +26,6 @@ public class LoginRequest {
     @NotEmpty
     private String device;
 
-    @ApiModelProperty(value = "图片验证码标记", required = true)
-    @NotEmpty
-    private String sign;
-
-    @ApiModelProperty(value = "验证码", required = true)
-    @NotEmpty
-    private String captcha;
-
     public String getUsername() {
         return username;
     }
@@ -61,21 +53,4 @@ public class LoginRequest {
         return this;
     }
 
-    public String getSign() {
-        return sign;
-    }
-
-    public LoginRequest setSign(String sign) {
-        this.sign = sign;
-        return this;
-    }
-
-    public String getCaptcha() {
-        return captcha;
-    }
-
-    public LoginRequest setCaptcha(String captcha) {
-        this.captcha = captcha;
-        return this;
-    }
 }
