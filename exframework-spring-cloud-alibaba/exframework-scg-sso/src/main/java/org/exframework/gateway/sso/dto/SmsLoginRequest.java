@@ -2,7 +2,6 @@ package org.exframework.gateway.sso.dto;
 
 import cn.hutool.core.lang.RegexPool;
 import io.swagger.annotations.ApiModelProperty;
-import org.exframework.support.common.lang.Validator;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
@@ -25,14 +24,6 @@ public class SmsLoginRequest {
     @NotBlank
     private String sms;
 
-    @ApiModelProperty(value = "验证码", required = true)
-    @NotBlank
-    private String captcha;
-
-    @ApiModelProperty(value = "盐值", required = true)
-    @NotBlank
-    private String sign;
-
     @ApiModelProperty(value = "登录端口")
     @NotEmpty
     private String device;
@@ -52,24 +43,6 @@ public class SmsLoginRequest {
 
     public SmsLoginRequest setSms(String sms) {
         this.sms = sms;
-        return this;
-    }
-
-    public String getCaptcha() {
-        return captcha;
-    }
-
-    public SmsLoginRequest setCaptcha(String captcha) {
-        this.captcha = captcha;
-        return this;
-    }
-
-    public String getSign() {
-        return sign;
-    }
-
-    public SmsLoginRequest setSign(String sign) {
-        this.sign = sign;
         return this;
     }
 

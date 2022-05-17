@@ -10,31 +10,30 @@ import io.swagger.annotations.ApiModelProperty;
  * @date 2021/11/10 23:33
  **/
 @ApiModel("登录响应")
-public class LoginResponse {
+public class BaseLoginResponse {
 
     /** token **/
     @ApiModelProperty("token")
     private String token;
 
-    /**是否第一次登录（0-否，1-是） **/
     @ApiModelProperty("是否第一次登录")
-    private Integer isFirstLogin;
+    private Boolean firstLogin;
 
     public String getToken() {
         return token;
     }
 
-    public LoginResponse setToken(String token) {
+    public BaseLoginResponse setToken(String token) {
         this.token = token;
         return this;
     }
 
-    public Integer getIsFirstLogin() {
-        return isFirstLogin;
+    public Boolean getFirstLogin() {
+        return firstLogin;
     }
 
-    public LoginResponse setIsFirstLogin(Integer isFirstLogin) {
-        this.isFirstLogin = isFirstLogin;
+    public BaseLoginResponse setFirstLogin(Boolean firstLogin) {
+        this.firstLogin = firstLogin;
         return this;
     }
 }

@@ -20,14 +20,9 @@ import java.nio.charset.StandardCharsets;
  */
 public class GatewayUtils {
 
-    public static Mono<Void> writeResponse(ServerWebExchange exchange, ResultCode resultCode) {
+    public static Mono<Void> getVoidMono(ServerWebExchange exchange, ApiResponseData<?> response) {
         ServerHttpResponse resp = exchange.getResponse();
         resp.getHeaders().add("Content-Type", "application/json;charset=UTF-8");
-
-        return getVoidMono(exchange, resp, new ApiResponseData<String>(resultCode, null));
-    }
-
-    public static Mono<Void> getVoidMono(ServerWebExchange exchange, ServerHttpResponse resp, ApiResponseData<?> response) {
         DataBuffer buffer = resp.bufferFactory().wrap(JSONUtil.toJsonStr(response).getBytes(StandardCharsets.UTF_8));
         return resp.writeWith(Mono.just(buffer));
     }

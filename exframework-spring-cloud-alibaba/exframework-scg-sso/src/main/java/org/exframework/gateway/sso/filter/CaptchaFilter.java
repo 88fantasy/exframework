@@ -1,5 +1,6 @@
 package org.exframework.gateway.sso.filter;
 
+import com.anji.captcha.model.common.ResponseModel;
 import com.anji.captcha.model.vo.CaptchaVO;
 import com.anji.captcha.service.CaptchaService;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -49,17 +50,18 @@ public class CaptchaFilter implements WebFilter, Ordered {
         if (captchaLinks.stream().anyMatch(link -> path.equals(link))) {
             String captchaJson = request.getHeaders().getFirst(CAPTCHA_HEADER);
             if (!StrUtils.hasText(captchaJson)) {
-                return GatewayUtils.getVoidMono(exchange, exchange.getResponse(), new ApiResponseData<>(ResultCode.BAD_REQUEST, "header 缺少验证码", null));
+                return GatewayUtils.getVoidMono(exchange, new ApiResponseData<>(ResultCode.BAD_REQUEST, "header 缺少验证码", null));
             }
             try {
                 CaptchaVO captchaVO = new ObjectMapper().readValue(captchaJson, CaptchaVO.class);
-                if (!captchaService.verification(captchaVO).isSuccess()) {
-                    return GatewayUtils.getVoidMono(exchange, exchange.getResponse(), new ApiResponseData<>(ResultCode.BAD_REQUEST, "验证码错误", null));
+                ResponseModel rm = captchaService.verification(captchaVO);
+                if (!rm.isSuccess()) {
+                    return GatewayUtils.getVoidMono(exchange, new ApiResponseData<>(ResultCode.BAD_REQUEST, "验证码错误:"+rm.getRepMsg(), null));
                 }
             } catch (JsonProcessingException e) {
                 String msg = "验证码格式错误:" + e.getMessage();
                 logger.error(msg, e);
-                return GatewayUtils.getVoidMono(exchange, exchange.getResponse(), new ApiResponseData<>(ResultCode.BAD_REQUEST, msg, null));
+                return GatewayUtils.getVoidMono(exchange, new ApiResponseData<>(ResultCode.BAD_REQUEST, msg, null));
             }
         }
         return chain.filter(exchange);

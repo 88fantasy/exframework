@@ -10,7 +10,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.exframework.gateway.sso.SsoConstants;
 import org.exframework.gateway.sso.dto.LoginRequest;
-import org.exframework.gateway.sso.dto.LoginResponse;
+import org.exframework.gateway.sso.dto.BaseLoginResponse;
 import org.exframework.gateway.sso.dto.SmsLoginRequest;
 import org.exframework.gateway.sso.entity.KeyPairString;
 import org.exframework.gateway.sso.entity.UserDetail;
@@ -27,7 +27,7 @@ import java.util.concurrent.TimeUnit;
  * @author rwe
  * @date 2021/11/10 23:42
  **/
-public interface ISsoLoginService<T> {
+public interface ISsoLoginService<T, R extends BaseLoginResponse> {
 
     String REDIS_KEY_USER_INFO = "/sso/user/%s";
 
@@ -41,10 +41,12 @@ public interface ISsoLoginService<T> {
     /**
      * 获取用户信息
      *
-     * @param username 账号名(或其他)
+     * @param userId 账号名(或其他)
      * @return 用户信息
      */
-    UserDetail<T> getUserDetail(String username);
+    UserDetail<T> getUserDetail(String userId);
+
+    R mapping(BaseLoginResponse response, UserDetail<T> user);
 
     /**
      * 检验密码
@@ -66,19 +68,13 @@ public interface ISsoLoginService<T> {
     }
 
     /**
-     * 登录逻辑
-     *
-     * @param request 登录请求
-     * @return 登录响应
+     * 解密密码
+     * @param password
+     * @return
      */
-    default LoginResponse login(LoginRequest request) throws NotAuthException {
-        RedisTemplate<String, Object> redisTemplate = getRedisTemplate();
+    default String decrypt(String value, String password) {
 
-        String username = request.getUsername();
-
-        String password = request.getPassword();
-
-        String keyPairString = (String) redisTemplate.opsForValue().get(SsoConstants.KEY_SALT_PREFIX.concat(username));
+        String keyPairString = (String) getRedisTemplate().opsForValue().get(SsoConstants.KEY_SALT_PREFIX.concat(value));
         if (!StrUtils.hasText(keyPairString)) {
             throw new NotAuthException("盐值已失效");
         }
@@ -91,23 +87,36 @@ public interface ISsoLoginService<T> {
         }
         SM2 sm2 = SmUtil.sm2(keyPair.getPrivateKey(), keyPair.getPublicKey());
 
-        String decryptStr;
         try {
-            decryptStr = StrUtil.utf8Str(sm2.decryptFromBcd(password, KeyType.PrivateKey));
+            return StrUtil.utf8Str(sm2.decryptFromBcd(password, KeyType.PrivateKey));
         } catch (Exception e) {
             //此处加密数据可能缺少04开头，解密会失败，需要手动在body前拼上04，body="04"+body
-            decryptStr = StrUtil.utf8Str(sm2.decryptFromBcd("04".concat(password), KeyType.PrivateKey));
+            return StrUtil.utf8Str(sm2.decryptFromBcd("04".concat(password), KeyType.PrivateKey));
         }
+    }
+
+
+    /**
+     * 登录逻辑
+     *
+     * @param request 登录请求
+     * @return 登录响应
+     */
+    default R login(LoginRequest request) throws NotAuthException {
+
+        String username = request.getUsername();
+
+        String password = decrypt(username, request.getPassword());
 
         UserDetail<T> userDetail = getUserDetail(username);
         try {
-            if (!checkPassword(userDetail, decryptStr)) {
+            if (!checkPassword(userDetail, password)) {
                 throw new NotAuthException();
             }
-            LoginResponse loginResponse = login(userDetail, request.getDevice());
+            R response = login(userDetail, request.getDevice());
             // 登录日志-成功
             saveLoginLog(true, userDetail.getData());
-            return loginResponse;
+            return response;
         } catch (Exception ex) {
             // 登录日志-失败
             saveLoginLog(false, userDetail.getData());
@@ -131,7 +140,7 @@ public interface ISsoLoginService<T> {
      * @param request 登录请求
      * @return 登录响应
      */
-    default LoginResponse smsLogin(SmsLoginRequest request) throws NotAuthException {
+    default BaseLoginResponse smsLogin(SmsLoginRequest request) throws NotAuthException {
 
         String username = request.getPhone();
 
@@ -146,11 +155,11 @@ public interface ISsoLoginService<T> {
 
     boolean checkSms(String mobile, String sms);
 
-    default LoginResponse login(UserDetail<T> userDetail, String device) {
+    default R login(UserDetail<T> userDetail, String device) {
         device = StrUtils.hasText(device) ? device : SsoConstants.DEFAULT_DEVICE;
         StpUtil.login(userDetail.getUserId(), device);
         cacheUser(userDetail);
-        return new LoginResponse().setToken(StpUtil.getTokenValueByLoginId(userDetail.getUserId(), device));
+        return mapping(new BaseLoginResponse().setToken(StpUtil.getTokenValueByLoginId(userDetail.getUserId(), device)), userDetail);
     }
 
     /**

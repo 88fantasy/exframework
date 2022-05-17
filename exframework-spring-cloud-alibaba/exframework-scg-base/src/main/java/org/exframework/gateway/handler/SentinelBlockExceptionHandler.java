@@ -5,6 +5,7 @@ import com.alibaba.csp.sentinel.slots.block.authority.AuthorityException;
 import com.alibaba.csp.sentinel.slots.block.flow.FlowException;
 import com.alibaba.csp.sentinel.util.function.Supplier;
 import org.exframework.gateway.utils.GatewayUtils;
+import org.exframework.support.rest.entity.ApiResponseData;
 import org.exframework.support.rest.enums.ResultCode;
 import org.springframework.cloud.gateway.support.NotFoundException;
 import org.springframework.http.codec.HttpMessageWriter;
@@ -56,7 +57,7 @@ public class SentinelBlockExceptionHandler implements WebExceptionHandler {
 			resultCode = ResultCode.NOT_FOUND;
 		}
 		
-		Mono<Void> mono = GatewayUtils.writeResponse(exchange, resultCode);
+		Mono<Void> mono = GatewayUtils.getVoidMono(exchange, new ApiResponseData<>(resultCode));
 		
 		return GatewayCallbackManager.getBlockHandler().handleRequest(exchange, ex).flatMap(response -> mono);
 	}
