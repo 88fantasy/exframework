@@ -9,8 +9,8 @@ import cn.hutool.crypto.asymmetric.SM2;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.exframework.gateway.sso.SsoConstants;
-import org.exframework.gateway.sso.dto.LoginRequest;
 import org.exframework.gateway.sso.dto.BaseLoginResponse;
+import org.exframework.gateway.sso.dto.LoginRequest;
 import org.exframework.gateway.sso.dto.SmsLoginRequest;
 import org.exframework.gateway.sso.entity.KeyPairString;
 import org.exframework.gateway.sso.entity.UserDetail;
@@ -69,6 +69,7 @@ public interface ISsoLoginService<T, R extends BaseLoginResponse> {
 
     /**
      * 解密密码
+     *
      * @param password
      * @return
      */
@@ -157,8 +158,8 @@ public interface ISsoLoginService<T, R extends BaseLoginResponse> {
 
     default R login(UserDetail<T> userDetail, String device) {
         device = StrUtils.hasText(device) ? device : SsoConstants.DEFAULT_DEVICE;
-        StpUtil.login(userDetail.getUserId(), device);
         cacheUser(userDetail);
+        StpUtil.login(userDetail.getUserId(), device);
         return mapping(new BaseLoginResponse().setToken(StpUtil.getTokenValueByLoginId(userDetail.getUserId(), device)), userDetail);
     }
 
@@ -179,20 +180,24 @@ public interface ISsoLoginService<T, R extends BaseLoginResponse> {
         }
     }
 
-    default T currentUserDetail() {
-        String user = StpUtil.getLoginIdAsString();
+    default T getCacheUser(String userId) {
         T t;
-        String userJson = (String) getRedisTemplate().opsForValue().get(String.format(ISsoLoginService.REDIS_KEY_USER_INFO, user));
+        String userJson = (String) getRedisTemplate().opsForValue().get(String.format(ISsoLoginService.REDIS_KEY_USER_INFO, userId));
         if (StrUtils.hasText(userJson)) {
             try {
                 t = new ObjectMapper().readValue(userJson, getUserDetailClass());
             } catch (JsonProcessingException e) {
-                t = getUserDetail(user).getData();
+                t = getUserDetail(userId).getData();
             }
         } else {
-            t = getUserDetail(user).getData();
+            t = getUserDetail(userId).getData();
         }
         return t;
+    }
+
+    default T currentUserDetail() {
+        String user = StpUtil.getLoginIdAsString();
+        return getCacheUser(user);
     }
 
     /**
