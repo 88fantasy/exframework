@@ -3,8 +3,10 @@ package org.exframework.spring.boot.chinaunicom.rest.exception;
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import io.swagger.annotations.ApiModelProperty;
 import org.exframework.spring.boot.chinaunicom.rest.entity.ChinaUnicomApiResponseData;
+import org.exframework.support.rest.entity.ApiResponseData;
 import org.exframework.support.rest.enums.ResultCode;
 import org.exframework.support.rest.exception.ApiException;
+import org.exframework.support.rest.exception.CheckerException;
 import org.exframework.support.rest.exception.ServerException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -63,6 +65,12 @@ public class ChinaUnicomGlobalControllerExceptionControllerAdvice {
             }).collect(Collectors.toList()));
         }
         return new ChinaUnicomApiResponseData<>(ResultCode.BAD_REQUEST, PARAMS_ERROR, errors);
+    }
+
+    @ExceptionHandler(CheckerException.class)
+    public ChinaUnicomApiResponseData<Object> apiExceptionHandler(CheckerException e) {
+        errorHandle(e);
+        return new ChinaUnicomApiResponseData<>(String.valueOf(e.getCode()), e.getMessage(), e.getData());
     }
 
     @ExceptionHandler(ApiException.class)

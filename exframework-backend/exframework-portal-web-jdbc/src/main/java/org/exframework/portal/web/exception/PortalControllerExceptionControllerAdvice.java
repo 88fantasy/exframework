@@ -1,5 +1,6 @@
 package org.exframework.portal.web.exception;
 
+import org.apache.ibatis.exceptions.PersistenceException;
 import org.apache.ibatis.exceptions.TooManyResultsException;
 import org.exframework.support.rest.entity.ApiResponseData;
 import org.exframework.support.rest.enums.ResultCode;
@@ -24,6 +25,15 @@ public class PortalControllerExceptionControllerAdvice {
     private static final Logger logger = LoggerFactory.getLogger(PortalControllerExceptionControllerAdvice.class.getName());
 
     public static final String DATABASE_ERROR = "数据库执行错误";
+
+    /**
+     * 数据库执行错误错误
+     */
+    @ExceptionHandler(PersistenceException.class)
+    public ApiResponseData<?> persistenceExceptionHandler(PersistenceException e) {
+        logger.error(e.getMessage(), e);
+        return new ApiResponseData<>(ResultCode.INTERNAL_SERVER_ERROR, DATABASE_ERROR, e.getMessage());
+    }
 
     /**
      * 数据库执行错误错误

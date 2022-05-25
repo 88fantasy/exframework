@@ -28,10 +28,4 @@ public @interface EntityFieldChecker {
      */
     Class<? extends Function<Object, String>> value();
 
-    /**
-     * 抛出错误类型
-     * (用于全局错误拦截)
-     * @return
-     */
-    Class<? extends RuntimeException> exception() default ApiException.class;
 }

@@ -2,7 +2,6 @@ package org.exframework.support.rest.exception;
 
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import io.swagger.annotations.ApiModelProperty;
-import io.swagger.v3.oas.annotations.media.Schema;
 import org.exframework.support.rest.entity.ApiResponseData;
 import org.exframework.support.rest.enums.ResultCode;
 import org.slf4j.Logger;
@@ -74,6 +73,12 @@ public class GlobalControllerExceptionControllerAdvice {
             }).collect(Collectors.toList()));
         }
         return new ApiResponseData<>(ResultCode.BAD_REQUEST, PARAMS_ERROR, errors);
+    }
+
+    @ExceptionHandler(CheckerException.class)
+    public ApiResponseData<Object> apiExceptionHandler(CheckerException e) {
+        errorHandle(e);
+        return new ApiResponseData<>(e.getCode(), e.getMessage(), false, e.getData());
     }
 
     @ExceptionHandler(ApiException.class)

@@ -2,6 +2,8 @@ package org.exframework.support.rest.annotation;
 
 import org.exframework.support.common.util.SpringContextUtils;
 import org.exframework.support.common.util.StrUtils;
+import org.exframework.support.rest.exception.ApiException;
+import org.exframework.support.rest.exception.CheckerException;
 import org.springframework.beans.BeansException;
 
 import javax.validation.Constraint;
@@ -33,16 +35,14 @@ public @interface RequestFieldChecker {
      *
      * @return
      */
-    Class<? extends Function<Object, RuntimeException>> value();
+    Class<? extends Function<Object, String>> value();
 
     /**
      * 当字段值为空时抛出错误信息
-     * 不设置时忽略 null
      *
      * @return
-     * @since 0.8.3
      */
-    String notNullMessage() default "";
+    String message() default "";
 
     Class<?>[] groups() default {};
 
@@ -51,21 +51,21 @@ public @interface RequestFieldChecker {
 
     class RequestFieldCheckerValidator implements ConstraintValidator<RequestFieldChecker, Object> {
 
-        private Class<? extends Function<Object, RuntimeException>> function;
+        private Class<? extends Function<Object, String>> function;
 
-        private String notNullMessage;
+        private String message;
 
         @Override
         public void initialize(RequestFieldChecker constraintAnnotation) {
             function = constraintAnnotation.value();
-            notNullMessage = constraintAnnotation.notNullMessage();
+            message = constraintAnnotation.message();
         }
 
         @Override
         public boolean isValid(Object value, ConstraintValidatorContext context) {
-            String message = null;
+            String message = this.message;
             if (value != null) {
-                Function<Object, RuntimeException> f = null;
+                Function<Object, String> f = null;
                 try {
                     f = SpringContextUtils.getBeanByClass(function);
                 } catch (BeansException e) {
@@ -76,14 +76,17 @@ public @interface RequestFieldChecker {
                         message = e2.getMessage();
                     }
                 }
-                RuntimeException exception = f.apply(value);
-                if (exception != null) {
-                    throw exception;
+                try {
+                    String result = f.apply(value);
+                    if (StrUtils.hasText(result)) {
+                        message = result;
+                    }
+                } catch (ApiException e) {
+                    throw new CheckerException(e.getCode(), e.getMsg(), e.getData());
+                } catch (Exception e) {
+                    message = e.getMessage();
                 }
-            } else if (StrUtils.hasLength(notNullMessage)) {
-                message = notNullMessage;
             }
-
             if (StrUtils.hasText(message)) {
                 context.disableDefaultConstraintViolation();
                 context.buildConstraintViolationWithTemplate(message).addConstraintViolation();

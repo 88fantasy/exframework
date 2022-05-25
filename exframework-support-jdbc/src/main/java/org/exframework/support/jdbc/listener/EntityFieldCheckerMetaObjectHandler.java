@@ -35,18 +35,11 @@ public class EntityFieldCheckerMetaObjectHandler implements MetaObjectHandler {
             ReflectionUtils.doWithFields(clazz, field -> {
                         EntityFieldChecker checker = field.getAnnotation(EntityFieldChecker.class);
                         Class<? extends Function<Object, String>> f = checker.value();
-                        Class<? extends RuntimeException> exception = checker.exception();
                         Function<Object, String> function = SpringContextUtils.getBeanByClass(f);
                         Object value = getFieldValByName(field.getName(), metaObject);
                         String message = function.apply(value);
                         if (StrUtils.hasLength(message)) {
-                            RuntimeException runtimeException;
-                            try {
-                                runtimeException = exception.getDeclaredConstructor(String.class).newInstance(message);
-                            } catch (Exception e) {
-                                throw new ServerException(message);
-                            }
-                            throw runtimeException;
+                            throw new ServerException(message);
                         }
                     }
                     , field -> field.isAnnotationPresent(EntityFieldChecker.class));
