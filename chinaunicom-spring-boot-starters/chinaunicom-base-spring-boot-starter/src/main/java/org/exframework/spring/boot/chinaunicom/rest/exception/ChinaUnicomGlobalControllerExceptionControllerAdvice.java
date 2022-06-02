@@ -68,7 +68,7 @@ public class ChinaUnicomGlobalControllerExceptionControllerAdvice {
     }
 
     @ExceptionHandler(CheckerException.class)
-    public ChinaUnicomApiResponseData<Object> apiExceptionHandler(CheckerException e) {
+    public ChinaUnicomApiResponseData<Object> checkerExceptionHandler(CheckerException e) {
         errorHandle(e);
         return new ChinaUnicomApiResponseData<>(String.valueOf(e.getCode()), e.getMessage(), e.getData());
     }

@@ -16,7 +16,6 @@ import java.util.Collection;
  * 自动注解填充处理器
  *
  * @param <A> 适配注解
- * @param <R>
  * @author rwe
  */
 public interface AnnotationSetterMetaObjectHandler<A extends Annotation> extends MetaObjectHandler {
@@ -51,7 +50,10 @@ public interface AnnotationSetterMetaObjectHandler<A extends Annotation> extends
         ReflectionUtils.doWithFields(o.getClass(), field -> {
             TableField tableField = field.getAnnotation(TableField.class);
             if (fieldFills.contains(tableField.fill())) {
-                setFieldValByName(field.getName(), getObject(o), metaObject);
+                Object value = getObject(o);
+                if (passIfNull(o)) {
+                    setFieldValByName(field.getName(), value, metaObject);
+                }
             }
         }, field -> field.isAnnotationPresent(TableField.class) && field.isAnnotationPresent(clazz));
     }
@@ -63,4 +65,14 @@ public interface AnnotationSetterMetaObjectHandler<A extends Annotation> extends
      * @return 值
      */
     Object getObject(Object row);
+
+    /**
+     * 遇到空值时是否跳过
+     *
+     * @param row 行记录
+     * @return
+     */
+    default boolean passIfNull(Object row) {
+        return true;
+    }
 }

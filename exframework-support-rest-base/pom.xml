@@ -35,6 +35,11 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
+			<groupId>io.projectreactor</groupId>
+			<artifactId>reactor-core</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
 			<groupId>org.exframework</groupId>
 			<artifactId>exframework-support-common</artifactId>
 		</dependency>

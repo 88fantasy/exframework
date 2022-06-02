@@ -63,7 +63,7 @@ public @interface RequestFieldChecker {
 
         @Override
         public boolean isValid(Object value, ConstraintValidatorContext context) {
-            String message = this.message;
+            String message = null;
             if (value != null) {
                 Function<Object, String> f = null;
                 try {
@@ -86,6 +86,9 @@ public @interface RequestFieldChecker {
                 } catch (Exception e) {
                     message = e.getMessage();
                 }
+            }
+            else if(StrUtils.hasText(this.message)){
+                message = this.message;
             }
             if (StrUtils.hasText(message)) {
                 context.disableDefaultConstraintViolation();

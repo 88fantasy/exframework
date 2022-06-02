@@ -20,6 +20,8 @@ import java.lang.annotation.*;
 public @interface PulsarConsumer {
 
 	String value();
+
+	String broker();
 	
 	String subscriptionName() default "";
 	

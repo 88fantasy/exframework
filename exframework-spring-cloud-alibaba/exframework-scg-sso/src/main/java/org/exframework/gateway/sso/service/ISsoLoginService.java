@@ -200,10 +200,18 @@ public interface ISsoLoginService<T, R extends BaseLoginResponse> {
         return getCacheUser(user);
     }
 
-    /**
-     * 默认登出
-     */
-    default void logout() {
+    default void logout(String device) {
+        Object id = null;
+        if(StpUtil.isLogin()) {
+            id = StpUtil.getLoginId();
+            StpUtil.logout(id, device);
+        }
+        else {
+            logoutWithoutId();
+        }
+    }
+
+    default void logoutWithoutId() {
         StpUtil.logout();
     }
 }

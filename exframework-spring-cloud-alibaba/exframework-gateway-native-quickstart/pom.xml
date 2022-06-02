@@ -6,8 +6,8 @@
 		<artifactId>exframework-spring-cloud-alibaba</artifactId>
 		<version>0.9.0-SNAPSHOT</version>
 	</parent>
-	<artifactId>exframework-spring-cloud-gateway-native-quickstart</artifactId>
-	<name>exframework-spring-cloud-gateway-native-quickstart</name>
+	<artifactId>exframework-gateway-native-quickstart</artifactId>
+	<name>exframework-gateway-native-quickstart</name>
 
 	<build>
 		<plugins>

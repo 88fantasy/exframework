@@ -8,9 +8,9 @@
 		<artifactId>exframework-spring-boot-starters</artifactId>
 		<version>0.9.0-SNAPSHOT</version>
 	</parent>
-	<artifactId>captcha-reactor-spring-boot-starter</artifactId>
+	<artifactId>captcha-spring-boot-starter</artifactId>
 	<packaging>jar</packaging>
-	<name>captcha-reactor-spring-boot-starter</name>
+	<name>captcha-spring-boot-starter</name>
 
 	<build>
 		<plugins>
@@ -35,6 +35,16 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-web</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.projectreactor</groupId>
+			<artifactId>reactor-core</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>

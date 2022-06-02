@@ -7,12 +7,14 @@ import org.exframework.gateway.sso.dto.BaseLoginResponse;
 import org.exframework.gateway.sso.dto.SmsLoginRequest;
 import org.exframework.gateway.sso.service.ISsoLoginService;
 import org.exframework.spring.boot.captcha.annotation.CaptchaRequired;
+import org.exframework.support.common.util.StrUtils;
 import org.exframework.support.rest.entity.ApiResponseData;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * 认证
@@ -47,8 +49,8 @@ public abstract class SsoController<T, R extends BaseLoginResponse> {
 
     @ApiOperation(value = "注销")
     @GetMapping(value = "/logout")
-    public ApiResponseData<String> logout() {
-        getSsoService().logout();
+    public ApiResponseData<String> logout(@RequestParam(value = "device", required = false) String device) {
+        getSsoService().logout(device);
         return new ApiResponseData<>(null);
     }
 

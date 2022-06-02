@@ -21,6 +21,6 @@
         <module>redis-spring-boot-starter</module>
         <module>mongodb-spring-boot-starter</module>
         <module>elasticsearch-spring-boot-starter</module>
-        <module>captcha-reactor-spring-boot-starter</module>
+        <module>captcha-spring-boot-starter</module>
     </modules>
 </project>
