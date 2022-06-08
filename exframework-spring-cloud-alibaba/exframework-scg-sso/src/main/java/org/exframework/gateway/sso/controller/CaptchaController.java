@@ -7,18 +7,10 @@
 package org.exframework.gateway.sso.controller;
 
 import cn.dev33.satoken.reactor.context.SaReactorSyncHolder;
-import com.anji.captcha.model.common.ResponseModel;
-import com.anji.captcha.model.vo.CaptchaVO;
-import com.anji.captcha.service.CaptchaService;
 import io.swagger.annotations.Api;
-import org.exframework.gateway.utils.NetworkIpUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.server.reactive.ServerHttpRequest;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.server.ServerWebExchange;
 
 
 @Api(tags = "验证码")

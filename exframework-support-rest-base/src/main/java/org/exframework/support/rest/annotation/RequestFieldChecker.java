@@ -5,6 +5,7 @@ import org.exframework.support.common.util.StrUtils;
 import org.exframework.support.rest.exception.ApiException;
 import org.exframework.support.rest.exception.CheckerException;
 import org.springframework.beans.BeansException;
+import org.springframework.util.ObjectUtils;
 
 import javax.validation.Constraint;
 import javax.validation.ConstraintValidator;
@@ -42,7 +43,7 @@ public @interface RequestFieldChecker {
      *
      * @return
      */
-    String message() default "";
+    String message() default "不能为空";
 
     Class<?>[] groups() default {};
 
@@ -64,7 +65,7 @@ public @interface RequestFieldChecker {
         @Override
         public boolean isValid(Object value, ConstraintValidatorContext context) {
             String message = null;
-            if (value != null) {
+            if (!ObjectUtils.isEmpty(value)) {
                 Function<Object, String> f = null;
                 try {
                     f = SpringContextUtils.getBeanByClass(function);

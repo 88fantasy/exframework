@@ -2,12 +2,11 @@ package org.exframework.gateway.sso.controller;
 
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import org.exframework.gateway.sso.dto.LoginRequest;
 import org.exframework.gateway.sso.dto.BaseLoginResponse;
+import org.exframework.gateway.sso.dto.LoginRequest;
 import org.exframework.gateway.sso.dto.SmsLoginRequest;
 import org.exframework.gateway.sso.service.ISsoLoginService;
 import org.exframework.spring.boot.captcha.annotation.CaptchaRequired;
-import org.exframework.support.common.util.StrUtils;
 import org.exframework.support.rest.entity.ApiResponseData;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
