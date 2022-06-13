@@ -22,5 +22,6 @@
         <module>mongodb-spring-boot-starter</module>
         <module>elasticsearch-spring-boot-starter</module>
         <module>captcha-spring-boot-starter</module>
+        <module>prometheus-spring-boot-starter</module>
     </modules>
 </project>
