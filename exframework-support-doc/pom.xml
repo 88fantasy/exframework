@@ -23,8 +23,13 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
 			<groupId>org.exframework</groupId>
-			<artifactId>exframework-support-rest</artifactId>
+			<artifactId>exframework-support-rest-base</artifactId>
 		</dependency>
 	</dependencies>
 

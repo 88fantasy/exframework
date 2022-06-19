@@ -13,13 +13,23 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
 			<groupId>org.exframework</groupId>
 			<artifactId>exframework-support-jdbc</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.usthe.sureness</groupId>
 			<artifactId>sureness-core</artifactId>
-			<version>1.0.5</version>
+			<version>1.0.7</version>
 		</dependency>
 
 	</dependencies>
