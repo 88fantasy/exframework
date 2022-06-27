@@ -62,7 +62,7 @@ public class AnnotationDictionaryDataSource implements DictionaryDataSource {
         if (!StringUtils.hasText(dictCode)) {
             dictCode = StrUtils.humpToUnderline(clazz.getSimpleName());
         }
-        logger.info(MessageFormat.format("加载字典{0}", dictCode));
+        logger.debug(MessageFormat.format("加载字典{0}", dictCode));
         return dictCode;
     }
 

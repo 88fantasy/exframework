@@ -16,10 +16,8 @@ import org.springframework.core.Ordered;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import javax.annotation.PostConstruct;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
@@ -28,6 +26,8 @@ import java.util.stream.Collectors;
 public class PortalCoreDdlService implements Buildable, DictionaryDataSource {
 
     private static final Logger logger = LoggerFactory.getLogger(PortalCoreDdlService.class.getName());
+
+    private List<DictionaryDataSource> dataSources = new ArrayList<>();
 
     @Autowired
     ApplicationContext applicationContext;
@@ -41,9 +41,14 @@ public class PortalCoreDdlService implements Buildable, DictionaryDataSource {
     @Autowired
     PortalCoreAccountService portalCoreAccountService;
 
-    public Collection<String> getAllKeys() {
+    @PostConstruct
+    private void init() {
         Map<String, DictionaryDataSource> dss = applicationContext.getBeansOfType(DictionaryDataSource.class);
-        return dss.values().stream().flatMap(source -> source.keys().stream()).collect(Collectors.toList());
+        dataSources = dss.values().stream().sorted(Comparator.comparingInt(DictionaryDataSource::getOrder)).collect(Collectors.toList());
+    }
+
+    public Collection<String> getAllKeys() {
+        return dataSources.stream().flatMap(source -> source.keys().stream()).collect(Collectors.toList());
     }
 
     public Map<String, String> get(Account account, String ddlkey) {
@@ -65,9 +70,7 @@ public class PortalCoreDdlService implements Buildable, DictionaryDataSource {
 
     public List<DictionaryItemValue> getSorted(String ddlkey) {
         List<DictionaryItemValue> result = null;
-        Map<String, DictionaryDataSource> instances = applicationContext.getBeansOfType(DictionaryDataSource.class);
-        List<DictionaryDataSource> dss = instances.values().stream().sorted(Comparator.comparingInt(DictionaryDataSource::getOrder)).collect(Collectors.toList());
-        for (DictionaryDataSource ds : dss) {
+        for (DictionaryDataSource ds : dataSources) {
             result = ds.getValue(ddlkey);
             if (!ObjectUtils.isEmpty(result)) {
                 break;
@@ -103,7 +106,7 @@ public class PortalCoreDdlService implements Buildable, DictionaryDataSource {
 
     @Override
     public void build(ApplicationContext ac) throws BuildException {
-
+        init();
     }
 
     @Override

@@ -16,7 +16,10 @@ public class StrUtils extends org.springframework.util.StringUtils {
     static Pattern humpPattern = Pattern.compile("[A-Z]");
 
 	public static String humpToUnderline(String camelCase){
-
+        if(!hasText(camelCase)){
+            return camelCase;
+        }
+        camelCase = camelCase.substring(0, 1).toLowerCase() + camelCase.substring(1);
         Matcher matcher = humpPattern.matcher(camelCase);
         StringBuffer sb = new StringBuffer();
         while(matcher.find()){
