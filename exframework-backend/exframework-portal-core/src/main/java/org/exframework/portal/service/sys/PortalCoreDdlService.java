@@ -1,6 +1,7 @@
 package org.exframework.portal.service.sys;
 
 import org.exframework.portal.dao.PortalCoreDictionaryDao;
+import org.exframework.portal.metadata.dict.DictionaryDataSource;
 import org.exframework.portal.metadata.dict.DictionaryItem;
 import org.exframework.portal.metadata.dict.DictionaryItemValue;
 import org.exframework.portal.metadata.sys.Account;
@@ -11,9 +12,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.core.Ordered;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -21,11 +25,12 @@ import java.util.stream.Collectors;
 
 @Service
 @BuildComponent
-public class PortalCoreDdlService implements Buildable {
+public class PortalCoreDdlService implements Buildable, DictionaryDataSource {
 
-    private Logger log = LoggerFactory.getLogger(PortalCoreDdlService.class.getName());
+    private static final Logger logger = LoggerFactory.getLogger(PortalCoreDdlService.class.getName());
 
-    private Map<String, DictionaryItem> localItems = new ConcurrentHashMap<>();
+    @Autowired
+    ApplicationContext applicationContext;
 
     @Autowired
     PortalCoreDictionaryDao portalCoreDictionaryDao;
@@ -36,9 +41,9 @@ public class PortalCoreDdlService implements Buildable {
     @Autowired
     PortalCoreAccountService portalCoreAccountService;
 
-
     public Collection<String> getAllKeys() {
-        return portalCoreDictionaryDao.allKeys();
+        Map<String, DictionaryDataSource> dss = applicationContext.getBeansOfType(DictionaryDataSource.class);
+        return dss.values().stream().flatMap(source -> source.keys().stream()).collect(Collectors.toList());
     }
 
     public Map<String, String> get(Account account, String ddlkey) {
@@ -59,12 +64,16 @@ public class PortalCoreDdlService implements Buildable {
     }
 
     public List<DictionaryItemValue> getSorted(String ddlkey) {
-        //优先查找代码字典
-        if (localItems.containsKey(ddlkey)) {
-            return localItems.get(ddlkey).getValue();
-        } else {
-            return portalCoreDictionaryDao.findValueByKey(ddlkey);
+        List<DictionaryItemValue> result = null;
+        Map<String, DictionaryDataSource> instances = applicationContext.getBeansOfType(DictionaryDataSource.class);
+        List<DictionaryDataSource> dss = instances.values().stream().sorted(Comparator.comparingInt(DictionaryDataSource::getOrder)).collect(Collectors.toList());
+        for (DictionaryDataSource ds : dss) {
+            result = ds.getValue(ddlkey);
+            if (!ObjectUtils.isEmpty(result)) {
+                break;
+            }
         }
+        return result;
     }
 
     public Map<String, Map<String, String>> many(String[] ddlkeys) {
@@ -88,7 +97,6 @@ public class PortalCoreDdlService implements Buildable {
             item.setCode(code);
             item.setName(name);
             item.setLocal(true);
-            localItems.put(code, item);
         }
         return portalCoreDictionaryDao.saveDictionary(code, name, value, local);
     }
@@ -96,5 +104,25 @@ public class PortalCoreDdlService implements Buildable {
     @Override
     public void build(ApplicationContext ac) throws BuildException {
 
+    }
+
+    @Override
+    public String dataSourceType() {
+        return "database";
+    }
+
+    @Override
+    public Collection<String> keys() {
+        return portalCoreDictionaryDao.allKeys();
+    }
+
+    @Override
+    public List<DictionaryItemValue> getValue(String key) {
+        return portalCoreDictionaryDao.findValueByKey(key);
+    }
+
+    @Override
+    public int getOrder() {
+        return Ordered.LOWEST_PRECEDENCE;
     }
 }

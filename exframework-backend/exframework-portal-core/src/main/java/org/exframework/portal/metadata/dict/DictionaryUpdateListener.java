@@ -27,7 +27,7 @@ import java.util.stream.Stream;
  * <p>
  * Copyright @ 2021
  */
-@Repository
+//@Repository
 public class DictionaryUpdateListener implements ApplicationListener<ApplicationReadyEvent> {
 
     private Logger log = LoggerFactory.getLogger(DictionaryUpdateListener.class.getName());
