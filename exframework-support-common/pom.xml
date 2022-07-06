@@ -24,7 +24,7 @@
     </dependencies>
 
     <properties>
-        <hutool.version>5.8.1</hutool.version>
+        <hutool.version>5.8.4</hutool.version>
     </properties>
 
 </project>

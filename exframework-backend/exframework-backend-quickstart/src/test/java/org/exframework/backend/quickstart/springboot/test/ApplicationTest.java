@@ -1,7 +1,7 @@
 package org.exframework.backend.quickstart.springboot.test;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import org.exframework.backend.quickstart.springboot.application.Application;
+import org.exframework.backend.quickstart.Application;
 import org.exframework.portal.enums.AccountStatusType;
 import org.exframework.portal.jdbc.entity.security.AccountDO;
 import org.exframework.portal.jdbc.mapper.AccountMapper;

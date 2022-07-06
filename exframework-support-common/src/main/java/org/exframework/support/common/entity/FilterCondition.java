@@ -148,11 +148,11 @@ public class FilterCondition {
 
     public static FilterCondition[] arrayFromDTO(Object editable, Collection<String> ignoreList) {
         Collection<FilterCondition> conditions = fromDTO(editable, ignoreList);
-        return conditions == null ? new FilterCondition[0] : conditions.toArray(new FilterCondition[conditions.size()]);
+        return conditions.toArray(new FilterCondition[0]);
     }
 
     public static Collection<FilterCondition> fromDTO(Object editable, Collection<String> ignoreList) {
-        List<FilterCondition> fcList = new ArrayList<FilterCondition>();
+        List<FilterCondition> fcList = new ArrayList<>();
         final Class editableClass = editable.getClass();
         PropertyDescriptor[] targetPds = BeanUtils.getPropertyDescriptors(editableClass);
         for (PropertyDescriptor targetPd : targetPds) {
@@ -216,8 +216,14 @@ public class FilterCondition {
 
     public enum FilterConditionDataType {
 
-        STRING("string", "字符串"), LIST("list", "数组"), NUMBER("number", "数字"), BOOLEAN("boolean", "布尔"),
-        JSON("json", "JSON"), DATE("date", "日期"), DATETIME("datetime", "日期时间");
+        STRING("string", "字符串"),
+        LIST("list", "数组"),
+        NUMBER("number", "数字"),
+        BOOLEAN("boolean", "布尔"),
+
+        JSON("json", "JSON"),
+        DATE("date", "日期"),
+        DATETIME("datetime", "日期时间");
 
         private String key;
 
@@ -240,10 +246,24 @@ public class FilterCondition {
 
     public enum FilterConditionOper {
 
-        EQUAL("equal", "等于"), GREATER("greater", "大于"), LESS("less", "小于"), BETWEEN("between", "介于"),
-        GREATER_EQUAL("greater_equal", "大于等于"), LESS_EQUAL("less_equal", "小于等于"), IN("in", "包含"), NOT_IN("not_in", "不包含"),
-        MATCHING("matching", "匹配"), NOT_EQUAL("not_equal", "不等于"), ISNULL("is_null", "为空"),
-        IS_NOT_NULL("is_not_null", "不为空"), STR("str", "自定义");
+        EQUAL("equal", "等于"),
+        GREATER("greater", "大于"),
+        LESS("less", "小于"),
+        BETWEEN("between", "介于"),
+        GREATER_EQUAL("greater_equal", "大于等于"),
+        LESS_EQUAL("less_equal", "小于等于"),
+        IN("in", "包含"),
+        NOT_IN("not_in", "不包含"),
+
+        IN_SQL("in_sql", "包含(sql)"),
+
+        NOT_IN_SQL("not_in_sql", "不包含(sql)"),
+        MATCHING("matching", "匹配"),
+        NOT_EQUAL("not_equal", "不等于"),
+        IS_NULL("is_null", "为空"),
+        IS_NOT_NULL("is_not_null", "不为空"),
+        OR("or", "或"),
+        STR("str", "自定义");
 
         private String key;
 

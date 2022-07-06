@@ -13,7 +13,7 @@ public class QPIString extends QueryParamBase {
 	@Override
 	public void initBase(Account account,QueryParamItem qpi) {
 		initBaseCommon(account,qpi);
-		FilterConditionOper[] operations = { FilterConditionOper.EQUAL, FilterConditionOper.MATCHING, FilterConditionOper.ISNULL, FilterConditionOper.ISNULL };
+		FilterConditionOper[] operations = { FilterConditionOper.EQUAL, FilterConditionOper.MATCHING, FilterConditionOper.IS_NULL, FilterConditionOper.IS_NULL};
 		this.setOperations(operations);
 	}
 }

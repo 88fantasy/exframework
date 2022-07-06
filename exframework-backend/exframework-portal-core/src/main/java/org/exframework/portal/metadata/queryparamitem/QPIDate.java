@@ -18,7 +18,7 @@ public class QPIDate extends QueryParamBase {
 	public void initBase(Account account,QueryParamItem qpi) {
 		initBaseCommon(account,qpi);
 		this.setDataType(QUERYPARAM_DATATYPE_DATE);
-		FilterConditionOper[] operations = { FilterConditionOper.BETWEEN, FilterConditionOper.GREATER, FilterConditionOper.LESS, FilterConditionOper.GREATER_EQUAL, FilterConditionOper.LESS_EQUAL, FilterConditionOper.ISNULL };
+		FilterConditionOper[] operations = { FilterConditionOper.BETWEEN, FilterConditionOper.GREATER, FilterConditionOper.LESS, FilterConditionOper.GREATER_EQUAL, FilterConditionOper.LESS_EQUAL, FilterConditionOper.IS_NULL};
 		this.setOperations(operations);
 	}
 

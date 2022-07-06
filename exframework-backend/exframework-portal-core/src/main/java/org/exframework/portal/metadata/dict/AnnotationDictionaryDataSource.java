@@ -34,12 +34,14 @@ public class AnnotationDictionaryDataSource implements DictionaryDataSource {
 
     @Override
     public Collection<String> keys() {
-        return Dictionary.DictionaryCache.entrySet().stream().map(entry -> getKey(entry.getValue())).collect(Collectors.toList());
+        List<String> result = Dictionary.DictionaryCache.entrySet().stream().map(entry -> getKey(entry.getValue())).collect(Collectors.toList());
+        result.addAll(Dictionary.DictionaryCache.entrySet().stream().map(entry -> getOldKey(entry.getValue())).collect(Collectors.toList()));
+        return result;
     }
 
     @Override
     public List<DictionaryItemValue> getValue(String key) {
-        Optional<Map.Entry<String, Class<Enum<?>>>> optional = Dictionary.DictionaryCache.entrySet().stream().filter(entry -> key.equals(getKey(entry.getValue()))).findAny();
+        Optional<Map.Entry<String, Class<Enum<?>>>> optional = Dictionary.DictionaryCache.entrySet().stream().filter(entry -> key.equals(getKey(entry.getValue()))||key.equals(getOldKey(entry.getValue()))).findAny();
         if (!optional.isPresent()) {
             return Collections.emptyList();
         }
@@ -61,6 +63,17 @@ public class AnnotationDictionaryDataSource implements DictionaryDataSource {
         String dictCode = d.value();
         if (!StringUtils.hasText(dictCode)) {
             dictCode = StrUtils.humpToUnderline(clazz.getSimpleName());
+        }
+        logger.debug(MessageFormat.format("加载字典{0}", dictCode));
+        return dictCode;
+    }
+
+    //为兼容旧的
+    private String getOldKey(Class<Enum<?>> clazz) {
+        Dictionary d = clazz.getAnnotation(Dictionary.class);
+        String dictCode = d.value();
+        if (!StringUtils.hasText(dictCode)) {
+            dictCode = Character.toLowerCase(clazz.getSimpleName().charAt(0)) + clazz.getSimpleName().substring(1);
         }
         logger.debug(MessageFormat.format("加载字典{0}", dictCode));
         return dictCode;

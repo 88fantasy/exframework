@@ -7,10 +7,7 @@ import org.exframework.support.common.util.BeanUtils;
 import org.exframework.support.common.util.StrUtils;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
-import org.springframework.data.elasticsearch.core.SearchHitSupport;
-import org.springframework.data.elasticsearch.core.SearchHits;
-import org.springframework.data.elasticsearch.core.SearchPage;
+import org.springframework.data.elasticsearch.core.*;
 import org.springframework.data.elasticsearch.core.query.Criteria;
 import org.springframework.data.elasticsearch.core.query.CriteriaQuery;
 
@@ -118,7 +115,7 @@ public interface ExElasticsearchOperations extends ElasticsearchOperations {
 
 				}
 				break;
-			case ISNULL:
+			case IS_NULL:
 //				c.and(new Criteria(key).isNull(key);
 				break;
 			case IS_NOT_NULL:
@@ -179,8 +176,8 @@ public interface ExElasticsearchOperations extends ElasticsearchOperations {
 	}
 
 	default <E, T> PageModel<E> modelFromPage(SearchPage<T> page, Class<T> documentClass, Class<E> viewClass) {
-		List<T> list = page.stream().map(hit -> hit.getContent()).collect(Collectors.toList());
-		PageModel<T> model = new PageModel<T>(
+		List<T> list = page.stream().map(SearchHit::getContent).collect(Collectors.toList());
+		PageModel<T> model = new PageModel<>(
 				new Pager(page.getTotalElements(), new org.exframework.support.common.entity.Page(page.getNumber(), page.getNumberOfElements())),
 				list);
 		return model.copy(viewClass);

@@ -33,14 +33,22 @@
 		<!--<repository>
             <id>ali-releases</id>
             <url>https://packages.aliyun.com/maven/repository/2000957-release-5hAP6n/</url>
-        </repository>-->
+        </repository>
+        <repository>
+            <id>maven-releases</id>
+            <url>http://10.91.22.7:8081/repository/maven-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>maven-snapshots</id>
+            <url>http://10.91.22.7:8081/repository/maven-snapshots/</url>
+        </snapshotRepository>-->
 		<repository>
 			<id>maven-releases</id>
-			<url>http://10.81.17.122:8081/repository/maven-releases/</url>
+			<url>http://10.91.22.7:8081/repository/maven-releases/</url>
 		</repository>
 		<snapshotRepository>
 			<id>maven-snapshots</id>
-			<url>http://10.81.17.122:8081/repository/maven-snapshots/</url>
+			<url>http://10.91.22.7:8081/repository/maven-snapshots/</url>
 		</snapshotRepository>
 	</distributionManagement>
 

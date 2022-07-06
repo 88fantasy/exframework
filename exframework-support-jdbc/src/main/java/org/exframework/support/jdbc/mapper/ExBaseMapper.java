@@ -12,16 +12,21 @@ import org.apache.ibatis.annotations.Param;
 import org.exframework.support.common.entity.FilterCondition;
 import org.exframework.support.common.entity.PageModel;
 import org.exframework.support.common.entity.Pager;
-import org.exframework.support.common.entity.RequestIgnoreList;
 import org.exframework.support.common.util.BeanUtils;
+import org.exframework.support.jdbc.annotation.Query;
+import org.springframework.beans.FatalBeanException;
+import org.springframework.core.ResolvableType;
+import org.springframework.util.ReflectionUtils;
 import org.springframework.util.StringUtils;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.beans.PropertyDescriptor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * @author rwe Date: Jan 5, 2021
@@ -29,6 +34,98 @@ import java.util.stream.Collectors;
  * Copyright @ 2021
  */
 public interface ExBaseMapper<T> extends BaseMapper<T> {
+
+
+    default QueryWrapper<T> wrapperFromDTO(Object editable) {
+        return wrapperFromDTOAndSort(editable, new String[0]);
+    }
+
+    default QueryWrapper<T> wrapperFromDTOAndSort(Object editable, String[] sorts) {
+        List<FilterCondition> fcList = new ArrayList<>();
+        final Class editableClass = editable.getClass();
+        PropertyDescriptor[] targetPds = org.springframework.beans.BeanUtils.getPropertyDescriptors(editableClass);
+        for (PropertyDescriptor targetPd : targetPds) {
+            Method writeMethod = targetPd.getWriteMethod();
+            if (writeMethod != null) {
+                PropertyDescriptor sourcePd = org.springframework.beans.BeanUtils.getPropertyDescriptor(editable.getClass(), targetPd.getName());
+                if (sourcePd != null) {
+                    Method readMethod = sourcePd.getReadMethod();
+                    if (readMethod != null) {
+                        ResolvableType sourceResolvableType = ResolvableType.forMethodReturnType(readMethod);
+                        ResolvableType targetResolvableType = ResolvableType.forMethodParameter(writeMethod, 0);
+                        if (targetResolvableType.isAssignableFrom(sourceResolvableType)) {
+                            try {
+                                if (!Modifier.isPublic(readMethod.getDeclaringClass().getModifiers())) {
+                                    readMethod.setAccessible(true);
+                                }
+                                Object value = readMethod.invoke(editable);
+                                if (value == null || value.getClass().isAssignableFrom(org.exframework.support.common.entity.Page.class)) {
+                                    continue;
+                                }
+                                Field field = ReflectionUtils.findField(editableClass, targetPd.getName());
+                                if (field != null) {
+                                    if (field.isAnnotationPresent(Query.class)) {
+                                        Query query = field.getAnnotation(Query.class);
+                                        if (query != null && query.ignore()) {
+                                            fcList.add(queryTranslate(targetPd.getName(), query, value));
+                                        }
+                                    } else if (field.isAnnotationPresent(Query.List.class)) {
+                                        Query[] queries = field.getAnnotationsByType(Query.class);
+                                        List<Query> queryList = Arrays.stream(queries).filter(q -> q.ignore()).collect(Collectors.toList());
+                                        List<FilterCondition> fcs = new ArrayList<>();
+                                        for (Query q : queryList) {
+                                            fcs.add(queryTranslate(targetPd.getName(), q, value));
+                                        }
+                                        fcList.add(new FilterCondition(targetPd.getName(), FilterCondition.FilterConditionOper.OR, fcs));
+                                    }
+                                }
+                            } catch (Throwable ex) {
+                                throw new FatalBeanException(
+                                        "Could not copy property '" + targetPd.getName() + "' from source to target",
+                                        ex);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return wrapperFromConditionAndSort(fcList, Arrays.asList(sorts));
+    }
+
+    default FilterCondition queryTranslate(String name, Query query, Object value) {
+        String fieldName = StringUtils.hasText(query.field()) ? query.field() : name;
+        switch (query.condition()) {
+            case BETWEEN:
+                if (value.getClass().isArray()) {
+                    Optional<Object> optional = Stream.of((Object[]) value).findFirst();
+                    if (optional.isPresent()) {
+                        return new FilterCondition(fieldName, FilterCondition.FilterConditionOper.BETWEEN, value, FilterCondition.defaultType(optional.get()));
+                    }
+                } else if (value instanceof Collection) {
+                    Optional<Object> optional = ((Collection<Object>) value).stream().findFirst();
+                    if (optional.isPresent()) {
+                        return new FilterCondition(fieldName, FilterCondition.FilterConditionOper.BETWEEN, value, FilterCondition.defaultType(optional.get()));
+                    }
+                } else {
+                    return new FilterCondition(fieldName, FilterCondition.FilterConditionOper.BETWEEN, value);
+                }
+            case GT:
+                return new FilterCondition(fieldName, FilterCondition.FilterConditionOper.GREATER, value);
+            case GE:
+                return new FilterCondition(fieldName, FilterCondition.FilterConditionOper.GREATER_EQUAL, value);
+            case LT:
+                return new FilterCondition(fieldName, FilterCondition.FilterConditionOper.LESS, value);
+
+            case LE:
+                return new FilterCondition(fieldName, FilterCondition.FilterConditionOper.LESS_EQUAL, value);
+            case IN:
+                return new FilterCondition(fieldName, FilterCondition.FilterConditionOper.IN, value);
+            case NE:
+                return new FilterCondition(fieldName, FilterCondition.FilterConditionOper.NOT_EQUAL, value);
+            default:
+                return new FilterCondition(fieldName, value);
+        }
+    }
 
     default QueryWrapper<T> wrapperFromCondition(Collection<FilterCondition> conditions) {
         return wrapperFromConditionAndSort(conditions, Collections.emptyList());
@@ -45,183 +142,7 @@ public interface ExBaseMapper<T> extends BaseMapper<T> {
         QueryWrapper<T> wrapper = new QueryWrapper<>();
         if (!CollUtil.isEmpty(conditions)) {
             for (FilterCondition fc : conditions) {
-                if (fc.getFilterValue() == null) {
-                    continue;
-                } else if (fc.getFilterDataType() == null) {
-                    fc.setFilterDataType(FilterCondition.defaultType(fc.getFilterValue()));
-                }
-
-                String key = com.baomidou.mybatisplus.core.toolkit.StringUtils.camelToUnderline(fc.getKey());
-                switch (fc.getOper()) {
-                    case BETWEEN:
-                        switch (fc.getFilterDataType()) {
-                            case DATE:
-                            case DATETIME:
-                            case NUMBER:
-                            case LIST:
-                                List<?> values = (List<?>) fc.getFilterValue();
-                                if (values != null && values.size() == 2) {
-                                    wrapper.between(key, values.get(0), values.get(1));
-                                }
-                                break;
-                            default:
-                                break;
-                        }
-                        break;
-                    case EQUAL:
-                        switch (fc.getFilterDataType()) {
-                            case DATE:
-                            case DATETIME:
-                            case NUMBER:
-                            case STRING:
-                                wrapper.eq(key, fc.getFilterValue());
-                                break;
-                            default:
-                                break;
-
-                        }
-                        break;
-                    case NOT_EQUAL:
-                        switch (fc.getFilterDataType()) {
-                            case DATE:
-                            case DATETIME:
-                            case NUMBER:
-                            case STRING:
-                                wrapper.ne(key, fc.getFilterValue());
-                                break;
-                            default:
-                                break;
-
-                        }
-                        break;
-                    case GREATER:
-                        switch (fc.getFilterDataType()) {
-                            case DATE:
-                            case DATETIME:
-                            case NUMBER:
-                                wrapper.gt(key, fc.getFilterValue());
-                                break;
-                            default:
-                                break;
-                        }
-                        break;
-                    case GREATER_EQUAL:
-                        switch (fc.getFilterDataType()) {
-                            case DATE:
-                            case DATETIME:
-                            case NUMBER:
-                                wrapper.ge(key, fc.getFilterValue());
-                                break;
-                            default:
-                                break;
-                        }
-                        break;
-                    case IN:
-                        switch (fc.getFilterDataType()) {
-                            case LIST:
-                                Object fv = fc.getFilterValue();
-                                if (Collection.class.isAssignableFrom(fv.getClass())) {
-                                    Collection<?> value = (Collection<?>) fv;
-                                    if (value.size() > 0) {
-                                        wrapper.in(key, value);
-                                    } else {
-                                        emptyWapper(wrapper);
-                                    }
-                                } else if (fv.getClass().isArray()) {
-                                    Object[] value = (Object[]) fv;
-                                    if (value.length > 0) {
-                                        wrapper.in(key, Arrays.asList(value));
-                                    } else {
-                                        emptyWapper(wrapper);
-                                    }
-                                }
-                                break;
-                            default:
-                                break;
-
-                        }
-                        break;
-                    case NOT_IN:
-                        switch (fc.getFilterDataType()) {
-                            case LIST:
-                                Object fv = fc.getFilterValue();
-                                if (Collection.class.isAssignableFrom(fv.getClass())) {
-                                    Collection<?> value = (Collection<?>) fv;
-                                    if (value.size() > 0) {
-                                        wrapper.notIn(key, value);
-                                    } else {
-                                        emptyWapper(wrapper);
-                                    }
-                                } else if (fv.getClass().isArray()) {
-                                    Object[] value = (Object[]) fv;
-                                    if (value.length > 0) {
-                                        wrapper.notIn(key, Arrays.asList(value));
-                                    } else {
-                                        emptyWapper(wrapper);
-                                    }
-                                }
-                                break;
-                            default:
-                                break;
-
-                        }
-                        break;
-                    case ISNULL:
-                        wrapper.isNull(key);
-                        break;
-                    case IS_NOT_NULL:
-                        wrapper.isNotNull(key);
-                        break;
-                    case LESS:
-                        switch (fc.getFilterDataType()) {
-                            case DATE:
-                            case DATETIME:
-                            case NUMBER:
-                                wrapper.lt(key, fc.getFilterValue());
-                                break;
-                            default:
-                                break;
-                        }
-                        break;
-                    case LESS_EQUAL:
-                        switch (fc.getFilterDataType()) {
-                            case DATE:
-                            case DATETIME:
-                            case NUMBER:
-                                wrapper.le(key, fc.getFilterValue());
-                                break;
-                            default:
-                                break;
-                        }
-                        break;
-                    case MATCHING:
-                        switch (fc.getFilterDataType()) {
-                            case STRING:
-                                if (fc.getFilterValue() instanceof String) {
-                                    wrapper.like(key, fc.getFilterValue());
-                                }
-                                break;
-                            default:
-                                break;
-                        }
-                        break;
-                    case STR:
-                        switch (fc.getFilterDataType()) {
-                            case STRING:
-                                if (fc.getFilterValue() instanceof String) {
-                                    String value = (String) fc.getFilterValue();
-                                    wrapper.apply(value);
-                                }
-                                break;
-                            default:
-                                break;
-
-                        }
-                        break;
-                    default:
-                        break;
-
-                }
+                buildWrapper(wrapper, fc);
             }
         }
         sort(wrapper, sorts);
@@ -248,6 +169,245 @@ public interface ExBaseMapper<T> extends BaseMapper<T> {
         }
     }
 
+    default void buildWrapper(QueryWrapper<?> wrapper, FilterCondition fc) {
+        if (fc.getFilterValue() == null) {
+            return;
+        } else if (fc.getFilterDataType() == null) {
+            fc.setFilterDataType(FilterCondition.defaultType(fc.getFilterValue()));
+        }
+
+        String key = com.baomidou.mybatisplus.core.toolkit.StringUtils.camelToUnderline(fc.getKey());
+        switch (fc.getOper()) {
+            case BETWEEN:
+                switch (fc.getFilterDataType()) {
+                    case DATE:
+                    case DATETIME:
+                    case NUMBER:
+                    case LIST:
+                        List<?> values = (List<?>) fc.getFilterValue();
+                        if (values != null && values.size() == 2) {
+                            wrapper.between(key, values.get(0), values.get(1));
+                        }
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case EQUAL:
+                switch (fc.getFilterDataType()) {
+                    case DATE:
+                    case DATETIME:
+                    case NUMBER:
+                    case STRING:
+                        wrapper.eq(key, fc.getFilterValue());
+                        break;
+                    default:
+                        break;
+
+                }
+                break;
+            case NOT_EQUAL:
+                switch (fc.getFilterDataType()) {
+                    case DATE:
+                    case DATETIME:
+                    case NUMBER:
+                    case STRING:
+                        wrapper.ne(key, fc.getFilterValue());
+                        break;
+                    default:
+                        break;
+
+                }
+                break;
+            case GREATER:
+                switch (fc.getFilterDataType()) {
+                    case DATE:
+                    case DATETIME:
+                    case NUMBER:
+                        wrapper.gt(key, fc.getFilterValue());
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case GREATER_EQUAL:
+                switch (fc.getFilterDataType()) {
+                    case DATE:
+                    case DATETIME:
+                    case NUMBER:
+                        wrapper.ge(key, fc.getFilterValue());
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case IN:
+                switch (fc.getFilterDataType()) {
+                    case LIST:
+                        Object fv = fc.getFilterValue();
+                        if (Collection.class.isAssignableFrom(fv.getClass())) {
+                            Collection<?> value = (Collection<?>) fv;
+                            if (value.size() > 0) {
+                                wrapper.in(key, value);
+                            } else {
+                                wrapper.apply(" 1 = 2 ");
+                            }
+                        } else if (fv.getClass().isArray()) {
+                            Object[] value = (Object[]) fv;
+                            if (value.length > 0) {
+                                wrapper.in(key, Arrays.asList(value));
+                            } else {
+                                wrapper.apply(" 1 = 2 ");
+                            }
+                        }
+                        break;
+                    default:
+                        break;
+
+                }
+                break;
+            case NOT_IN:
+                switch (fc.getFilterDataType()) {
+                    case LIST:
+                        Object fv = fc.getFilterValue();
+                        if (Collection.class.isAssignableFrom(fv.getClass())) {
+                            Collection<?> value = (Collection<?>) fv;
+                            if (value.size() > 0) {
+                                wrapper.notIn(key, value);
+                            } else {
+                                wrapper.apply(" 1 = 2 ");
+                            }
+                        } else if (fv.getClass().isArray()) {
+                            Object[] value = (Object[]) fv;
+                            if (value.length > 0) {
+                                wrapper.notIn(key, Arrays.asList(value));
+                            } else {
+                                wrapper.apply(" 1 = 2 ");
+                            }
+                        }
+                        break;
+                    default:
+                        break;
+
+                }
+                break;
+            case IS_NULL:
+                wrapper.isNull(key);
+                break;
+            case IS_NOT_NULL:
+                wrapper.isNotNull(key);
+                break;
+            case LESS:
+                switch (fc.getFilterDataType()) {
+                    case DATE:
+                    case DATETIME:
+                    case NUMBER:
+                        wrapper.lt(key, fc.getFilterValue());
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case LESS_EQUAL:
+                switch (fc.getFilterDataType()) {
+                    case DATE:
+                    case DATETIME:
+                    case NUMBER:
+                        wrapper.le(key, fc.getFilterValue());
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case MATCHING:
+                switch (fc.getFilterDataType()) {
+                    case STRING:
+                        if (fc.getFilterValue() instanceof String) {
+                            wrapper.like(key, fc.getFilterValue());
+                        }
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case STR:
+                switch (fc.getFilterDataType()) {
+                    case STRING:
+                        if (fc.getFilterValue() instanceof String) {
+                            String value = (String) fc.getFilterValue();
+                            wrapper.apply(value);
+                        }
+                        break;
+                    default:
+                        break;
+
+                }
+                break;
+            case IN_SQL:
+                switch (fc.getFilterDataType()) {
+                    case STRING:
+                        if (fc.getFilterValue() instanceof String) {
+                            String value = (String) fc.getFilterValue();
+                            wrapper.inSql(key, value);
+                        }
+                        break;
+                    default:
+                        break;
+
+                }
+                break;
+            case NOT_IN_SQL:
+                switch (fc.getFilterDataType()) {
+                    case STRING:
+                        if (fc.getFilterValue() instanceof String) {
+                            String value = (String) fc.getFilterValue();
+                            wrapper.notInSql(key, value);
+                        }
+                        break;
+                    default:
+                        break;
+
+                }
+                break;
+            case OR:
+                switch (fc.getFilterDataType()) {
+                    case LIST:
+                        Object fv = fc.getFilterValue();
+                        if (Collection.class.isAssignableFrom(fv.getClass())) {
+                            Collection<FilterCondition> value = (Collection<FilterCondition>) fv;
+                            if (value.size() > 0) {
+                                wrapper.and(queryWrapper -> {
+                                    for (FilterCondition f : value) {
+                                        buildWrapper(queryWrapper.or(), f);
+                                    }
+                                });
+                            } else {
+                                wrapper.apply(" 1 = 2 ");
+                            }
+                        } else if (fv.getClass().isArray()) {
+                            FilterCondition[] value = (FilterCondition[]) fv;
+                            if (value.length > 0) {
+                                wrapper.and(queryWrapper -> {
+                                    for (FilterCondition f : value) {
+                                        buildWrapper(queryWrapper.or(), f);
+                                    }
+                                });
+                            } else {
+                                wrapper.apply(" 1 = 2 ");
+                            }
+                        }
+                        break;
+                    default:
+                        break;
+
+                }
+                break;
+            default:
+                break;
+
+        }
+    }
+
     default <E> PageModel<E> modelFromPage(Page<T> page, Class<E> clazz) {
         return modelFromPage(page, getTranslator(clazz));
     }
@@ -265,9 +425,10 @@ public interface ExBaseMapper<T> extends BaseMapper<T> {
                                    Class<E> clazz) {
         return query(request, page, new String[]{}, clazz);
     }
+
     default <E> PageModel<E> query(Object request, org.exframework.support.common.entity.Page page, String[] sorts,
                                    Class<E> clazz) {
-        return query(FilterCondition.arrayFromDTO(request), page, sorts, clazz);
+        return query(wrapperFromDTO(request), page, sorts, clazz);
     }
 
     default <E> PageModel<E> query(Object request, Collection<String> ignoreList, org.exframework.support.common.entity.Page page, String[] sorts,

@@ -1,4 +1,4 @@
-package org.exframework.backend.quickstart.springboot.application;
+package org.exframework.backend.quickstart;
 
 import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure;
 import org.exframework.portal.metadata.entity.EntityScan;

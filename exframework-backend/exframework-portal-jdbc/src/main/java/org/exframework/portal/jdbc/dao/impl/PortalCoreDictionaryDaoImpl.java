@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -30,7 +31,7 @@ public class PortalCoreDictionaryDaoImpl extends PortalCoreMetaDaoImpl<Dictionar
     public List<DictionaryItemValue> findValueByKey(String code) throws NotFoundException {
         DictionaryDO entity = dictionaryMapper.selectById(code);
         if (entity == null) {
-            throw new NotFoundException();
+            return Collections.emptyList();
         }
         return entity.getValue();
     }

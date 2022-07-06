@@ -23,7 +23,7 @@ public class QPIDdl extends QueryParamBase {
 		this.setDataType(QueryParamBase.QUERYPARAM_DATATYPE_DDL);
 		Map<String, String> dict = getDdl(qpi);
 		this.setOperdata(dict);
-		FilterConditionOper[] operations = { FilterConditionOper.IN, FilterConditionOper.ISNULL };
+		FilterConditionOper[] operations = { FilterConditionOper.IN, FilterConditionOper.IS_NULL};
 		this.setOperations(operations);
 	}
 

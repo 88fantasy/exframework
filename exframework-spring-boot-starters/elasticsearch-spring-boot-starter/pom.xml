@@ -6,9 +6,9 @@
 		<artifactId>exframework-spring-boot-starters</artifactId>
 		<version>0.9.0-SNAPSHOT</version>
 	</parent>
-	<artifactId>exframework-support-elasticsearch</artifactId>
+	<artifactId>elasticsearch-spring-boot-starter</artifactId>
 	<packaging>jar</packaging>
-	<name>exframework-support-elasticsearch</name>
+	<name>elasticsearch-spring-boot-starter</name>
 	
 	<build>
         <plugins>

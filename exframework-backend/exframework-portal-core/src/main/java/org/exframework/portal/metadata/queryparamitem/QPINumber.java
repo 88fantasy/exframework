@@ -18,7 +18,7 @@ public class QPINumber extends QueryParamBase {
 	public void initBase(Account account,QueryParamItem qpi) {
 		initBaseCommon(account,qpi);
 		this.setDataType(QUERYPARAM_DATATYPE_NUMBER);
-		FilterConditionOper[] operations = { FilterConditionOper.EQUAL, FilterConditionOper.BETWEEN, FilterConditionOper.GREATER, FilterConditionOper.LESS, FilterConditionOper.GREATER_EQUAL, FilterConditionOper.LESS_EQUAL, FilterConditionOper.NOT_EQUAL, FilterConditionOper.ISNULL, FilterConditionOper.ISNULL };
+		FilterConditionOper[] operations = { FilterConditionOper.EQUAL, FilterConditionOper.BETWEEN, FilterConditionOper.GREATER, FilterConditionOper.LESS, FilterConditionOper.GREATER_EQUAL, FilterConditionOper.LESS_EQUAL, FilterConditionOper.NOT_EQUAL, FilterConditionOper.IS_NULL, FilterConditionOper.IS_NULL};
 		this.setOperations(operations);
 	}
 }
