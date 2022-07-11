@@ -24,35 +24,19 @@ public class CurrentUserResponse {
     @ApiModelProperty(value = "姓名")
     private String name;
 
-    @ApiModelProperty(value = "邮箱")
-    private String email;
-
-    @ApiModelProperty(value = "岗位")
-    private String title;
-
-    @ApiModelProperty(value = "组织架构")
-    private String group;
-
     @ApiModelProperty(value = "权限集")
     private List<String> permissions;
 
 
-    public CurrentUserResponse(@NotNull String userid, String name, String email) {
-        this(userid, name, email, null, null);
+    public CurrentUserResponse(@NotNull String userid, String name) {
+        this(userid, name, null);
     }
 
 
-    public CurrentUserResponse(@NotNull String userid, String name, String email, String title, String group) {
-        this(userid, name, email, title, group, null);
-    }
-
-    public CurrentUserResponse(@NotNull String userid, String name, String email, String title, String group,
+    public CurrentUserResponse(@NotNull String userid, String name,
                                List<String> permissions) {
         this.userid = userid;
         this.name = name;
-        this.email = email;
-        this.title = title;
-        this.group = group;
         this.permissions = permissions;
     }
 
@@ -71,33 +55,6 @@ public class CurrentUserResponse {
 
     public CurrentUserResponse setName(String name) {
         this.name = name;
-        return this;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public CurrentUserResponse setEmail(String email) {
-        this.email = email;
-        return this;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public CurrentUserResponse setTitle(String title) {
-        this.title = title;
-        return this;
-    }
-
-    public String getGroup() {
-        return group;
-    }
-
-    public CurrentUserResponse setGroup(String group) {
-        this.group = group;
         return this;
     }
 

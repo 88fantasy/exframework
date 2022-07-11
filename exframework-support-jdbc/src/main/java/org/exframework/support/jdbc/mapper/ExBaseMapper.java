@@ -1,24 +1,29 @@
 package org.exframework.support.jdbc.mapper;
 
 import cn.hutool.core.collection.CollUtil;
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.toolkit.Constants;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.github.yulichang.base.mapper.MPJJoinMapper;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.ibatis.annotations.Param;
 import org.exframework.support.common.entity.FilterCondition;
 import org.exframework.support.common.entity.PageModel;
 import org.exframework.support.common.entity.Pager;
 import org.exframework.support.common.util.BeanUtils;
+import org.exframework.support.common.util.StrUtils;
 import org.exframework.support.jdbc.annotation.Query;
 import org.springframework.beans.FatalBeanException;
 import org.springframework.core.ResolvableType;
+import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.util.ReflectionUtils;
 import org.springframework.util.StringUtils;
 
+import javax.lang.model.type.NullType;
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -33,7 +38,7 @@ import java.util.stream.Stream;
  * <p>
  * Copyright @ 2021
  */
-public interface ExBaseMapper<T> extends BaseMapper<T> {
+public interface ExBaseMapper<T> extends BaseMapper<T>, MPJJoinMapper<T> {
 
 
     default QueryWrapper<T> wrapperFromDTO(Object editable) {
@@ -94,6 +99,14 @@ public interface ExBaseMapper<T> extends BaseMapper<T> {
 
     default FilterCondition queryTranslate(String name, Query query, Object value) {
         String fieldName = StringUtils.hasText(query.field()) ? query.field() : name;
+        String table;
+        Class<?> clazz = query.entity();
+        if (clazz != NullType.class && AnnotationUtils.isCandidateClass(clazz, TableName.class)) {
+            table = (String) AnnotationUtils.getValue(AnnotationUtils.findAnnotation(clazz, TableName.class));
+            if (!StringUtils.hasText(table)) {
+                table = StrUtils.humpToUnderline(clazz.getSimpleName());
+            }
+        }
         switch (query.condition()) {
             case BETWEEN:
                 if (value.getClass().isArray()) {
@@ -115,7 +128,6 @@ public interface ExBaseMapper<T> extends BaseMapper<T> {
                 return new FilterCondition(fieldName, FilterCondition.FilterConditionOper.GREATER_EQUAL, value);
             case LT:
                 return new FilterCondition(fieldName, FilterCondition.FilterConditionOper.LESS, value);
-
             case LE:
                 return new FilterCondition(fieldName, FilterCondition.FilterConditionOper.LESS_EQUAL, value);
             case IN:
