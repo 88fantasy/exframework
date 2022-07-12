@@ -66,7 +66,7 @@ public interface UserService {
     SysUser loadAccount(String userId);
 
     default String token(String user, List<String> permissions, Long period) {
-        return MessageFormat.format("{0}{1}", SurenessConstant.BEARER, JsonWebTokenUtil.issueJwt(UUID.randomUUID().toString(), user, getIssuer(), period, permissions));
+        return MessageFormat.format("{0} {1}", SurenessConstant.BEARER, JsonWebTokenUtil.issueJwt(UUID.randomUUID().toString(), user, getIssuer(), period, permissions));
     }
 
     String getIssuer();

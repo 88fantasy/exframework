@@ -27,10 +27,6 @@ public class LoginService {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    public static final String CURRENT_USER_KEY = "currentUser";
-
-    private final static String CAPTCHA_REDIS_KEY = "captcha_";
-
     @Autowired
     HttpServletRequest request;
 

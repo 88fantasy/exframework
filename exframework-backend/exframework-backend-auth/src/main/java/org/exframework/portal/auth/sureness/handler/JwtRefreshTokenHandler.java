@@ -47,7 +47,7 @@ public abstract class JwtRefreshTokenHandler implements SuccessHandler {
         Date exp = claims.getExpiration();
         long between = DateUtil.between(DateUtil.date(), exp, DateUnit.SECOND, true);
         if(between < (expired / 5)) {
-            response.setHeader("refresh-token", getToken(account, expired));
+            response.setHeader("Refresh-Token", getToken(account, expired));
         }
     }
 

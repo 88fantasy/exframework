@@ -19,10 +19,11 @@ public @interface ListenPoint {
 	/**
 	 * canal 指令
 	 * default for all
+	 * 支持 spel 表达式 附带 env 参数
+	 * sample 'pre'.equals(#env.getActiveProfiles()[0])? 'uniresearch-pre' : 'uniresearch'
+	 * @see org.springframework.core.env.Environment
 	 *
 	 * @return canal destination
-	 * @author rwe
-	 * @time 2018/5/28 15:49
 	 * 
 	 */
 	String destination() default "";
