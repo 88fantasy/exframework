@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@CrossOrigin(origins = "*", maxAge = 3600, methods = { RequestMethod.GET, RequestMethod.OPTIONS, RequestMethod.DELETE,
-		RequestMethod.POST })
 @Api(tags = "参数")
 public class PortalWebParamController {
 

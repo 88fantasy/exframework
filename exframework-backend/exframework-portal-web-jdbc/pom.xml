@@ -22,6 +22,11 @@
 
 
 	<dependencies>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <scope>provided</scope>
+        </dependency>
 		<dependency>
             <groupId>org.exframework</groupId>
             <artifactId>exframework-portal-web</artifactId>

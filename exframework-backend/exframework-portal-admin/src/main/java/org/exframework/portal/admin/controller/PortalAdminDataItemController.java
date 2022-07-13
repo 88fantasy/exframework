@@ -21,8 +21,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@CrossOrigin(origins = "*", maxAge = 3600, methods = { RequestMethod.GET, RequestMethod.OPTIONS, RequestMethod.DELETE,
-		RequestMethod.POST })
 @RequestMapping(AdminApiConstants.API_ADMIN_PREFIX)
 @Api(tags = "数据项")
 public class PortalAdminDataItemController {

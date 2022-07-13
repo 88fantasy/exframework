@@ -18,7 +18,6 @@ import javax.validation.Valid;
 import java.util.Map;
 
 @RestController
-@CrossOrigin(origins = "*", maxAge = 3600, methods = {RequestMethod.GET, RequestMethod.OPTIONS, RequestMethod.POST})
 @Api(tags = "下拉列表")
 public class PortalWebDictionaryController {
 

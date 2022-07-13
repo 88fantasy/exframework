@@ -28,6 +28,6 @@
 	</dependencies>
 
 	<properties>
-		<canal.version>1.1.5</canal.version>
+		<canal.version>1.1.6</canal.version>
 	</properties>
 </project>

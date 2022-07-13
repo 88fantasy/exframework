@@ -15,7 +15,6 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 
 @RestController
-@CrossOrigin(origins = "*", maxAge = 3600, methods = { RequestMethod.GET })
 @Api(tags = "系统")
 public class PortalWebSystemController {
 	
