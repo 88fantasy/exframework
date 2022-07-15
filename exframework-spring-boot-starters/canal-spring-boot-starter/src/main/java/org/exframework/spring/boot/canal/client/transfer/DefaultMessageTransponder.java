@@ -52,8 +52,6 @@ public class DefaultMessageTransponder extends AbstractBasicMessageTransponder {
         //看看指令是否正确
         Predicate<Map.Entry<Method, ListenPoint>> df = e -> !StringUtils.hasLength(e.getValue().destination())
                 || new SpelExpressionParser().parseExpression(e.getValue().destination()).getValue(ctx, String.class).equals(destination) || destination == null;
-//        Predicate<Map.Entry<Method, ListenPoint>> df = e -> StringUtils.hasLength(e.getValue().destination())
-//                || e.getValue().destination().equals(destination) || destination == null;
 
         //看看数据库实例名是否一样
         Predicate<Map.Entry<Method, ListenPoint>> sf = e -> e.getValue().database().length == 0

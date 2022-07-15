@@ -16,51 +16,44 @@ import java.util.List;
 @ConfigurationProperties(prefix = AuthConfiguration.PREFIX)
 public class AuthProperties {
 
-    private String user;
+    private ContainerType container = ContainerType.MVC;
 
-    private String password;
+    /**
+     * JWT properties
+     * 当 authType 为 JWT 时设置的属性
+     */
+    private JwtProperties jwt;
 
-    private String name;
-
-    private List<String> permissions;
+    private List<DocumentAccount> accounts;
 
     private List<String> resourceRole;
 
     private List<String> excludedResource;
 
-    public String getUser() {
-        return user;
+    public ContainerType getContainer() {
+        return container;
     }
 
-    public AuthProperties setUser(String user) {
-        this.user = user;
+    public AuthProperties setContainer(ContainerType container) {
+        this.container = container;
         return this;
     }
 
-    public String getPassword() {
-        return password;
+    public JwtProperties getJwt() {
+        return jwt;
     }
 
-    public AuthProperties setPassword(String password) {
-        this.password = password;
+    public AuthProperties setJwt(JwtProperties jwt) {
+        this.jwt = jwt;
         return this;
     }
 
-    public String getName() {
-        return name;
+    public List<DocumentAccount> getAccounts() {
+        return accounts;
     }
 
-    public AuthProperties setName(String name) {
-        this.name = name;
-        return this;
-    }
-
-    public List<String> getPermissions() {
-        return permissions;
-    }
-
-    public AuthProperties setPermissions(List<String> permissions) {
-        this.permissions = permissions;
+    public AuthProperties setAccounts(List<DocumentAccount> accounts) {
+        this.accounts = accounts;
         return this;
     }
 
@@ -82,4 +75,93 @@ public class AuthProperties {
         return this;
     }
 
+    public enum ContainerType {
+
+        MVC,
+
+        WEBFLUX
+    }
+
+    public static class DocumentAccount {
+
+        private String user;
+
+        private String password;
+
+        private String name;
+
+        private List<String> roles;
+
+        public String getUser() {
+            return user;
+        }
+
+        public DocumentAccount setUser(String user) {
+            this.user = user;
+            return this;
+        }
+
+        public String getPassword() {
+            return password;
+        }
+
+        public DocumentAccount setPassword(String password) {
+            this.password = password;
+            return this;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public DocumentAccount setName(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public List<String> getRoles() {
+            return roles;
+        }
+
+        public DocumentAccount setRoles(List<String> roles) {
+            this.roles = roles;
+            return this;
+        }
+    }
+
+    public static class AnnotationProperties {
+
+        private boolean enable = false;
+
+        private List<String> scanPackages;
+
+        public boolean isEnable() {
+            return enable;
+        }
+
+        public void setEnable(boolean enable) {
+            this.enable = enable;
+        }
+
+        public List<String> getScanPackages() {
+            return scanPackages;
+        }
+
+        public void setScanPackages(List<String> scanPackages) {
+            this.scanPackages = scanPackages;
+        }
+    }
+
+    public static class JwtProperties {
+
+        private String secret;
+
+        public String getSecret() {
+            return secret;
+        }
+
+        public void setSecret(String secret) {
+            this.secret = secret;
+        }
+    }
 }

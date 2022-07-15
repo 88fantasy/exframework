@@ -2,6 +2,7 @@ package org.exframework.portal.auth.service;
 
 import com.usthe.sureness.provider.DefaultAccount;
 import com.usthe.sureness.provider.SurenessAccount;
+import com.usthe.sureness.provider.SurenessAccountProvider;
 import com.usthe.sureness.util.JsonWebTokenUtil;
 import com.usthe.sureness.util.SurenessConstant;
 import org.exframework.portal.auth.entity.SysUser;
@@ -12,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.text.MessageFormat;
 import java.util.List;
-import java.util.UUID;
 
 /**
  * @author rwe
@@ -21,7 +21,7 @@ import java.util.UUID;
  */
 
 
-public interface UserService {
+public interface UserService extends SurenessAccountProvider {
 
     long TOKEN_EXPIRED_SECONDS = 86400;
 
@@ -66,8 +66,7 @@ public interface UserService {
     SysUser loadAccount(String userId);
 
     default String token(String user, List<String> permissions, Long period) {
-        return MessageFormat.format("{0} {1}", SurenessConstant.BEARER, JsonWebTokenUtil.issueJwt(UUID.randomUUID().toString(), user, getIssuer(), period, permissions));
+        return MessageFormat.format("{0} {1}", SurenessConstant.BEARER, JsonWebTokenUtil.issueJwt(user, period, permissions));
     }
 
-    String getIssuer();
 }

@@ -16,7 +16,7 @@ public class LoginRequest {
 
     @NotEmpty
     @ApiModelProperty(value = "帐号", required = true)
-    private String userName;
+    private String username;
 
     @NotEmpty
     @ApiModelProperty(value = "密码", required = true)
@@ -24,11 +24,11 @@ public class LoginRequest {
 
 
     public String getUserName() {
-        return userName;
+        return username;
     }
 
     public void setUserName(String userName) {
-        this.userName = userName;
+        this.username = userName;
     }
 
     public String getPassword() {
