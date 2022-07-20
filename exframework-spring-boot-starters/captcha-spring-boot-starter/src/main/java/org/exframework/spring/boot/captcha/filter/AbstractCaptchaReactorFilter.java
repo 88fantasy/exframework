@@ -11,12 +11,14 @@ import org.springframework.core.Ordered;
 import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpResponse;
+import org.springframework.util.AntPathMatcher;
 import org.springframework.util.StringUtils;
 import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.server.WebFilter;
 import org.springframework.web.server.WebFilterChain;
 import reactor.core.publisher.Mono;
 
+import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -37,6 +39,8 @@ public abstract class AbstractCaptchaReactorFilter implements WebFilter, Ordered
 
     private final Collection<String> captchaLinks = new ArrayList<>();
 
+    private static final AntPathMatcher matcher = new AntPathMatcher(File.separator);
+
 
     public AbstractCaptchaReactorFilter(CaptchaService captchaService, Collection<String> captchaLinks) {
         this("captcha", captchaService, captchaLinks);
@@ -53,7 +57,7 @@ public abstract class AbstractCaptchaReactorFilter implements WebFilter, Ordered
     public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
         ServerHttpRequest request = exchange.getRequest();
         String path = request.getPath().value();
-        if (captchaLinks.stream().anyMatch(link -> path.equals(link))) {
+        if (captchaLinks.stream().anyMatch(link -> matcher.match(link, path))) {
             String captchaJson = request.getHeaders().getFirst(header);
             if (!StringUtils.hasText(captchaJson)) {
                 return getVoidMono(exchange, "header 缺少验证码");
