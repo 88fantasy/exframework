@@ -32,7 +32,7 @@
 	</dependencies>
 
 	<properties>
-		<pulsar.version>2.9.1</pulsar.version>
+		<pulsar.version>2.9.3</pulsar.version>
 	</properties>
 
 </project>
